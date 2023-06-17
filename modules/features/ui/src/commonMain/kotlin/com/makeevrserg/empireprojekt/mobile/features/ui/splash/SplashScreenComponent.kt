@@ -4,11 +4,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.makeevrserg.empireprojekt.mobile.core.ui.asPainter
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
@@ -29,16 +32,30 @@ fun SplashScreenComponent(
             }
         }
     }
-    Box(
-        Modifier
-            .fillMaxSize()
-            .background(AppTheme.materialColor.primaryVariant),
-        contentAlignment = Alignment.Center
-    ) {
-        Image(
-            painter = MR.images.ic_splash.asPainter(),
-            modifier = Modifier.size(256.dp),
-            contentDescription = null
-        )
+    Box(Modifier.fillMaxSize()) {
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(AppTheme.materialColor.primaryVariant),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = MR.images.ic_splash.asPainter(),
+                modifier = Modifier.size(256.dp),
+                contentDescription = null
+            )
+        }
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(Color.Transparent),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            LinearProgressIndicator(
+                modifier = Modifier.fillMaxWidth(),
+                color = AppTheme.alColors.astraOrange,
+                backgroundColor = AppTheme.alColors.astraYellow
+            )
+        }
     }
 }
