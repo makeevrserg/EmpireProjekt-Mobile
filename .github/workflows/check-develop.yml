@@ -1,0 +1,14 @@
+name: Check Develop
+on:
+  push:
+    branches:
+      - develop
+      - master
+jobs:
+  gradle_validation:
+    name: Validate gradle wrapper
+    uses: ./.github/workflows/gradle-wrapper-validation.yml
+  detekt_validation:
+    name: Check by detekt
+    needs: gradle_validation
+    uses: ./.github/workflows/detekt-validation.yml

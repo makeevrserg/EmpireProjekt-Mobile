@@ -1,0 +1,226 @@
+[versions]
+# Android
+project-group = "com.makeevrserg.empireprojekt.mobile"
+project-version-code = "1"
+project-version-string = "0.0.1"
+project-sdk-compile = "33"
+project-sdk-min = "21"
+project-sdk-target = "33"
+
+# Kotlin
+kotlin-version = "1.8.10"
+kotlin-dokka = "1.8.10"
+kotlin-coroutines = "1.6.4"
+kotlin-compilerExtensionVersion = "1.4.2"
+kotlin-android-application = "7.4.2"
+kotlin-serialization-json = "1.5.0"
+
+# Androidx
+androidx-lifecycle = "2.6.0"
+androidx-lifecycle-ext = "2.2.0"
+androidx-compose-bom = "2023.01.00"
+androidx-fragment = "1.5.5"
+androidx-core = "1.9.0"
+androidx-appcompat = "1.6.1"
+androidx-room = "2.5.1"
+androidx-test-extJunit = "1.1.5"
+androidx-navigation-compose = "2.5.3"
+androidx-activity-compose = "1.6.1"
+androidx-activity-ktx = "1.8.0-alpha02"
+androidx-lifecycle-viewModelCompose = "2.6.0"
+androidx-constraintlayout-compose = "1.0.1"
+androidx-constraintlayout-android = "2.1.4"
+androidx-viewbinding = "7.4.2"
+androidx-recyclerview = "1.3.0"
+androidx-cicerone = "7.1"
+leakcanary = "2.9.1"
+
+# Google
+google-coroutinesPlayServices = "1.6.4"
+google-android-material = "1.8.0"
+google-auth = "20.4.1"
+google-ads = "21.5.0"
+google-crashlytics = "2.9.0"
+google-services = "4.3.15"
+google-accompanist = "0.28.0"
+google-firebase-bom = "31.2.3"
+
+# Yandex
+yandex-ads = "5.7.0"
+
+# Testw
+test-junit = "4.13.2"
+tests-assertk = "0.25"
+tests-turbine = "0.7.0"
+
+# Other
+ktor = "2.2.4"
+coil = "2.2.2"
+
+# MobileX
+mobileX = "2.7.1"
+
+# Compose
+kotlin-compose = "1.4.0-alpha01-dev980"
+
+# Moko
+moko-mvvm = "0.15.0"
+moko-resources = "0.22.0"
+moko-network = "0.20.1"
+
+# Decompose
+decompose = "1.0.0"
+
+# MVIKotlin
+mvikotlin = "3.1.0"
+
+# lwjgl
+lwjgl = "3.3.1"
+
+# Shadow
+shadow = "7.1.2"
+
+# Settings
+mppsettings = "1.0.0"
+
+# Linter
+lint-detekt = "1.22.0"
+lint-detekt-ruleset-compiler = "0.0.2"
+lint-detekt-ruleset-compose = "0.0.26"
+
+# Dokka
+dokka = "1.8.10"
+
+[libraries]
+dokka-android = { module = "org.jetbrains.dokka:android-documentation-plugin", version.ref = "dokka" }
+dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+dokka-core = { module = "org.jetbrains.dokka:dokka-core", version.ref = "dokka" }
+dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
+# Linter
+lint-detekt-gradle = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "lint-detekt" }
+lint-detekt-ruleset-ktlint = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "lint-detekt" }
+lint-detekt-ruleset-compiler = { module = "com.braisgabin.detekt:kotlin-compiler-wrapper", version.ref = "lint-detekt-ruleset-compiler" }
+lint-detekt-ruleset-compose = { module = "com.twitter.compose.rules:detekt", version.ref = "lint-detekt-ruleset-compose" }
+
+# Settings
+mppsettings = { module = "com.russhwolf:multiplatform-settings", version.ref = "mppsettings" }
+
+# Shadow
+shadow = { module = "gradle.plugin.com.github.johnrengelman:shadow", version.ref = "shadow" }
+
+# Yandex
+yandex-ads = { module = "com.yandex.android:mobileads", version.ref = "yandex-ads" }
+
+# lwjgl
+lwjgl = { module = "org.lwjgl:lwjgl", version.ref = "lwjgl" }
+lwjglNfd = { module = "org.lwjgl:lwjgl-nfd", version.ref = "lwjgl" }
+
+# MVIKotlin
+mvikotlin = { module = "com.arkivanov.mvikotlin:mvikotlin", version.ref = "mvikotlin" }
+mvikotlin-main = { module = "com.arkivanov.mvikotlin:mvikotlin-main", version.ref = "mvikotlin" }
+mvikotlin-coroutines = { module = "com.arkivanov.mvikotlin:mvikotlin-extensions-coroutines", version.ref = "mvikotlin" }
+
+# Decompose
+decompose-core = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose-compose-jetpack = { module = "com.arkivanov.decompose:extensions-compose-jetpack", version.ref = "decompose" }
+decompose-compose-jetbrains = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decompose" }
+decompose-android = { module = "com.arkivanov.decompose:extensions-android", version.ref = "decompose" }
+
+# Kotlin
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-version" }
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
+kotlin-coroutines-javafx = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-javafx", version.ref = "kotlin-coroutines" }
+kotlin-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlin-coroutines" }
+kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
+kotlin-coroutines-playServices = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "google-coroutinesPlayServices" }
+android-toolsBuild = { module = "com.android.tools.build:gradle", version.ref = "kotlin-android-application" }
+leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
+
+# Androidx
+androidx-constraintlayout-android = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout-android" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidx-constraintlayout-compose" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity-ktx" }
+androidx-lifecycle-viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle-viewModelCompose" }
+androidx-lifecycle-viewModelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "androidx-lifecycle-ext" }
+androidx-lifecycle-liveDataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidx-lifecycle" }
+androidx-viewbinding = { module = "androidx.databinding:viewbinding", version.ref = "androidx-viewbinding" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recyclerview" }
+androidx-cicerone = { module = "com.github.terrakok:cicerone", version.ref = "androidx-cicerone" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
+androidx-fragment-core = { module = "androidx.fragment:fragment", version.ref = "androidx-fragment" }
+
+# Google
+google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "google-firebase-bom" }
+google-firebase-crsahlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx" }
+google-firebase-crsahlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-crashlytics" }
+google-gms-services-gradle = { module = "com.google.gms:google-services", version.ref = "google-services" }
+google-firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+google-firebase-messaging = { module = "com.google.firebase:firebase-messaging-ktx" }
+google-android-material = { module = "com.google.android.material:material", version.ref = "google-android-material" }
+google-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-ads" }
+google-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "google-auth" }
+google-accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "google-accompanist" }
+google-accompanist-pagerIndicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "google-accompanist" }
+google-accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "google-accompanist" }
+google-accompanist-navigationAnimation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "google-accompanist" }
+
+# Tests
+test-junit-core = { module = "junit:junit", version.ref = "test-junit" }
+test-junit-extAndroid = { module = "androidx.test.ext:junit", version.ref = "androidx-test-extJunit" }
+tests-assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "tests-assertk" }
+tests-turbine = { module = "app.cash.turbine:turbine", version.ref = "tests-turbine" }
+
+# Ktor
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
+ktor-client-contentNegitiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-json = { module = "io.ktor:ktor-client-json", version.ref = "ktor" }
+ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# MobileX
+mobileX-core-ktx = { module = "ru.astrainteractive.mobilex:ktx-core", version.ref = "mobileX" }
+mobileX-paging = { module = "ru.astrainteractive.mobilex:paging", version.ref = "mobileX" }
+mobileX-serviceLocator = { module = "ru.astrainteractive.mobilex:service-locator", version.ref = "mobileX" }
+
+# Moko`
+moko-network-generator = { module = "dev.icerock.moko:network-generator", version.ref = "moko-network" }
+moko-network-core = { module = "dev.icerock.moko:network", version.ref = "moko-network" }
+moko-mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko-mvvm" }
+moko-resources-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
+moko-resources-core = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
+moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
+
+# Other
+coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+
+# Okio
+okio = { module = "com.squareup.okio:okio", version.strictly = "3.3.0" }
+
+[plugins]
+# Kotlin
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-version" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
+kotlin-compose = { id = "org.jetbrains.compose", version.ref = "kotlin-compose" }
+
+# Android
+android-library = { id = "com.android.application", version.ref = "kotlin-android-application" }
+android-application = { id = "com.android.library", version.ref = "kotlin-android-application" }
+
+# Gradle
+gradle-buildconfig = { id = "com.github.gmazzo.buildconfig", version.strictly = "3.1.0" }
+gradle-ksp = { id = "com.google.devtools.ksp", version.strictly = "1.8.10-1.0.9" }
+gradle-dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin-dokka" }
+gradle-shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
