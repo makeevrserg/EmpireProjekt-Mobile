@@ -65,6 +65,8 @@ dependencies {
     implementation("androidx.compose.material:material")
     implementation("androidx.compose.foundation:foundation")
     implementation("androidx.compose.material:material")
+    // Accompanist
+    implementation(libs.google.accompanist.systemuicontroller)
     // FireBase
     implementation(platform(libs.google.firebase.bom))
     implementation("com.google.firebase:firebase-auth-ktx")

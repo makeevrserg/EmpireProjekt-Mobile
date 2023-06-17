@@ -15,14 +15,17 @@ import com.makeevrserg.empireprojekt.mobile.navigation.DefaultRootComponent
 import com.makeevrserg.mobilex.di.getValue
 
 @Composable
-fun ApplicationContent(component: DefaultRootComponent) {
+fun ApplicationContent(
+    component: DefaultRootComponent,
+    modifier: Modifier = Modifier
+) {
     val rootModule by RootModule
     val servicesModule by ServicesModule
 
     val childStack by component.childStack.subscribeAsState()
     Children(
         stack = childStack,
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         animation = stackAnimation(slide())
     ) { configuration ->
 

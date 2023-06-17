@@ -42,7 +42,7 @@ google-auth = "20.4.1"
 google-ads = "21.5.0"
 google-crashlytics = "2.9.0"
 google-services = "4.3.15"
-google-accompanist = "0.28.0"
+google-accompanist = "0.31.0-alpha"
 google-firebase-bom = "31.2.3"
 
 # Yandex
@@ -173,6 +173,7 @@ google-accompanist-pager = { module = "com.google.accompanist:accompanist-pager"
 google-accompanist-pagerIndicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "google-accompanist" }
 google-accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "google-accompanist" }
 google-accompanist-navigationAnimation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "google-accompanist" }
+google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "google-accompanist" }
 
 # Tests
 test-junit-core = { module = "junit:junit", version.ref = "test-junit" }
