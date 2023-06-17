@@ -65,7 +65,7 @@ kotlin-compose = "1.4.0-alpha01-dev980"
 
 # Moko
 moko-mvvm = "0.15.0"
-moko-resources = "0.22.0"
+moko-resources = "0.22.3"
 moko-network = "0.20.1"
 
 # Decompose
