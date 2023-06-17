@@ -1,12 +1,15 @@
 package com.makeevrserg.empireprojekt.mobile.features.ui.status
 
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import com.makeevrserg.empireprojekt.mobile.features.status.EmpireProjektStatusComponent
 
 @Composable
 fun StatusScreen() {
-    Scaffold {
-        Text("Statuses")
+    Scaffold(
+        modifier = Modifier
+    ) {
+        StatusWidget(EmpireProjektStatusComponent())
     }
 }

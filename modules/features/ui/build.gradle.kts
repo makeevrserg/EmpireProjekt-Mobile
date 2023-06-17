@@ -16,6 +16,7 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.runtime)
                 implementation(compose.material)
+                implementation(compose.materialIconsExtended)
                 // MobileX
                 implementation(libs.mobileX.paging)
                 implementation(libs.mobileX.core.ktx)

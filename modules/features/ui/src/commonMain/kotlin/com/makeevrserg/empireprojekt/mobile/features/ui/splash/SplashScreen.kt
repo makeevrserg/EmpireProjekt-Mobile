@@ -18,7 +18,6 @@ import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponen
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
 import com.makeevrserg.empireprojekt.mobile.resources.MR
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -30,7 +29,6 @@ fun SplashScreenComponent(
         splashComponent.screenChannelFlow.collectLatest {
             when (it) {
                 is SplashComponent.Label.InitialLaunch -> {
-                    delay(1000L)
                     rootComponent.replaceCurrent(RootComponent.Child.Status)
                 }
             }
