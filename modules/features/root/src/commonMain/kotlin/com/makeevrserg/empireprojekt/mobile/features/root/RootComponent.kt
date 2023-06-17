@@ -16,5 +16,8 @@ interface RootComponent : BackHandlerOwner {
     sealed interface Child : Parcelable {
         @Parcelize
         object Splash : Child
+
+        @Parcelize
+        object Status : Child
     }
 }

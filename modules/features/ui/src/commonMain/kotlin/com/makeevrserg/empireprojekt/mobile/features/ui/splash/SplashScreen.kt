@@ -16,7 +16,9 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.asPainter
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
 import com.makeevrserg.empireprojekt.mobile.resources.MR
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -27,7 +29,10 @@ fun SplashScreenComponent(
     LaunchedEffect(key1 = Unit) {
         splashComponent.screenChannelFlow.collectLatest {
             when (it) {
-                is SplashComponent.Label.InitialLaunch -> Unit
+                is SplashComponent.Label.InitialLaunch -> {
+                    delay(1000L)
+                    rootComponent.replaceCurrent(RootComponent.Child.Status)
+                }
             }
         }
     }

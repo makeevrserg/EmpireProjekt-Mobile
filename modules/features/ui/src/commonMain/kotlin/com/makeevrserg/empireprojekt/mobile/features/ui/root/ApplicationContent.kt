@@ -12,6 +12,7 @@ import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.ui.splash.SplashScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.ui.status.StatusScreen
 import com.makeevrserg.mobilex.di.getValue
 
 @Composable
@@ -34,6 +35,8 @@ fun ApplicationContent(
                 rootComponent = component,
                 splashComponent = screen.splashComponent
             )
+
+            DefaultRootComponent.Configuration.Status -> StatusScreen()
         }
     }
 }

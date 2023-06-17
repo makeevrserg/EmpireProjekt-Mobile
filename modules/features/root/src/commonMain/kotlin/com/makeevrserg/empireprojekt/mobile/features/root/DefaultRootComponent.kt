@@ -37,6 +37,8 @@ class DefaultRootComponent(
                         )
                     )
                 )
+
+                RootComponent.Child.Status -> Configuration.Status
             }
         }
     )
@@ -62,5 +64,6 @@ class DefaultRootComponent(
         class Splash(
             val splashComponent: SplashComponent
         ) : Configuration
+        object Status : Configuration
     }
 }
