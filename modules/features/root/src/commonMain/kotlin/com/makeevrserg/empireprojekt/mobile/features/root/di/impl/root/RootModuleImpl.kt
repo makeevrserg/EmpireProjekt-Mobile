@@ -1,7 +1,7 @@
-package com.makeevrserg.empireprojekt.mobile.di.impl.root
+package com.makeevrserg.empireprojekt.mobile.features.root.di.impl.root
 
-import com.makeevrserg.empireprojekt.mobile.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.di.factories.SettingsFactory
+import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
+import com.makeevrserg.empireprojekt.mobile.features.root.di.factories.SettingsFactory
 import com.makeevrserg.mobilex.core.dispatchers.DefaultKotlinDispatchers
 import com.makeevrserg.mobilex.core.dispatchers.KotlinDispatchers
 import com.makeevrserg.mobilex.core.platform.PlatformConfiguration

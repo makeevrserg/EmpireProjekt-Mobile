@@ -15,7 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import com.makeevrserg.empireprojekt.mobile.core.ui.asPainter
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
-import com.makeevrserg.empireprojekt.mobile.navigation.DefaultRootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.resources.MR
 import kotlinx.coroutines.flow.collectLatest
 

@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.navigation
+package com.makeevrserg.empireprojekt.mobile.features.root
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
@@ -9,11 +9,11 @@ import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
-import com.makeevrserg.empireprojekt.mobile.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.di.ServicesModule
-import com.makeevrserg.empireprojekt.mobile.di.impl.splash.SplashComponentModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponentImpl
+import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
+import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
+import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.splash.SplashComponentModuleImpl
 
 class DefaultRootComponent(
     componentContext: ComponentContext,

@@ -8,10 +8,10 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.ExperimentalComposeUiApi
 import com.arkivanov.decompose.defaultComponentContext
-import com.makeevrserg.empireprojekt.mobile.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.di.ServicesModule
+import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
+import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ComposeApplication
-import com.makeevrserg.empireprojekt.mobile.navigation.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.resources.R
 import com.makeevrserg.mobilex.di.getValue
 

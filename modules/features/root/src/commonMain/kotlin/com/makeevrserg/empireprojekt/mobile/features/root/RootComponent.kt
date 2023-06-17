@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.navigation
+package com.makeevrserg.empireprojekt.mobile.features.root
 
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value

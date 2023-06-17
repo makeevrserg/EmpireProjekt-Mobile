@@ -1,6 +1,6 @@
-package com.makeevrserg.empireprojekt.mobile.di.impl.root
+package com.makeevrserg.empireprojekt.mobile.features.root.di.impl.root
 
-import com.makeevrserg.empireprojekt.mobile.di.ServicesModule
+import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.mobilex.di.Single
 import com.makeevrserg.mobilex.di.getValue
 import io.ktor.client.HttpClient

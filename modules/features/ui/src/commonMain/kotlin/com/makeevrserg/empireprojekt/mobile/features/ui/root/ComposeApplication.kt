@@ -6,7 +6,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.LocalAppTheme
-import com.makeevrserg.empireprojekt.mobile.navigation.DefaultRootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 
 @Composable
 fun ComposeApplication(

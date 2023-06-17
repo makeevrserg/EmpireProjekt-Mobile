@@ -1,6 +1,6 @@
-package com.makeevrserg.empireprojekt.mobile.di
+package com.makeevrserg.empireprojekt.mobile.features.root.di
 
-import com.makeevrserg.empireprojekt.mobile.di.impl.root.RootModuleImpl
+import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.root.RootModuleImpl
 import com.makeevrserg.mobilex.core.dispatchers.KotlinDispatchers
 import com.makeevrserg.mobilex.core.platform.PlatformConfiguration
 import com.makeevrserg.mobilex.di.Lateinit

@@ -8,10 +8,10 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
-import com.makeevrserg.empireprojekt.mobile.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.di.ServicesModule
+import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
+import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.ui.splash.SplashScreenComponent
-import com.makeevrserg.empireprojekt.mobile.navigation.DefaultRootComponent
 import com.makeevrserg.mobilex.di.getValue
 
 @Composable
