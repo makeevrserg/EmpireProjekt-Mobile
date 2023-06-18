@@ -19,7 +19,7 @@ class UrlStatusComponent(
     url: String,
     title: String,
     module: StatusModule,
-    coroutineFeature: CoroutineFeature
+    private val coroutineFeature: CoroutineFeature
 ) : StatusComponent, StatusModule by module, ComponentContext by context {
     private val statusRepository: StatusRepository = UrlStatusRepository(
         url = url,
@@ -34,8 +34,14 @@ class UrlStatusComponent(
         )
     )
     override val model: AnyStateFlow<StatusComponent.Model> = _model.wrapToAny()
+    override fun checkStatus() {
+        coroutineFeature.launch {
+            checkOnce(false)
+        }
+    }
 
-    private suspend fun setStatus() {
+    private suspend fun checkOnce(force: Boolean) {
+        if (_model.value.isLoading && !force) return
         _model.update {
             it.copy(isLoading = true)
         }
@@ -56,6 +62,10 @@ class UrlStatusComponent(
                 )
             }
         }
+    }
+
+    private suspend fun setStatus() {
+        checkOnce(true)
         delay(DELAY)
         setStatus()
     }

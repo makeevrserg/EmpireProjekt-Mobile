@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.with
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,7 +47,8 @@ fun StatusWidget(statusComponent: StatusComponent) {
             .height(54.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(AppTheme.dimens.XS))
-            .background(AppTheme.materialColor.primary),
+            .background(AppTheme.materialColor.primary)
+            .clickable(onClick = statusComponent::checkStatus),
         verticalAlignment = Alignment.CenterVertically
     ) {
         AnimatedContent(
