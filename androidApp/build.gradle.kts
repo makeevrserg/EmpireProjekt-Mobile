@@ -48,8 +48,6 @@ dependencies {
     // Coroutines
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
-    // Yandex
-    implementation(libs.yandex.ads)
     // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
