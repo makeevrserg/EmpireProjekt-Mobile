@@ -18,7 +18,7 @@ import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.splash.SplashC
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status.StatusModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.UrlStatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.util.CoroutineFeature
+import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
 
 class DefaultRootComponent(
     componentContext: ComponentContext,

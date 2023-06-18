@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.util
+package com.makeevrserg.empireprojekt.mobile.services.core
 
 import com.arkivanov.essenty.instancekeeper.InstanceKeeper
 import kotlinx.coroutines.CoroutineScope

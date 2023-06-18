@@ -6,19 +6,21 @@ project-version-string = "0.0.1"
 project-sdk-compile = "33"
 project-sdk-min = "21"
 project-sdk-target = "33"
+cocoapods-deployment-target = "16.0"
+cocoapods-homepage = "https://empireprojekt.ru"
 
 # Kotlin
-kotlin-version = "1.8.10"
+kotlin-version = "1.8.20"
 kotlin-dokka = "1.8.10"
 kotlin-coroutines = "1.6.4"
-kotlin-compilerExtensionVersion = "1.4.2"
-kotlin-android-application = "7.4.2"
+kotlin-compilerExtensionVersion = "1.4.5"
+kotlin-android-application = "8.0.1"
 kotlin-serialization-json = "1.5.0"
 
 # Androidx
 androidx-lifecycle = "2.6.0"
 androidx-lifecycle-ext = "2.2.0"
-androidx-compose-bom = "2023.01.00"
+androidx-compose-bom = "2023.06.00"
 androidx-fragment = "1.5.5"
 androidx-core = "1.9.0"
 androidx-appcompat = "1.6.1"
@@ -54,14 +56,14 @@ tests-assertk = "0.25"
 tests-turbine = "0.7.0"
 
 # Other
-ktor = "2.2.4"
+ktor = "2.3.2-eap-692"
 coil = "2.2.2"
 
 # MobileX
 mobileX = "2.7.1"
 
 # Compose
-kotlin-compose = "1.4.0-alpha01-dev980"
+kotlin-compose = "1.4.0"
 
 # Moko
 moko-mvvm = "0.15.0"
@@ -69,7 +71,7 @@ moko-resources = "0.22.3"
 moko-network = "0.20.1"
 
 # Decompose
-decompose = "1.0.0"
+decompose = "2.0.0-beta-01"
 
 # MVIKotlin
 mvikotlin = "3.1.0"

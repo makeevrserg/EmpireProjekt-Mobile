@@ -1,10 +1,7 @@
 
-import com.makeevrserg.empireprojekt.mobile.GradleProject.ACTIVITY_AD_UNIT_ID
 import com.makeevrserg.empireprojekt.mobile.GradleProject.APPLICATION_ID
-import com.makeevrserg.empireprojekt.mobile.GradleProject.BANNER_AD_UNIT_ID
 import com.makeevrserg.empireprojekt.mobile.GradleProject.VERSION_CODE
 import com.makeevrserg.empireprojekt.mobile.GradleProject.VERSION_STRING
-import com.makeevrserg.empireprojekt.mobile.GradleProject.WEB_CLIENT_ID
 
 plugins {
     kotlin("plugin.serialization")
@@ -23,11 +20,6 @@ android {
         applicationId = APPLICATION_ID
         versionCode = VERSION_CODE
         versionName = VERSION_STRING
-
-        buildConfigField("String", "WEB_CLIENT_ID", WEB_CLIENT_ID)
-        buildConfigField("String", "BANNER_AD_UNIT_ID", BANNER_AD_UNIT_ID)
-        buildConfigField("String", "ACTIVITY_AD_UNIT_ID", ACTIVITY_AD_UNIT_ID)
-        buildConfigField("Boolean", "HAS_GOOGLE_SERVICES", file("google-services.json").exists().toString())
     }
 
     buildTypes {

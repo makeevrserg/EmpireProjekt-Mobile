@@ -18,15 +18,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 kotlin {
     android()
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = JavaVersion.VERSION_11.majorVersion
-        }
-    }
     sourceSets {
         val commonMain by getting
         val androidMain by getting
-        val jvmMain by getting
     }
 }
 android {

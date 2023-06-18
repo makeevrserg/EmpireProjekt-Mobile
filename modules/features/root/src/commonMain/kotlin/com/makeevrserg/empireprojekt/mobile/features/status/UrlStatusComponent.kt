@@ -4,7 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.status.data.StatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.data.UrlStatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
-import com.makeevrserg.empireprojekt.mobile.features.util.CoroutineFeature
+import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
 import dev.icerock.moko.resources.desc.Raw
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.delay

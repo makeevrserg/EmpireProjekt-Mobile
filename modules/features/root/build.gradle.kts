@@ -7,6 +7,8 @@ import com.makeevrserg.empireprojekt.mobile.GradleProject.VERSION_STRING
 plugins {
     id("mpp-library-convention")
     id("com.github.gmazzo.buildconfig")
+    kotlin("native.cocoapods")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 buildConfig {
@@ -17,6 +19,21 @@ buildConfig {
 }
 
 kotlin {
+
+    cocoapods {
+        summary = "EmpireProjektMobiel Root"
+        homepage = libs.versions.cocoapods.homepage.get()
+        version = libs.versions.project.version.string.get()
+        ios.deploymentTarget = libs.versions.cocoapods.deployment.target.get()
+        framework {
+            baseName = "Root"
+            isStatic = false
+            export(libs.moko.resources.core)
+            export(projects.modules.services.resources)
+            export(projects.modules.features.splash)
+            export(projects.modules.services.core)
+        }
+    }
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -43,7 +60,9 @@ kotlin {
                 // MVIKotlin
                 implementation(libs.mvikotlin)
                 // Local
-                implementation(projects.modules.features.splash)
+                api(projects.modules.services.resources)
+                api(projects.modules.features.splash)
+                api(projects.modules.services.core)
             }
         }
         val androidMain by getting {
@@ -67,4 +86,8 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging-ktx")
     implementation(libs.google.auth)
     implementation(libs.kotlin.coroutines.playServices)
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "mock"
 }

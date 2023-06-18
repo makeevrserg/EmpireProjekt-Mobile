@@ -21,15 +21,9 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = JavaVersion.VERSION_11.majorVersion
-        }
-    }
     sourceSets {
         val commonMain by getting
         val androidMain by getting
-        val jvmMain by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting

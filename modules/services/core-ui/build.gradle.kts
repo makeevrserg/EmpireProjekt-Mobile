@@ -1,10 +1,5 @@
 @file:Suppress("UnusedPrivateMember")
 
-import com.makeevrserg.empireprojekt.mobile.GradleProject.ACTIVITY_AD_UNIT_ID
-import com.makeevrserg.empireprojekt.mobile.GradleProject.BANNER_AD_UNIT_ID
-import com.makeevrserg.empireprojekt.mobile.GradleProject.INTERSITIAL_AD_UNIT_ID
-import com.makeevrserg.empireprojekt.mobile.GradleProject.WEB_CLIENT_ID
-
 plugins {
     id("mpp-compose-convention")
     id("org.jetbrains.compose")
@@ -40,13 +35,6 @@ kotlin {
 }
 android {
     namespace = "${libs.versions.project.group.get()}.core.ui"
-    defaultConfig {
-        buildConfigField("String", "WEB_CLIENT_ID", WEB_CLIENT_ID)
-        buildConfigField("String", "BANNER_AD_UNIT_ID", BANNER_AD_UNIT_ID)
-        buildConfigField("String", "ACTIVITY_AD_UNIT_ID", ACTIVITY_AD_UNIT_ID)
-
-        buildConfigField("String", "INTERSITIAL_AD_UNIT_ID", INTERSITIAL_AD_UNIT_ID)
-    }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
     }
