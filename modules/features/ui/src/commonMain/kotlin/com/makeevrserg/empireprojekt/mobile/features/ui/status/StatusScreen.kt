@@ -8,9 +8,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.resources.MR
+
 @Composable
 fun StatusScreen(
     statusComponents: List<StatusComponent>,
@@ -19,7 +21,10 @@ fun StatusScreen(
         modifier = Modifier
     ) {
         LazyColumn(
-            modifier = Modifier.padding(AppTheme.dimens.S)
+            modifier = Modifier
+                .padding(it)
+                .navBarsPadding()
+                .padding(AppTheme.dimens.S)
         ) {
             item {
                 Text(

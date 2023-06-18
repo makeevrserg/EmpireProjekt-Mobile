@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import com.makeevrserg.empireprojekt.mobile.core.ui.asPainter
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
@@ -50,7 +51,8 @@ fun SplashScreenComponent(
         Box(
             Modifier
                 .fillMaxSize()
-                .background(Color.Transparent),
+                .background(Color.Transparent)
+                .navBarsPadding(),
             contentAlignment = Alignment.TopCenter
         ) {
             LinearProgressIndicator(
