@@ -101,6 +101,7 @@ fun RowSettingTextInfo(
 fun RowSettingChevronItem(
     modifier: Modifier = Modifier,
     icon: ImageResource,
+    tint: Color = Color.Unspecified,
     text: String,
     onClick: (() -> Unit) = {}
 ) {
@@ -112,7 +113,7 @@ fun RowSettingChevronItem(
             Icon(
                 painter = icon.asPainter(),
                 contentDescription = null,
-                tint = Color.Unspecified,
+                tint = tint,
                 modifier = Modifier.size(AppTheme.dimens.M)
             )
         }

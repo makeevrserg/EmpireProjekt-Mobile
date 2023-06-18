@@ -1,5 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.features.ui.info.data
 
+import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.model.LinkModel
 import com.makeevrserg.empireprojekt.mobile.resources.MR
 
@@ -9,17 +10,30 @@ object InfoScreenLinks {
             LinkModel(
                 title = "Astra Github",
                 res = MR.images.github,
+                tint = { AppTheme.materialColor.onPrimary },
                 url = "https://github.com/Astra-Interactive/"
             ).run(::add)
             LinkModel(
                 title = "Author Github",
                 res = MR.images.github,
+                tint = { AppTheme.materialColor.onPrimary },
                 url = "https://github.com/makeevrserg"
             ).run(::add)
             LinkModel(
                 title = "Source code",
                 res = MR.images.github,
+                tint = { AppTheme.materialColor.onPrimary },
                 url = "https://github.com/makeevrserg/EmpireProjekt-Mobile"
+            ).run(::add)
+            LinkModel(
+                title = "TG Group",
+                res = MR.images.esmptelegram,
+                url = "https://t.me/empiresmp"
+            ).run(::add)
+            LinkModel(
+                title = "TG Chat",
+                res = MR.images.esmptelegram,
+                url = "https://t.me/empiresmp_discussion"
             ).run(::add)
             LinkModel(
                 title = "EmpireProjekt.ru",
@@ -30,6 +44,11 @@ object InfoScreenLinks {
                 title = "AstraInteractive.ru",
                 res = MR.images.ainteractivelogo,
                 url = "https://AstraInteractive.ru"
+            ).run(::add)
+            LinkModel(
+                title = "Boosty",
+                res = MR.images.boosty,
+                url = "https://boosty.to/empireprojekt/donate"
             ).run(::add)
             LinkModel(
                 title = "AstraLearner",

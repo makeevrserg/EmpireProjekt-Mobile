@@ -13,6 +13,7 @@ fun LinkWidget(
     RowSettingChevronItem(
         icon = linkModel.res,
         text = linkModel.title,
+        tint = linkModel.tint.invoke(),
         onClick = {
             linkBrowser.openInBrowser(linkModel.url)
         }
