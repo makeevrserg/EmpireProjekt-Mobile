@@ -11,8 +11,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bolt
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,7 +20,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.RowSettingTextInf
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.components.LinkWidget
-import com.makeevrserg.empireprojekt.mobile.features.ui.info.model.LinkModel
+import com.makeevrserg.empireprojekt.mobile.features.ui.info.data.InfoScreenLinks
 import com.makeevrserg.empireprojekt.mobile.services.core.LinkBrowser
 import com.makeevrserg.empireprojekt.mobile.shared.BuildKonfig
 
@@ -28,43 +28,7 @@ import com.makeevrserg.empireprojekt.mobile.shared.BuildKonfig
 fun InfoScreen(
     linkBrowser: LinkBrowser
 ) {
-    val models = buildList {
-        LinkModel(
-            title = "Astra Github",
-            icon = Icons.Filled.Info,
-            url = "https://github.com/Astra-Interactive/"
-        ).run(::add)
-        LinkModel(
-            title = "Author Github",
-            icon = Icons.Filled.Info,
-            url = "https://github.com/makeevrserg"
-        ).run(::add)
-        LinkModel(
-            title = "EmpireProjekt.ru",
-            icon = Icons.Filled.Info,
-            url = "https://EmpireProjekt.ru"
-        ).run(::add)
-        LinkModel(
-            title = "AstraInteractive.ru",
-            icon = Icons.Filled.Info,
-            url = "https://AstraInteractive.ru"
-        ).run(::add)
-        LinkModel(
-            title = "AstraLearner",
-            icon = Icons.Filled.Info,
-            url = "https://play.google.com/store/apps/details?id=com.makeevrserg.astralearner"
-        ).run(::add)
-        LinkModel(
-            title = "Source code",
-            icon = Icons.Filled.Info,
-            url = "https://github.com/makeevrserg/EmpireProjekt-Mobile"
-        ).run(::add)
-        LinkModel(
-            title = "Google Play page",
-            icon = Icons.Filled.Info,
-            url = "https://play.google.com/store/apps/details?id=com.makeevrserg.empireprojekt.mobile"
-        ).run(::add)
-    }
+    val models = remember { InfoScreenLinks.get() }
     LazyColumn(
         modifier = Modifier
             .navBarsPadding()
@@ -92,6 +56,7 @@ fun InfoScreen(
         }
         item {
             RowSettingTextInfo(
+                modifier = Modifier.padding(vertical = AppTheme.dimens.XS),
                 icon = Icons.Filled.Bolt,
                 text = "Version",
                 endText = "${BuildKonfig.VERSION_CODE} (${BuildKonfig.VERSION_NAME})"

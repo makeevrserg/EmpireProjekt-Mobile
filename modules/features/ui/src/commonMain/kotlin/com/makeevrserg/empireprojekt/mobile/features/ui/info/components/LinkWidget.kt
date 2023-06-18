@@ -11,7 +11,7 @@ fun LinkWidget(
     linkModel: LinkModel
 ) {
     RowSettingChevronItem(
-        icon = linkModel.icon,
+        icon = linkModel.res,
         text = linkModel.title,
         onClick = {
             linkBrowser.openInBrowser(linkModel.url)
