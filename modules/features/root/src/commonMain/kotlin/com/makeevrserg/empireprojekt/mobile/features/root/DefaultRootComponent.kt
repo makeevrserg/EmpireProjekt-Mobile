@@ -21,6 +21,7 @@ import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.splash.SplashComponentModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status.StatusModuleImpl
+import com.makeevrserg.empireprojekt.mobile.features.status.DefaultMinecraftStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
@@ -88,11 +89,23 @@ class DefaultRootComponent(
                             CoroutineFeature.Default()
                         }
                     )
+
+                    val smpServerStatus = DefaultMinecraftStatusComponent(
+                        context = context,
+                        title = "Empire SMP",
+                        module = StatusModuleImpl(),
+                        coroutineFeature = context.instanceKeeper.getOrCreate {
+                            CoroutineFeature.Default()
+                        }
+                    )
                     Configuration.Status(
-                        esmpStatusComponent = esmpStatusComponent,
-                        ainteractiveStatusComponent = ainteractiveStatusComponent,
-                        alearnerDevStatusComponent = alearnerDevStatusComponent,
-                        alearnerProdStatusComponent = alearnerProdStatusComponent
+                        statusComponents = listOf(
+                            esmpStatusComponent,
+                            ainteractiveStatusComponent,
+                            alearnerDevStatusComponent,
+                            alearnerProdStatusComponent,
+                            smpServerStatus
+                        )
                     )
                 }
             }
@@ -111,6 +124,7 @@ class DefaultRootComponent(
             }
         }
     )
+
     override fun dismissSlotChild() {
         slotNavigation.dismiss()
     }
@@ -141,12 +155,7 @@ class DefaultRootComponent(
             val splashComponent: SplashComponent
         ) : Configuration
 
-        class Status(
-            val esmpStatusComponent: StatusComponent,
-            val ainteractiveStatusComponent: StatusComponent,
-            val alearnerProdStatusComponent: StatusComponent,
-            val alearnerDevStatusComponent: StatusComponent
-        ) : Configuration
+        class Status(val statusComponents: List<StatusComponent>) : Configuration
     }
 
     sealed interface SlotConfiguration {

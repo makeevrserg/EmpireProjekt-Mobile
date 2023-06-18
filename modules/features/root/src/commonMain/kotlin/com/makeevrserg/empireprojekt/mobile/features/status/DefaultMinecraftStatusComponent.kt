@@ -1,8 +1,7 @@
 package com.makeevrserg.empireprojekt.mobile.features.status
 
 import com.arkivanov.decompose.ComponentContext
-import com.makeevrserg.empireprojekt.mobile.features.status.data.StatusRepository
-import com.makeevrserg.empireprojekt.mobile.features.status.data.UrlStatusRepository
+import com.makeevrserg.empireprojekt.mobile.features.status.data.MinecraftStatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
 import com.makeevrserg.empireprojekt.mobile.services.core.AnyStateFlow
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
@@ -14,33 +13,26 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class UrlStatusComponent(
+class DefaultMinecraftStatusComponent(
     context: ComponentContext,
-    url: String,
+    private val module: StatusModule,
     title: String,
-    module: StatusModule,
     private val coroutineFeature: CoroutineFeature
 ) : StatusComponent, StatusModule by module, ComponentContext by context {
-    private val statusRepository: StatusRepository = UrlStatusRepository(
-        url = url,
+    private val repository = MinecraftStatusRepository.Default(
         httpClient = httpClient,
         dispatchers = dispatchers
     )
-
-    private data class UrlModel(
-        override val title: StringDesc,
-        override val isLoading: Boolean,
-        override val status: StatusComponent.Model.LoadingStatus
-    ) : StatusComponent.Model
-
     private val _model = MutableStateFlow(
-        UrlModel(
+        MinecraftStatusComponent.Model(
             title = StringDesc.Raw(title),
             isLoading = true,
-            status = StatusComponent.Model.LoadingStatus.LOADING
+            status = StatusComponent.Model.LoadingStatus.LOADING,
+            statusResult = Result.failure(Throwable(""))
         )
     )
-    override val model: AnyStateFlow<StatusComponent.Model> = _model.wrapToAny()
+    override val model: AnyStateFlow<out StatusComponent.Model> = _model.wrapToAny()
+
     override fun checkStatus() {
         coroutineFeature.launch {
             checkOnce(false)
@@ -52,22 +44,16 @@ class UrlStatusComponent(
         _model.update {
             it.copy(isLoading = true)
         }
-        val response = statusRepository.isActive()
-        response.onSuccess {
-            _model.update {
-                it.copy(
-                    status = StatusComponent.Model.LoadingStatus.SUCCESS,
-                    isLoading = false
-                )
-            }
-        }
-        response.onFailure {
-            _model.update {
-                it.copy(
-                    status = StatusComponent.Model.LoadingStatus.ERROR,
-                    isLoading = false
-                )
-            }
+        val response = repository.get()
+        _model.update {
+            it.copy(
+                isLoading = false,
+                statusResult = response,
+                status = when {
+                    response.isSuccess -> StatusComponent.Model.LoadingStatus.SUCCESS
+                    else -> StatusComponent.Model.LoadingStatus.ERROR
+                },
+            )
         }
     }
 

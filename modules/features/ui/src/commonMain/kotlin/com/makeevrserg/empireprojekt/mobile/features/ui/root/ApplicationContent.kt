@@ -32,12 +32,7 @@ fun ApplicationContent(
 
             is DefaultRootComponent.Configuration.Status -> StatusScreen(
                 rootComponent = component,
-                statusComponents = listOf(
-                    screen.ainteractiveStatusComponent,
-                    screen.esmpStatusComponent,
-                    screen.alearnerProdStatusComponent,
-                    screen.alearnerDevStatusComponent
-                )
+                statusComponents = screen.statusComponents
             )
         }
     }

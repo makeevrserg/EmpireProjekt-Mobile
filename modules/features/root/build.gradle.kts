@@ -9,6 +9,7 @@ plugins {
     id("com.github.gmazzo.buildconfig")
     kotlin("native.cocoapods")
     id("dev.icerock.mobile.multiplatform-resources")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 buildConfig {
