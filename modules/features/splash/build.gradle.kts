@@ -15,6 +15,9 @@ kotlin {
                 // MobileX
                 implementation(libs.mobileX.core.ktx)
                 implementation(libs.mobileX.serviceLocator)
+                // Moko
+                implementation(libs.moko.mvvm.core)
+                implementation(libs.moko.mvvm.flow)
                 // Decompose
                 implementation(libs.decompose.core)
             }

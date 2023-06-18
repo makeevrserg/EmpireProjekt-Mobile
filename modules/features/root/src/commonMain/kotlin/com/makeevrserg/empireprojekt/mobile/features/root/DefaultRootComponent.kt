@@ -27,7 +27,7 @@ class DefaultRootComponent(
 ) : RootComponent, ComponentContext by componentContext {
     private val navigation = StackNavigation<RootComponent.Child>()
 
-    override val childStack: Value<ChildStack<RootComponent.Child, Configuration>> = childStack(
+    override val childStack: Value<ChildStack<*, Configuration>> = childStack(
         source = navigation,
         initialConfiguration = RootComponent.Child.Splash,
         handleBackButton = true,

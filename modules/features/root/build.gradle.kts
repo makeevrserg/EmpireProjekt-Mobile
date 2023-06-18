@@ -25,6 +25,7 @@ kotlin {
         homepage = libs.versions.cocoapods.homepage.get()
         version = libs.versions.project.version.string.get()
         ios.deploymentTarget = libs.versions.cocoapods.deployment.target.get()
+        podfile = project.file("../../../iosApp/Podfile")
         framework {
             baseName = "Root"
             isStatic = false
@@ -32,6 +33,11 @@ kotlin {
             export(projects.modules.services.resources)
             export(projects.modules.features.splash)
             export(projects.modules.services.core)
+            export(libs.decompose.core)
+            export(libs.essenty)
+            export(libs.mobileX.core.ktx)
+            export(libs.moko.mvvm.core)
+            export(libs.moko.mvvm.flow)
         }
     }
     sourceSets {
@@ -41,9 +47,10 @@ kotlin {
                 implementation(libs.mppsettings)
                 // MobileX
                 implementation(libs.mobileX.serviceLocator)
-                implementation(libs.mobileX.core.ktx)
+                api(libs.mobileX.core.ktx)
                 // Decompose
-                implementation(libs.decompose.core)
+                api(libs.decompose.core)
+                api(libs.essenty)
                 // Ktor
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.contentNegitiation)
@@ -51,7 +58,8 @@ kotlin {
                 implementation(libs.ktor.client.json)
                 implementation(libs.ktor.serialization.json)
                 // Moko
-                implementation(libs.moko.mvvm.core)
+                api(libs.moko.mvvm.core)
+                api(libs.moko.mvvm.flow)
                 implementation(libs.moko.resources.core)
                 // Serialization
                 implementation(libs.kotlin.serialization.json)
@@ -69,6 +77,11 @@ kotlin {
             dependencies {
                 implementation(libs.androidx.room.ktx)
                 implementation(libs.ktor.client.cio)
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.darwin)
             }
         }
     }

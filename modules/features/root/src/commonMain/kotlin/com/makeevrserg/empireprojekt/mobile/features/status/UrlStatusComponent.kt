@@ -4,7 +4,9 @@ import com.arkivanov.decompose.ComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.status.data.StatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.data.UrlStatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
+import com.makeevrserg.empireprojekt.mobile.services.core.AnyStateFlow
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
+import com.makeevrserg.empireprojekt.mobile.services.core.wrapToAny
 import dev.icerock.moko.resources.desc.Raw
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.delay
@@ -25,20 +27,21 @@ class UrlStatusComponent(
         dispatchers = dispatchers
     )
 
-    override val model = MutableStateFlow(
+    private val _model = MutableStateFlow(
         StatusComponent.Model(
             title = StringDesc.Raw(title),
             isLoading = true
         )
     )
+    override val model: AnyStateFlow<StatusComponent.Model> = _model.wrapToAny()
 
     private suspend fun setStatus() {
-        model.update {
+        _model.update {
             it.copy(isLoading = true)
         }
         val response = statusRepository.isActive()
         response.onSuccess {
-            model.update {
+            _model.update {
                 it.copy(
                     status = StatusComponent.Model.LoadingStatus.SUCCESS,
                     isLoading = false
@@ -46,7 +49,7 @@ class UrlStatusComponent(
             }
         }
         response.onFailure {
-            model.update {
+            _model.update {
                 it.copy(
                     status = StatusComponent.Model.LoadingStatus.ERROR,
                     isLoading = false

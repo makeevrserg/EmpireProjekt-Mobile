@@ -1,10 +1,11 @@
 package com.makeevrserg.empireprojekt.mobile.features.status
 
+import com.makeevrserg.empireprojekt.mobile.services.core.AnyStateFlow
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.flow.StateFlow
 
 interface StatusComponent {
-    val model: StateFlow<Model>
+    val model: AnyStateFlow<Model>
 
     data class Model(
         val title: StringDesc,

@@ -72,6 +72,7 @@ moko-network = "0.20.1"
 
 # Decompose
 decompose = "2.0.0-beta-01"
+essenty = "1.1.0"
 
 # MVIKotlin
 mvikotlin = "3.1.0"
@@ -127,7 +128,7 @@ decompose-core = { module = "com.arkivanov.decompose:decompose", version.ref = "
 decompose-compose-jetpack = { module = "com.arkivanov.decompose:extensions-compose-jetpack", version.ref = "decompose" }
 decompose-compose-jetbrains = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decompose" }
 decompose-android = { module = "com.arkivanov.decompose:extensions-android", version.ref = "decompose" }
-
+essenty = { module = "com.arkivanov.essenty:lifecycle", version.ref = "essenty" }
 # Kotlin
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-version" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
@@ -186,6 +187,7 @@ tests-turbine = { module = "app.cash.turbine:turbine", version.ref = "tests-turb
 # Ktor
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
 ktor-client-contentNegitiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-json = { module = "io.ktor:ktor-client-json", version.ref = "ktor" }
@@ -200,6 +202,7 @@ mobileX-serviceLocator = { module = "ru.astrainteractive.mobilex:service-locator
 moko-network-generator = { module = "dev.icerock.moko:network-generator", version.ref = "moko-network" }
 moko-network-core = { module = "dev.icerock.moko:network", version.ref = "moko-network" }
 moko-mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko-mvvm" }
+moko-mvvm-flow = { module = "dev.icerock.moko:mvvm-flow", version.ref = "moko-mvvm" }
 moko-resources-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
 moko-resources-core = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
 moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }

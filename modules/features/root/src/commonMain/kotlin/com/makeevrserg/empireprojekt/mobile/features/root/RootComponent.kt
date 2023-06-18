@@ -7,7 +7,7 @@ import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 
 interface RootComponent : BackHandlerOwner {
-    val childStack: Value<ChildStack<Child, DefaultRootComponent.Configuration>>
+    val childStack: Value<ChildStack<*, DefaultRootComponent.Configuration>>
     fun push(screen: Child)
     fun replaceCurrent(screen: Child)
     fun replaceAll(screen: Child)

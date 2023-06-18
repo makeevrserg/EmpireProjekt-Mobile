@@ -1,9 +1,9 @@
 package com.makeevrserg.empireprojekt.mobile.features.logic.splash
 
-import kotlinx.coroutines.flow.Flow
+import dev.icerock.moko.mvvm.flow.CFlow
 
 interface SplashComponent {
-    val screenChannelFlow: Flow<Label>
+    val screenChannelFlow: CFlow<Label>
 
     sealed interface Label {
         class InitialLaunch(val value: Boolean) : Label

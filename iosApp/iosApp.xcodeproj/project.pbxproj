@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,16 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		A8CD50FC2A3EEC7200948CF7 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD50FB2A3EEC7200948CF7 /* StackView.swift */; };
+		A8CD50FE2A3EEC8F00948CF7 /* SimpleChildStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD50FD2A3EEC8F00948CF7 /* SimpleChildStack.swift */; };
+		A8CD51002A3EECA500948CF7 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD50FF2A3EECA500948CF7 /* ObservableValue.swift */; };
+		A8CD51022A3EECB700948CF7 /* ObservableStateFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD51012A3EECB700948CF7 /* ObservableStateFlow.swift */; };
+		A8CD51042A3EECCF00948CF7 /* MutableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD51032A3EECCF00948CF7 /* MutableValue.swift */; };
+		A8CD51072A3EED0300948CF7 /* RootHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD51062A3EED0300948CF7 /* RootHolder.swift */; };
+		A8CD51092A3EED1C00948CF7 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD51082A3EED1C00948CF7 /* RootView.swift */; };
+		A8CD510C2A3EF45E00948CF7 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD510B2A3EF45E00948CF7 /* SplashView.swift */; };
+		A8CD510E2A3EF55600948CF7 /* MokoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD510D2A3EF55600948CF7 /* MokoImage.swift */; };
+		A8CD51102A3EF70D00948CF7 /* CFlowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD510F2A3EF70D00948CF7 /* CFlowExt.swift */; };
 		D8AF67845F191895B8DF674C /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B9D6C5052A7F0A3F68B674 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +32,16 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8CD50FB2A3EEC7200948CF7 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		A8CD50FD2A3EEC8F00948CF7 /* SimpleChildStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleChildStack.swift; sourceTree = "<group>"; };
+		A8CD50FF2A3EECA500948CF7 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
+		A8CD51012A3EECB700948CF7 /* ObservableStateFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableStateFlow.swift; sourceTree = "<group>"; };
+		A8CD51032A3EECCF00948CF7 /* MutableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableValue.swift; sourceTree = "<group>"; };
+		A8CD51062A3EED0300948CF7 /* RootHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHolder.swift; sourceTree = "<group>"; };
+		A8CD51082A3EED1C00948CF7 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		A8CD510B2A3EF45E00948CF7 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		A8CD510D2A3EF55600948CF7 /* MokoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokoImage.swift; sourceTree = "<group>"; };
+		A8CD510F2A3EF70D00948CF7 /* CFlowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFlowExt.swift; sourceTree = "<group>"; };
 		B3306233BE6AD22D1A1E075F /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C556F4227505ADDE67B03D10 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,10 +87,11 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				A8CD50F82A3EEBDF00948CF7 /* Presentation */,
+				A8CD50FA2A3EEC3200948CF7 /* Wrappers */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
-				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+				7555FF8C242A565B00829871 /* Info.plist */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
 			path = iosApp;
@@ -84,13 +105,61 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A8CD50F82A3EEBDF00948CF7 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD510A2A3EF44300948CF7 /* Splash */,
+				A8CD51052A3EECF400948CF7 /* Root */,
+				A8CD50F92A3EEBEB00948CF7 /* Content */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A8CD50F92A3EEBEB00948CF7 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				7555FF82242A565900829871 /* ContentView.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		A8CD50FA2A3EEC3200948CF7 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD50FB2A3EEC7200948CF7 /* StackView.swift */,
+				A8CD50FD2A3EEC8F00948CF7 /* SimpleChildStack.swift */,
+				A8CD50FF2A3EECA500948CF7 /* ObservableValue.swift */,
+				A8CD51012A3EECB700948CF7 /* ObservableStateFlow.swift */,
+				A8CD51032A3EECCF00948CF7 /* MutableValue.swift */,
+				A8CD510D2A3EF55600948CF7 /* MokoImage.swift */,
+				A8CD510F2A3EF70D00948CF7 /* CFlowExt.swift */,
+			);
+			path = Wrappers;
+			sourceTree = "<group>";
+		};
+		A8CD51052A3EECF400948CF7 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD51062A3EED0300948CF7 /* RootHolder.swift */,
+				A8CD51082A3EED1C00948CF7 /* RootView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		A8CD510A2A3EF44300948CF7 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD510B2A3EF45E00948CF7 /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		BCE165104BAE97195ACA869F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				B3306233BE6AD22D1A1E075F /* Pods-iosApp.debug.xcconfig */,
 				C556F4227505ADDE67B03D10 /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -209,7 +278,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				A8CD51002A3EECA500948CF7 /* ObservableValue.swift in Sources */,
+				A8CD51022A3EECB700948CF7 /* ObservableStateFlow.swift in Sources */,
+				A8CD51042A3EECCF00948CF7 /* MutableValue.swift in Sources */,
+				A8CD50FE2A3EEC8F00948CF7 /* SimpleChildStack.swift in Sources */,
+				A8CD51102A3EF70D00948CF7 /* CFlowExt.swift in Sources */,
+				A8CD51092A3EED1C00948CF7 /* RootView.swift in Sources */,
+				A8CD51072A3EED0300948CF7 /* RootHolder.swift in Sources */,
+				A8CD510C2A3EF45E00948CF7 /* SplashView.swift in Sources */,
+				A8CD510E2A3EF55600948CF7 /* MokoImage.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				A8CD50FC2A3EEC7200948CF7 /* StackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
