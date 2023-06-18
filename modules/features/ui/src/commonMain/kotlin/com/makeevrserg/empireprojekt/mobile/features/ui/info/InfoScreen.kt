@@ -62,7 +62,7 @@ fun InfoScreen(
         LinkModel(
             title = "Google Play page",
             icon = Icons.Filled.Info,
-            url = "https://AstraInteractive.ru"
+            url = "https://play.google.com/store/apps/details?id=com.makeevrserg.empireprojekt.mobile"
         ).run(::add)
     }
     LazyColumn(
