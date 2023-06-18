@@ -8,6 +8,7 @@ interface StatusComponent {
 
     data class Model(
         val title: StringDesc,
+        val isLoading: Boolean,
         val status: LoadingStatus = LoadingStatus.LOADING
     ) {
         enum class LoadingStatus {

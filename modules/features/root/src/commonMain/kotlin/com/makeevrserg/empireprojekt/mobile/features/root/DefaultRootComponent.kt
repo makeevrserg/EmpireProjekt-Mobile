@@ -9,11 +9,16 @@ import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
+import com.arkivanov.essenty.instancekeeper.getOrCreate
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponentImpl
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.splash.SplashComponentModuleImpl
+import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status.StatusModuleImpl
+import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.UrlStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.util.CoroutineFeature
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
@@ -38,7 +43,52 @@ class DefaultRootComponent(
                     )
                 )
 
-                RootComponent.Child.Status -> Configuration.Status
+                RootComponent.Child.Status -> {
+                    val esmpStatusComponent = UrlStatusComponent(
+                        context = context,
+                        url = "https://empireprojekt.ru",
+                        title = "empireprojekt.ru",
+                        module = StatusModuleImpl(),
+                        coroutineFeature = context.instanceKeeper.getOrCreate {
+                            CoroutineFeature.Default()
+                        }
+                    )
+                    val ainteractiveStatusComponent = UrlStatusComponent(
+                        context = context,
+                        url = "https://astrainteractive.ru",
+                        title = "astrainteractive.ru",
+                        module = StatusModuleImpl(),
+                        coroutineFeature = context.instanceKeeper.getOrCreate {
+                            CoroutineFeature.Default()
+                        }
+                    )
+
+                    val alearnerDevStatusComponent = UrlStatusComponent(
+                        context = context,
+                        url = "http://astralearner.empireprojekt.ru:8083/dictionaries/4/words",
+                        title = "Dev: AstraLearner",
+                        module = StatusModuleImpl(),
+                        coroutineFeature = context.instanceKeeper.getOrCreate {
+                            CoroutineFeature.Default()
+                        }
+                    )
+
+                    val alearnerProdStatusComponent = UrlStatusComponent(
+                        context = context,
+                        url = "http://astralearner.empireprojekt.ru:8081/dictionaries/4/words",
+                        title = "Prod: AstraLearner",
+                        module = StatusModuleImpl(),
+                        coroutineFeature = context.instanceKeeper.getOrCreate {
+                            CoroutineFeature.Default()
+                        }
+                    )
+                    Configuration.Status(
+                        esmpStatusComponent = esmpStatusComponent,
+                        ainteractiveStatusComponent = ainteractiveStatusComponent,
+                        alearnerDevStatusComponent = alearnerDevStatusComponent,
+                        alearnerProdStatusComponent = alearnerProdStatusComponent
+                    )
+                }
             }
         }
     )
@@ -64,6 +114,12 @@ class DefaultRootComponent(
         class Splash(
             val splashComponent: SplashComponent
         ) : Configuration
-        object Status : Configuration
+
+        class Status(
+            val esmpStatusComponent: StatusComponent,
+            val ainteractiveStatusComponent: StatusComponent,
+            val alearnerProdStatusComponent: StatusComponent,
+            val alearnerDevStatusComponent: StatusComponent
+        ) : Configuration
     }
 }

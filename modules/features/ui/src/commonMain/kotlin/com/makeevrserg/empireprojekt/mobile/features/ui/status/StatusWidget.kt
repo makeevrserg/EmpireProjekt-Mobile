@@ -34,13 +34,15 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 
+private const val FADE_DURATION = 1200
+
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun StatusWidget(statusComponent: StatusComponent) {
     val model by statusComponent.model.collectAsState()
 
     Row(
-        modifier = Modifier.padding(AppTheme.dimens.L)
+        modifier = Modifier.padding(vertical = AppTheme.dimens.M)
             .height(54.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(AppTheme.dimens.XS))
@@ -48,34 +50,34 @@ fun StatusWidget(statusComponent: StatusComponent) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         AnimatedContent(
-            targetState = model.status,
+            targetState = (model.status to model.isLoading),
             transitionSpec = {
-                fadeIn(tween(1200)) with fadeOut(tween(1200))
+                fadeIn(tween(FADE_DURATION)) with fadeOut(tween(FADE_DURATION))
             }
-        ) {
-            when (it) {
-                StatusComponent.Model.LoadingStatus.LOADING -> {
+        ) { (status, isLoading) ->
+            when {
+                status == StatusComponent.Model.LoadingStatus.LOADING || isLoading -> {
                     LinearProgressIndicator(
-                        modifier = Modifier.fillMaxHeight().width(4.dp),
+                        modifier = Modifier.fillMaxHeight().width(AppTheme.dimens.XXS),
                         color = AppTheme.alColors.astraOrange,
                         backgroundColor = AppTheme.alColors.astraYellow
                     )
                 }
 
-                StatusComponent.Model.LoadingStatus.SUCCESS -> {
+                status == StatusComponent.Model.LoadingStatus.SUCCESS -> {
                     Box(
                         modifier = Modifier
                             .fillMaxHeight()
-                            .width(4.dp)
+                            .width(AppTheme.dimens.XXS)
                             .background(AppTheme.alColors.colorPositive)
                     )
                 }
 
-                StatusComponent.Model.LoadingStatus.ERROR -> {
+                status == StatusComponent.Model.LoadingStatus.ERROR -> {
                     Box(
                         modifier = Modifier
                             .fillMaxHeight()
-                            .width(4.dp)
+                            .width(AppTheme.dimens.XXS)
                             .background(AppTheme.alColors.colorNegative)
                     )
                 }
@@ -85,7 +87,7 @@ fun StatusWidget(statusComponent: StatusComponent) {
         AnimatedContent(
             targetState = model.status,
             transitionSpec = {
-                fadeIn(tween(1200)) with fadeOut(tween(1200))
+                fadeIn(tween(FADE_DURATION)) with fadeOut(tween(FADE_DURATION))
             }
         ) {
             val icon = when (it) {

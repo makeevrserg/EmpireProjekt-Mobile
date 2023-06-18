@@ -49,6 +49,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.androidx.room.ktx)
+                implementation(libs.ktor.client.cio)
             }
         }
     }

@@ -9,8 +9,6 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slid
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.ui.splash.SplashScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.StatusScreen
 import com.makeevrserg.mobilex.di.getValue
@@ -20,9 +18,6 @@ fun ApplicationContent(
     component: DefaultRootComponent,
     modifier: Modifier = Modifier
 ) {
-    val rootModule by RootModule
-    val servicesModule by ServicesModule
-
     val childStack by component.childStack.subscribeAsState()
     Children(
         stack = childStack,
@@ -36,7 +31,14 @@ fun ApplicationContent(
                 splashComponent = screen.splashComponent
             )
 
-            DefaultRootComponent.Configuration.Status -> StatusScreen()
+            is DefaultRootComponent.Configuration.Status -> StatusScreen(
+                listOf(
+                    screen.ainteractiveStatusComponent,
+                    screen.esmpStatusComponent,
+                    screen.alearnerProdStatusComponent,
+                    screen.alearnerDevStatusComponent
+                )
+            )
         }
     }
 }
