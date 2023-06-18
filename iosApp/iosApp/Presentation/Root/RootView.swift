@@ -44,7 +44,11 @@ private struct ChildView: View {
         switch child {
         case let child as DefaultRootComponentConfigurationSplash:
             SplashView(root, child.splashComponent)
-        case let child as DefaultRootComponentConfigurationStatus: Text("Status")
+        case let child as DefaultRootComponentConfigurationStatus:
+            StatusView(root, [child.ainteractiveStatusComponent,
+                              child.alearnerDevStatusComponent,
+                              child.alearnerProdStatusComponent,
+                              child.esmpStatusComponent])
         default:
             EmptyView()
         }
