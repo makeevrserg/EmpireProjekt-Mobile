@@ -1,6 +1,11 @@
 package com.makeevrserg.empireprojekt.mobile.features.root
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.router.slot.ChildSlot
+import com.arkivanov.decompose.router.slot.SlotNavigation
+import com.arkivanov.decompose.router.slot.activate
+import com.arkivanov.decompose.router.slot.childSlot
+import com.arkivanov.decompose.router.slot.dismiss
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
@@ -19,6 +24,7 @@ import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status.StatusM
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
+import com.makeevrserg.empireprojekt.mobile.services.core.LinkBrowser
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
@@ -92,6 +98,26 @@ class DefaultRootComponent(
             }
         }
     )
+    private val slotNavigation = SlotNavigation<RootComponent.SlotChild>()
+
+    override val childSlot: Value<ChildSlot<*, SlotConfiguration>> = childSlot(
+        source = slotNavigation,
+        handleBackButton = true,
+        childFactory = { configuration, context ->
+            when (configuration) {
+                RootComponent.SlotChild.Settings -> {
+                    SlotConfiguration.SettingsChild(servicesModule.linkBrowser.value)
+                }
+            }
+        }
+    )
+    override fun dismissSlotChild() {
+        slotNavigation.dismiss()
+    }
+
+    override fun pushSlot(slot: RootComponent.SlotChild) {
+        slotNavigation.activate(slot)
+    }
 
     override fun push(screen: RootComponent.Child) {
         navigation.push(screen)
@@ -121,5 +147,9 @@ class DefaultRootComponent(
             val alearnerProdStatusComponent: StatusComponent,
             val alearnerDevStatusComponent: StatusComponent
         ) : Configuration
+    }
+
+    sealed interface SlotConfiguration {
+        class SettingsChild(val linkBrowser: LinkBrowser) : SlotConfiguration
     }
 }

@@ -13,6 +13,7 @@ kotlin {
                 implementation(libs.mobileX.core.ktx)
                 // Decompose
                 implementation(libs.decompose.core)
+                implementation(libs.decompose.compose.jetbrains)
                 // Moko
                 implementation(libs.moko.resources.core)
                 implementation(libs.moko.resources.compose)

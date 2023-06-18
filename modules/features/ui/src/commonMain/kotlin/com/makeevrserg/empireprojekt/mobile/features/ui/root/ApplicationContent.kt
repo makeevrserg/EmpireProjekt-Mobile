@@ -11,7 +11,6 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.splash.SplashScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.StatusScreen
-import com.makeevrserg.mobilex.di.getValue
 
 @Composable
 fun ApplicationContent(
@@ -32,7 +31,8 @@ fun ApplicationContent(
             )
 
             is DefaultRootComponent.Configuration.Status -> StatusScreen(
-                listOf(
+                rootComponent = component,
+                statusComponents = listOf(
                     screen.ainteractiveStatusComponent,
                     screen.esmpStatusComponent,
                     screen.alearnerProdStatusComponent,
