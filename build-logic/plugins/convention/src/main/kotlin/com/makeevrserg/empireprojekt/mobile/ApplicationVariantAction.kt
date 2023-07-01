@@ -15,9 +15,9 @@ class ApplicationVariantAction(private val project: Project) : Action<Applicatio
 
     private fun createFileName(variant: ApplicationVariant): String {
         return project.libs.versions.project.name.get() +
-                "_${project.libs.versions.project.version.string.get()}" +
-                "_${variant.name}" +
-                ".apk"
+            "_${project.libs.versions.project.version.string.get()}" +
+            "_${variant.name}" +
+            ".apk"
     }
 
     class VariantOutputAction(

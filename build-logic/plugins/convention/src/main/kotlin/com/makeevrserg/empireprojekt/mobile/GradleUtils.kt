@@ -1,8 +1,8 @@
 package com.makeevrserg.empireprojekt.mobile
 
 import java.io.File
-import org.jetbrains.kotlin.konan.file.File as KFile
 import java.util.Base64
+import org.jetbrains.kotlin.konan.file.File as KFile
 
 object GradleUtils {
     fun toBase64(file: KFile): String {
