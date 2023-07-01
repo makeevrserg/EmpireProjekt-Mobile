@@ -1,4 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+import com.makeevrserg.empireprojekt.mobile.GradleEncoder.decodeSecretFiles
+import com.makeevrserg.empireprojekt.mobile.GradleEncoder.encodeSecretFiles
 
 buildscript {
     dependencies {
@@ -34,4 +36,11 @@ tasks.register("cleanProject", Delete::class) {
         delete(project.buildDir)
     }
     clearProject(rootProject)
+}
+tasks.register("keys-to-base64") {
+    rootProject.encodeSecretFiles()
+}
+
+tasks.register("keys-from-base64") {
+    rootProject.decodeSecretFiles()
 }

@@ -1,5 +1,6 @@
 [versions]
 # Android
+project-name="EmpireProjektMobile"
 project-group = "com.makeevrserg.empireprojekt.mobile"
 project-version-code = "4"
 project-version-string = "0.0.2"

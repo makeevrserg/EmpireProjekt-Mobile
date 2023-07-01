@@ -11,6 +11,7 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		A8ACD9F92A499E3000664548 /* StatusIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ACD9F82A499E3000664548 /* StatusIcon.swift */; };
 		A8CD50FC2A3EEC7200948CF7 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD50FB2A3EEC7200948CF7 /* StackView.swift */; };
 		A8CD50FE2A3EEC8F00948CF7 /* SimpleChildStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD50FD2A3EEC8F00948CF7 /* SimpleChildStack.swift */; };
 		A8CD51002A3EECA500948CF7 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD50FF2A3EECA500948CF7 /* ObservableValue.swift */; };
@@ -34,6 +35,7 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8ACD9F82A499E3000664548 /* StatusIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIcon.swift; sourceTree = "<group>"; };
 		A8CD50FB2A3EEC7200948CF7 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		A8CD50FD2A3EEC8F00948CF7 /* SimpleChildStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleChildStack.swift; sourceTree = "<group>"; };
 		A8CD50FF2A3EECA500948CF7 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A8ACD9F72A499E2400664548 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A8ACD9F82A499E3000664548 /* StatusIcon.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		A8CD50F82A3EEBDF00948CF7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +172,7 @@
 		A8CD51112A3EFD1B00948CF7 /* Status */ = {
 			isa = PBXGroup;
 			children = (
+				A8ACD9F72A499E2400664548 /* Components */,
 				A8CD51122A3EFD2500948CF7 /* StatusView.swift */,
 				A8CD51142A3EFD7700948CF7 /* StatusWidget.swift */,
 			);
@@ -298,6 +309,7 @@
 				A8CD51022A3EECB700948CF7 /* ObservableStateFlow.swift in Sources */,
 				A8CD51042A3EECCF00948CF7 /* MutableValue.swift in Sources */,
 				A8CD50FE2A3EEC8F00948CF7 /* SimpleChildStack.swift in Sources */,
+				A8ACD9F92A499E3000664548 /* StatusIcon.swift in Sources */,
 				A8CD51102A3EF70D00948CF7 /* CFlowExt.swift in Sources */,
 				A8CD51092A3EED1C00948CF7 /* RootView.swift in Sources */,
 				A8CD51072A3EED0300948CF7 /* RootHolder.swift in Sources */,

@@ -20,6 +20,7 @@ struct StatusWidget: View {
     var body: some View {
         HStack {
             HStack {
+                StatusIcon(status: model.value.status)
                 Image(resource: \.ic_splash)
                     .resizable()
                     .frame(width: 50, height: 50, alignment: .center)

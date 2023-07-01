@@ -1,3 +1,4 @@
+import com.makeevrserg.empireprojekt.mobile.ApplicationVariantAction
 import com.makeevrserg.empireprojekt.mobile.GradleProject.COMPILE_SDK_VERSION
 import com.makeevrserg.empireprojekt.mobile.GradleProject.MIN_SDK_VERSION
 import com.makeevrserg.empireprojekt.mobile.GradleProject.TARGET_SDK_VERSION
@@ -38,5 +39,8 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.majorVersion
+    }
+    buildTypes {
+        applicationVariants.all(ApplicationVariantAction(project))
     }
 }
