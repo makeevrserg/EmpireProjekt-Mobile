@@ -1,15 +1,4 @@
 [versions]
-# Android
-project-name="EmpireProjektMobile"
-project-group = "com.makeevrserg.empireprojekt.mobile"
-project-version-code = "4"
-project-version-string = "0.0.2"
-project-sdk-compile = "33"
-project-sdk-min = "21"
-project-sdk-target = "33"
-cocoapods-deployment-target = "16.0"
-cocoapods-homepage = "https://empireprojekt.ru"
-
 # Kotlin
 kotlin-version = "1.8.20"
 kotlin-dokka = "1.8.10"

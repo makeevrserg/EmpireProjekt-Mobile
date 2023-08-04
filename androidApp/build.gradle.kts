@@ -1,27 +1,57 @@
-
-import com.makeevrserg.empireprojekt.mobile.GradleProject.APPLICATION_ID
-import com.makeevrserg.empireprojekt.mobile.GradleProject.VERSION_CODE
-import com.makeevrserg.empireprojekt.mobile.GradleProject.VERSION_STRING
+import ru.astrainteractive.gradleplugin.util.GradleProperty.Companion.gradleProperty
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+import ru.astrainteractive.gradleplugin.util.SecretProperty.Companion.secretProperty
 
 plugins {
     kotlin("plugin.serialization")
-    id("android-app-convention")
-    id("signing-convention")
+    id("com.android.application")
+    id("kotlin-android")
+    id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
+    id("ru.astrainteractive.gradleplugin.android.apk.name")
 }
 
 android {
-    namespace = "${libs.versions.project.group.get()}"
+    namespace = "${projectInfo.group}"
     apply(plugin = "kotlin-parcelize")
     if (file("google-services.json").exists()) {
         apply(plugin = "com.google.gms.google-services")
         apply(plugin = "com.google.firebase.crashlytics")
     }
     defaultConfig {
-        applicationId = APPLICATION_ID
-        versionCode = VERSION_CODE
-        versionName = VERSION_STRING
+        applicationId = projectInfo.group
+        versionCode = gradleProperty("project.version.code").integer
+        versionName = projectInfo.versionString
+    }
+    defaultConfig {
+        multiDexEnabled = true
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
+    signingConfigs {
+        val secretKeyAlias = secretProperty("KEY_ALIAS").string
+        val secretKeyPassword = secretProperty("KEY_PASSWORD").string
+        val secretStorePassword = secretProperty("STORE_PASSWORD").string
+        getByName("debug") {
+            if (file("keystore.jks").exists()) {
+                keyAlias = secretKeyAlias
+                keyPassword = secretKeyPassword
+                storePassword = secretStorePassword
+                storeFile = file("keystore.jks")
+            }
+        }
+        create("release") {
+            if (file("keystore.jks").exists()) {
+                keyAlias = secretKeyAlias
+                keyPassword = secretKeyPassword
+                storePassword = secretStorePassword
+                storeFile = file("keystore.jks")
+            }
+        }
+    }
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -36,11 +66,25 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+    buildFeatures {
+        compose = true
+    }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
     }
-    buildFeatures {
-        compose = true
+    packagingOptions {
+        with(resources.excludes) {
+            add("META-INF/*.kotlin_module")
+            add("META-INF/AL2.0")
+            add("META-INF/LGPL2.1")
+        }
+    }
+    buildTypes {
+//        applicationVariants.all(
+//            com.makeevrserg.empireprojekt.mobile.ApplicationVariantAction(
+//                project
+//            )
+//        )
     }
 }
 

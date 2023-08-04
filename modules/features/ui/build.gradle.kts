@@ -1,13 +1,17 @@
 @file:Suppress("UnusedPrivateMember")
 
-import com.makeevrserg.empireprojekt.mobile.GradleProject.APPLICATION_ID
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
 
 plugins {
     id("org.jetbrains.compose")
-    id("mpp-compose-convention")
+    id("com.android.library")
+    kotlin("multiplatform")
+    id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
 }
 
 kotlin {
+    android()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -36,7 +40,7 @@ kotlin {
     }
 }
 android {
-    namespace = APPLICATION_ID + ".features.ui.splash"
+    namespace = "${projectInfo.group}.features.ui.splash"
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
     }

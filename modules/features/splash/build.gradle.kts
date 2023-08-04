@@ -1,12 +1,17 @@
 @file:Suppress("UnusedPrivateMember")
 
-import com.makeevrserg.empireprojekt.mobile.GradleProject.APPLICATION_ID
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
 
 plugins {
-    id("mpp-library-convention")
+    id("com.android.library")
+    kotlin("multiplatform")
+    id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
 }
 
 kotlin {
+    android()
+    ios()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -33,5 +38,5 @@ kotlin {
 }
 
 android {
-    namespace = APPLICATION_ID + ".features.logic.splash"
+    namespace = "${projectInfo.group}.features.logic.splash"
 }

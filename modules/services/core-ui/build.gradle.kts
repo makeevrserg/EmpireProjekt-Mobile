@@ -1,10 +1,16 @@
 @file:Suppress("UnusedPrivateMember")
 
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+
 plugins {
-    id("mpp-compose-convention")
     id("org.jetbrains.compose")
+    id("com.android.library")
+    kotlin("multiplatform")
+    id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
 }
 kotlin {
+    android()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -35,7 +41,7 @@ kotlin {
     }
 }
 android {
-    namespace = "${libs.versions.project.group.get()}.core.ui"
+    namespace = "${projectInfo.group}.core.ui"
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
     }
