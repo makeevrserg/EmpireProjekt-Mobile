@@ -1,31 +1,34 @@
 @file:Suppress("UnusedPrivateMember")
 
-import com.makeevrserg.empireprojekt.mobile.GradleProject.APPLICATION_ID
-import com.makeevrserg.empireprojekt.mobile.GradleProject.VERSION_CODE
-import com.makeevrserg.empireprojekt.mobile.GradleProject.VERSION_STRING
+import ru.astrainteractive.gradleplugin.util.GradleProperty.Companion.gradleProperty
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
 
 plugins {
-    id("mpp-library-convention")
-    id("com.github.gmazzo.buildconfig")
+    id("com.android.library")
+    kotlin("multiplatform")
     kotlin("native.cocoapods")
+    id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
+    id("com.github.gmazzo.buildconfig")
     id("dev.icerock.mobile.multiplatform-resources")
     alias(libs.plugins.kotlin.serialization)
 }
 
 buildConfig {
     className("BuildKonfig") // forces the class name. Defaults to 'BuildConfig'
-    packageName(APPLICATION_ID + ".shared") // forces the package. Defaults to '${project.group}'
-    buildConfigField("String", "VERSION_CODE", "\"${VERSION_CODE}\"")
-    buildConfigField("String", "VERSION_NAME", "\"${VERSION_STRING}\"")
+    packageName("${projectInfo.group}.shared") // forces the package. Defaults to '${project.group}'
+    buildConfigField("String", "VERSION_CODE", "\"${gradleProperty("project.version.code").integer}\"")
+    buildConfigField("String", "VERSION_NAME", "\"${projectInfo.versionString}\"")
 }
 
 kotlin {
-
+    android()
+    ios()
     cocoapods {
-        summary = "EmpireProjektMobiel Root"
-        homepage = libs.versions.cocoapods.homepage.get()
-        version = libs.versions.project.version.string.get()
-        ios.deploymentTarget = libs.versions.cocoapods.deployment.target.get()
+        summary = projectInfo.description
+        homepage = projectInfo.url
+        version = projectInfo.versionString
+        ios.deploymentTarget = "16.0"
         podfile = project.file("../../../iosApp/Podfile")
         framework {
             baseName = "Root"
@@ -36,7 +39,6 @@ kotlin {
             export(projects.modules.services.core)
             export(libs.decompose.core)
             export(libs.essenty)
-            export(libs.mobileX.core.ktx)
             export(libs.moko.mvvm.core)
             export(libs.moko.mvvm.flow)
         }
@@ -46,9 +48,11 @@ kotlin {
             dependencies {
                 // Settings
                 implementation(libs.mppsettings)
-                // MobileX
-                implementation(libs.mobileX.serviceLocator)
-                api(libs.mobileX.core.ktx)
+                // klibs
+                implementation(libs.klibs.mikro.core)
+                implementation(libs.klibs.mikro.platform)
+                implementation(libs.klibs.kstorage)
+                implementation(libs.klibs.kdi)
                 // Decompose
                 api(libs.decompose.core)
                 api(libs.essenty)
@@ -89,7 +93,7 @@ kotlin {
 }
 android {
     apply(plugin = "kotlin-parcelize")
-    namespace = APPLICATION_ID + ".shared"
+    namespace = "${projectInfo.group}.shared"
 }
 dependencies {
     // FireBase

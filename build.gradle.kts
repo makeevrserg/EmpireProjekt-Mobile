@@ -1,13 +1,11 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-import com.makeevrserg.empireprojekt.mobile.GradleEncoder.decodeSecretFiles
-import com.makeevrserg.empireprojekt.mobile.GradleEncoder.encodeSecretFiles
-
 buildscript {
     dependencies {
         classpath(libs.google.firebase.crsahlytics.gradle)
         classpath(libs.google.gms.services.gradle)
         classpath(libs.moko.resources.generator)
         classpath(libs.moko.network.generator)
+        classpath("ru.astrainteractive.gradleplugin:convention:0.1.1")
+        classpath("ru.astrainteractive.gradleplugin:android:0.1.1")
     }
 }
 
@@ -19,12 +17,8 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.gradle.buildconfig) apply false
-    alias(libs.plugins.gradle.ksp) apply false
-    alias(libs.plugins.gradle.dokka) apply true
-    alias(libs.plugins.gradle.shadow) apply true
-    id("dokka-root")
-    id("detekt-convention")
 }
+apply(plugin = "ru.astrainteractive.gradleplugin.detekt")
 
 /**
  * This function will delete every ./build folder
@@ -36,11 +30,4 @@ tasks.register("cleanProject", Delete::class) {
         delete(project.buildDir)
     }
     clearProject(rootProject)
-}
-tasks.register("keys-to-base64") {
-    rootProject.encodeSecretFiles()
-}
-
-tasks.register("keys-from-base64") {
-    rootProject.decodeSecretFiles()
 }

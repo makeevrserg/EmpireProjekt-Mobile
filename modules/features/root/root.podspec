@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'EmpireProjektMobiel Root'
+    spec.summary                  = 'EmpireProjekt mobile application'
     spec.vendored_frameworks      = 'build/cocoapods/framework/Root.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '16.0'

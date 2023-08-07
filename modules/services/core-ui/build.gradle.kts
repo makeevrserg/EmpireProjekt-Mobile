@@ -1,16 +1,24 @@
 @file:Suppress("UnusedPrivateMember")
 
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+
 plugins {
-    id("mpp-compose-convention")
     id("org.jetbrains.compose")
+    id("com.android.library")
+    kotlin("multiplatform")
+    id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
 }
 kotlin {
+    android()
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // MobileX
-                implementation(libs.mobileX.paging)
-                implementation(libs.mobileX.core.ktx)
+                // klibs
+                implementation(libs.klibs.mikro.core)
+                implementation(libs.klibs.mikro.platform)
+                implementation(libs.klibs.kstorage)
+                implementation(libs.klibs.kdi)
                 // Decompose
                 implementation(libs.decompose.core)
                 implementation(libs.decompose.compose.jetbrains)
@@ -35,7 +43,7 @@ kotlin {
     }
 }
 android {
-    namespace = "${libs.versions.project.group.get()}.core.ui"
+    namespace = "${projectInfo.group}.core.ui"
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
     }

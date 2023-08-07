@@ -1,8 +1,15 @@
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+
 plugins {
-    id("mpp-library-convention")
     id("dev.icerock.mobile.multiplatform-resources")
+    id("com.android.library")
+    kotlin("multiplatform")
+    id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
 }
 kotlin {
+    android()
+    ios()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -12,10 +19,10 @@ kotlin {
     }
 }
 multiplatformResources {
-    multiplatformResourcesPackage = "${libs.versions.project.group.get()}.resources"
+    multiplatformResourcesPackage = "${projectInfo.group}.resources"
 }
 android {
-    namespace = "${libs.versions.project.group.get()}.resources"
+    namespace = "${projectInfo.group}.resources"
     dependencies {
         implementation("com.google.android.material:material:1.9.0")
     }

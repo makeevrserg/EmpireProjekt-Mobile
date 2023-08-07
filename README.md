@@ -16,7 +16,7 @@ Mobile app to monitor Empire Network status
 |:---------------------------|-----------------------------------------------------:|
 | Moko Libraries             | [IceRock Development](https://github.com/icerockdev) |
 | Decompose+Essenty          |       [Arkadii Ivanov](https://github.com/arkivanov) |
-| DI, KTX-Core               |    [MobileX](https://github.com/makeevrserg/MobileX) |
+| KDI                        |            [KDI](https://github.com/makeevrserg/KDI) |
 
 ## Download either
 
@@ -30,3 +30,7 @@ Mobile app to monitor Empire Network status
 
 - [Organization](https://github.com/Astra-Interactive)
 - [My Profile](https://github.com/makeevrserg)
+
+### Gratitude
+
+- Big thanks to Alex Panov for [slot child example](https://github.dev/AJIEKCX/SpaceXRockets)

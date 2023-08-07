@@ -1,15 +1,13 @@
 package com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status
 
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
-import com.makeevrserg.mobilex.core.dispatchers.KotlinDispatchers
-import com.makeevrserg.mobilex.di.getValue
 import io.ktor.client.HttpClient
+import ru.astrainteractive.klibs.kdi.getValue
+import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
 
-class StatusModuleImpl : StatusModule {
-    private val rootModule by RootModule
-    private val servicesModule by ServicesModule
+class StatusModuleImpl(rootModule: RootModule) : StatusModule {
+    private val servicesModule by rootModule.servicesModule
 
     override val dispatchers: KotlinDispatchers by rootModule.dispatchers
     override val httpClient: HttpClient by servicesModule.httpClient

@@ -15,7 +15,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.widget.StatusWidget
 import com.makeevrserg.empireprojekt.mobile.resources.MR
@@ -23,6 +23,7 @@ import com.makeevrserg.empireprojekt.mobile.resources.MR
 @Composable
 fun StatusScreen(
     rootComponent: DefaultRootComponent,
+    rootBottomSheetComponent: RootBottomSheetComponent,
     statusComponents: List<StatusComponent>,
 ) {
     Scaffold(
@@ -32,7 +33,7 @@ fun StatusScreen(
                 modifier = Modifier.navBarsPadding(),
                 backgroundColor = AppTheme.materialColor.secondaryVariant,
                 onClick = {
-                    rootComponent.pushSlot(RootComponent.SlotChild.Settings)
+                    rootBottomSheetComponent.pushSlot(RootBottomSheetComponent.Child.Settings)
                 },
             ) {
                 Icon(

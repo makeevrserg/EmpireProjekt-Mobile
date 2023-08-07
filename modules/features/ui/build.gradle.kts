@@ -1,13 +1,17 @@
 @file:Suppress("UnusedPrivateMember")
 
-import com.makeevrserg.empireprojekt.mobile.GradleProject.APPLICATION_ID
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
 
 plugins {
     id("org.jetbrains.compose")
-    id("mpp-compose-convention")
+    id("com.android.library")
+    kotlin("multiplatform")
+    id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
 }
 
 kotlin {
+    android()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -17,10 +21,11 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.material)
                 implementation(compose.materialIconsExtended)
-                // MobileX
-                implementation(libs.mobileX.paging)
-                implementation(libs.mobileX.core.ktx)
-                implementation(libs.mobileX.serviceLocator)
+                // klibs
+                implementation(libs.klibs.mikro.core)
+                implementation(libs.klibs.mikro.platform)
+                implementation(libs.klibs.kstorage)
+                implementation(libs.klibs.kdi)
                 // Moko
                 implementation(libs.moko.resources.core)
                 // Decompose
@@ -36,7 +41,7 @@ kotlin {
     }
 }
 android {
-    namespace = APPLICATION_ID + ".features.ui.splash"
+    namespace = "${projectInfo.group}.features.ui.splash"
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
     }
