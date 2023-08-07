@@ -14,6 +14,7 @@ import androidx.core.view.WindowCompat
 import com.arkivanov.decompose.defaultComponentContext
 import com.makeevrserg.empireprojekt.mobile.core.ui.rememberSlotModalBottomSheetState
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
+import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.InfoScreen
@@ -36,14 +37,15 @@ class MainActivity : ComponentActivity() {
         setTheme(R.style.AppTheme)
         val componentContext = defaultComponentContext()
         val rootComponent = DefaultRootComponent(componentContext, rootModule, servicesModule)
+        val rootBottomSheetComponent = rootComponent.rootBottomSheetComponent
         setContent {
             TransparentBars()
             val bottomSheetState = rememberSlotModalBottomSheetState(
-                rootComponent.childSlot,
-                onDismiss = rootComponent::dismissSlotChild
+                rootBottomSheetComponent.childSlot,
+                onDismiss = rootBottomSheetComponent::dismissSlotChild
             ) { slotChild ->
                 when (val child = slotChild.instance) {
-                    is DefaultRootComponent.SlotConfiguration.SettingsChild -> {
+                    is DefaultRootBottomSheetComponent.Configuration.SettingsChild -> {
                         InfoScreen(child.linkBrowser)
                     }
                 }
@@ -56,7 +58,8 @@ class MainActivity : ComponentActivity() {
                     sheetBackgroundColor = AppTheme.materialColor.primary
                 ) {
                     ApplicationContent(
-                        component = rootComponent,
+                        rootComponent = rootComponent,
+                        rootBottomSheetComponent = rootBottomSheetComponent,
                         modifier = Modifier
                     )
                 }

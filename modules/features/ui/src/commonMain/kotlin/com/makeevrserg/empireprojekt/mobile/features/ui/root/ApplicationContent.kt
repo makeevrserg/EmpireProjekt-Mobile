@@ -9,15 +9,17 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slid
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.splash.SplashScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.StatusScreen
 
 @Composable
 fun ApplicationContent(
-    component: DefaultRootComponent,
+    rootComponent: DefaultRootComponent,
+    rootBottomSheetComponent: RootBottomSheetComponent,
     modifier: Modifier = Modifier
 ) {
-    val childStack by component.childStack.subscribeAsState()
+    val childStack by rootComponent.childStack.subscribeAsState()
     Children(
         stack = childStack,
         modifier = modifier.fillMaxSize(),
@@ -26,12 +28,13 @@ fun ApplicationContent(
 
         when (val screen = configuration.instance) {
             is DefaultRootComponent.Configuration.Splash -> SplashScreenComponent(
-                rootComponent = component,
+                rootComponent = rootComponent,
                 splashComponent = screen.splashComponent
             )
 
             is DefaultRootComponent.Configuration.Status -> StatusScreen(
-                rootComponent = component,
+                rootComponent = rootComponent,
+                rootBottomSheetComponent = rootBottomSheetComponent,
                 statusComponents = screen.statusComponents
             )
         }
