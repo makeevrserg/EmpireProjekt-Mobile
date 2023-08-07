@@ -17,9 +17,11 @@ kotlin {
             dependencies {
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
-                // MobileX
-                implementation(libs.mobileX.core.ktx)
-                implementation(libs.mobileX.serviceLocator)
+                // klibs
+                implementation(libs.klibs.mikro.core)
+                implementation(libs.klibs.mikro.platform)
+                implementation(libs.klibs.kstorage)
+                implementation(libs.klibs.kdi)
                 // Moko
                 implementation(libs.moko.mvvm.core)
                 implementation(libs.moko.mvvm.flow)

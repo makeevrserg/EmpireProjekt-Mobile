@@ -5,11 +5,11 @@ import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.data.SplashComponentRepository
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.di.SplashComponentModule
-import com.makeevrserg.mobilex.core.dispatchers.DefaultKotlinDispatchers
-import com.makeevrserg.mobilex.core.dispatchers.KotlinDispatchers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.runBlocking
+import ru.astrainteractive.klibs.mikro.core.dispatchers.DefaultKotlinDispatchers
+import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

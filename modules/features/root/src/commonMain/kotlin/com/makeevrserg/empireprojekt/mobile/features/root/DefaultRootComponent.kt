@@ -55,7 +55,7 @@ class DefaultRootComponent(
                         context = context,
                         url = "https://empireprojekt.ru",
                         title = "empireprojekt.ru",
-                        module = StatusModuleImpl(),
+                        module = StatusModuleImpl(rootModule),
                         coroutineFeature = context.instanceKeeper.getOrCreate {
                             CoroutineFeature.Default()
                         }
@@ -64,7 +64,7 @@ class DefaultRootComponent(
                         context = context,
                         url = "https://astrainteractive.ru",
                         title = "astrainteractive.ru",
-                        module = StatusModuleImpl(),
+                        module = StatusModuleImpl(rootModule),
                         coroutineFeature = context.instanceKeeper.getOrCreate {
                             CoroutineFeature.Default()
                         }
@@ -74,7 +74,7 @@ class DefaultRootComponent(
                         context = context,
                         url = "http://astralearner.empireprojekt.ru:8083/dictionaries/4/words",
                         title = "Dev: AstraLearner",
-                        module = StatusModuleImpl(),
+                        module = StatusModuleImpl(rootModule),
                         coroutineFeature = context.instanceKeeper.getOrCreate {
                             CoroutineFeature.Default()
                         }
@@ -84,7 +84,7 @@ class DefaultRootComponent(
                         context = context,
                         url = "http://astralearner.empireprojekt.ru:8081/dictionaries/4/words",
                         title = "Prod: AstraLearner",
-                        module = StatusModuleImpl(),
+                        module = StatusModuleImpl(rootModule),
                         coroutineFeature = context.instanceKeeper.getOrCreate {
                             CoroutineFeature.Default()
                         }
@@ -93,7 +93,7 @@ class DefaultRootComponent(
                     val smpServerStatus = DefaultMinecraftStatusComponent(
                         context = context,
                         title = "Empire SMP",
-                        module = StatusModuleImpl(),
+                        module = StatusModuleImpl(rootModule),
                         coroutineFeature = context.instanceKeeper.getOrCreate {
                             CoroutineFeature.Default()
                         }

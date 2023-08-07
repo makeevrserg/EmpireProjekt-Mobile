@@ -16,12 +16,11 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.rememberSlotModalBottomSheet
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.InfoScreen
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationContent
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ComposeApplication
 import com.makeevrserg.empireprojekt.mobile.resources.R
-import com.makeevrserg.mobilex.di.getValue
+import ru.astrainteractive.klibs.kdi.getValue
 
 @ExperimentalMaterialApi
 @ExperimentalComposeUiApi
@@ -29,7 +28,7 @@ import com.makeevrserg.mobilex.di.getValue
 @ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
     private val rootModule by RootModule
-    private val servicesModule by ServicesModule
+    private val servicesModule by rootModule.servicesModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

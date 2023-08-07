@@ -14,9 +14,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // MobileX
-                implementation(libs.mobileX.paging)
-                implementation(libs.mobileX.core.ktx)
+                // klibs
+                implementation(libs.klibs.mikro.core)
+                implementation(libs.klibs.mikro.platform)
+                implementation(libs.klibs.kstorage)
+                implementation(libs.klibs.kdi)
                 // Decompose
                 implementation(libs.decompose.core)
                 implementation(libs.decompose.compose.jetbrains)

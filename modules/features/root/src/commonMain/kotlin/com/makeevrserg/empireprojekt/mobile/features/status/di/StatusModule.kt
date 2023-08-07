@@ -1,8 +1,8 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.di
 
-import com.makeevrserg.mobilex.core.dispatchers.KotlinDispatchers
-import com.makeevrserg.mobilex.di.Module
 import io.ktor.client.HttpClient
+import ru.astrainteractive.klibs.kdi.Module
+import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
 
 interface StatusModule : Module {
     val dispatchers: KotlinDispatchers

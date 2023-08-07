@@ -1,11 +1,11 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.data
 
 import com.makeevrserg.empireprojekt.mobile.features.status.data.model.MinecraftStatusResponse
-import com.makeevrserg.mobilex.core.dispatchers.KotlinDispatchers
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.coroutines.withContext
+import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
 
 interface MinecraftStatusRepository {
     suspend fun get(): Result<MinecraftStatusResponse>

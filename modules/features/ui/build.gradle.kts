@@ -21,10 +21,11 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.material)
                 implementation(compose.materialIconsExtended)
-                // MobileX
-                implementation(libs.mobileX.paging)
-                implementation(libs.mobileX.core.ktx)
-                implementation(libs.mobileX.serviceLocator)
+                // klibs
+                implementation(libs.klibs.mikro.core)
+                implementation(libs.klibs.mikro.platform)
+                implementation(libs.klibs.kstorage)
+                implementation(libs.klibs.kdi)
                 // Moko
                 implementation(libs.moko.resources.core)
                 // Decompose

@@ -32,9 +32,9 @@ android {
     }
 
     signingConfigs {
-        val secretKeyAlias = secretProperty("KEY_ALIAS").string
-        val secretKeyPassword = secretProperty("KEY_PASSWORD").string
-        val secretStorePassword = secretProperty("STORE_PASSWORD").string
+        val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").string }.getOrNull() ?: ""
+        val secretKeyPassword = runCatching { secretProperty("KEY_PASSWORD").string }.getOrNull() ?: ""
+        val secretStorePassword = runCatching { secretProperty("STORE_PASSWORD").string }.getOrNull() ?: ""
         getByName("debug") {
             if (file("keystore.jks").exists()) {
                 keyAlias = secretKeyAlias
@@ -111,9 +111,11 @@ dependencies {
     implementation(libs.kotlin.coroutines.playServices)
     implementation(libs.google.firebase.crsahlytics.ktx)
     debugImplementation(libs.leakcanary)
-    // MobileX
-    implementation(libs.mobileX.core.ktx)
-    implementation(libs.mobileX.serviceLocator)
+    // klibs
+    implementation(libs.klibs.mikro.core)
+    implementation(libs.klibs.mikro.platform)
+    implementation(libs.klibs.kstorage)
+    implementation(libs.klibs.kdi)
     // Decompose
     implementation(libs.decompose.core)
     implementation(libs.decompose.compose.jetpack)

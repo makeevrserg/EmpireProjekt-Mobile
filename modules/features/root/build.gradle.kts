@@ -39,7 +39,6 @@ kotlin {
             export(projects.modules.services.core)
             export(libs.decompose.core)
             export(libs.essenty)
-            export(libs.mobileX.core.ktx)
             export(libs.moko.mvvm.core)
             export(libs.moko.mvvm.flow)
         }
@@ -49,9 +48,11 @@ kotlin {
             dependencies {
                 // Settings
                 implementation(libs.mppsettings)
-                // MobileX
-                implementation(libs.mobileX.serviceLocator)
-                api(libs.mobileX.core.ktx)
+                // klibs
+                implementation(libs.klibs.mikro.core)
+                implementation(libs.klibs.mikro.platform)
+                implementation(libs.klibs.kstorage)
+                implementation(libs.klibs.kdi)
                 // Decompose
                 api(libs.decompose.core)
                 api(libs.essenty)
