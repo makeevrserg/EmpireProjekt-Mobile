@@ -52,7 +52,7 @@ coil = "2.2.2"
 # klibs
 klibs-mikro = "1.0.0"
 klibs-kstorage = "1.0.0"
-klibs-kdi = "1.1.0"
+klibs-kdi = "1.0.1"
 
 # Compose
 kotlin-compose = "1.4.0"

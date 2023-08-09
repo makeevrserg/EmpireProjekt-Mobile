@@ -3,13 +3,11 @@ package com.makeevrserg.empireprojekt.mobile.features.root.di
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.root.RootModuleImpl
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.CoroutineScope
-import ru.astrainteractive.klibs.kdi.ExperimentalKDIApi
+import ru.astrainteractive.klibs.kdi.Module
 import ru.astrainteractive.klibs.kdi.Single
-import ru.astrainteractive.klibs.kdi.WiredModule
 import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
 
-@OptIn(ExperimentalKDIApi::class)
-interface RootModule : WiredModule {
+interface RootModule : Module {
     val servicesModule: ServicesModule
 
     val settings: Single<Settings>

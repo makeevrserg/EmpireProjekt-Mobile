@@ -7,15 +7,12 @@ import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import ru.astrainteractive.klibs.kdi.ExperimentalKDIApi
 import ru.astrainteractive.klibs.kdi.Lateinit
 import ru.astrainteractive.klibs.kdi.Single
-import ru.astrainteractive.klibs.kdi.WiredModule
 import ru.astrainteractive.klibs.kdi.getValue
 import ru.astrainteractive.klibs.mikro.platform.PlatformConfiguration
 
-@OptIn(ExperimentalKDIApi::class)
-internal class ServicesModuleImpl : ServicesModule, WiredModule by WiredModule.Default() {
+internal class ServicesModuleImpl : ServicesModule {
     override val platformConfiguration = Lateinit<PlatformConfiguration>()
 
     override val jsonConfiguration = Single {
