@@ -16,6 +16,12 @@ kotlin {
                 implementation(libs.moko.resources.core)
             }
         }
+        val iosX64Main by getting {
+            resources.srcDirs("build/generated/moko/iosX64Main/src")
+        }
+        val iosArm64Main by getting {
+            resources.srcDirs("build/generated/moko/iosArm64Main/src")
+        }
     }
 }
 multiplatformResources {

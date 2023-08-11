@@ -20,6 +20,7 @@ import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status.StatusM
 import com.makeevrserg.empireprojekt.mobile.features.status.DefaultMinecraftStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.UrlStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
 
 class DefaultRootComponent(
@@ -27,10 +28,11 @@ class DefaultRootComponent(
     rootModule: RootModule,
     servicesModule: ServicesModule
 ) : RootComponent, ComponentContext by componentContext {
-    override val rootBottomSheetComponent: RootBottomSheetComponent = DefaultRootBottomSheetComponent(
-        componentContext = childContext("RootBottomSheetComponent"),
-        servicesModule = servicesModule,
-    )
+    override val rootBottomSheetComponent: RootBottomSheetComponent =
+        DefaultRootBottomSheetComponent(
+            componentContext = childContext("RootBottomSheetComponent"),
+            servicesModule = servicesModule,
+        )
     private val navigation = StackNavigation<RootComponent.Child>()
 
     override val childStack: Value<ChildStack<*, Configuration>> = childStack(
@@ -98,6 +100,7 @@ class DefaultRootComponent(
                         }
                     )
                     Configuration.Status(
+                        themeSwitcher = rootModule.themeSwitcher.value,
                         statusComponents = listOf(
                             esmpStatusComponent,
                             ainteractiveStatusComponent,
@@ -133,6 +136,9 @@ class DefaultRootComponent(
             val splashComponent: SplashComponent
         ) : Configuration
 
-        class Status(val statusComponents: List<StatusComponent>) : Configuration
+        class Status(
+            val statusComponents: List<StatusComponent>,
+            val themeSwitcher: ThemeSwitcher
+        ) : Configuration
     }
 }

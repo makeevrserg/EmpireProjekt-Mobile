@@ -2,40 +2,40 @@
 # Kotlin
 kotlin-version = "1.8.20"
 kotlin-dokka = "1.8.10"
-kotlin-coroutines = "1.6.4"
+kotlin-coroutines = "1.7.2"
 kotlin-compilerExtensionVersion = "1.4.5"
 kotlin-android-application = "8.0.1"
-kotlin-serialization-json = "1.5.0"
+kotlin-serialization-json = "1.5.1"
 
 # Androidx
-androidx-lifecycle = "2.6.0"
+androidx-lifecycle = "2.6.1"
 androidx-lifecycle-ext = "2.2.0"
 androidx-compose-bom = "2023.06.00"
-androidx-fragment = "1.5.5"
-androidx-core = "1.9.0"
+androidx-fragment = "1.6.1"
+androidx-core = "1.10.1"
 androidx-appcompat = "1.6.1"
-androidx-room = "2.5.1"
+androidx-room = "2.5.2"
 androidx-test-extJunit = "1.1.5"
-androidx-navigation-compose = "2.5.3"
-androidx-activity-compose = "1.6.1"
-androidx-activity-ktx = "1.8.0-alpha02"
-androidx-lifecycle-viewModelCompose = "2.6.0"
+androidx-navigation-compose = "2.7.0"
+androidx-activity-compose = "1.7.2"
+androidx-activity-ktx = "1.8.0-alpha06"
+androidx-lifecycle-viewModelCompose = "2.6.1"
 androidx-constraintlayout-compose = "1.0.1"
 androidx-constraintlayout-android = "2.1.4"
-androidx-viewbinding = "7.4.2"
-androidx-recyclerview = "1.3.0"
+androidx-viewbinding = "8.1.0"
+androidx-recyclerview = "1.3.1"
 androidx-cicerone = "7.1"
 leakcanary = "2.9.1"
 
 # Google
-google-coroutinesPlayServices = "1.6.4"
-google-android-material = "1.8.0"
-google-auth = "20.4.1"
-google-ads = "21.5.0"
-google-crashlytics = "2.9.0"
+google-coroutinesPlayServices = "1.7.2"
+google-android-material = "1.9.0"
+google-auth = "20.6.0"
+google-ads = "22.2.0"
+google-crashlytics = "2.9.8"
 google-services = "4.3.15"
 google-accompanist = "0.31.0-alpha"
-google-firebase-bom = "31.2.3"
+google-firebase-bom = "32.2.2"
 
 # Yandex
 yandex-ads = "5.7.0"
@@ -43,7 +43,7 @@ yandex-ads = "5.7.0"
 # Testw
 test-junit = "4.13.2"
 tests-assertk = "0.25"
-tests-turbine = "0.7.0"
+tests-turbine = "1.0.0"
 
 # Other
 ktor = "2.3.2-eap-692"
@@ -58,16 +58,16 @@ klibs-kdi = "1.1.0"
 kotlin-compose = "1.4.0"
 
 # Moko
-moko-mvvm = "0.15.0"
-moko-resources = "0.22.3"
-moko-network = "0.20.1"
+moko-mvvm = "0.16.1"
+moko-resources = "0.23.0"
+moko-network = "0.21.0"
 
 # Decompose
-decompose = "2.0.0-beta-01"
+decompose = "2.0.1"
 essenty = "1.1.0"
 
 # MVIKotlin
-mvikotlin = "3.1.0"
+mvikotlin = "3.2.1"
 
 # lwjgl
 lwjgl = "3.3.1"

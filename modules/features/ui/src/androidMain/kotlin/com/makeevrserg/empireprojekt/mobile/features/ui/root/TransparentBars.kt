@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile
+package com.makeevrserg.empireprojekt.mobile.features.ui.root
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -6,13 +6,14 @@ import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun TransparentBars() {
+actual fun TransparentBars(isDarkTheme: Boolean) {
     val systemUiController = rememberSystemUiController()
-    DisposableEffect(systemUiController) {
+    DisposableEffect(systemUiController, isDarkTheme) {
         systemUiController.setSystemBarsColor(
             color = Color.Transparent,
-            darkIcons = false
+            darkIcons = !isDarkTheme
         )
-        onDispose {}
+        onDispose {
+        }
     }
 }

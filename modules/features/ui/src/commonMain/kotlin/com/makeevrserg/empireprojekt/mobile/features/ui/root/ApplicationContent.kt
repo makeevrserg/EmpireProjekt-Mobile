@@ -35,6 +35,7 @@ fun ApplicationContent(
             is DefaultRootComponent.Configuration.Status -> StatusScreen(
                 rootComponent = rootComponent,
                 rootBottomSheetComponent = rootBottomSheetComponent,
+                themeSwitcher = screen.themeSwitcher,
                 statusComponents = screen.statusComponents
             )
         }

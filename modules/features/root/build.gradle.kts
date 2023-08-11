@@ -17,7 +17,11 @@ plugins {
 buildConfig {
     className("BuildKonfig") // forces the class name. Defaults to 'BuildConfig'
     packageName("${projectInfo.group}.shared") // forces the package. Defaults to '${project.group}'
-    buildConfigField("String", "VERSION_CODE", "\"${gradleProperty("project.version.code").integer}\"")
+    buildConfigField(
+        "String",
+        "VERSION_CODE",
+        "\"${gradleProperty("project.version.code").integer}\""
+    )
     buildConfigField("String", "VERSION_NAME", "\"${projectInfo.versionString}\"")
 }
 
@@ -89,11 +93,20 @@ kotlin {
                 implementation(libs.ktor.client.darwin)
             }
         }
+        val iosX64Main by getting {
+            resources.srcDirs("build/generated/moko/iosX64Main/src")
+        }
+        val iosArm64Main by getting {
+            resources.srcDirs("build/generated/moko/iosArm64Main/src")
+        }
     }
 }
 android {
     apply(plugin = "kotlin-parcelize")
     namespace = "${projectInfo.group}.shared"
+    sourceSets {
+        getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
+    }
 }
 dependencies {
     // FireBase
@@ -102,6 +115,7 @@ dependencies {
     implementation("com.google.firebase:firebase-common-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation(libs.klibs.kstorage)
     implementation(libs.google.auth)
     implementation(libs.kotlin.coroutines.playServices)
 }
