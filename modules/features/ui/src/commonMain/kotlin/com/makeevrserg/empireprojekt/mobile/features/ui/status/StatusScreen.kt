@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
@@ -13,6 +14,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
@@ -60,10 +62,13 @@ fun StatusScreen(
                     imageVector = Icons.Filled.WbSunny,
                     contentDescription = null,
                     tint = AppTheme.materialColor.onPrimary,
-                    modifier = Modifier.clickable {
-                        val nextTheme = themeSwitcher.theme.value.next(ThemeSwitcher.Theme.values())
-                        themeSwitcher.selectTheme(nextTheme)
-                    }
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .clickable {
+                            val nextTheme =
+                                themeSwitcher.theme.value.next(ThemeSwitcher.Theme.values())
+                            themeSwitcher.selectTheme(nextTheme)
+                        }
                 )
             }
             item {
