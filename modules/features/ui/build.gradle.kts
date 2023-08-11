@@ -38,6 +38,12 @@ kotlin {
                 implementation(projects.modules.features.root)
             }
         }
+        val androidMain by getting {
+            dependencies {
+                // Accompanist
+                implementation(libs.google.accompanist.systemuicontroller)
+            }
+        }
     }
 }
 android {

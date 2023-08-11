@@ -23,7 +23,8 @@ sealed class AppTheme(
     val shapes: Shapes = Shapes(),
     val dimens: Dimens = Dimens(),
     val textSizes: TextSizes = TextSizes(),
-    val alColors: ALColors = ALColors()
+    val alColors: ALColors = ALColors(),
+    val isDark: Boolean
 ) {
     companion object {
         val materialColor: Colors
@@ -91,6 +92,7 @@ sealed class AppTheme(
             surface = Color(0xFFFFFFFF),
             onSurface = Color(0xFF000000),
         ),
+        isDark = true
     )
 
     object DefaultLightTheme : AppTheme(
@@ -104,6 +106,7 @@ sealed class AppTheme(
             secondaryVariant = Color(0xFF106BBB),
             onSurface = Color(0xFF000000),
         ),
+        isDark = false
     )
 }
 

@@ -8,6 +8,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
@@ -38,8 +39,8 @@ class MainActivity : ComponentActivity() {
         val componentContext = defaultComponentContext()
         val rootComponent = DefaultRootComponent(componentContext, rootModule, servicesModule)
         val rootBottomSheetComponent = rootComponent.rootBottomSheetComponent
+
         setContent {
-            TransparentBars()
             val bottomSheetState = rememberSlotModalBottomSheetState(
                 rootBottomSheetComponent.childSlot,
                 onDismiss = rootBottomSheetComponent::dismissSlotChild
@@ -50,7 +51,7 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
-            ComposeApplication {
+            ComposeApplication(rootModule.themeSwitcher.value) {
                 ModalBottomSheetLayout(
                     sheetState = bottomSheetState.sheetState,
                     sheetContent = bottomSheetState.sheetContent.value,

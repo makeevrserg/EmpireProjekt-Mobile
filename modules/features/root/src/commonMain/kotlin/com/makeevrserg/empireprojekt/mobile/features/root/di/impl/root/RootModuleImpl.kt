@@ -2,6 +2,8 @@ package com.makeevrserg.empireprojekt.mobile.features.root.di.impl.root
 
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.factories.SettingsFactory
+import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
+import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import kotlinx.coroutines.MainScope
 import ru.astrainteractive.klibs.kdi.Single
 import ru.astrainteractive.klibs.kdi.getValue
@@ -24,5 +26,8 @@ internal object RootModuleImpl : RootModule {
 
     override val mainScope = Single {
         MainScope()
+    }
+    override val themeSwitcher: Single<ThemeSwitcher> = Single {
+        ThemeSwitcherComponent(settings.value)
     }
 }
