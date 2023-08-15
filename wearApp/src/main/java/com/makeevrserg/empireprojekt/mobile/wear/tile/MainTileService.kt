@@ -5,22 +5,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import androidx.wear.protolayout.ActionBuilders
 import androidx.wear.protolayout.ColorBuilders
 import androidx.wear.protolayout.ColorBuilders.ColorProp
-import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
 import androidx.wear.protolayout.DimensionBuilders.dp
 import androidx.wear.protolayout.DimensionBuilders.expand
 import androidx.wear.protolayout.LayoutElementBuilders
+import androidx.wear.protolayout.LayoutElementBuilders.HORIZONTAL_ALIGN_CENTER
 import androidx.wear.protolayout.ModifiersBuilders
 import androidx.wear.protolayout.ResourceBuilders
 import androidx.wear.protolayout.TimelineBuilders
-import androidx.wear.protolayout.material.ChipColors
 import androidx.wear.protolayout.material.Text
-import androidx.wear.protolayout.material.TitleChip
 import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.PrimaryLayout
 import androidx.wear.tiles.RequestBuilders
@@ -34,6 +30,9 @@ import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
 import com.makeevrserg.empireprojekt.mobile.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.MainActivity
 import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
+import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
+import com.makeevrserg.empireprojekt.mobile.wear.tile.components.DefaultPreview
+import com.makeevrserg.empireprojekt.mobile.wear.tile.components.StatusesRowFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -49,6 +48,7 @@ class MainTileService : SuspendingTileService() {
 
     private val rootModule by WearRootModule
     private val themeSwitcher by rootModule.themeSwitcher
+    private val wearStatusComponent by rootModule.wearStatusComponent
 
     private val appTheme: AppTheme
         get() = when (themeSwitcher.theme.value) {
@@ -86,7 +86,7 @@ class MainTileService : SuspendingTileService() {
         requestParams: RequestBuilders.TileRequest
     ): TileBuilders.Tile {
         val layout = LayoutElementBuilders.Layout.Builder()
-            .setRoot(tileLayout(this, appTheme))
+            .setRoot(tileLayout(this, appTheme, wearStatusComponent))
             .build()
         val entry = TimelineBuilders.TimelineEntry.Builder()
             .setLayout(layout)
@@ -111,7 +111,11 @@ val Color.colorProp: ColorBuilders.ColorProp
 private var lastTimeUpdated = System.currentTimeMillis()
 private var prevTimeUpdated = lastTimeUpdated
 
-private fun tileLayout(context: Context, theme: AppTheme): LayoutElementBuilders.LayoutElement {
+private fun tileLayout(
+    context: Context,
+    theme: AppTheme,
+    wearStatusComponent: WearStatusComponent
+): LayoutElementBuilders.LayoutElement {
     prevTimeUpdated = lastTimeUpdated
     lastTimeUpdated = System.currentTimeMillis()
     val image = LayoutElementBuilders.Image.Builder()
@@ -142,35 +146,34 @@ private fun tileLayout(context: Context, theme: AppTheme): LayoutElementBuilders
         )
         .build()
 
-    val titleChip = TitleChip.Builder(
-        context,
-        "Open statuses",
-        ModifiersBuilders.Clickable.Builder()
-            .setId("openmain")
-            .setOnClick(
-                ActionBuilders.LaunchAction.Builder()
-                    .setAndroidActivity(
-                        ActionBuilders.AndroidActivity.Builder()
-                            .setClassName(MainActivity::class.java.name)
-                            .setPackageName(context.packageName)
-                            .build()
-                    ).build()
-            ).build(),
-        DeviceParameters.Builder().build()
-    ).setWidth(expand()).setChipColors(
-        ChipColors(
-            theme.materialColor.primaryVariant.colorProp,
-            theme.materialColor.onPrimary.colorProp,
-            theme.materialColor.onPrimary.colorProp,
-            theme.materialColor.primary.colorProp,
-        )
-    ).build()
-
     val column = LayoutElementBuilders.Column.Builder()
+        .setHorizontalAlignment(HORIZONTAL_ALIGN_CENTER)
         .setWidth(expand())
         .addContent(image)
         .addContent(text)
-        .addContent(titleChip)
+        .addContent(
+            StatusesRowFactory(
+                context = context,
+                wearStatusComponent = wearStatusComponent,
+                theme = theme
+            ).create()
+        )
+        .setModifiers(
+            ModifiersBuilders.Modifiers.Builder()
+                .setClickable(
+                    ModifiersBuilders.Clickable.Builder()
+                        .setId("openmain")
+                        .setOnClick(
+                            ActionBuilders.LaunchAction.Builder()
+                                .setAndroidActivity(
+                                    ActionBuilders.AndroidActivity.Builder()
+                                        .setClassName(MainActivity::class.java.name)
+                                        .setPackageName(context.packageName)
+                                        .build()
+                                ).build()
+                        ).build()
+                ).build()
+        )
         .build()
 
     return PrimaryLayout.Builder(buildDeviceParameters(context.resources))
@@ -178,13 +181,14 @@ private fun tileLayout(context: Context, theme: AppTheme): LayoutElementBuilders
         .build()
 }
 
-@Preview(
-    device = Devices.WEAR_OS_SMALL_ROUND,
-    showSystemUi = true,
-    backgroundColor = 0xff000000,
-    showBackground = true
-)
+@DefaultPreview
 @Composable
 fun TilePreview() {
-    LayoutRootPreview(root = tileLayout(LocalContext.current, AppTheme.DefaultDarkTheme))
+    LayoutRootPreview(
+        root = tileLayout(
+            LocalContext.current,
+            AppTheme.DefaultDarkTheme,
+            WearStatusComponent.Stub()
+        )
+    )
 }

@@ -1,13 +1,14 @@
 package com.makeevrserg.empireprojekt.mobile.wear.tile
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.Image
 import androidx.glance.ImageProvider
-import androidx.glance.LocalContext
 import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.layout.Alignment
@@ -24,17 +25,10 @@ import androidx.glance.wear.tiles.GlanceTileService
 import androidx.glance.wear.tiles.LocalTimeInterval
 import androidx.glance.wear.tiles.TimeInterval
 import androidx.glance.wear.tiles.TimelineMode
-import androidx.wear.protolayout.ActionBuilders
-import androidx.wear.protolayout.DeviceParametersBuilders
-import androidx.wear.protolayout.DimensionBuilders
-import androidx.wear.protolayout.ModifiersBuilders
-import androidx.wear.protolayout.material.ChipColors
-import androidx.wear.protolayout.material.TitleChip
-import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
+import androidx.glance.wear.tiles.action.ActionCallback
 import com.makeevrserg.empireprojekt.mobile.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.MainActivity
 import java.time.Instant
-import java.util.UUID
 
 /**
  * Just a sample
@@ -57,32 +51,11 @@ class ComposeTileService : GlanceTileService() {
         )
     )
 
-    @Composable
-    private fun Chip(text: String, theme: AppTheme): TitleChip {
-        val context = LocalContext.current
-        return TitleChip.Builder(
-            context,
-            text,
-            ModifiersBuilders.Clickable.Builder()
-                .setId(UUID.randomUUID().toString())
-                .setOnClick(
-                    ActionBuilders.LaunchAction.Builder()
-                        .setAndroidActivity(
-                            ActionBuilders.AndroidActivity.Builder()
-                                .setClassName(MainActivity::class.java.name)
-                                .setPackageName(context.packageName)
-                                .build()
-                        ).build()
-                ).build(),
-            DeviceParametersBuilders.DeviceParameters.Builder().build()
-        ).setWidth(DimensionBuilders.expand()).setChipColors(
-            ChipColors(
-                theme.materialColor.primaryVariant.colorProp,
-                theme.materialColor.onPrimary.colorProp,
-                theme.materialColor.onPrimary.colorProp,
-                theme.materialColor.primary.colorProp,
-            )
-        ).build()
+    object EmptyAction : ActionCallback {
+        override suspend fun onAction(
+            context: Context,
+            glanceId: GlanceId
+        ) = Unit
     }
 
     @Composable
@@ -117,7 +90,6 @@ class ComposeTileService : GlanceTileService() {
             }
 
             Spacer(GlanceModifier.height(15.dp))
-            Chip(text = "Text", theme = AppTheme.DefaultDarkTheme)
             Image(
                 provider = ImageProvider(R.drawable.esmptelegram),
                 modifier = GlanceModifier
@@ -125,7 +97,6 @@ class ComposeTileService : GlanceTileService() {
                     .clickable(actionStartActivity(MainActivity::class.java)),
                 contentScale = ContentScale.Fit,
                 contentDescription = "launch calendar activity"
-
             )
         }
     }
