@@ -16,7 +16,7 @@ import com.makeevrserg.empireprojekt.mobile.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.AstraChip
 
 @Composable
-fun NavChip(text: String) {
+fun NavChip(text: String, onClick: () -> Unit) {
     AstraChip(
         modifier = Modifier.fillMaxWidth(),
         label = {
@@ -26,7 +26,7 @@ fun NavChip(text: String) {
                 color = AppTheme.materialColor.onPrimary
             )
         },
-        onClick = {},
+        onClick = onClick,
         icon = {
             Icon(
                 painter = painterResource(id = R.drawable.ic_splash),

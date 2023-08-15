@@ -17,10 +17,14 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.NavChip
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.ThemeChip
+import com.makeevrserg.empireprojekt.mobile.wear.features.navigation.NavHostRootComponent
 import ru.astrainteractive.klibs.kdi.getValue
 
 @Composable
-fun MainScreen(wearRootModule: WearRootModule) {
+fun MainScreen(
+    wearRootModule: WearRootModule,
+    rootComponent: NavHostRootComponent
+) {
     val themeSwitcher by wearRootModule.themeSwitcher
     Scaffold(
         modifier = Modifier.background(AppTheme.materialColor.primaryVariant),
@@ -40,7 +44,12 @@ fun MainScreen(wearRootModule: WearRootModule) {
             Spacer(modifier = Modifier.height(AppTheme.dimens.S))
             ThemeChip(themeSwitcher = themeSwitcher)
             Spacer(modifier = Modifier.height(AppTheme.dimens.S))
-            NavChip(text = "Statuses")
+            NavChip(
+                text = "Statuses",
+                onClick = {
+                    rootComponent.openStatuses()
+                }
+            )
         }
     }
 }

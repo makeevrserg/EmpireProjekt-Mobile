@@ -10,6 +10,7 @@ import androidx.wear.compose.foundation.lazy.items
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material.PositionIndicator
 import androidx.wear.compose.material.Scaffold
+import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
@@ -35,6 +36,15 @@ fun StatusesScreen(components: List<StatusComponent>) {
             modifier = Modifier.fillMaxSize(),
             autoCentering = AutoCenteringParams(itemIndex = 0),
         ) {
+            if (components.isEmpty()) {
+                item {
+                    Text(
+                        text = "No items present",
+                        style = AppTheme.typography.caption,
+                        color = AppTheme.materialColor.onPrimary
+                    )
+                }
+            }
             items(components) {
                 StatusWidget(it)
             }

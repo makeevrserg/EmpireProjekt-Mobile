@@ -97,6 +97,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.wear.compose:compose-navigation:1.2.0")
 
     implementation("androidx.glance:glance-wear-tiles:1.0.0-alpha05")
 
