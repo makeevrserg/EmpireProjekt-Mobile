@@ -3,6 +3,7 @@ package com.makeevrserg.empireprojekt.mobile.features.theme
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.flow.StateFlow
 import ru.astrainteractive.klibs.kstorage.StateFlowMutableStorageValue
+import ru.astrainteractive.klibs.mikro.core.util.next
 
 class ThemeSwitcherComponent(private val settings: Settings) : ThemeSwitcher {
     private val key = "THEME"
@@ -29,6 +30,10 @@ class ThemeSwitcherComponent(private val settings: Settings) : ThemeSwitcher {
 
     override fun selectTheme(theme: ThemeSwitcher.Theme) {
         themeFlowStorageValue.save(theme)
+    }
+
+    override fun next() {
+        selectTheme(theme.value.next(ThemeSwitcher.Theme.values()))
     }
 
     init {

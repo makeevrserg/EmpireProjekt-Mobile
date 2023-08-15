@@ -1,4 +1,5 @@
 import ru.astrainteractive.gradleplugin.util.GradleProperty.Companion.gradleProperty
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.jinfo
 import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
 import ru.astrainteractive.gradleplugin.util.SecretProperty.Companion.secretProperty
 
@@ -7,48 +8,51 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("ru.astrainteractive.gradleplugin.java.core")
-    id("ru.astrainteractive.gradleplugin.android.core")
     id("ru.astrainteractive.gradleplugin.android.apk.name")
 }
 
 android {
     namespace = "${projectInfo.group}"
-    apply(plugin = "kotlin-parcelize")
-    if (file("google-services.json").exists()) {
-        apply(plugin = "com.google.gms.google-services")
-        apply(plugin = "com.google.firebase.crashlytics")
-    }
+    compileSdk = gradleProperty("android.sdk.compile").integer
+
     defaultConfig {
-        applicationId = projectInfo.group
+        applicationId = "${projectInfo.group}"
+        minSdk = 26
+        targetSdk = gradleProperty("android.sdk.target").integer
         versionCode = gradleProperty("project.version.code").integer
         versionName = projectInfo.versionString
-    }
-    defaultConfig {
-        multiDexEnabled = true
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
+    compileOptions {
+        sourceCompatibility = jinfo.jsource
+        targetCompatibility = jinfo.jtarget
+    }
+    kotlinOptions {
+        jvmTarget = jinfo.jtarget.majorVersion
+    }
     signingConfigs {
         val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").string }.getOrNull() ?: ""
-        val secretKeyPassword = runCatching { secretProperty("KEY_PASSWORD").string }.getOrNull() ?: ""
-        val secretStorePassword = runCatching { secretProperty("STORE_PASSWORD").string }.getOrNull() ?: ""
+        val secretKeyPassword =
+            runCatching { secretProperty("KEY_PASSWORD").string }.getOrNull() ?: ""
+        val secretStorePassword =
+            runCatching { secretProperty("STORE_PASSWORD").string }.getOrNull() ?: ""
         getByName("debug") {
-            if (file("keystore.jks").exists()) {
+            if (file("../androidApp/keystore.jks").exists()) {
                 keyAlias = secretKeyAlias
                 keyPassword = secretKeyPassword
                 storePassword = secretStorePassword
-                storeFile = file("keystore.jks")
+                storeFile = file("../androidApp/keystore.jks")
             }
         }
         create("release") {
-            if (file("keystore.jks").exists()) {
+            if (file("../androidApp/keystore.jks").exists()) {
                 keyAlias = secretKeyAlias
                 keyPassword = secretKeyPassword
                 storePassword = secretStorePassword
-                storeFile = file("keystore.jks")
+                storeFile = file("../androidApp/keystore.jks")
             }
         }
     }
@@ -72,19 +76,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
     }
-    packagingOptions {
-        with(resources.excludes) {
-            add("META-INF/*.kotlin_module")
-            add("META-INF/AL2.0")
-            add("META-INF/LGPL2.1")
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
-    }
-    buildTypes {
-//        applicationVariants.all(
-//            com.makeevrserg.empireprojekt.mobile.ApplicationVariantAction(
-//                project
-//            )
-//        )
     }
 }
 
@@ -99,21 +94,24 @@ dependencies {
     implementation("androidx.compose.material:material")
     implementation("androidx.compose.foundation:foundation")
     implementation("androidx.compose.material:material")
-    // FireBase
-    implementation(platform(libs.google.firebase.bom))
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
-    implementation("com.google.firebase:firebase-messaging-ktx")
-    implementation(libs.google.auth)
-    implementation(libs.google.firebase.analytics)
-    implementation(libs.kotlin.coroutines.playServices)
-    implementation(libs.google.firebase.crsahlytics.ktx)
-    debugImplementation(libs.leakcanary)
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+
+    implementation("androidx.glance:glance-wear-tiles:1.0.0-alpha05")
+
+    implementation("androidx.wear.tiles:tiles:1.2.0")
+    implementation("androidx.wear.tiles:tiles-material:1.2.0")
+    implementation("com.google.android.horologist:horologist-compose-tools:0.5.3")
+    implementation("com.google.android.horologist:horologist-tiles:0.5.3")
+    implementation("androidx.wear.watchface:watchface-complications-data-source-ktx:1.1.1")
     // klibs
     implementation(libs.klibs.mikro.core)
     implementation(libs.klibs.mikro.platform)
     implementation(libs.klibs.kstorage)
     implementation(libs.klibs.kdi)
+    // Settings
+    implementation(libs.mppsettings)
     // Decompose
     implementation(libs.decompose.core)
     implementation(libs.decompose.compose.jetpack)
@@ -124,4 +122,5 @@ dependencies {
     implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.resources)
+    wearApp(project(":wearApp"))
 }

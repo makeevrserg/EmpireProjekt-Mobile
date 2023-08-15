@@ -12,4 +12,5 @@ interface ThemeSwitcher {
     fun selectDarkTheme()
     fun selectLightTheme()
     fun selectTheme(theme: Theme)
+    fun next()
 }
