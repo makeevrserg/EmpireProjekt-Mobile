@@ -14,11 +14,10 @@ import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.components.StatusWidget
 
 @Composable
-fun StatusesScreen(components: List<StatusComponent>) {
+fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
     val listState = rememberScalingLazyListState()
     Scaffold(
         modifier = Modifier.background(AppTheme.materialColor.primaryVariant),
@@ -36,7 +35,7 @@ fun StatusesScreen(components: List<StatusComponent>) {
             modifier = Modifier.fillMaxSize(),
             autoCentering = AutoCenteringParams(itemIndex = 0),
         ) {
-            if (components.isEmpty()) {
+            if (wearStatusComponent.statuses.isEmpty()) {
                 item {
                     Text(
                         text = "No items present",
@@ -45,7 +44,7 @@ fun StatusesScreen(components: List<StatusComponent>) {
                     )
                 }
             }
-            items(components) {
+            items(wearStatusComponent.statuses) {
                 StatusWidget(it)
             }
         }

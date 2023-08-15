@@ -17,7 +17,7 @@ fun NavigationScreen(rootComponent: NavHostRootComponent) {
             MainScreen(wearRootModule = WearRootModule, rootComponent = rootComponent)
         }
         composable(RootComponent.Child.Statuses::class.simpleName!!) {
-            StatusesScreen(components = emptyList())
+            StatusesScreen(WearRootModule.wearStatusComponent.value)
         }
     }
 }
