@@ -1,5 +1,6 @@
-package com.makeevrserg.empireprojekt.mobile.features.status
+package com.makeevrserg.empireprojekt.mobile.features.status.mincraft
 
+import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.data.model.MinecraftStatusResponse
 import com.makeevrserg.empireprojekt.mobile.services.core.AnyStateFlow
 import dev.icerock.moko.resources.desc.StringDesc

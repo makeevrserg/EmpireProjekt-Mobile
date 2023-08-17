@@ -36,7 +36,7 @@ fun ApplicationContent(
                 rootComponent = rootComponent,
                 rootBottomSheetComponent = rootBottomSheetComponent,
                 themeSwitcher = screen.themeSwitcher,
-                statusComponents = screen.statusComponents
+                rootStatusComponent = screen.rootStatusComponent
             )
         }
     }

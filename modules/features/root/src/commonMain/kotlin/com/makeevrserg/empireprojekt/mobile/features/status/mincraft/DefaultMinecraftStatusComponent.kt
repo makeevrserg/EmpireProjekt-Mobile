@@ -1,6 +1,7 @@
-package com.makeevrserg.empireprojekt.mobile.features.status
+package com.makeevrserg.empireprojekt.mobile.features.status.mincraft
 
 import com.arkivanov.decompose.ComponentContext
+import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.data.MinecraftStatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
 import com.makeevrserg.empireprojekt.mobile.services.core.AnyStateFlow

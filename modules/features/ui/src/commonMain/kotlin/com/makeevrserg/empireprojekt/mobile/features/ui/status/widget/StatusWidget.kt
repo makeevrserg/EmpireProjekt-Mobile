@@ -25,8 +25,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.MinecraftStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.mincraft.MinecraftStatusComponent
 
 private const val FADE_DURATION = 1200
 

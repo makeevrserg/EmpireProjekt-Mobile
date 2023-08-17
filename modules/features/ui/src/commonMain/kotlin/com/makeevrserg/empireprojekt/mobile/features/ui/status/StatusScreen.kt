@@ -20,7 +20,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.RootBottomSheetComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.widget.StatusWidget
 import com.makeevrserg.empireprojekt.mobile.resources.MR
@@ -31,7 +31,7 @@ fun StatusScreen(
     rootComponent: DefaultRootComponent,
     rootBottomSheetComponent: RootBottomSheetComponent,
     themeSwitcher: ThemeSwitcher,
-    statusComponents: List<StatusComponent>,
+    rootStatusComponent: RootStatusComponent,
 ) {
     Scaffold(
         modifier = Modifier,
@@ -85,7 +85,7 @@ fun StatusScreen(
                     color = AppTheme.materialColor.onPrimary.copy(alpha = .5f)
                 )
             }
-            items(statusComponents) {
+            items(rootStatusComponent.statusComponents) {
                 StatusWidget(it)
             }
         }

@@ -10,18 +10,15 @@ import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
-import com.arkivanov.essenty.instancekeeper.getOrCreate
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponentImpl
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.splash.SplashComponentModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status.StatusModuleImpl
-import com.makeevrserg.empireprojekt.mobile.features.status.DefaultMinecraftStatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.UrlStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.root.DefaultRootStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
-import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
@@ -52,61 +49,11 @@ class DefaultRootComponent(
                 )
 
                 RootComponent.Child.Status -> {
-                    val esmpStatusComponent = UrlStatusComponent(
-                        context = context,
-                        url = "https://empireprojekt.ru",
-                        title = "empireprojekt.ru",
-                        module = StatusModuleImpl(rootModule),
-                        coroutineFeature = context.instanceKeeper.getOrCreate {
-                            CoroutineFeature.Default()
-                        }
-                    )
-                    val ainteractiveStatusComponent = UrlStatusComponent(
-                        context = context,
-                        url = "https://astrainteractive.ru",
-                        title = "astrainteractive.ru",
-                        module = StatusModuleImpl(rootModule),
-                        coroutineFeature = context.instanceKeeper.getOrCreate {
-                            CoroutineFeature.Default()
-                        }
-                    )
-
-                    val alearnerDevStatusComponent = UrlStatusComponent(
-                        context = context,
-                        url = "http://astralearner.empireprojekt.ru:8083/dictionaries/4/words",
-                        title = "Dev: AstraLearner",
-                        module = StatusModuleImpl(rootModule),
-                        coroutineFeature = context.instanceKeeper.getOrCreate {
-                            CoroutineFeature.Default()
-                        }
-                    )
-
-                    val alearnerProdStatusComponent = UrlStatusComponent(
-                        context = context,
-                        url = "http://astralearner.empireprojekt.ru:8081/dictionaries/4/words",
-                        title = "Prod: AstraLearner",
-                        module = StatusModuleImpl(rootModule),
-                        coroutineFeature = context.instanceKeeper.getOrCreate {
-                            CoroutineFeature.Default()
-                        }
-                    )
-
-                    val smpServerStatus = DefaultMinecraftStatusComponent(
-                        context = context,
-                        title = "Empire SMP",
-                        module = StatusModuleImpl(rootModule),
-                        coroutineFeature = context.instanceKeeper.getOrCreate {
-                            CoroutineFeature.Default()
-                        }
-                    )
                     Configuration.Status(
                         themeSwitcher = rootModule.themeSwitcher.value,
-                        statusComponents = listOf(
-                            esmpStatusComponent,
-                            ainteractiveStatusComponent,
-                            alearnerDevStatusComponent,
-                            alearnerProdStatusComponent,
-                            smpServerStatus
+                        rootStatusComponent = DefaultRootStatusComponent(
+                            context,
+                            StatusModuleImpl(rootModule)
                         )
                     )
                 }
@@ -137,7 +84,7 @@ class DefaultRootComponent(
         ) : Configuration
 
         class Status(
-            val statusComponents: List<StatusComponent>,
+            val rootStatusComponent: RootStatusComponent,
             val themeSwitcher: ThemeSwitcher
         ) : Configuration
     }
