@@ -32,9 +32,15 @@ android {
     }
 
     signingConfigs {
-        val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").string }.getOrNull() ?: ""
-        val secretKeyPassword = runCatching { secretProperty("KEY_PASSWORD").string }.getOrNull() ?: ""
-        val secretStorePassword = runCatching { secretProperty("STORE_PASSWORD").string }.getOrNull() ?: ""
+        val secretKeyAlias = runCatching {
+            secretProperty("KEY_ALIAS").string
+        }.getOrNull() ?: ""
+        val secretKeyPassword = runCatching {
+            secretProperty("KEY_PASSWORD").string
+        }.getOrNull() ?: ""
+        val secretStorePassword = runCatching {
+            secretProperty("STORE_PASSWORD").string
+        }.getOrNull() ?: ""
         getByName("debug") {
             if (file("keystore.jks").exists()) {
                 keyAlias = secretKeyAlias
@@ -119,6 +125,8 @@ dependencies {
     implementation(libs.decompose.compose.jetpack)
     implementation(libs.decompose.android)
     implementation("com.google.android.gms:play-services-wearable:18.0.0")
+    // wear
+    implementation("com.google.android.horologist:horologist-datalayer:0.5.3")
     // Local
     implementation(projects.modules.features.root)
     implementation(projects.modules.features.ui)

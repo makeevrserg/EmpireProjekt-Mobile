@@ -39,6 +39,7 @@
             android:roundIcon="@mipmap/ic_launcher">
             <intent-filter>
                 <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+                <action android:name="androidx.wear.tiles.action.BIND_UPDATE_REQUESTER" />
             </intent-filter>
 
             <meta-data
