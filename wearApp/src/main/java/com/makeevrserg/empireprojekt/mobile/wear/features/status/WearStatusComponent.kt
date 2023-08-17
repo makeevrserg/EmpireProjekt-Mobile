@@ -1,9 +1,9 @@
 package com.makeevrserg.empireprojekt.mobile.wear.features.status
 
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.StubStatusComponent
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import ru.astrainteractive.klibs.mikro.core.util.combineStates
+import kotlinx.coroutines.flow.update
 
 interface WearStatusComponent {
     val statuses: List<StatusComponent>
@@ -15,26 +15,20 @@ interface WearStatusComponent {
         val failureCount: Int = 0
     )
 
+    fun update(status: StatusComponent.Model.LoadingStatus, amount: Int)
+
     class Stub : WearStatusComponent {
-        override val statuses: List<StatusComponent> = List(10) {
-            StubStatusComponent()
-        }
-        override val mergedState: StateFlow<Model> = combineStates(
-            *statuses.map { it.model }.toTypedArray(),
-            transform = { statuses ->
-                val associated = statuses.map {
-                    if (it.isLoading) {
-                        StatusComponent.Model.LoadingStatus.LOADING
-                    } else {
-                        it.status
-                    }
+        override val statuses: List<StatusComponent> = emptyList()
+        private val mutableMergeState = MutableStateFlow(Model())
+        override val mergedState: StateFlow<Model> = mutableMergeState
+        override fun update(status: StatusComponent.Model.LoadingStatus, amount: Int) {
+            mutableMergeState.update {
+                when (status) {
+                    StatusComponent.Model.LoadingStatus.LOADING -> it.copy(loadingCount = amount)
+                    StatusComponent.Model.LoadingStatus.SUCCESS -> it.copy(successCount = amount)
+                    StatusComponent.Model.LoadingStatus.ERROR -> it.copy(failureCount = amount)
                 }
-                Model(
-                    loadingCount = associated.count { it == StatusComponent.Model.LoadingStatus.LOADING },
-                    successCount = associated.count { it == StatusComponent.Model.LoadingStatus.SUCCESS },
-                    failureCount = associated.count { it == StatusComponent.Model.LoadingStatus.ERROR }
-                )
             }
-        )
+        }
     }
 }

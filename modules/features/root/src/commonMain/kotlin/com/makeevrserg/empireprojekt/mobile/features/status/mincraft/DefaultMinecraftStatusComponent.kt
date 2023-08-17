@@ -1,6 +1,5 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.mincraft
 
-import com.arkivanov.decompose.ComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.data.MinecraftStatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
@@ -15,11 +14,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DefaultMinecraftStatusComponent(
-    context: ComponentContext,
     private val module: StatusModule,
     title: String,
     private val coroutineFeature: CoroutineFeature
-) : StatusComponent, StatusModule by module, ComponentContext by context {
+) : StatusComponent, StatusModule by module {
     private val repository = MinecraftStatusRepository.Default(
         httpClient = httpClient,
         dispatchers = dispatchers

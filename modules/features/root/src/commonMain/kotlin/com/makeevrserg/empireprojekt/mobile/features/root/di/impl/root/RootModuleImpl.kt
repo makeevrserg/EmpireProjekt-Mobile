@@ -2,6 +2,9 @@ package com.makeevrserg.empireprojekt.mobile.features.root.di.impl.root
 
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.factories.SettingsFactory
+import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status.StatusModuleImpl
+import com.makeevrserg.empireprojekt.mobile.features.status.root.DefaultRootStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import kotlinx.coroutines.MainScope
@@ -29,5 +32,8 @@ internal object RootModuleImpl : RootModule {
     }
     override val themeSwitcher: Single<ThemeSwitcher> = Single {
         ThemeSwitcherComponent(settings.value)
+    }
+    override val rootStatusComponent: Single<RootStatusComponent> = Single {
+        DefaultRootStatusComponent(StatusModuleImpl(this))
     }
 }

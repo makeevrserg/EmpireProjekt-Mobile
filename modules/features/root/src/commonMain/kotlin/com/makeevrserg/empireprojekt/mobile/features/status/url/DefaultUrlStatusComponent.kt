@@ -1,6 +1,5 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.url
 
-import com.arkivanov.decompose.ComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.data.StatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.data.UrlStatusRepository
@@ -16,12 +15,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DefaultUrlStatusComponent(
-    context: ComponentContext,
     url: String,
     title: String,
     module: StatusModule,
     private val coroutineFeature: CoroutineFeature
-) : UrlStatusComponent, StatusModule by module, ComponentContext by context {
+) : UrlStatusComponent, StatusModule by module {
     private val statusRepository: StatusRepository = UrlStatusRepository(
         url = url,
         httpClient = httpClient,

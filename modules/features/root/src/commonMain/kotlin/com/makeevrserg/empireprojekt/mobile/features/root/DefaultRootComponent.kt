@@ -15,8 +15,6 @@ import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponen
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.splash.SplashComponentModuleImpl
-import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status.StatusModuleImpl
-import com.makeevrserg.empireprojekt.mobile.features.status.root.DefaultRootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
 
@@ -51,10 +49,7 @@ class DefaultRootComponent(
                 RootComponent.Child.Status -> {
                     Configuration.Status(
                         themeSwitcher = rootModule.themeSwitcher.value,
-                        rootStatusComponent = DefaultRootStatusComponent(
-                            context,
-                            StatusModuleImpl(rootModule)
-                        )
+                        rootStatusComponent = rootModule.rootStatusComponent.value
                     )
                 }
             }

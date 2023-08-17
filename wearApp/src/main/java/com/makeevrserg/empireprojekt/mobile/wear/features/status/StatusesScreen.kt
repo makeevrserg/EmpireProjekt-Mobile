@@ -1,12 +1,8 @@
 package com.makeevrserg.empireprojekt.mobile.wear.features.status
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.WifiTethering
 import androidx.compose.material.icons.filled.WifiTetheringError
@@ -28,7 +24,6 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.IconTextChip
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.components.StatusWidget
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
     val mergedState by wearStatusComponent.mergedState.collectAsState()
@@ -49,6 +44,31 @@ fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
             modifier = Modifier.fillMaxSize(),
             autoCentering = AutoCenteringParams(itemIndex = 0),
         ) {
+            item {
+                IconTextChip(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = mergedState.successCount.toString(),
+                    imageVector = Icons.Filled.WifiTethering,
+                    iconColor = AppTheme.alColors.colorPositive
+                )
+            }
+            item {
+                IconTextChip(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = mergedState.loadingCount.toString(),
+                    imageVector = Icons.Filled.WifiTetheringError,
+                    iconColor = AppTheme.alColors.astraOrange
+                )
+            }
+            item {
+                IconTextChip(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = mergedState.failureCount.toString(),
+                    imageVector = Icons.Filled.WifiTetheringOff,
+                    iconColor = AppTheme.alColors.colorNegative
+                )
+            }
+
             if (wearStatusComponent.statuses.isEmpty()) {
                 item {
                     Text(
@@ -57,37 +77,9 @@ fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
                         color = AppTheme.materialColor.onPrimary
                     )
                 }
-            } else {
-                item {
-                    FlowRow(
-                        horizontalArrangement = Arrangement.Center,
-                        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
-                    ) {
-                        IconTextChip(
-                            modifier = Modifier.weight(1f),
-                            text = mergedState.successCount.toString(),
-                            imageVector = Icons.Filled.WifiTethering,
-                            iconColor = AppTheme.alColors.colorPositive
-                        )
-                        Spacer(modifier = Modifier.size(AppTheme.dimens.S))
-                        IconTextChip(
-                            modifier = Modifier.weight(1f),
-                            text = mergedState.loadingCount.toString(),
-                            imageVector = Icons.Filled.WifiTetheringError,
-                            iconColor = AppTheme.alColors.astraOrange
-                        )
-                        Spacer(modifier = Modifier.size(AppTheme.dimens.S))
-                        IconTextChip(
-                            modifier = Modifier.weight(1f),
-                            text = mergedState.failureCount.toString(),
-                            imageVector = Icons.Filled.WifiTetheringOff,
-                            iconColor = AppTheme.alColors.colorNegative
-                        )
-                    }
-                }
-                items(wearStatusComponent.statuses) {
-                    StatusWidget(it)
-                }
+            }
+            items(wearStatusComponent.statuses) {
+                StatusWidget(it)
             }
         }
     }
