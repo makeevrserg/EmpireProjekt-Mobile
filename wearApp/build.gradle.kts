@@ -125,5 +125,4 @@ dependencies {
     implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.resources)
-    wearApp(project(":wearApp"))
 }
