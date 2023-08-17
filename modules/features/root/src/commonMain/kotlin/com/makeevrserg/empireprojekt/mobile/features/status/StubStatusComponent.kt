@@ -27,16 +27,20 @@ class StubStatusComponent : StatusComponent, CoroutineScope by MainScope() {
 
     override fun checkStatus() {
         launch {
-            mutableStateFlow.update {
-                it.copy(isLoading = true)
-            }
-            delay(500L)
-            mutableStateFlow.update {
-                it.copy(
-                    isLoading = false,
-                    status = StatusComponent.Model.LoadingStatus.values().random()
-                )
-            }
+            checkOnce(false)
+        }
+    }
+
+    override suspend fun checkOnce(force: Boolean) {
+        mutableStateFlow.update {
+            it.copy(isLoading = true)
+        }
+        delay(500L)
+        mutableStateFlow.update {
+            it.copy(
+                isLoading = false,
+                status = StatusComponent.Model.LoadingStatus.values().random()
+            )
         }
     }
 

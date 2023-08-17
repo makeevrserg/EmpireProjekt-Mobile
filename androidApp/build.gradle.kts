@@ -127,6 +127,9 @@ dependencies {
     implementation("com.google.android.gms:play-services-wearable:18.0.0")
     // wear
     implementation("com.google.android.horologist:horologist-datalayer:0.5.3")
+    // work
+    implementation("androidx.work:work-runtime:2.8.0")
+    implementation("androidx.work:work-runtime-ktx:2.8.0")
     // Local
     implementation(projects.modules.features.root)
     implementation(projects.modules.features.ui)

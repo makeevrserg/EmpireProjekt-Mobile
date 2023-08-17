@@ -38,7 +38,7 @@ class DefaultMinecraftStatusComponent(
         }
     }
 
-    private suspend fun checkOnce(force: Boolean) {
+    override suspend fun checkOnce(force: Boolean) {
         if (_model.value.isLoading && !force) return
         _model.update {
             it.copy(isLoading = true)
@@ -67,6 +67,6 @@ class DefaultMinecraftStatusComponent(
     }
 
     companion object {
-        private const val DELAY = 5000L
+        private const val DELAY = 30000L
     }
 }

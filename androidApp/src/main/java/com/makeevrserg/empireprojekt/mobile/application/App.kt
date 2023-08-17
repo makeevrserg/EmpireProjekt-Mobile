@@ -1,28 +1,43 @@
 package com.makeevrserg.empireprojekt.mobile.application
 
 import android.app.Application
-import android.util.Log
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.data.WearDataLayerRegistry
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
+import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
+import com.makeevrserg.empireprojekt.mobile.work.CheckStatusWork
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import ru.astrainteractive.klibs.kdi.getValue
 import ru.astrainteractive.klibs.mikro.platform.DefaultAndroidPlatformConfiguration
+import java.util.concurrent.TimeUnit
 
+@OptIn(ExperimentalHorologistApi::class)
 class App : Application() {
-    private val rootModule by RootModule
     private val servicesModule by RootModule.servicesModule
+    private val coroutineFeature = CoroutineFeature.Default()
+    private val wearDataLayerRegistry by lazy {
+        WearDataLayerRegistry.fromContext(
+            application = applicationContext,
+            coroutineScope = coroutineFeature
+        )
+    }
+    private val messageClient by lazy {
+        wearDataLayerRegistry.messageClient
+    }
 
-    @OptIn(ExperimentalHorologistApi::class)
+    override fun onTerminate() {
+        super.onTerminate()
+        coroutineFeature.cancel()
+    }
+
     override fun onCreate() {
         super.onCreate()
         Firebase.initialize(this)
@@ -31,74 +46,30 @@ class App : Application() {
                 applicationContext
             )
         )
-        val wearDataLayerRegistry = WearDataLayerRegistry.fromContext(
-            application = applicationContext,
-            coroutineScope = MainScope()
-        )
-        // todo work manager
-        val messageClient = wearDataLayerRegistry.messageClient
-
-        MainScope().launch {
-            while (isActive) {
-                delay(5000L)
-                kotlin.runCatching {
-                    val nodes = wearDataLayerRegistry.nodeClient.connectedNodes.await()
-                    Log.d(TAG, "Contains ${nodes.size} nodes")
-                    val mapped = rootModule.rootStatusComponent.value.statusComponents.map {
-                        if (it.model.value.isLoading) {
-                            StatusComponent.Model.LoadingStatus.LOADING
-                        } else {
-                            it.model.value.status
-                        }
-                    }
-                    val statuses = buildList {
-                        StatusComponent.Model.LoadingStatus.SUCCESS.let { status ->
-                            status to mapped.count { it == status }
-                        }.run(::add)
-                        StatusComponent.Model.LoadingStatus.ERROR.let { status ->
-                            status to mapped.count { it == status }
-                        }.run(::add)
-                        StatusComponent.Model.LoadingStatus.LOADING.let { status ->
-                            status to mapped.count { it == status }
-                        }.run(::add)
-                    }
-                    nodes.flatMap { node ->
-                        statuses.map { entry ->
-                            async {
-                                messageClient.sendMessage(
-                                    node.id,
-                                    "/statuses" + entry.first.name,
-                                    byteArrayOf(entry.second.toByte())
-                                )
-                            }
-                        }
-                    }.awaitAll()
-                    Log.d(TAG, "Sended ")
-                }.onFailure {
-                    it.printStackTrace()
-                }
-//                try {
-//                    val helloWorld = "HelloWorld".toByteArray()
-//                    // Send a message to all nodes in parallel
-//                    nodes.map { node ->
-//                        async {
-//                            Log.d(TAG, "Sending message to: ${node.displayName}")
-//                            messageClient.sendMessage(node.id, START_ACTIVITY_PATH, helloWorld)
-//                                .await()
-//                        }
-//                    }.awaitAll()
-//
-//                    Log.d(TAG, "Starting activity requests sent successfully")
-//                } catch (cancellationException: CancellationException) {
-//                    throw cancellationException
-//                } catch (exception: Exception) {
-//                    Log.d(TAG, "Starting activity failed: $exception")
-//                }
-            }
-        }
+        scheduleWork()
     }
 
-    companion object {
-        private const val TAG = "MainActivity"
+    private fun scheduleWork() {
+        val statusWork = PeriodicWorkRequest.Builder(
+            CheckStatusWork::class.java,
+            15,
+            TimeUnit.MINUTES
+        ).build()
+        val instanceWorkManager = WorkManager.getInstance(applicationContext)
+        instanceWorkManager.enqueueUniquePeriodicWork(
+            CheckStatusWork::class.java.simpleName,
+            ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE,
+            statusWork
+        )
+        coroutineFeature.launch {
+            while (isActive) {
+                delay(5000L)
+                CheckStatusWork.sendMessageOnWear(
+                    wearDataLayerRegistry = wearDataLayerRegistry,
+                    rootModule = RootModule,
+                    messageClient = messageClient
+                )
+            }
+        }
     }
 }
