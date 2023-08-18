@@ -12,6 +12,7 @@ plugins {
 kotlin {
     android()
     ios()
+    iosSimulatorArm64()
     sourceSets {
         val commonMain by getting {
             dependencies {

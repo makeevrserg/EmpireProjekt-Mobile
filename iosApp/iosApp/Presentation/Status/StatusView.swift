@@ -11,10 +11,10 @@ import Root
 
 struct StatusView: View {
     let rootComponent: RootComponent
-    let statusComponents: [StatusComponent]
+    let statusComponent: RootStatusComponent
     
-    init(_ rootComponent: RootComponent, _ statusComponents: [StatusComponent]) {
-        self.statusComponents = statusComponents
+    init(_ rootComponent: RootComponent, _ statusComponent: RootStatusComponent) {
+        self.statusComponent = statusComponent
         self.rootComponent = rootComponent
     }
     var body: some View {
@@ -27,7 +27,7 @@ struct StatusView: View {
                 Text(MR.strings.shared.status_subtitle.desc().localized())
                     .font(.body)
                 
-                List(statusComponents,id: \.model.description) { statusComponent in
+                List(statusComponent.statusComponents,id: \.model.description) { statusComponent in
                     StatusWidget(statusComponent)
                 }.listStyle(.inset)
             }

@@ -16,12 +16,12 @@ final class RootHolder {
     
     init() {
         lifecycle = LifecycleRegistryKt.LifecycleRegistry()
-        let platformConfiguration = DefaultIosPlatformConfiguration()
-        ServicesModuleCompanion.shared.platformConfiguration.initialize(value: platformConfiguration)
+        let platformConfiguration = DefaultNativePlatformConfiguration()
+        RootModuleCompanion.shared.servicesModule.platformConfiguration.initialize(value: platformConfiguration)
         root = DefaultRootComponent(
             componentContext: DefaultComponentContext(lifecycle: lifecycle),
             rootModule: RootModuleCompanion.shared,
-            servicesModule: ServicesModuleCompanion.shared
+            servicesModule: RootModuleCompanion.shared.servicesModule
         )
         lifecycle.onCreate()
     }
