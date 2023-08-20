@@ -22,6 +22,7 @@ android {
         applicationId = projectInfo.group
         versionCode = gradleProperty("project.version.code").integer
         versionName = projectInfo.versionString
+        setProperty("archivesBaseName", "${projectInfo.name}-${projectInfo.versionString}")
     }
     defaultConfig {
         multiDexEnabled = true
@@ -85,12 +86,8 @@ android {
             add("META-INF/LGPL2.1")
         }
     }
-    buildTypes {
-//        applicationVariants.all(
-//            com.makeevrserg.empireprojekt.mobile.ApplicationVariantAction(
-//                project
-//            )
-//        )
+    lint {
+        abortOnError = false
     }
 }
 
