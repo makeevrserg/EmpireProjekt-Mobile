@@ -12,9 +12,6 @@ import com.google.firebase.ktx.initialize
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.RootModuleImpl
 import com.makeevrserg.empireprojekt.mobile.work.CheckStatusWork
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
 import ru.astrainteractive.klibs.kdi.getValue
 import ru.astrainteractive.klibs.mikro.platform.DefaultAndroidPlatformConfiguration
 import java.util.concurrent.TimeUnit
@@ -62,16 +59,6 @@ class App : Application() {
             ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE,
             statusWork
         )
-        rootModule.servicesModule.mainScope.value.launch {
-            while (isActive) {
-                delay(5000L)
-                CheckStatusWork.sendMessageOnWear(
-                    wearDataLayerRegistry = wearDataLayerRegistry,
-                    rootModule = rootModule,
-                    messageClient = messageClient
-                )
-            }
-        }
     }
 
     companion object {

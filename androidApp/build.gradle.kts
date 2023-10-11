@@ -92,6 +92,8 @@ android {
 }
 
 dependencies {
+    // Kotlin
+    implementation(libs.kotlin.serialization.json)
     // Coroutines
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
@@ -117,6 +119,8 @@ dependencies {
     implementation(libs.klibs.mikro.platform)
     implementation(libs.klibs.kstorage)
     implementation(libs.klibs.kdi)
+    // moko
+    implementation(libs.moko.resources.core)
     // Decompose
     implementation(libs.decompose.core)
     implementation(libs.decompose.compose.jetpack)
@@ -132,4 +136,5 @@ dependencies {
     implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.resources)
+    implementation(projects.modules.services.wearMessenger)
 }

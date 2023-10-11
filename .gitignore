@@ -39,6 +39,7 @@ modules/services/file_system/build
 modules/services/xlsx/build
 modules/services/xlsx/libs
 modules/services/ads-yandex/build
+modules/services/wear-messenger/build
 # Features ----------------------------------
 modules/features/dialog-confirm/build
 modules/features/words-local/build

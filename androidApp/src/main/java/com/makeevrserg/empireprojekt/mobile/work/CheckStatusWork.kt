@@ -4,16 +4,16 @@ import android.content.Context
 import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.google.android.gms.wearable.MessageClient
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.data.WearDataLayerRegistry
 import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
-import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.message.StatusModelMessage
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.model.StatusModel
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.producer.WearMessageProducerImpl
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.tasks.await
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
 
@@ -22,6 +22,21 @@ class CheckStatusWork(
     context: Context,
     params: WorkerParameters
 ) : CoroutineWorker(context, params) {
+    private val wearDataLayerRegistry by lazy {
+        WearDataLayerRegistry.fromContext(
+            application = applicationContext,
+            coroutineScope = rootModule.servicesModule.mainScope.value
+        )
+    }
+    private val messageClient by lazy {
+        wearDataLayerRegistry.messageClient
+    }
+    private val wearMessageProducer by lazy {
+        WearMessageProducerImpl(
+            wearDataLayerRegistry = wearDataLayerRegistry,
+            messageClient = messageClient
+        )
+    }
 
     private val rootModule by lazy {
         applicationContext.asEmpireApp().rootModule
@@ -30,59 +45,35 @@ class CheckStatusWork(
         rootModule.rootStatusComponent.value
     }
 
-    override suspend fun doWork(): Result = coroutineScope {
+    override suspend fun doWork(): Result {
         Log.d(TAG, "doWork: ")
-        rootStatusComponent.statusComponents.map {
+        sendStatus()
+        return Result.success()
+    }
+
+    private suspend fun sendStatus() = coroutineScope {
+        val messages = rootStatusComponent.statusComponents.map {
             async {
                 it.checkStatus()
+                val model = it.model.value
+                StatusModel(
+                    title = model.title.toString(applicationContext),
+                    isLoading = model.isLoading,
+                    status = when (model.status) {
+                        StatusComponent.Model.LoadingStatus.LOADING -> StatusModel.LoadingStatus.LOADING
+                        StatusComponent.Model.LoadingStatus.SUCCESS -> StatusModel.LoadingStatus.SUCCESS
+                        StatusComponent.Model.LoadingStatus.ERROR -> StatusModel.LoadingStatus.ERROR
+                    }
+                )
             }
         }.awaitAll()
-        Result.success()
+        val statusModelMessage = StatusModelMessage(
+            json = rootModule.servicesModule.jsonConfiguration.value
+        )
+        wearMessageProducer.produce(statusModelMessage, messages)
     }
 
     companion object {
         private const val TAG = "CheckStatusWork"
-        suspend fun sendMessageOnWear(
-            wearDataLayerRegistry: WearDataLayerRegistry,
-            rootModule: RootModule,
-            messageClient: MessageClient
-        ) = coroutineScope {
-            kotlin.runCatching {
-                val nodes = wearDataLayerRegistry.nodeClient.connectedNodes.await()
-                Log.d(TAG, "Contains ${nodes.size} nodes")
-                val mapped = rootModule.rootStatusComponent.value.statusComponents.map {
-                    if (it.model.value.isLoading) {
-                        StatusComponent.Model.LoadingStatus.LOADING
-                    } else {
-                        it.model.value.status
-                    }
-                }
-                val statuses = buildList {
-                    StatusComponent.Model.LoadingStatus.SUCCESS.let { status ->
-                        status to mapped.count { it == status }
-                    }.run(::add)
-                    StatusComponent.Model.LoadingStatus.ERROR.let { status ->
-                        status to mapped.count { it == status }
-                    }.run(::add)
-                    StatusComponent.Model.LoadingStatus.LOADING.let { status ->
-                        status to mapped.count { it == status }
-                    }.run(::add)
-                }
-                nodes.flatMap { node ->
-                    statuses.map { entry ->
-                        async {
-                            messageClient.sendMessage(
-                                node.id,
-                                "/statuses" + entry.first.name,
-                                byteArrayOf(entry.second.toByte())
-                            )
-                        }
-                    }
-                }.awaitAll()
-                Log.d(TAG, "Sended ")
-            }.onFailure {
-                it.printStackTrace()
-            }
-        }
     }
 }

@@ -27,6 +27,7 @@ include(":wearApp")
 include(":modules:services:resources")
 include(":modules:services:core-ui")
 include(":modules:services:core")
+include(":modules:services:wear-messenger")
 // Feature
 include(":modules:features:root")
 include(":modules:features:splash")
