@@ -31,10 +31,10 @@
                 android:value="0" />
         </service>
         <service
-            android:name=".wear.tile.MainTileService"
+            android:name=".wear.tile.StatusesTileService"
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
-            android:label="MainTileService"
+            android:label="Statuses"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER"
             android:roundIcon="@mipmap/ic_launcher">
             <intent-filter>

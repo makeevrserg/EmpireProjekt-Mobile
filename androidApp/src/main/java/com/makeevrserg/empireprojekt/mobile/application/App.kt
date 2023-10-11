@@ -13,9 +13,13 @@ import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.RootModuleImpl
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.di.WearMessengerModule
 import com.makeevrserg.empireprojekt.mobile.work.CheckStatusWork
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import ru.astrainteractive.klibs.kdi.getValue
 import ru.astrainteractive.klibs.mikro.platform.DefaultAndroidPlatformConfiguration
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalHorologistApi::class)
 class App : Application() {
@@ -62,11 +66,17 @@ class App : Application() {
             TimeUnit.MINUTES
         ).build()
         val instanceWorkManager = WorkManager.getInstance(applicationContext)
-        instanceWorkManager.enqueueUniquePeriodicWork(
-            CheckStatusWork::class.java.simpleName,
-            ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE,
-            statusWork
-        )
+
+        rootModule.servicesModule.mainScope.value.launch {
+            while (isActive) {
+                instanceWorkManager.enqueueUniquePeriodicWork(
+                    CheckStatusWork::class.java.simpleName,
+                    ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE,
+                    statusWork
+                )
+                delay(30.seconds)
+            }
+        }
     }
 
     companion object {
