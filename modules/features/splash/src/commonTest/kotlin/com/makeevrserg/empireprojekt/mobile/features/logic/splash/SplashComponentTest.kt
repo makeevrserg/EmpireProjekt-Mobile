@@ -16,7 +16,7 @@ import kotlin.test.assertTrue
 
 class SplashComponentTest {
     private fun buildModule(isInitialLaunch: Boolean) = object : SplashComponentModule {
-        override val scope: CoroutineScope = MainScope()
+        override val mainScope: CoroutineScope = MainScope()
         override val dispatchers: KotlinDispatchers = DefaultKotlinDispatchers
         override val repository: SplashComponentRepository = object : SplashComponentRepository {
             override fun isInitialLaunch(): Boolean = isInitialLaunch
@@ -29,7 +29,7 @@ class SplashComponentTest {
     fun TEST_initial_launch_true(): Unit = runBlocking {
         val expectInitialLaunchValue = true
         val splashComponent =
-            SplashComponentImpl(componentContext, buildModule(expectInitialLaunchValue))
+            DefaultSplashComponent(componentContext, buildModule(expectInitialLaunchValue))
         splashComponent.screenChannelFlow.test {
             val item = awaitItem()
             assertTrue(item is SplashComponent.Label.InitialLaunch)
@@ -41,7 +41,7 @@ class SplashComponentTest {
     fun TEST_initial_launch_false(): Unit = runBlocking {
         val expectInitialLaunchValue = false
         val splashComponent =
-            SplashComponentImpl(componentContext, buildModule(expectInitialLaunchValue))
+            DefaultSplashComponent(componentContext, buildModule(expectInitialLaunchValue))
         splashComponent.screenChannelFlow.test {
             val item = awaitItem()
             assertTrue(item is SplashComponent.Label.InitialLaunch)

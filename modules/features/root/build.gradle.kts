@@ -28,6 +28,7 @@ buildConfig {
 kotlin {
     android()
     ios()
+    iosSimulatorArm64()
     cocoapods {
         summary = projectInfo.description
         homepage = projectInfo.url
@@ -45,6 +46,7 @@ kotlin {
             export(libs.essenty)
             export(libs.moko.mvvm.core)
             export(libs.moko.mvvm.flow)
+            export(libs.klibs.mikro.platform)
         }
     }
     sourceSets {
@@ -54,7 +56,7 @@ kotlin {
                 implementation(libs.mppsettings)
                 // klibs
                 implementation(libs.klibs.mikro.core)
-                implementation(libs.klibs.mikro.platform)
+                api(libs.klibs.mikro.platform)
                 implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
                 // Decompose
@@ -98,6 +100,10 @@ kotlin {
         }
         val iosArm64Main by getting {
             resources.srcDirs("build/generated/moko/iosArm64Main/src")
+        }
+        val iosSimulatorArm64Main by getting {
+            this.dependsOn(iosMain)
+            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
         }
     }
 }

@@ -8,18 +8,17 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
-import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.RootBottomSheetComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.screen.DefaultRootScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.splash.SplashScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.StatusScreen
 
 @Composable
 fun ApplicationContent(
-    rootComponent: DefaultRootComponent,
-    rootBottomSheetComponent: RootBottomSheetComponent,
+    rootComponent: RootComponent,
     modifier: Modifier = Modifier
 ) {
-    val childStack by rootComponent.childStack.subscribeAsState()
+    val childStack by rootComponent.rootScreenComponent.childStack.subscribeAsState()
     Children(
         stack = childStack,
         modifier = modifier.fillMaxSize(),
@@ -27,16 +26,15 @@ fun ApplicationContent(
     ) { configuration ->
 
         when (val screen = configuration.instance) {
-            is DefaultRootComponent.Configuration.Splash -> SplashScreenComponent(
+            is DefaultRootScreenComponent.Configuration.Splash -> SplashScreenComponent(
                 rootComponent = rootComponent,
                 splashComponent = screen.splashComponent
             )
 
-            is DefaultRootComponent.Configuration.Status -> StatusScreen(
+            is DefaultRootScreenComponent.Configuration.Status -> StatusScreen(
                 rootComponent = rootComponent,
-                rootBottomSheetComponent = rootBottomSheetComponent,
-                themeSwitcher = screen.themeSwitcher,
-                statusComponents = screen.statusComponents
+                themeSwitcherComponent = screen.themeSwitcherComponent,
+                rootStatusComponent = screen.rootStatusComponent
             )
         }
     }

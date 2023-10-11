@@ -10,6 +10,7 @@ plugins {
 kotlin {
     android()
     ios()
+    iosSimulatorArm64()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -22,6 +23,9 @@ kotlin {
         val iosArm64Main by getting {
             resources.srcDirs("build/generated/moko/iosArm64Main/src")
         }
+        val iosSimulatorArm64Main by getting {
+            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
+        }
     }
 }
 multiplatformResources {
@@ -31,5 +35,8 @@ android {
     namespace = "${projectInfo.group}.resources"
     dependencies {
         implementation("com.google.android.material:material:1.9.0")
+    }
+    sourceSets {
+        getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
     }
 }

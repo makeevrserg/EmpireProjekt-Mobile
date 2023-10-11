@@ -22,6 +22,7 @@ android {
         applicationId = projectInfo.group
         versionCode = gradleProperty("project.version.code").integer
         versionName = projectInfo.versionString
+        setProperty("archivesBaseName", "${projectInfo.name}-${projectInfo.versionString}")
     }
     defaultConfig {
         multiDexEnabled = true
@@ -32,9 +33,15 @@ android {
     }
 
     signingConfigs {
-        val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").string }.getOrNull() ?: ""
-        val secretKeyPassword = runCatching { secretProperty("KEY_PASSWORD").string }.getOrNull() ?: ""
-        val secretStorePassword = runCatching { secretProperty("STORE_PASSWORD").string }.getOrNull() ?: ""
+        val secretKeyAlias = runCatching {
+            secretProperty("KEY_ALIAS").string
+        }.getOrNull() ?: ""
+        val secretKeyPassword = runCatching {
+            secretProperty("KEY_PASSWORD").string
+        }.getOrNull() ?: ""
+        val secretStorePassword = runCatching {
+            secretProperty("STORE_PASSWORD").string
+        }.getOrNull() ?: ""
         getByName("debug") {
             if (file("keystore.jks").exists()) {
                 keyAlias = secretKeyAlias
@@ -79,16 +86,14 @@ android {
             add("META-INF/LGPL2.1")
         }
     }
-    buildTypes {
-//        applicationVariants.all(
-//            com.makeevrserg.empireprojekt.mobile.ApplicationVariantAction(
-//                project
-//            )
-//        )
+    lint {
+        abortOnError = false
     }
 }
 
 dependencies {
+    // Kotlin
+    implementation(libs.kotlin.serialization.json)
     // Coroutines
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
@@ -114,13 +119,22 @@ dependencies {
     implementation(libs.klibs.mikro.platform)
     implementation(libs.klibs.kstorage)
     implementation(libs.klibs.kdi)
+    // moko
+    implementation(libs.moko.resources.core)
     // Decompose
     implementation(libs.decompose.core)
     implementation(libs.decompose.compose.jetpack)
     implementation(libs.decompose.android)
+    implementation("com.google.android.gms:play-services-wearable:18.0.0")
+    // wear
+    implementation("com.google.android.horologist:horologist-datalayer:0.5.3")
+    // work
+    implementation("androidx.work:work-runtime:2.8.0")
+    implementation("androidx.work:work-runtime-ktx:2.8.0")
     // Local
     implementation(projects.modules.features.root)
     implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.resources)
+    implementation(projects.modules.services.wearMessenger)
 }

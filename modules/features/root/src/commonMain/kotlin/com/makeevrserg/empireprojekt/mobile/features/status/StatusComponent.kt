@@ -6,6 +6,7 @@ import dev.icerock.moko.resources.desc.StringDesc
 interface StatusComponent {
     val model: AnyStateFlow<out Model>
     fun checkStatus()
+    suspend fun checkOnce(force: Boolean)
     interface Model {
         val title: StringDesc
         val isLoading: Boolean
