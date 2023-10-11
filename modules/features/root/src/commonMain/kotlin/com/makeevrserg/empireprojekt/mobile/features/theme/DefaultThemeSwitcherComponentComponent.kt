@@ -1,45 +1,35 @@
 package com.makeevrserg.empireprojekt.mobile.features.theme
 
-import com.russhwolf.settings.Settings
+import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
+import com.makeevrserg.empireprojekt.mobile.features.theme.di.ThemeSwitcherModule
 import kotlinx.coroutines.flow.StateFlow
-import ru.astrainteractive.klibs.kstorage.StateFlowMutableStorageValue
+import ru.astrainteractive.klibs.kdi.Provider
+import ru.astrainteractive.klibs.kdi.getValue
 import ru.astrainteractive.klibs.mikro.core.util.next
 
 class DefaultThemeSwitcherComponentComponent(
-    private val settings: Settings
-) : ThemeSwitcherComponent {
+    themeSwitcherModule: ThemeSwitcherModule
+) : ThemeSwitcherComponent, ThemeSwitcherModule by themeSwitcherModule {
+    private val themeFlowStorageValue by Provider {
+        themeSwitcherRepository.themeFlowStorageValue
+    }
 
-    private val key = "THEME"
-
-    private val default = ThemeSwitcherComponent.Theme.DARK
-
-    private val themeFlowStorageValue = StateFlowMutableStorageValue(
-        default = default,
-        loadSettingsValue = {
-            val ordinal = settings.getInt(key, ThemeSwitcherComponent.Theme.LIGHT.ordinal)
-            ThemeSwitcherComponent.Theme.entries.getOrNull(ordinal) ?: default
-        },
-        saveSettingsValue = {
-            settings.putInt(key, it.ordinal)
-        }
-    )
-
-    override val theme: StateFlow<ThemeSwitcherComponent.Theme> = themeFlowStorageValue.stateFlow
+    override val theme: StateFlow<Theme> = themeFlowStorageValue.stateFlow
 
     override fun selectDarkTheme() {
-        themeFlowStorageValue.save(ThemeSwitcherComponent.Theme.DARK)
+        themeFlowStorageValue.save(Theme.DARK)
     }
 
     override fun selectLightTheme() {
-        themeFlowStorageValue.save(ThemeSwitcherComponent.Theme.LIGHT)
+        themeFlowStorageValue.save(Theme.LIGHT)
     }
 
-    override fun selectTheme(theme: ThemeSwitcherComponent.Theme) {
+    override fun selectTheme(theme: Theme) {
         themeFlowStorageValue.save(theme)
     }
 
     override fun next() {
-        val entries = ThemeSwitcherComponent.Theme.entries.toTypedArray()
+        val entries = Theme.entries.toTypedArray()
         val nextTheme = theme.value.next(entries)
         selectTheme(nextTheme)
     }

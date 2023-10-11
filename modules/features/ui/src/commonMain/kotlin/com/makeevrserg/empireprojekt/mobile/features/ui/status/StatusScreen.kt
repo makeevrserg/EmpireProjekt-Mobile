@@ -22,6 +22,7 @@ import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.widget.StatusWidget
 import com.makeevrserg.empireprojekt.mobile.resources.MR
 import ru.astrainteractive.klibs.mikro.core.util.next
@@ -65,7 +66,7 @@ fun StatusScreen(
                         .clip(CircleShape)
                         .clickable {
                             val nextTheme = themeSwitcherComponent.theme.value.next(
-                                ThemeSwitcherComponent.Theme.values()
+                                Theme.values()
                             )
                             themeSwitcherComponent.selectTheme(nextTheme)
                         }

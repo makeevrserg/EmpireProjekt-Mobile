@@ -8,6 +8,7 @@ import com.makeevrserg.empireprojekt.mobile.features.status.root.DefaultRootStat
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.DefaultThemeSwitcherComponentComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.di.ThemeSwitcherModule
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.Single
 import ru.astrainteractive.klibs.kdi.getValue
@@ -37,6 +38,7 @@ class RootModuleImpl : RootModule {
     }
 
     override val themeSwitcherComponent: Single<ThemeSwitcherComponent> = Single {
-        DefaultThemeSwitcherComponentComponent(servicesModule.settings.value)
+        val module = ThemeSwitcherModule.Default(servicesModule.settings.value)
+        DefaultThemeSwitcherComponentComponent(module)
     }
 }

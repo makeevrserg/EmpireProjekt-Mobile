@@ -18,19 +18,20 @@ import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.Text
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.AstraChip
 
 @Composable
 fun ThemeChip(themeSwitcherComponent: ThemeSwitcherComponent) {
     val theme by themeSwitcherComponent.theme.collectAsState()
     val icon = when (theme) {
-        ThemeSwitcherComponent.Theme.DARK -> Icons.Filled.Bedtime
-        ThemeSwitcherComponent.Theme.LIGHT -> Icons.Filled.WbSunny
+        Theme.DARK -> Icons.Filled.Bedtime
+        Theme.LIGHT -> Icons.Filled.WbSunny
     }
     val color by animateColorAsState(
         targetValue = when (theme) {
-            ThemeSwitcherComponent.Theme.DARK -> AppTheme.materialColor.onPrimary
-            ThemeSwitcherComponent.Theme.LIGHT -> AppTheme.materialColor.onPrimary
+            Theme.DARK -> AppTheme.materialColor.onPrimary
+            Theme.LIGHT -> AppTheme.materialColor.onPrimary
         },
         label = "LABEL"
     )

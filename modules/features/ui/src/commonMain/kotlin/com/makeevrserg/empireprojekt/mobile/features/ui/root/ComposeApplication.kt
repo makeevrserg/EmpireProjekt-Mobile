@@ -10,10 +10,11 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.LocalAppTheme
 import com.makeevrserg.empireprojekt.mobile.features.theme.PreviewThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
 
-fun ThemeSwitcherComponent.Theme.toComposeTheme() = when (this) {
-    ThemeSwitcherComponent.Theme.DARK -> AppTheme.DefaultDarkTheme
-    ThemeSwitcherComponent.Theme.LIGHT -> AppTheme.DefaultLightTheme
+fun Theme.toComposeTheme() = when (this) {
+    Theme.DARK -> AppTheme.DefaultDarkTheme
+    Theme.LIGHT -> AppTheme.DefaultLightTheme
 }
 
 @Composable
