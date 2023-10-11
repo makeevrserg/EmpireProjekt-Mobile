@@ -10,6 +10,7 @@ import com.google.android.horologist.data.WearDataLayerRegistry
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.RootModuleImpl
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.di.WearMessengerModule
 import com.makeevrserg.empireprojekt.mobile.work.CheckStatusWork
 import kotlinx.coroutines.cancel
 import ru.astrainteractive.klibs.kdi.getValue
@@ -20,6 +21,13 @@ import java.util.concurrent.TimeUnit
 class App : Application() {
     val rootModule by lazy {
         RootModuleImpl()
+    }
+    val wearMessengerModule by lazy {
+        WearMessengerModule.Default(
+            context = rootModule.servicesModule.platformConfiguration.value.applicationContext,
+            coroutineScope = rootModule.servicesModule.mainScope.value,
+            json = rootModule.servicesModule.jsonConfiguration.value
+        )
     }
     private val wearDataLayerRegistry by lazy {
         WearDataLayerRegistry.fromContext(

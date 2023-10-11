@@ -4,40 +4,22 @@ import android.content.Context
 import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.google.android.horologist.annotations.ExperimentalHorologistApi
-import com.google.android.horologist.data.WearDataLayerRegistry
 import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.message.StatusModelMessage
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.model.StatusModel
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.producer.WearMessageProducerImpl
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
 
-@OptIn(ExperimentalHorologistApi::class)
 class CheckStatusWork(
     context: Context,
     params: WorkerParameters
 ) : CoroutineWorker(context, params) {
-    private val wearDataLayerRegistry by lazy {
-        WearDataLayerRegistry.fromContext(
-            application = applicationContext,
-            coroutineScope = rootModule.servicesModule.mainScope.value
-        )
+    private val wearMessengerModule by lazy {
+        applicationContext.asEmpireApp().wearMessengerModule
     }
-    private val messageClient by lazy {
-        wearDataLayerRegistry.messageClient
-    }
-    private val wearMessageProducer by lazy {
-        WearMessageProducerImpl(
-            wearDataLayerRegistry = wearDataLayerRegistry,
-            messageClient = messageClient
-        )
-    }
-
     private val rootModule by lazy {
         applicationContext.asEmpireApp().rootModule
     }
@@ -67,10 +49,10 @@ class CheckStatusWork(
                 )
             }
         }.awaitAll()
-        val statusModelMessage = StatusModelMessage(
-            json = rootModule.servicesModule.jsonConfiguration.value
+        wearMessengerModule.wearMessageProducer.produce(
+            message = wearMessengerModule.statusModelMessage,
+            value = messages
         )
-        wearMessageProducer.produce(statusModelMessage, messages)
     }
 
     companion object {
