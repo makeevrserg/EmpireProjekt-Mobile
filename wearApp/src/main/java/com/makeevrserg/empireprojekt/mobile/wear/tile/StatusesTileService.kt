@@ -19,6 +19,7 @@ import com.makeevrserg.empireprojekt.mobile.wear.tile.components.MainTileRendere
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.Single
 import ru.astrainteractive.klibs.kdi.getValue
 
@@ -28,12 +29,14 @@ private const val RESOURCES_VERSION = "1"
  * Skeleton for a tile with no images.
  */
 @OptIn(ExperimentalHorologistApi::class)
-class MainTileService : SuspendingTileService() {
+class StatusesTileService : SuspendingTileService() {
 
-    private val wearRootModule by lazy {
+    private val wearRootModule by Provider {
         application.asEmpireApp().wearRootModule
     }
-    private val wearStatusComponent by wearRootModule.wearStatusComponent
+    private val wearStatusComponent by Provider {
+        wearRootModule.wearStatusComponent.value
+    }
     private val mainTileRenderer by Single {
         MainTileRenderer(applicationContext)
     }
@@ -44,7 +47,7 @@ class MainTileService : SuspendingTileService() {
         lifecycleScope.launch {
             while (isActive) {
                 delay(1000L)
-                TileService.getUpdater(applicationContext).requestUpdate(MainTileService::class.java)
+                TileService.getUpdater(applicationContext).requestUpdate(StatusesTileService::class.java)
             }
         }
     }

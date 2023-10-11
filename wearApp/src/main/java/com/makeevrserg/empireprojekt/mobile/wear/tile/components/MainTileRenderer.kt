@@ -58,6 +58,20 @@ class MainTileRenderer(
                     ).build()
             )
             .build()
+
+        val textTimeStamp = Text.Builder(context, state.updatedAt)
+            .setTypography(Typography.TYPOGRAPHY_CAPTION1)
+            .setColor(theme.onSurface.asColorProp)
+            .setModifiers(
+                ModifiersBuilders.Modifiers.Builder()
+                    .setClickable(
+                        ModifiersBuilders.Clickable.Builder()
+                            .setId("reload")
+                            .setOnClick(ActionBuilders.LoadAction.Builder().build())
+                            .build()
+                    ).build()
+            )
+            .build()
         val compactChip = CompactChip.Builder(
             context,
             "More",
@@ -82,12 +96,13 @@ class MainTileRenderer(
             .setWidth(DimensionBuilders.expand())
             .addContent(image)
             .addContent(text)
+            .addContent(textTimeStamp)
             .addContent(statuses)
-            .addContent(compactChip)
             .build()
 
         return PrimaryLayout.Builder(buildDeviceParameters(context.resources))
             .setContent(column)
+            .setPrimaryChipContent(compactChip)
             .build()
     }
 
