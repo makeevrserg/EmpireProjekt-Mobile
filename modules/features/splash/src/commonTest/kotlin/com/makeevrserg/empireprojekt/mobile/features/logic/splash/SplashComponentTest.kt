@@ -16,7 +16,7 @@ import kotlin.test.assertTrue
 
 class SplashComponentTest {
     private fun buildModule(isInitialLaunch: Boolean) = object : SplashComponentModule {
-        override val scope: CoroutineScope = MainScope()
+        override val mainScope: CoroutineScope = MainScope()
         override val dispatchers: KotlinDispatchers = DefaultKotlinDispatchers
         override val repository: SplashComponentRepository = object : SplashComponentRepository {
             override fun isInitialLaunch(): Boolean = isInitialLaunch

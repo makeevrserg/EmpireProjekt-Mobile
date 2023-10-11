@@ -7,12 +7,14 @@ import androidx.work.WorkerParameters
 import com.google.android.gms.wearable.MessageClient
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.data.WearDataLayerRegistry
+import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.tasks.await
+import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
 
 @OptIn(ExperimentalHorologistApi::class)
@@ -20,8 +22,13 @@ class CheckStatusWork(
     context: Context,
     params: WorkerParameters
 ) : CoroutineWorker(context, params) {
-    private val rootModule by RootModule
-    private val rootStatusComponent by rootModule.rootStatusComponent
+
+    private val rootModule by lazy {
+        applicationContext.asEmpireApp().rootModule
+    }
+    private val rootStatusComponent by Provider {
+        rootModule.rootStatusComponent.value
+    }
 
     override suspend fun doWork(): Result = coroutineScope {
         Log.d(TAG, "doWork: ")

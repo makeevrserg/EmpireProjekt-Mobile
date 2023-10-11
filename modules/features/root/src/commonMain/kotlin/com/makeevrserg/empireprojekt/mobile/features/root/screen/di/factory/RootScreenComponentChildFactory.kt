@@ -3,7 +3,6 @@ package com.makeevrserg.empireprojekt.mobile.features.root.screen.di.factory
 import com.arkivanov.decompose.ComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.DefaultSplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.splash.SplashComponentModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.DefaultRootScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
 import ru.astrainteractive.klibs.kdi.Factory
@@ -18,10 +17,7 @@ class RootScreenComponentChildFactory(
             RootScreenComponent.Child.Splash -> DefaultRootScreenComponent.Configuration.Splash(
                 splashComponent = DefaultSplashComponent(
                     context = context,
-                    module = SplashComponentModuleImpl(
-                        rootModule = rootModule,
-                        servicesModule = rootModule.servicesModule
-                    )
+                    module = rootModule.splashModule
                 )
             )
 

@@ -1,21 +1,19 @@
 package com.makeevrserg.empireprojekt.mobile.features.root.di
 
-import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.root.RootModuleImpl
+import com.makeevrserg.empireprojekt.mobile.features.logic.splash.di.SplashComponentModule
+import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
-import com.russhwolf.settings.Settings
-import kotlinx.coroutines.CoroutineScope
 import ru.astrainteractive.klibs.kdi.Module
 import ru.astrainteractive.klibs.kdi.Single
-import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
 
 interface RootModule : Module {
-    val servicesModule: ServicesModule
 
-    val settings: Single<Settings>
-    val dispatchers: Single<KotlinDispatchers>
-    val mainScope: Single<CoroutineScope>
-    val themeSwitcherComponent: Single<ThemeSwitcherComponent>
+    val servicesModule: ServicesModule
+    val statusModule: StatusModule
+    val splashModule: SplashComponentModule
+
+    // Global components
     val rootStatusComponent: Single<RootStatusComponent>
-    companion object : RootModule by RootModuleImpl
+    val themeSwitcherComponent: Single<ThemeSwitcherComponent>
 }

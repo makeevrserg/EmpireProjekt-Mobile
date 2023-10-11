@@ -12,15 +12,16 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.arkivanov.decompose.defaultComponentContext
+import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.core.ui.rememberSlotModalBottomSheetState
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.modal.DefaultRootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.InfoScreen
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationContent
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ComposeApplication
 import com.makeevrserg.empireprojekt.mobile.resources.R
+import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
 
 @ExperimentalMaterialApi
@@ -28,8 +29,9 @@ import ru.astrainteractive.klibs.kdi.getValue
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
-    private val rootModule by RootModule
-    private val servicesModule by rootModule.servicesModule
+    private val rootModule by Provider {
+        application.asEmpireApp().rootModule
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

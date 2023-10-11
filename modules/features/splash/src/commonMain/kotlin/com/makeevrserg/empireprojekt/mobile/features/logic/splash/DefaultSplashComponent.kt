@@ -17,7 +17,7 @@ class DefaultSplashComponent(
     override val screenChannelFlow = _screenChannel.consumeAsFlow().cFlow()
 
     init {
-        scope.launch(dispatchers.IO) {
+        mainScope.launch(dispatchers.IO) {
             val isInitialLaunch = repository.isInitialLaunch()
             val label = SplashComponent.Label.InitialLaunch(isInitialLaunch)
             _screenChannel.send(label)

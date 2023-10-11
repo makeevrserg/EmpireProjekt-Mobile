@@ -1,6 +1,7 @@
 package com.makeevrserg.empireprojekt.mobile.application
 
 import android.app.Application
+import android.content.Context
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
@@ -8,8 +9,7 @@ import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.data.WearDataLayerRegistry
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
-import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
+import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.RootModuleImpl
 import com.makeevrserg.empireprojekt.mobile.work.CheckStatusWork
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
@@ -21,12 +21,13 @@ import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalHorologistApi::class)
 class App : Application() {
-    private val servicesModule by RootModule.servicesModule
-    private val coroutineFeature = CoroutineFeature.Default()
+    val rootModule by lazy {
+        RootModuleImpl()
+    }
     private val wearDataLayerRegistry by lazy {
         WearDataLayerRegistry.fromContext(
             application = applicationContext,
-            coroutineScope = coroutineFeature
+            coroutineScope = rootModule.servicesModule.mainScope.value
         )
     }
     private val messageClient by lazy {
@@ -35,17 +36,17 @@ class App : Application() {
 
     override fun onTerminate() {
         super.onTerminate()
-        coroutineFeature.cancel()
+        rootModule.servicesModule.mainScope.value.cancel()
     }
 
     override fun onCreate() {
         super.onCreate()
         Firebase.initialize(this)
-        servicesModule.platformConfiguration.initialize(
+        rootModule.servicesModule.platformConfiguration.initialize {
             DefaultAndroidPlatformConfiguration(
                 applicationContext
             )
-        )
+        }
         scheduleWork()
     }
 
@@ -61,15 +62,20 @@ class App : Application() {
             ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE,
             statusWork
         )
-        coroutineFeature.launch {
+        rootModule.servicesModule.mainScope.value.launch {
             while (isActive) {
                 delay(5000L)
                 CheckStatusWork.sendMessageOnWear(
                     wearDataLayerRegistry = wearDataLayerRegistry,
-                    rootModule = RootModule,
+                    rootModule = rootModule,
                     messageClient = messageClient
                 )
             }
         }
+    }
+
+    companion object {
+        fun Application.asEmpireApp(): App = (this as App)
+        fun Context.asEmpireApp(): App = (applicationContext as App)
     }
 }
