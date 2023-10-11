@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberSwipeDismissableNavController()
             val navHostRootComponent = NavHostRootComponent(navController)
-            ComposeApplication(rootModule.themeSwitcher.value) {
+            ComposeApplication(rootModule.themeSwitcherComponent.value) {
                 NavigationScreen(navHostRootComponent)
             }
         }

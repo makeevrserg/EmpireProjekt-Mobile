@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.root
+package com.makeevrserg.empireprojekt.mobile.features.root.modal
 
 import com.arkivanov.decompose.router.slot.ChildSlot
 import com.arkivanov.decompose.value.Value
@@ -12,6 +12,6 @@ interface RootBottomSheetComponent {
 
     sealed interface Child : Parcelable {
         @Parcelize
-        object Settings : Child
+        data object Settings : Child
     }
 }

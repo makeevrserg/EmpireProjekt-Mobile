@@ -1,11 +1,11 @@
 package com.makeevrserg.empireprojekt.mobile.features.root.di.impl.root
 
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.features.root.di.factories.SettingsFactory
+import com.makeevrserg.empireprojekt.mobile.features.root.di.factory.SettingsFactory
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.status.StatusModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.status.root.DefaultRootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
+import com.makeevrserg.empireprojekt.mobile.features.theme.DefaultThemeSwitcherComponentComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import kotlinx.coroutines.MainScope
 import ru.astrainteractive.klibs.kdi.Single
@@ -30,8 +30,8 @@ internal object RootModuleImpl : RootModule {
     override val mainScope = Single {
         MainScope()
     }
-    override val themeSwitcher: Single<ThemeSwitcher> = Single {
-        ThemeSwitcherComponent(settings.value)
+    override val themeSwitcherComponent: Single<ThemeSwitcherComponent> = Single {
+        DefaultThemeSwitcherComponentComponent(settings.value)
     }
     override val rootStatusComponent: Single<RootStatusComponent> = Single {
         DefaultRootStatusComponent(StatusModuleImpl(this))

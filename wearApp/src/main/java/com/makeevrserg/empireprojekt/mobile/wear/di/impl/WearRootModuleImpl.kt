@@ -1,7 +1,7 @@
 package com.makeevrserg.empireprojekt.mobile.wear.di.impl
 
-import com.makeevrserg.empireprojekt.mobile.features.root.di.factories.SettingsFactory
-import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
+import com.makeevrserg.empireprojekt.mobile.features.root.di.factory.SettingsFactory
+import com.makeevrserg.empireprojekt.mobile.features.theme.DefaultThemeSwitcherComponentComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
@@ -16,8 +16,8 @@ object WearRootModuleImpl : WearRootModule {
         val configuration by platformConfiguration
         SettingsFactory(configuration).create()
     }
-    override val themeSwitcher: Single<ThemeSwitcher> = Single {
-        ThemeSwitcherComponent(settings.value)
+    override val themeSwitcherComponent: Single<ThemeSwitcherComponent> = Single {
+        DefaultThemeSwitcherComponentComponent(settings.value)
     }
     override val wearStatusComponent: Single<WearStatusComponent> = Single {
         WearStatusComponent.Stub()

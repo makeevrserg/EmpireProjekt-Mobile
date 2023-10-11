@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.root.di.factories
+package com.makeevrserg.empireprojekt.mobile.features.root.di.factory
 
 import com.russhwolf.settings.NSUserDefaultsSettings
 import com.russhwolf.settings.Settings

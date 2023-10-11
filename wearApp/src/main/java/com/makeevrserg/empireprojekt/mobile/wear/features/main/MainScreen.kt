@@ -25,7 +25,7 @@ fun MainScreen(
     wearRootModule: WearRootModule,
     rootComponent: NavHostRootComponent
 ) {
-    val themeSwitcher by wearRootModule.themeSwitcher
+    val themeSwitcher by wearRootModule.themeSwitcherComponent
     Scaffold(
         modifier = Modifier.background(AppTheme.materialColor.primaryVariant),
         vignette = {
@@ -42,7 +42,7 @@ fun MainScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(AppTheme.dimens.S))
-            ThemeChip(themeSwitcher = themeSwitcher)
+            ThemeChip(themeSwitcherComponent = themeSwitcher)
             Spacer(modifier = Modifier.height(AppTheme.dimens.S))
             NavChip(
                 text = "Statuses",

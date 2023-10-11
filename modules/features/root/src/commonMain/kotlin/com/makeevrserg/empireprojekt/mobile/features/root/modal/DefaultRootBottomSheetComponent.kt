@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.root
+package com.makeevrserg.empireprojekt.mobile.features.root.modal
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.slot.ChildSlot

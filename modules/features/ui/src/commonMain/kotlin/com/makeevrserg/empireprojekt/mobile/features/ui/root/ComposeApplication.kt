@@ -8,17 +8,20 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.LocalAppTheme
-import com.makeevrserg.empireprojekt.mobile.features.theme.PreviewThemeSwitcher
-import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
+import com.makeevrserg.empireprojekt.mobile.features.theme.PreviewThemeSwitcherComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 
-fun ThemeSwitcher.Theme.toComposeTheme() = when (this) {
-    ThemeSwitcher.Theme.DARK -> AppTheme.DefaultDarkTheme
-    ThemeSwitcher.Theme.LIGHT -> AppTheme.DefaultLightTheme
+fun ThemeSwitcherComponent.Theme.toComposeTheme() = when (this) {
+    ThemeSwitcherComponent.Theme.DARK -> AppTheme.DefaultDarkTheme
+    ThemeSwitcherComponent.Theme.LIGHT -> AppTheme.DefaultLightTheme
 }
 
 @Composable
-fun ComposeApplication(themeSwitcher: ThemeSwitcher = PreviewThemeSwitcher(), content: @Composable () -> Unit) {
-    val theme by themeSwitcher.theme.collectAsState()
+fun ComposeApplication(
+    themeSwitcherComponent: ThemeSwitcherComponent = PreviewThemeSwitcherComponent(),
+    content: @Composable () -> Unit
+) {
+    val theme by themeSwitcherComponent.theme.collectAsState()
     val appTheme = theme.toComposeTheme()
     TransparentBars(appTheme.isDark)
 

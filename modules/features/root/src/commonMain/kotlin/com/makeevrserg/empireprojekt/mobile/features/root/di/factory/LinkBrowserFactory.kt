@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.root.di.factories
+package com.makeevrserg.empireprojekt.mobile.features.root.di.factory
 
 import com.makeevrserg.empireprojekt.mobile.services.core.LinkBrowser
 import ru.astrainteractive.klibs.kdi.Factory

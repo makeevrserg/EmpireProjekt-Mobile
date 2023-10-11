@@ -17,20 +17,20 @@ import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.Text
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
+import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.AstraChip
 
 @Composable
-fun ThemeChip(themeSwitcher: ThemeSwitcher) {
-    val theme by themeSwitcher.theme.collectAsState()
+fun ThemeChip(themeSwitcherComponent: ThemeSwitcherComponent) {
+    val theme by themeSwitcherComponent.theme.collectAsState()
     val icon = when (theme) {
-        ThemeSwitcher.Theme.DARK -> Icons.Filled.Bedtime
-        ThemeSwitcher.Theme.LIGHT -> Icons.Filled.WbSunny
+        ThemeSwitcherComponent.Theme.DARK -> Icons.Filled.Bedtime
+        ThemeSwitcherComponent.Theme.LIGHT -> Icons.Filled.WbSunny
     }
     val color by animateColorAsState(
         targetValue = when (theme) {
-            ThemeSwitcher.Theme.DARK -> AppTheme.materialColor.onPrimary
-            ThemeSwitcher.Theme.LIGHT -> AppTheme.materialColor.onPrimary
+            ThemeSwitcherComponent.Theme.DARK -> AppTheme.materialColor.onPrimary
+            ThemeSwitcherComponent.Theme.LIGHT -> AppTheme.materialColor.onPrimary
         },
         label = "LABEL"
     )
@@ -43,7 +43,7 @@ fun ThemeChip(themeSwitcher: ThemeSwitcher) {
                 color = AppTheme.materialColor.onPrimary
             )
         },
-        onClick = themeSwitcher::next,
+        onClick = themeSwitcherComponent::next,
         icon = {
             Crossfade(targetState = icon, label = "LABEL") {
                 Icon(

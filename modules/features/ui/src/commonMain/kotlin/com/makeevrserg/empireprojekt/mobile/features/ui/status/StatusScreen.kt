@@ -18,19 +18,18 @@ import androidx.compose.ui.draw.clip
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.RootBottomSheetComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcher
+import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.widget.StatusWidget
 import com.makeevrserg.empireprojekt.mobile.resources.MR
 import ru.astrainteractive.klibs.mikro.core.util.next
 
 @Composable
 fun StatusScreen(
-    rootComponent: DefaultRootComponent,
-    rootBottomSheetComponent: RootBottomSheetComponent,
-    themeSwitcher: ThemeSwitcher,
+    rootComponent: RootComponent,
+    themeSwitcherComponent: ThemeSwitcherComponent,
     rootStatusComponent: RootStatusComponent,
 ) {
     Scaffold(
@@ -40,7 +39,7 @@ fun StatusScreen(
                 modifier = Modifier.navBarsPadding(),
                 backgroundColor = AppTheme.materialColor.secondaryVariant,
                 onClick = {
-                    rootBottomSheetComponent.pushSlot(RootBottomSheetComponent.Child.Settings)
+                    rootComponent.rootBottomSheetComponent.pushSlot(RootBottomSheetComponent.Child.Settings)
                 },
             ) {
                 Icon(
@@ -65,9 +64,10 @@ fun StatusScreen(
                     modifier = Modifier
                         .clip(CircleShape)
                         .clickable {
-                            val nextTheme =
-                                themeSwitcher.theme.value.next(ThemeSwitcher.Theme.values())
-                            themeSwitcher.selectTheme(nextTheme)
+                            val nextTheme = themeSwitcherComponent.theme.value.next(
+                                ThemeSwitcherComponent.Theme.values()
+                            )
+                            themeSwitcherComponent.selectTheme(nextTheme)
                         }
                 )
             }

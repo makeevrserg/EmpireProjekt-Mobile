@@ -16,21 +16,21 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.asPainter
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
 import com.makeevrserg.empireprojekt.mobile.resources.MR
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun SplashScreenComponent(
     splashComponent: SplashComponent,
-    rootComponent: DefaultRootComponent
+    rootComponent: RootComponent
 ) {
     LaunchedEffect(key1 = Unit) {
         splashComponent.screenChannelFlow.collectLatest {
             when (it) {
                 is SplashComponent.Label.InitialLaunch -> {
-                    rootComponent.replaceCurrent(RootComponent.Child.Status)
+                    rootComponent.rootScreenComponent.replaceCurrent(RootScreenComponent.Child.Status)
                 }
             }
         }

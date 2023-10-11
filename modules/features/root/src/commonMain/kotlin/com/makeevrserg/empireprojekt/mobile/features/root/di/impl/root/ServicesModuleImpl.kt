@@ -1,7 +1,7 @@
 package com.makeevrserg.empireprojekt.mobile.features.root.di.impl.root
 
 import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
-import com.makeevrserg.empireprojekt.mobile.features.root.di.factories.LinkBrowserFactory
+import com.makeevrserg.empireprojekt.mobile.features.root.di.factory.LinkBrowserFactory
 import com.makeevrserg.empireprojekt.mobile.services.core.LinkBrowser
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

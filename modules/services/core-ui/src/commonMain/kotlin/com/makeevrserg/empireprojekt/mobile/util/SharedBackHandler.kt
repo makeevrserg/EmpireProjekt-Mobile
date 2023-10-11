@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.utils
+package com.makeevrserg.empireprojekt.mobile.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect

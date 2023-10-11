@@ -7,7 +7,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 
-class SplashComponentImpl(
+class DefaultSplashComponent(
     context: ComponentContext,
     module: SplashComponentModule
 ) : SplashComponent,

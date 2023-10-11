@@ -8,16 +8,15 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.arkivanov.decompose.defaultComponentContext
 import com.makeevrserg.empireprojekt.mobile.core.ui.rememberSlotModalBottomSheetState
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
+import com.makeevrserg.empireprojekt.mobile.features.root.modal.DefaultRootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.InfoScreen
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationContent
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ComposeApplication
@@ -37,7 +36,7 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setTheme(R.style.AppTheme)
         val componentContext = defaultComponentContext()
-        val rootComponent = DefaultRootComponent(componentContext, rootModule, servicesModule)
+        val rootComponent = DefaultRootComponent(componentContext, rootModule)
         val rootBottomSheetComponent = rootComponent.rootBottomSheetComponent
 
         setContent {
@@ -51,7 +50,7 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
-            ComposeApplication(rootModule.themeSwitcher.value) {
+            ComposeApplication(rootModule.themeSwitcherComponent.value) {
                 ModalBottomSheetLayout(
                     sheetState = bottomSheetState.sheetState,
                     sheetContent = bottomSheetState.sheetContent.value,
@@ -60,7 +59,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     ApplicationContent(
                         rootComponent = rootComponent,
-                        rootBottomSheetComponent = rootBottomSheetComponent,
                         modifier = Modifier
                     )
                 }
