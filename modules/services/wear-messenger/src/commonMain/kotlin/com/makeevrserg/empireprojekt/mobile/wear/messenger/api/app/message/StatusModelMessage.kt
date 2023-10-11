@@ -9,5 +9,5 @@ class StatusModelMessage(
     private val json: Json
 ) : WearMessage<List<StatusModel>> by InlineWearMessage(
     json = json,
-    path = "/status"
+    path = "/statuses"
 )

@@ -6,11 +6,14 @@ import com.google.android.horologist.data.WearDataLayerRegistry
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.message.StatusModelMessage
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.producer.WearMessageProducer
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.producer.WearMessageProducerImpl
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.receiver.WearMessageReceiver
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.receiver.WearMessageReceiverImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.serialization.json.Json
 
 interface WearMessengerModule {
     val wearMessageProducer: WearMessageProducer
+    val wearMessageReceiver: WearMessageReceiver
 
     val statusModelMessage: StatusModelMessage
 
@@ -35,6 +38,14 @@ interface WearMessengerModule {
         @OptIn(ExperimentalHorologistApi::class)
         override val wearMessageProducer: WearMessageProducer by lazy {
             WearMessageProducerImpl(
+                wearDataLayerRegistry = wearDataLayerRegistry,
+                messageClient = messageClient
+            )
+        }
+
+        @OptIn(ExperimentalHorologistApi::class)
+        override val wearMessageReceiver: WearMessageReceiver by lazy {
+            WearMessageReceiverImpl(
                 wearDataLayerRegistry = wearDataLayerRegistry,
                 messageClient = messageClient
             )

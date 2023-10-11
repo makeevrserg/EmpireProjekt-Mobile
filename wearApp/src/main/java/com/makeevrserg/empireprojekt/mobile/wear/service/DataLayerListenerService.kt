@@ -3,31 +3,33 @@ package com.makeevrserg.empireprojekt.mobile.wear.service
 import android.util.Log
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
+import com.makeevrserg.empireprojekt.mobile.wear.application.App.Companion.asEmpireApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 class DataLayerListenerService : WearableListenerService() {
+    private val wearRootModule by lazy {
+        application.asEmpireApp().wearRootModule
+    }
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     override fun onMessageReceived(messageEvent: MessageEvent) {
         super.onMessageReceived(messageEvent)
+        Log.d(TAG, "onMessageReceived: ${messageEvent.path}")
+        scope.launch { receiveStatusModelMessage(messageEvent) }
+    }
 
-        kotlin.runCatching {
-            val statusRaw = messageEvent.path.replace("/statuses", "")
-            val status = StatusComponent.Model.LoadingStatus.valueOf(statusRaw)
-            val amount = messageEvent.data.first().toInt()
-            WearRootModule.wearStatusComponent.value.update(status, amount)
-            Log.d("DataLayerService", "loadingStatus: $status; amount: $amount")
-        }.onFailure {
-            it.printStackTrace()
-        }
-        kotlin.runCatching {
-            Log.d(TAG, "onMessageReceived: ${messageEvent.data.decodeToString()}")
-        }.onFailure { it.printStackTrace() }
+    private suspend fun receiveStatusModelMessage(messageEvent: MessageEvent) {
+        val statusModelMessage = wearRootModule.wearMessengerModule.statusModelMessage
+        val wearMessageReceiver = wearRootModule.wearMessengerModule.wearMessageReceiver
+        if (statusModelMessage.path != messageEvent.path) return
+        wearMessageReceiver.consume(
+            message = statusModelMessage,
+            byteArray = messageEvent.data
+        )
     }
 
     override fun onCreate() {

@@ -17,7 +17,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.NavChip
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.ThemeChip
-import com.makeevrserg.empireprojekt.mobile.wear.features.navigation.NavHostRootComponent
+import com.makeevrserg.empireprojekt.mobile.wear.features.root.NavHostRootComponent
 import ru.astrainteractive.klibs.kdi.getValue
 
 @Composable

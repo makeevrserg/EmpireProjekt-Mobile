@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.wear.features.navigation
+package com.makeevrserg.empireprojekt.mobile.wear.features.root
 
 import androidx.navigation.NavHostController
 

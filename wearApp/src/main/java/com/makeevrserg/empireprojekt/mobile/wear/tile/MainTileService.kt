@@ -14,7 +14,7 @@ import androidx.wear.tiles.TileService
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.tiles.SuspendingTileService
 import com.makeevrserg.empireprojekt.mobile.resources.R
-import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
+import com.makeevrserg.empireprojekt.mobile.wear.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.wear.tile.components.MainTileRenderer
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -30,8 +30,10 @@ private const val RESOURCES_VERSION = "1"
 @OptIn(ExperimentalHorologistApi::class)
 class MainTileService : SuspendingTileService() {
 
-    private val rootModule by WearRootModule
-    private val wearStatusComponent by rootModule.wearStatusComponent
+    private val wearRootModule by lazy {
+        application.asEmpireApp().wearRootModule
+    }
+    private val wearStatusComponent by wearRootModule.wearStatusComponent
     private val mainTileRenderer by Single {
         MainTileRenderer(applicationContext)
     }

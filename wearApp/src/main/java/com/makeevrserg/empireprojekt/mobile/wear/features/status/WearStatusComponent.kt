@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
 interface WearStatusComponent {
-    val statuses: List<StatusComponent>
     val mergedState: StateFlow<Model>
 
     data class Model(
@@ -18,7 +17,6 @@ interface WearStatusComponent {
     fun update(status: StatusComponent.Model.LoadingStatus, amount: Int)
 
     class Stub : WearStatusComponent {
-        override val statuses: List<StatusComponent> = emptyList()
         private val mutableMergeState = MutableStateFlow(Model())
         override val mergedState: StateFlow<Model> = mutableMergeState
         override fun update(status: StatusComponent.Model.LoadingStatus, amount: Int) {
