@@ -1,8 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.url
 
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.data.StatusRepository
-import com.makeevrserg.empireprojekt.mobile.features.status.data.UrlStatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
 import com.makeevrserg.empireprojekt.mobile.services.core.AnyStateFlow
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
@@ -20,11 +18,7 @@ class DefaultUrlStatusComponent(
     module: StatusModule,
     private val coroutineFeature: CoroutineFeature
 ) : UrlStatusComponent, StatusModule by module {
-    private val statusRepository: StatusRepository = UrlStatusRepository(
-        url = url,
-        httpClient = httpClient,
-        dispatchers = dispatchers
-    )
+    private val urlStatusRepository = urlStatRepositoryFactory(url).create()
 
     private val _model = MutableStateFlow(
         UrlStatusComponent.Model(
@@ -45,7 +39,7 @@ class DefaultUrlStatusComponent(
         _model.update {
             it.copy(isLoading = true)
         }
-        val response = statusRepository.isActive()
+        val response = urlStatusRepository.isActive()
         response.onSuccess {
             _model.update {
                 it.copy(

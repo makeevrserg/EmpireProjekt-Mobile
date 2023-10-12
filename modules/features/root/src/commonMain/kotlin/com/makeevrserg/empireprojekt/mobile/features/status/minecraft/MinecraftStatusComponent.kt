@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.status.mincraft
+package com.makeevrserg.empireprojekt.mobile.features.status.minecraft
 
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.data.model.MinecraftStatusResponse

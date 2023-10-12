@@ -2,7 +2,7 @@ package com.makeevrserg.empireprojekt.mobile.features.status.root
 
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
-import com.makeevrserg.empireprojekt.mobile.features.status.mincraft.DefaultMinecraftStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.minecraft.DefaultMinecraftStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.url.DefaultUrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
 

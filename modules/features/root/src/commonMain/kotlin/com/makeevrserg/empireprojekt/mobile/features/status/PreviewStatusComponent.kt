@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
-class StubStatusComponent : StatusComponent, CoroutineScope by MainScope() {
+class PreviewStatusComponent : StatusComponent, CoroutineScope by MainScope() {
     private val mutableStateFlow = MutableStateFlow<StubModel>(StubModel())
     override val model: AnyStateFlow<StatusComponent.Model> = mutableStateFlow.wrapToAny()
 

@@ -1,7 +1,6 @@
-package com.makeevrserg.empireprojekt.mobile.features.status.mincraft
+package com.makeevrserg.empireprojekt.mobile.features.status.minecraft
 
 import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.data.MinecraftStatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
 import com.makeevrserg.empireprojekt.mobile.services.core.AnyStateFlow
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
@@ -18,10 +17,6 @@ class DefaultMinecraftStatusComponent(
     title: String,
     private val coroutineFeature: CoroutineFeature
 ) : StatusComponent, StatusModule by module {
-    private val repository = MinecraftStatusRepository.Default(
-        httpClient = httpClient,
-        dispatchers = dispatchers
-    )
     private val _model = MutableStateFlow(
         MinecraftStatusComponent.Model(
             title = StringDesc.Raw(title),
@@ -43,7 +38,7 @@ class DefaultMinecraftStatusComponent(
         _model.update {
             it.copy(isLoading = true)
         }
-        val response = repository.get()
+        val response = minecraftStatusRepository.get()
         _model.update {
             it.copy(
                 isLoading = false,
