@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
-            ComposeApplication(rootModule.themeSwitcherComponent.value) {
+            ComposeApplication(rootModule.componentsModule.themeSwitcherComponent.value) {
                 ModalBottomSheetLayout(
                     sheetState = bottomSheetState.sheetState,
                     sheetContent = bottomSheetState.sheetContent.value,

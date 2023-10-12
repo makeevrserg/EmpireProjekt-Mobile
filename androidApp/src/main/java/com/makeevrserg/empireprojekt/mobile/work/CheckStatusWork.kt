@@ -24,7 +24,7 @@ class CheckStatusWork(
         applicationContext.asEmpireApp().rootModule
     }
     private val rootStatusComponent by Provider {
-        rootModule.rootStatusComponent.value
+        rootModule.componentsModule.rootStatusComponent.value
     }
 
     override suspend fun doWork(): Result {

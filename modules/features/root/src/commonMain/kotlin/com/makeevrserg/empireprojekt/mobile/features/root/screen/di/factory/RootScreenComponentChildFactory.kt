@@ -23,8 +23,8 @@ class RootScreenComponentChildFactory(
 
             RootScreenComponent.Child.Status -> {
                 DefaultRootScreenComponent.Configuration.Status(
-                    themeSwitcherComponent = rootModule.themeSwitcherComponent.value,
-                    rootStatusComponent = rootModule.rootStatusComponent.value
+                    themeSwitcherComponent = rootModule.componentsModule.themeSwitcherComponent.value,
+                    rootStatusComponent = rootModule.componentsModule.rootStatusComponent.value
                 )
             }
         }
