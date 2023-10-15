@@ -42,12 +42,13 @@ fun RatingUserWidget(
         Column {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(vertical = AppTheme.dimens.XS, horizontal = AppTheme.dimens.S)
+                modifier = Modifier.padding(vertical = AppTheme.dimens.XS, horizontal = AppTheme.dimens.S),
+                horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
             ) {
                 AsyncImage(
                     model = "https://mc-heads.net/avatar/${model.minecraftUUID}",
                     contentDescription = null,
-                    modifier = Modifier.size(54.dp).padding(AppTheme.dimens.XS)
+                    modifier = Modifier.size(32.dp)
                 )
                 Column {
                     Text(
@@ -61,7 +62,7 @@ fun RatingUserWidget(
                         style = AppTheme.typography.subtitle1,
                         color = AppTheme.materialColor.onPrimary,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier
                     )
                 }
             }
