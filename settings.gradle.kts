@@ -28,6 +28,7 @@ include(":modules:services:resources")
 include(":modules:services:core-ui")
 include(":modules:services:core")
 include(":modules:services:wear-messenger")
+include(":modules:services:build-konfig")
 // Feature
 include(":modules:features:root")
 include(":modules:features:splash")

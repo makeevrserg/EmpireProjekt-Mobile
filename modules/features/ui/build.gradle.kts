@@ -32,9 +32,10 @@ kotlin {
                 implementation(libs.decompose.core)
                 implementation(libs.decompose.compose.jetbrains)
                 // Local
-                implementation(projects.modules.features.splash)
                 implementation(projects.modules.services.resources)
                 implementation(projects.modules.services.coreUi)
+                implementation(projects.modules.services.buildKonfig)
+                implementation(projects.modules.features.splash)
                 implementation(projects.modules.features.root)
             }
         }

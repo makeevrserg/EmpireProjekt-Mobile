@@ -16,13 +16,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import com.makeevrserg.empireprojekt.mobile.buildkonfig.BuildKonfig
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.RowSettingTextInfo
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.components.LinkWidget
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.data.InfoScreenLinks
 import com.makeevrserg.empireprojekt.mobile.services.core.LinkBrowser
-import com.makeevrserg.empireprojekt.mobile.shared.BuildKonfig
 
 @Composable
 fun InfoScreen(

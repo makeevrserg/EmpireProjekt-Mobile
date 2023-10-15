@@ -1,6 +1,5 @@
 @file:Suppress("UnusedPrivateMember")
 
-import ru.astrainteractive.gradleplugin.util.GradleProperty.Companion.gradleProperty
 import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
 
 plugins {
@@ -9,20 +8,8 @@ plugins {
     kotlin("native.cocoapods")
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
-    id("com.github.gmazzo.buildconfig")
     id("dev.icerock.mobile.multiplatform-resources")
     alias(libs.plugins.kotlin.serialization)
-}
-
-buildConfig {
-    className("BuildKonfig") // forces the class name. Defaults to 'BuildConfig'
-    packageName("${projectInfo.group}.shared") // forces the package. Defaults to '${project.group}'
-    buildConfigField(
-        "String",
-        "VERSION_CODE",
-        "\"${gradleProperty("project.version.code").integer}\""
-    )
-    buildConfigField("String", "VERSION_NAME", "\"${projectInfo.versionString}\"")
 }
 
 kotlin {
