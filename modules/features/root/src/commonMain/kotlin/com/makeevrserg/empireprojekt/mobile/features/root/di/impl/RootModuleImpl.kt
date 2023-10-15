@@ -1,5 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.features.root.di.impl
 
+import com.makeevrserg.empireprojekt.mobile.api.empireapi.di.EmpireApiModule
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.di.SplashComponentModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.ComponentsModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
@@ -31,5 +32,11 @@ class RootModuleImpl : RootModule {
 
     override val componentsModule: ComponentsModule by Single {
         ComponentsModuleImpl(this)
+    }
+
+    override val empireApiModule: EmpireApiModule by Provider {
+        EmpireApiModule.Default(
+            httpClient = servicesModule.httpClient.value
+        )
     }
 }

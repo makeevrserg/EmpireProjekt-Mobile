@@ -41,6 +41,7 @@ modules/services/xlsx/libs
 modules/services/ads-yandex/build
 modules/services/wear-messenger/build
 modules/services/build-konfig/build
+modules/services/api-empireapi/build
 # Features ----------------------------------
 modules/features/dialog-confirm/build
 modules/features/words-local/build
