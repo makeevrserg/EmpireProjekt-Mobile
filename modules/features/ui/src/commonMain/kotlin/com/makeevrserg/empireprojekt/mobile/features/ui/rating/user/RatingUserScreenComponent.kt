@@ -54,7 +54,6 @@ fun RatingUserScreenComponent(
         modifier = Modifier,
         topBar = {
             AstraCenterAlignedTopAppBar(
-                title = "User ratings",
                 onBackClicked = rootComponent.rootScreenComponent::pop
             )
         }
