@@ -8,8 +8,10 @@ import io.ktor.client.request.parameter
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import ru.astrainteractive.empireapi.models.rating.RatingListRequest
-import ru.astrainteractive.empireapi.models.rating.RatingModel
+import ru.astrainteractive.empireapi.models.rating.RatingModelPagedModel
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 import ru.astrainteractive.empireapi.models.rating.UserRatingsRequest
 import ru.astrainteractive.empireapi.models.response.GenericPagedModel
@@ -19,9 +21,12 @@ class RatingApiImpl(
     private val baseUrl: String = "http://192.168.1.3:8080"
 ) : RatingApi {
 
-    override suspend fun users(body: RatingListRequest): GenericPagedModel<RatingUserModel> {
+    override suspend fun users(page: Int, size: Int, body: RatingListRequest): GenericPagedModel<RatingUserModel> {
         return httpClient.post {
             url("$baseUrl/rating/users")
+            parameter("page", page)
+            parameter("size", size)
+            contentType(ContentType.Application.Json)
             setBody(body)
         }.body()
     }
@@ -29,13 +34,17 @@ class RatingApiImpl(
     override suspend fun user(id: Long): RatingUserModel {
         return httpClient.get {
             url("$baseUrl/rating/user")
+            contentType(ContentType.Application.Json)
             parameter("user_id", id)
         }.body()
     }
 
-    override suspend fun ratings(body: UserRatingsRequest): GenericPagedModel<RatingModel> {
+    override suspend fun ratings(page: Int, size: Int, body: UserRatingsRequest): RatingModelPagedModel {
         return httpClient.post {
             url("$baseUrl/rating/user/votes")
+            parameter("page", page)
+            parameter("size", size)
+            contentType(ContentType.Application.Json)
             setBody(body)
         }.body()
     }

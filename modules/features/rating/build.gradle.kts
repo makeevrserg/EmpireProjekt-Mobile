@@ -22,21 +22,26 @@ kotlin {
                 api(libs.klibs.mikro.platform)
                 implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
-                // Ktor
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.contentNegitiation)
-                implementation(libs.ktor.client.serialization)
-                implementation(libs.ktor.client.json)
-                implementation(libs.ktor.serialization.json)
-                // Serialization
-                implementation(libs.kotlin.serialization.json)
+                // Decompose
+                api(libs.decompose.core)
+                api(libs.essenty)
+                // Moko
+                implementation(libs.moko.resources.core)
+                // Paging
+                implementation("ru.astrainteractive.mobilex:paging:2.7.3")
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
+                // MVIKotlin
+                implementation(libs.mvikotlin)
+                // Local
+                api(projects.modules.services.resources)
+                api(projects.modules.services.core)
+                api(projects.modules.services.apiEmpireapi)
             }
         }
     }
 }
-
 android {
-    namespace = "${projectInfo.group}.api.empireapi"
+    apply(plugin = "kotlin-parcelize")
+    namespace = "${projectInfo.group}.rating"
 }

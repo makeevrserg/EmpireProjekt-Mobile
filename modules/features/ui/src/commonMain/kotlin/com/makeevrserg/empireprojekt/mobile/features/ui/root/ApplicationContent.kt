@@ -10,6 +10,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stac
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.DefaultRootScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.ui.rating.user.RatingUsersScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.splash.SplashScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.StatusScreen
 
@@ -35,6 +36,10 @@ fun ApplicationContent(
                 rootComponent = rootComponent,
                 themeSwitcherComponent = screen.themeSwitcherComponent,
                 rootStatusComponent = screen.rootStatusComponent
+            )
+
+            is DefaultRootScreenComponent.Configuration.RatingUsers -> RatingUsersScreenComponent(
+                ratingUsersComponent = screen.ratingUsersComponent
             )
         }
     }

@@ -30,7 +30,7 @@ fun SplashScreenComponent(
         splashComponent.screenChannelFlow.collectLatest {
             when (it) {
                 is SplashComponent.Label.InitialLaunch -> {
-                    rootComponent.rootScreenComponent.replaceCurrent(RootScreenComponent.Child.Status)
+                    rootComponent.rootScreenComponent.replaceCurrent(RootScreenComponent.Child.RatingUsers)
                 }
             }
         }

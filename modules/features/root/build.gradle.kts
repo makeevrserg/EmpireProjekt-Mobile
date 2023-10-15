@@ -55,6 +55,7 @@ kotlin {
                 implementation(libs.ktor.client.serialization)
                 implementation(libs.ktor.client.json)
                 implementation(libs.ktor.serialization.json)
+                implementation(libs.ktor.logging)
                 // Moko
                 api(libs.moko.mvvm.core)
                 api(libs.moko.mvvm.flow)
@@ -67,9 +68,10 @@ kotlin {
                 implementation(libs.mvikotlin)
                 // Local
                 api(projects.modules.services.resources)
-                api(projects.modules.features.splash)
                 api(projects.modules.services.core)
                 api(projects.modules.services.apiEmpireapi)
+                api(projects.modules.features.splash)
+                api(projects.modules.features.rating)
             }
         }
         val androidMain by getting {
@@ -112,6 +114,7 @@ dependencies {
     implementation(libs.klibs.kstorage)
     implementation(libs.google.auth)
     implementation(libs.kotlin.coroutines.playServices)
+    implementation("io.ktor:ktor-client-logging-jvm:2.3.2")
 }
 
 multiplatformResources {

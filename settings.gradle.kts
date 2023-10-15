@@ -34,3 +34,5 @@ include(":modules:services:api-empireapi")
 include(":modules:features:root")
 include(":modules:features:splash")
 include(":modules:features:ui")
+
+include(":modules:features:rating")
