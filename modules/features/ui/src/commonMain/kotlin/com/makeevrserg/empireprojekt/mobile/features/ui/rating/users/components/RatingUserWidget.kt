@@ -56,19 +56,13 @@ fun RatingUserWidget(
                         color = AppTheme.materialColor.onPrimary,
                         textAlign = TextAlign.Center
                     )
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = "${model.total}",
-                            style = AppTheme.typography.subtitle1,
-                            color = AppTheme.materialColor.onPrimary,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.weight(1f)
-                        )
-                    }
+                    Text(
+                        text = "Рейтинг: ${model.total}",
+                        style = AppTheme.typography.subtitle1,
+                        color = AppTheme.materialColor.onPrimary,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.weight(1f)
+                    )
                 }
             }
             Box(Modifier.fillMaxWidth()) {
