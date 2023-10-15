@@ -1,15 +1,15 @@
 package com.makeevrserg.empireprojekt.mobile.features.rating.user.data
 
-import com.makeevrserg.mobilex.paging.state.PagingState
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import ru.astrainteractive.empireapi.models.rating.RatingModel
 import ru.astrainteractive.empireapi.models.rating.UserRatingsRequest
+import ru.astrainteractive.klibs.paging.state.PagingState
 
 interface RatingUserRepository {
 
-    val pagingStateFlow: MutableStateFlow<PagingState<Int>>
+    val pagingStateFlow: StateFlow<PagingState<Int>>
 
-    val listStateFlow: MutableStateFlow<List<RatingModel>>
+    val listStateFlow: StateFlow<List<RatingModel>>
 
     suspend fun reset()
 

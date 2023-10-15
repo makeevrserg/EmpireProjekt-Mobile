@@ -1,16 +1,14 @@
 package com.makeevrserg.empireprojekt.mobile.features.rating.users.data
 
 import com.makeevrserg.empireprojekt.mobile.api.empireapi.RatingApi
-import com.makeevrserg.mobilex.paging.PagingCollector
-import com.makeevrserg.mobilex.paging.data.LambdaPagedListDataSource
-import com.makeevrserg.mobilex.paging.state.IntPagingState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import ru.astrainteractive.empireapi.models.rating.RatingListRequest
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
-import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
+import ru.astrainteractive.klibs.paging.IntPagerCollector
+import ru.astrainteractive.klibs.paging.data.LambdaPagedListDataSource
 
 class RatingUsersRepositoryImpl(
     private val ratingApi: RatingApi,
@@ -18,21 +16,19 @@ class RatingUsersRepositoryImpl(
 ) : RatingUsersRepository {
     private val request = MutableStateFlow(RatingListRequest())
 
-    private val pagingCollector = PagingCollector(
-        initialPagingState = IntPagingState(0),
+    private val pagingCollector = IntPagerCollector(
+        initialPage = 0,
         pager = LambdaPagedListDataSource {
-            loadPage(it.page)
+            loadPage(it.pageDescriptor)
         }
     )
 
     override val pagingStateFlow = pagingCollector.pagingStateFlow
 
-    override val listStateFlow = pagingCollector.listStateFlow.mapStateFlow {
-        it.distinctBy { it.id }
-    }
+    override val listStateFlow = pagingCollector.listStateFlow
 
-    private suspend fun loadPage(page: Int): List<RatingUserModel>? {
-        val result = runCatching {
+    private suspend fun loadPage(page: Int): Result<List<RatingUserModel>> {
+        return runCatching {
             withContext(dispatchers.IO) {
                 ratingApi.users(
                     page = page,
@@ -41,7 +37,6 @@ class RatingUsersRepositoryImpl(
                 ).data
             }
         }.onFailure(Throwable::printStackTrace)
-        return result.getOrNull()
     }
 
     override suspend fun reset() {

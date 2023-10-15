@@ -25,7 +25,8 @@ class DefaultRatingUsersComponent(
             model.update { model ->
                 model.copy(
                     isLastPage = it.isLastPage,
-                    isLoading = it.isLoading
+                    isLoading = it.isLoading,
+                    isFailure = it.isFailure
                 )
             }
         }

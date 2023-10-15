@@ -31,7 +31,8 @@ class DefaultRatingUserComponent(
             model.update { model ->
                 model.copy(
                     isLastPage = it.isLastPage,
-                    isLoading = it.isLoading
+                    isLoading = it.isLoading,
+                    isFailure = it.isFailure
                 )
             }
         }
@@ -53,6 +54,7 @@ class DefaultRatingUserComponent(
     }
 
     override fun loadNextPage() {
+        println("LoadingNextPage")
         coroutineFeature.launch {
             repository.loadNextPage()
         }

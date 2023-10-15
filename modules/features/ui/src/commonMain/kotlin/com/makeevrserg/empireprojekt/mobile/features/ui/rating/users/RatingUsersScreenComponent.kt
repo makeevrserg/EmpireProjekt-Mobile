@@ -12,8 +12,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.OnEndReached
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.PagingWidget
-import com.makeevrserg.empireprojekt.mobile.core.ui.components.rememberIsScrolledToTheEnd
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCenterAlignedTopAppBar
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.RatingUsersComponent
@@ -28,12 +28,8 @@ fun RatingUsersScreenComponent(
 ) {
     val model by ratingUsersComponent.model.collectAsState()
     val lazyListState = rememberLazyListState()
-    val isScrolledToEnd by lazyListState.rememberIsScrolledToTheEnd()
-
-    LaunchedEffect(isScrolledToEnd) {
-        if (isScrolledToEnd) {
-            ratingUsersComponent.loadNextPage()
-        }
+    lazyListState.OnEndReached {
+        ratingUsersComponent.loadNextPage()
     }
     LaunchedEffect(ratingUsersComponent) {
         ratingUsersComponent.loadNextPage()
@@ -51,7 +47,8 @@ fun RatingUsersScreenComponent(
         LazyColumn(
             modifier = Modifier.padding(horizontal = AppTheme.dimens.XS).navigationBarsPadding(),
             verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS),
-            contentPadding = it
+            contentPadding = it,
+            state = lazyListState
         ) {
             items(model.items) { ratingUserModel ->
                 RatingUserWidget(
@@ -68,6 +65,7 @@ fun RatingUsersScreenComponent(
                     list = model.items,
                     isLastPage = model.isLastPage,
                     isLoading = model.isLoading,
+                    isFailure = model.isFailure,
                     onReload = {
                         ratingUsersComponent.reset()
                     }

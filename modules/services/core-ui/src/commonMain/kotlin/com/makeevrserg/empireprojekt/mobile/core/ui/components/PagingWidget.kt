@@ -87,6 +87,7 @@ object PagingWidget {
         list: List<*>,
         isLastPage: Boolean,
         isLoading: Boolean,
+        isFailure: Boolean,
         onReload: () -> Unit
     ) {
         if (isLoading) {
@@ -95,7 +96,7 @@ object PagingWidget {
             LastPage()
         } else if (isLastPage && list.isEmpty()) {
             NoPages()
-        } else {
+        } else if (isFailure) {
             NetworkError(onReload)
         }
     }

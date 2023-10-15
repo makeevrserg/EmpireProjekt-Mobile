@@ -25,8 +25,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.OnEndReached
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.PagingWidget
-import com.makeevrserg.empireprojekt.mobile.core.ui.components.rememberIsScrolledToTheEnd
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCenterAlignedTopAppBar
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.rating.user.RatingUserComponent
@@ -39,12 +39,9 @@ fun RatingUserScreenComponent(
 ) {
     val model by ratingUserComponent.model.collectAsState()
     val lazyListState = rememberLazyListState()
-    val isScrolledToEnd by lazyListState.rememberIsScrolledToTheEnd()
 
-    LaunchedEffect(isScrolledToEnd) {
-        if (isScrolledToEnd) {
-            ratingUserComponent.loadNextPage()
-        }
+    lazyListState.OnEndReached {
+        ratingUserComponent.loadNextPage()
     }
     LaunchedEffect(ratingUserComponent) {
         ratingUserComponent.loadNextPage()
@@ -61,7 +58,8 @@ fun RatingUserScreenComponent(
         LazyColumn(
             contentPadding = it,
             modifier = Modifier.padding(horizontal = AppTheme.dimens.XS).navigationBarsPadding(),
-            verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
+            verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS),
+            state = lazyListState
         ) {
             items(model.items) {
                 Box(
@@ -105,6 +103,7 @@ fun RatingUserScreenComponent(
                     list = model.items,
                     isLastPage = model.isLastPage,
                     isLoading = model.isLoading,
+                    isFailure = model.isFailure,
                     onReload = {
                         ratingUserComponent.reset()
                     }
