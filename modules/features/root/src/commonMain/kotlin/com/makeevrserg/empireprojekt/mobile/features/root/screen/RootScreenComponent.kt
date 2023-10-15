@@ -23,5 +23,8 @@ interface RootScreenComponent : BackHandlerOwner {
 
         @Parcelize
         object RatingUsers : Child
+
+        @Parcelize
+        class RatingUser(val userId: Long) : Child
     }
 }

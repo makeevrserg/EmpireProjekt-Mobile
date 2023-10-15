@@ -10,6 +10,7 @@ import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
+import com.makeevrserg.empireprojekt.mobile.features.rating.user.RatingUserComponent
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.RatingUsersComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.di.factory.RootScreenComponentChildFactory
@@ -65,6 +66,10 @@ class DefaultRootScreenComponent(
 
         class RatingUsers(
             val ratingUsersComponent: RatingUsersComponent
+        ) : Configuration
+
+        class RatingUser(
+            val ratingUserComponent: RatingUserComponent
         ) : Configuration
     }
 }

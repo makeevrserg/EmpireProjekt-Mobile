@@ -11,7 +11,7 @@ import io.ktor.client.request.url
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import ru.astrainteractive.empireapi.models.rating.RatingListRequest
-import ru.astrainteractive.empireapi.models.rating.RatingModelPagedModel
+import ru.astrainteractive.empireapi.models.rating.RatingModel
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 import ru.astrainteractive.empireapi.models.rating.UserRatingsRequest
 import ru.astrainteractive.empireapi.models.response.GenericPagedModel
@@ -39,7 +39,7 @@ class RatingApiImpl(
         }.body()
     }
 
-    override suspend fun ratings(page: Int, size: Int, body: UserRatingsRequest): RatingModelPagedModel {
+    override suspend fun ratings(page: Int, size: Int, body: UserRatingsRequest): GenericPagedModel<RatingModel> {
         return httpClient.post {
             url("$baseUrl/rating/user/votes")
             parameter("page", page)

@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.ui.rating.user.components
+package com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,12 +17,16 @@ import coil.compose.AsyncImage
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun RatingUserWidget(model: RatingUserModel) {
+fun RatingUserWidget(
+    model: RatingUserModel,
+    onClick: () -> Unit
+) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-
+            .fillMaxWidth(),
+        onClick = onClick
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

@@ -2,6 +2,8 @@ package com.makeevrserg.empireprojekt.mobile.features.root.screen.di.factory
 
 import com.arkivanov.decompose.ComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.DefaultSplashComponent
+import com.makeevrserg.empireprojekt.mobile.features.rating.user.DefaultRatingUserComponent
+import com.makeevrserg.empireprojekt.mobile.features.rating.user.di.RatingUserModule
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.DefaultRatingUsersComponent
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
@@ -39,6 +41,20 @@ class RootScreenComponentChildFactory(
                     ratingUsersComponent = DefaultRatingUsersComponent(
                         componentContext = context,
                         repository = module.ratingUsersRepository,
+                    )
+                )
+            }
+
+            is RootScreenComponent.Child.RatingUser -> {
+                val module = RatingUserModule.Default(
+                    empireApiModule = rootModule.empireApiModule,
+                    dispatchers = rootModule.servicesModule.dispatchers.value
+                )
+                DefaultRootScreenComponent.Configuration.RatingUser(
+                    ratingUserComponent = DefaultRatingUserComponent(
+                        componentContext = context,
+                        userId = config.userId,
+                        repository = module.ratingUserRepository
                     )
                 )
             }

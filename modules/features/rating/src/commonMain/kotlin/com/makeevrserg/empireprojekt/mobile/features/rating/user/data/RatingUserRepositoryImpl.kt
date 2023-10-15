@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.rating.users.data
+package com.makeevrserg.empireprojekt.mobile.features.rating.user.data
 
 import com.makeevrserg.empireprojekt.mobile.api.empireapi.RatingApi
 import com.makeevrserg.mobilex.paging.PagingCollector
@@ -7,16 +7,15 @@ import com.makeevrserg.mobilex.paging.state.IntPagingState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
-import ru.astrainteractive.empireapi.models.rating.RatingListRequest
-import ru.astrainteractive.empireapi.models.rating.RatingUserModel
+import ru.astrainteractive.empireapi.models.rating.RatingModel
+import ru.astrainteractive.empireapi.models.rating.UserRatingsRequest
 import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
-import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
 
-class RatingUsersRepositoryImpl(
+class RatingUserRepositoryImpl(
     private val ratingApi: RatingApi,
     private val dispatchers: KotlinDispatchers
-) : RatingUsersRepository {
-    private val request = MutableStateFlow(RatingListRequest())
+) : RatingUserRepository {
+    private val request = MutableStateFlow(UserRatingsRequest(0))
 
     private val pagingCollector = PagingCollector(
         initialPagingState = IntPagingState(0),
@@ -27,14 +26,12 @@ class RatingUsersRepositoryImpl(
 
     override val pagingStateFlow = pagingCollector.pagingStateFlow
 
-    override val listStateFlow = pagingCollector.listStateFlow.mapStateFlow {
-        it.distinctBy { it.id }
-    }
+    override val listStateFlow = pagingCollector.listStateFlow
 
-    private suspend fun loadPage(page: Int): List<RatingUserModel>? {
+    private suspend fun loadPage(page: Int): List<RatingModel>? {
         val result = runCatching {
             withContext(dispatchers.IO) {
-                ratingApi.users(
+                ratingApi.ratings(
                     page = page,
                     size = 10,
                     body = request.value
@@ -52,7 +49,7 @@ class RatingUsersRepositoryImpl(
         pagingCollector.loadNextPage()
     }
 
-    override fun updateRequest(request: RatingListRequest) {
+    override fun updateRequest(request: UserRatingsRequest) {
         this.request.update {
             request
         }

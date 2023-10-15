@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.ui.rating.user
+package com.makeevrserg.empireprojekt.mobile.features.ui.rating.users
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
@@ -16,10 +16,13 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.PagingWidget
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.rememberIsScrolledToTheEnd
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.RatingUsersComponent
-import com.makeevrserg.empireprojekt.mobile.features.ui.rating.user.components.RatingUserWidget
+import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.components.RatingUserWidget
 
 @Composable
 fun RatingUsersScreenComponent(
+    rootComponent: RootComponent,
     ratingUsersComponent: RatingUsersComponent
 ) {
     val model by ratingUsersComponent.model.collectAsState()
@@ -44,7 +47,13 @@ fun RatingUsersScreenComponent(
             verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
         ) {
             items(model.items) { ratingUserModel ->
-                RatingUserWidget(ratingUserModel)
+                RatingUserWidget(
+                    model = ratingUserModel,
+                    onClick = {
+                        val configuration = RootScreenComponent.Child.RatingUser(ratingUserModel.id)
+                        rootComponent.rootScreenComponent.push(configuration)
+                    }
+                )
             }
 
             item {
