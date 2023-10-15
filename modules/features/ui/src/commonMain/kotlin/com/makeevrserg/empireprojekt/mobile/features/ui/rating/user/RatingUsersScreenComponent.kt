@@ -25,6 +25,7 @@ fun RatingUsersScreenComponent(
     val model by ratingUsersComponent.model.collectAsState()
     val lazyListState = rememberLazyListState()
     val isScrolledToEnd by lazyListState.rememberIsScrolledToTheEnd()
+
     LaunchedEffect(isScrolledToEnd) {
         if (isScrolledToEnd) {
             ratingUsersComponent.loadNextPage()
