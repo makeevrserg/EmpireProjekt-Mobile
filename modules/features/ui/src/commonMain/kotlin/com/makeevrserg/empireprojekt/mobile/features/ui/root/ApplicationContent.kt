@@ -45,7 +45,8 @@ fun ApplicationContent(
             )
 
             is DefaultRootScreenComponent.Configuration.RatingUser -> RatingUserScreenComponent(
-                ratingUserComponent = screen.ratingUserComponent
+                ratingUserComponent = screen.ratingUserComponent,
+                rootComponent = rootComponent
             )
         }
     }
