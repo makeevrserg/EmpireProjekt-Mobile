@@ -19,6 +19,8 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.runtime)
+                implementation(compose.uiTooling)
+                implementation(compose.preview)
                 implementation(compose.material)
                 implementation(compose.materialIconsExtended)
                 // klibs

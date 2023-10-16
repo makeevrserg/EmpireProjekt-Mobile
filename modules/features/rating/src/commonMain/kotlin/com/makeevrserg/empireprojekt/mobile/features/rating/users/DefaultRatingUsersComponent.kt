@@ -14,7 +14,8 @@ import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
 
 class DefaultRatingUsersComponent(
     componentContext: ComponentContext,
-    private val moduleFactory: Factory<RatingUsersModule>
+    private val moduleFactory: Factory<RatingUsersModule>,
+    private val onShowUserRatingsClicked: (userId: Long) -> Unit
 ) : RatingUsersComponent,
     ComponentContext by componentContext {
 
@@ -37,6 +38,10 @@ class DefaultRatingUsersComponent(
             isFailure = it.isFailure,
             isLastPage = it.isLastPage
         )
+    }
+
+    override fun showUserRatings(id: Long) {
+        onShowUserRatingsClicked.invoke(id)
     }
 
     override fun reset() {

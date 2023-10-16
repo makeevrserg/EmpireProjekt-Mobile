@@ -34,6 +34,7 @@ kotlin {
                 implementation(compose.runtime)
                 // Local
                 implementation(project(":modules:services:resources"))
+                implementation(project(":modules:services:core"))
             }
         }
         val androidMain by getting {

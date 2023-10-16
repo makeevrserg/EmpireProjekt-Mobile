@@ -11,12 +11,29 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
+import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
+
+@Composable
+fun AstraCenterAlignedTopAppBar(
+    title: String = "",
+    popComponent: PopComponent,
+    actions: @Composable RowScope.() -> Unit = {}
+) {
+    val popModel by popComponent.popModel.subscribeAsState()
+    AstraCenterAlignedTopAppBar(
+        title = title,
+        onBackClicked = popModel.popActionOrNull,
+        actions = actions
+    )
+}
 
 @Composable
 fun AstraCenterAlignedTopAppBar(

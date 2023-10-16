@@ -14,7 +14,8 @@ import ru.astrainteractive.klibs.kdi.Factory
 class RootScreenComponentChildFactory(
     private val config: RootScreenComponent.Child,
     private val context: ComponentContext,
-    private val rootModule: RootModule
+    private val rootModule: RootModule,
+    private val instance: RootScreenComponent
 ) : Factory<DefaultRootScreenComponent.Configuration> {
     override fun create(): DefaultRootScreenComponent.Configuration {
         return when (config) {
@@ -42,6 +43,10 @@ class RootScreenComponentChildFactory(
                                 dispatchers = rootModule.servicesModule.dispatchers.value
                             )
                         },
+                        onShowUserRatingsClicked = { id ->
+                            val configuration = RootScreenComponent.Child.RatingUser(id)
+                            instance.push(configuration)
+                        }
                     )
                 )
             }

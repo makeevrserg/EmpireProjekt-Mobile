@@ -17,13 +17,12 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.PagingWidget
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCenterAlignedTopAppBar
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.RatingUsersComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.components.RatingUserWidget
+import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 
 @Composable
 fun RatingUsersScreenComponent(
-    rootComponent: RootComponent,
+    popComponent: PopComponent,
     ratingUsersComponent: RatingUsersComponent
 ) {
     val model by ratingUsersComponent.model.collectAsState()
@@ -40,7 +39,7 @@ fun RatingUsersScreenComponent(
         topBar = {
             AstraCenterAlignedTopAppBar(
                 title = "User ratings",
-                onBackClicked = rootComponent.rootScreenComponent::pop
+                popComponent = popComponent
             )
         }
     ) {
@@ -54,8 +53,7 @@ fun RatingUsersScreenComponent(
                 RatingUserWidget(
                     model = ratingUserModel,
                     onClick = {
-                        val configuration = RootScreenComponent.Child.RatingUser(ratingUserModel.id)
-                        rootComponent.rootScreenComponent.push(configuration)
+                        ratingUsersComponent.showUserRatings(ratingUserModel.id)
                     }
                 )
             }

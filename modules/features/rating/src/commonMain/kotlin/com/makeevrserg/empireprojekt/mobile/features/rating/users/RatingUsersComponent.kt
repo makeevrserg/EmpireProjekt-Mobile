@@ -11,6 +11,8 @@ interface RatingUsersComponent {
 
     fun loadNextPage()
 
+    fun showUserRatings(id: Long)
+
     data class Model(
         val items: List<RatingUserModel> = emptyList(),
         val request: RatingListRequest = RatingListRequest(),

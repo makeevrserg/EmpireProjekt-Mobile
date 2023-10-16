@@ -41,7 +41,7 @@ fun ApplicationContent(
 
             is DefaultRootScreenComponent.Configuration.RatingUsers -> RatingUsersScreenComponent(
                 ratingUsersComponent = screen.ratingUsersComponent,
-                rootComponent = rootComponent
+                popComponent = rootComponent.rootScreenComponent
             )
 
             is DefaultRootScreenComponent.Configuration.RatingUser -> RatingUserScreenComponent(
