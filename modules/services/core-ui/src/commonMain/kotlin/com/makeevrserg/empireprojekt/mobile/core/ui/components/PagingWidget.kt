@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.asPainter
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.resources.MR
@@ -42,22 +43,22 @@ object PagingWidget {
 
     @Composable
     fun LastPage() {
-        Base("MR.strings.paging_last_page.asComposableString()")
+        Base(MR.strings.paging_last_page.asComposableString())
     }
 
     @Composable
     fun NoPages() {
-        Base("MR.strings.paging_no_pages.asComposableString()")
+        Base(MR.strings.paging_no_pages.asComposableString())
     }
 
     @Composable
     fun NetworkError(onReload: () -> Unit) {
         Column {
-            Base("MR.strings.paging_network_error.asComposableString()")
+            Base(MR.strings.paging_network_error.asComposableString())
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 Button(onClick = onReload) {
                     Text(
-                        text = "Reload",
+                        text = MR.strings.paging_reload.asComposableString(),
                         modifier = Modifier.clickable { onReload.invoke() },
                         style = AppTheme.typography.h6,
                         color = AppTheme.alColors.astraOrange,
