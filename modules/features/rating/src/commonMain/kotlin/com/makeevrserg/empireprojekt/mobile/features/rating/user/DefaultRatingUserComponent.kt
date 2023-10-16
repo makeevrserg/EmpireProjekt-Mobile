@@ -13,7 +13,8 @@ import ru.astrainteractive.empireapi.models.rating.UserRatingsRequest
 
 class DefaultRatingUserComponent(
     componentContext: ComponentContext,
-    private val userId: Long,
+    userId: Long,
+    userName: String,
     private val repository: RatingUserRepository
 ) : RatingUserComponent,
     ComponentContext by componentContext {
@@ -22,7 +23,8 @@ class DefaultRatingUserComponent(
     }
     override val model = MutableStateFlow(
         Model(
-            request = UserRatingsRequest(id = userId)
+            request = UserRatingsRequest(id = userId),
+            reviewedUserName = userName
         )
     )
 

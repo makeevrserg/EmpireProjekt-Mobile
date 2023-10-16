@@ -14,8 +14,9 @@ interface RatingUserComponent {
     data class Model(
         val items: List<RatingModel> = emptyList(),
         val request: UserRatingsRequest,
+        val reviewedUserName: String,
         val isLoading: Boolean = false,
         val isLastPage: Boolean = false,
-        val isFailure: Boolean = false
+        val isFailure: Boolean = false,
     )
 }

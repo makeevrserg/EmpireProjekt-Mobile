@@ -34,7 +34,10 @@ fun RatingUserScreenComponent(
     Scaffold(
         modifier = Modifier,
         topBar = {
-            AstraCenterAlignedTopAppBar(popComponent = popComponent)
+            AstraCenterAlignedTopAppBar(
+                title = model.reviewedUserName,
+                popComponent = popComponent
+            )
         }
     ) {
         LazyColumn(

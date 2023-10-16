@@ -43,8 +43,8 @@ class RootScreenComponentChildFactory(
                                 dispatchers = rootModule.servicesModule.dispatchers.value
                             )
                         },
-                        onShowUserRatingsClicked = { id ->
-                            val configuration = RootScreenComponent.Child.RatingUser(id)
+                        onShowUserRatingsClicked = { id, userName ->
+                            val configuration = RootScreenComponent.Child.RatingUser(id, userName)
                             instance.push(configuration)
                         }
                     )
@@ -60,7 +60,8 @@ class RootScreenComponentChildFactory(
                     ratingUserComponent = DefaultRatingUserComponent(
                         componentContext = context,
                         userId = config.userId,
-                        repository = module.ratingUserRepository
+                        repository = module.ratingUserRepository,
+                        userName = config.userName
                     )
                 )
             }

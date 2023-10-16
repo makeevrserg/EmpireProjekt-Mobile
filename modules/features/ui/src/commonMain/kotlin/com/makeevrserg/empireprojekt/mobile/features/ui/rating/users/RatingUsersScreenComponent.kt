@@ -51,7 +51,10 @@ fun RatingUsersScreenComponent(
                 RatingUserWidget(
                     model = ratingUserModel,
                     onClick = {
-                        ratingUsersComponent.showUserRatings(ratingUserModel.id)
+                        ratingUsersComponent.showUserRatings(
+                            ratingUserModel.id,
+                            ratingUserModel.minecraftName
+                        )
                     }
                 )
             }

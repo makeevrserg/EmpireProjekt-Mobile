@@ -25,6 +25,6 @@ interface RootScreenComponent : BackHandlerOwner, PopComponent {
         object RatingUsers : Child
 
         @Parcelize
-        class RatingUser(val userId: Long) : Child
+        class RatingUser(val userId: Long, val userName: String) : Child
     }
 }

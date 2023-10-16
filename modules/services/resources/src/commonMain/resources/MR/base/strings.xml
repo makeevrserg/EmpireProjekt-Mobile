@@ -13,4 +13,5 @@
     <!--    Rating      -->
     <string name="rating.user_ratings">Рейтинги</string>
     <string name="rating.rating">Рейтинг:</string>
+    <string name="rating.player_message">Написал:</string>
 </resources>
