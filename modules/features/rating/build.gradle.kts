@@ -33,6 +33,8 @@ kotlin {
                 implementation(libs.kotlin.coroutines.core)
                 // MVIKotlin
                 implementation(libs.mvikotlin)
+                implementation(libs.mvikotlin.main)
+                implementation(libs.mvikotlin.coroutines)
                 // Local
                 api(projects.modules.services.resources)
                 api(projects.modules.services.core)

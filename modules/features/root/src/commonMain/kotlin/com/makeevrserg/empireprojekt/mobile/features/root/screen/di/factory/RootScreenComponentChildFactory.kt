@@ -33,14 +33,15 @@ class RootScreenComponentChildFactory(
             }
 
             RootScreenComponent.Child.RatingUsers -> {
-                val module = RatingUsersModule.Default(
-                    empireApiModule = rootModule.empireApiModule,
-                    dispatchers = rootModule.servicesModule.dispatchers.value
-                )
                 DefaultRootScreenComponent.Configuration.RatingUsers(
                     ratingUsersComponent = DefaultRatingUsersComponent(
                         componentContext = context,
-                        repository = module.ratingUsersRepository,
+                        moduleFactory = {
+                            RatingUsersModule.Default(
+                                empireApiModule = rootModule.empireApiModule,
+                                dispatchers = rootModule.servicesModule.dispatchers.value
+                            )
+                        },
                     )
                 )
             }

@@ -2,59 +2,48 @@ package com.makeevrserg.empireprojekt.mobile.features.rating.users
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.instancekeeper.getOrCreate
+import com.arkivanov.mvikotlin.core.instancekeeper.getStore
+import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
+import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.RatingUsersComponent.Model
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.data.RatingUsersRepository
-import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersModule
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStoreFactory
+import ru.astrainteractive.klibs.kdi.Factory
+import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
 
 class DefaultRatingUsersComponent(
     componentContext: ComponentContext,
-    private val repository: RatingUsersRepository
+    private val moduleFactory: Factory<RatingUsersModule>
 ) : RatingUsersComponent,
     ComponentContext by componentContext {
-    private val coroutineFeature = instanceKeeper.getOrCreate {
-        CoroutineFeature.Default()
-    }
-    override val model = MutableStateFlow(Model())
 
-    private fun collectPagingState() = coroutineFeature.launch {
-        repository.pagingStateFlow.collectLatest {
-            model.update { model ->
-                model.copy(
-                    isLastPage = it.isLastPage,
-                    isLoading = it.isLoading,
-                    isFailure = it.isFailure
-                )
-            }
-        }
+    private val module = instanceKeeper.getOrCreate {
+        moduleFactory.create()
     }
 
-    private fun collectListStateFlow() = coroutineFeature.launch {
-        repository.listStateFlow.collectLatest {
-            model.update { model ->
-                model.copy(items = it)
-            }
-        }
+    private val store = instanceKeeper.getStore {
+        RatingUsersStoreFactory(
+            storeFactory = DefaultStoreFactory(),
+            module = module
+        ).create()
+    }
+
+    override val model = store.stateFlow.mapStateFlow {
+        Model(
+            items = it.items,
+            request = it.request,
+            isLoading = it.isLoading,
+            isFailure = it.isFailure,
+            isLastPage = it.isLastPage
+        )
     }
 
     override fun reset() {
-        coroutineFeature.launch {
-            repository.reset()
-            repository.loadNextPage()
-        }
+        RatingUsersStore.Intent.Reset.run(store::accept)
     }
 
     override fun loadNextPage() {
-        coroutineFeature.launch {
-            repository.loadNextPage()
-        }
-    }
-
-    init {
-        collectPagingState()
-        collectListStateFlow()
+        RatingUsersStore.Intent.LoadNextPage.run(store::accept)
     }
 }
