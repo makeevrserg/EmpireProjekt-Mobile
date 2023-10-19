@@ -89,7 +89,7 @@ fun StatusScreen(
             item {
                 RowSettingChevronItem(
                     icon = MR.images.ic_splash,
-                    text = "See ratings",
+                    text = MR.strings.statuses_ratings.asComposableString(),
                     tint = Color.Unspecified,
                     onClick = {
                         val configuration = RootScreenComponent.Child.RatingUsers
