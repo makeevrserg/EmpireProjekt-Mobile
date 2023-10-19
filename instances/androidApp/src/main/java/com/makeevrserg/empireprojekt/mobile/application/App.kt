@@ -16,7 +16,6 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import ru.astrainteractive.klibs.kdi.getValue
 import ru.astrainteractive.klibs.mikro.platform.DefaultAndroidPlatformConfiguration
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.seconds

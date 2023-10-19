@@ -28,8 +28,10 @@ desktop/build
 wearApp/build
 keys.properties
 # iosApp
-iosApp/Pods
-iosApp/Podfile.lock
+instances/iosApp/Pods
+instances/iosApp/Podfile.lock
+instances/wearApp
+instances/androidApp
 # Services
 modules/services/resources/build
 modules/services/core-ui/build

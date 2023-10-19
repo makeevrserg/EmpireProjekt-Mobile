@@ -22,7 +22,6 @@ import com.makeevrserg.empireprojekt.mobile.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.MainActivity
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.tile.asColorProp
-import ru.astrainteractive.klibs.kdi.getValue
 
 @OptIn(ExperimentalHorologistApi::class)
 class MainTileRenderer(

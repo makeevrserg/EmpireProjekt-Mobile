@@ -21,9 +21,10 @@ dependencyResolutionManagement {
 }
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "EmpireProjekt-Mobile"
+// Instances
+include(":instances:androidApp")
+include(":instances:wearApp")
 // Services
-include(":androidApp")
-include(":wearApp")
 include(":modules:services:resources")
 include(":modules:services:core-ui")
 include(":modules:services:core")

@@ -21,7 +21,7 @@ kotlin {
         homepage = projectInfo.url
         version = projectInfo.versionString
         ios.deploymentTarget = "16.0"
-        podfile = project.file("../../../iosApp/Podfile")
+        podfile = project.file("../../../instances/iosApp/Podfile")
         framework {
             baseName = "Root"
             isStatic = false
