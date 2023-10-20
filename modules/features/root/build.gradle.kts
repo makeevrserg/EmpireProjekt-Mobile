@@ -72,6 +72,7 @@ kotlin {
                 api(projects.modules.services.apiEmpireapi)
                 api(projects.modules.features.splash)
                 api(projects.modules.features.rating)
+                api(projects.modules.features.theme)
             }
         }
         val androidMain by getting {

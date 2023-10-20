@@ -5,8 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import ru.astrainteractive.klibs.mikro.core.util.next
 
 class PreviewThemeSwitcherComponent : ThemeSwitcherComponent {
-    override val theme: MutableStateFlow<Theme> =
-        MutableStateFlow(Theme.LIGHT)
+    override val theme: MutableStateFlow<Theme> = MutableStateFlow(Theme.LIGHT)
 
     override fun selectDarkTheme() {
         selectTheme(Theme.DARK)
@@ -21,6 +20,6 @@ class PreviewThemeSwitcherComponent : ThemeSwitcherComponent {
     }
 
     override fun next() {
-        theme.value.next(Theme.values()).run(::selectTheme)
+        theme.value.next(Theme.entries.toTypedArray()).run(::selectTheme)
     }
 }
