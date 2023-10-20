@@ -21,8 +21,8 @@ internal fun SideColorStatusWidget(
                 modifier = Modifier
                     .fillMaxHeight()
                     .width(AppTheme.dimens.XXS),
-                color = AppTheme.alColors.astraOrange,
-                backgroundColor = AppTheme.alColors.astraYellow
+                color = AppTheme.customColors.astraOrange,
+                backgroundColor = AppTheme.customColors.astraYellow
             )
         }
 
@@ -31,7 +31,7 @@ internal fun SideColorStatusWidget(
                 modifier = Modifier
                     .fillMaxHeight()
                     .width(AppTheme.dimens.XXS)
-                    .background(AppTheme.alColors.colorPositive)
+                    .background(AppTheme.customColors.colorPositive)
             )
         }
 
@@ -40,7 +40,7 @@ internal fun SideColorStatusWidget(
                 modifier = Modifier
                     .fillMaxHeight()
                     .width(AppTheme.dimens.XXS)
-                    .background(AppTheme.alColors.colorNegative)
+                    .background(AppTheme.customColors.colorNegative)
             )
         }
     }

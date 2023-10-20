@@ -3,6 +3,7 @@ package com.makeevrserg.empireprojekt.mobile.wear.features.status
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.WifiTethering
 import androidx.compose.material.icons.filled.WifiTetheringError
@@ -28,7 +29,7 @@ fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
     val mergedState by wearStatusComponent.mergedState.collectAsState()
     val listState = rememberScalingLazyListState()
     Scaffold(
-        modifier = Modifier.background(AppTheme.materialColor.primaryVariant),
+        modifier = Modifier.background(MaterialTheme.colors.primaryVariant),
         vignette = {
             Vignette(vignettePosition = VignettePosition.TopAndBottom)
         },
@@ -46,8 +47,8 @@ fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
             item {
                 Text(
                     text = mergedState.updatedAt,
-                    style = AppTheme.typography.caption,
-                    color = AppTheme.materialColor.onPrimary,
+                    style = MaterialTheme.typography.caption,
+                    color = MaterialTheme.colors.onPrimary,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
@@ -57,7 +58,7 @@ fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
                     modifier = Modifier.fillMaxWidth(),
                     text = mergedState.successCount.toString(),
                     imageVector = Icons.Filled.WifiTethering,
-                    iconColor = AppTheme.alColors.colorPositive
+                    iconColor = AppTheme.customColors.colorPositive
                 )
             }
             item {
@@ -65,7 +66,7 @@ fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
                     modifier = Modifier.fillMaxWidth(),
                     text = mergedState.loadingCount.toString(),
                     imageVector = Icons.Filled.WifiTetheringError,
-                    iconColor = AppTheme.alColors.astraOrange
+                    iconColor = AppTheme.customColors.astraOrange
                 )
             }
             item {
@@ -73,7 +74,7 @@ fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
                     modifier = Modifier.fillMaxWidth(),
                     text = mergedState.failureCount.toString(),
                     imageVector = Icons.Filled.WifiTetheringOff,
-                    iconColor = AppTheme.alColors.colorNegative
+                    iconColor = AppTheme.customColors.colorNegative
                 )
             }
         }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,8 +35,8 @@ object PagingWidget {
             )
             Text(
                 text = text,
-                style = AppTheme.typography.h6,
-                color = AppTheme.materialColor.onPrimary,
+                style = MaterialTheme.typography.h6,
+                color = MaterialTheme.colors.onPrimary,
                 textAlign = TextAlign.Center
             )
         }
@@ -60,8 +61,8 @@ object PagingWidget {
                     Text(
                         text = MR.strings.paging_reload.asComposableString(),
                         modifier = Modifier.clickable { onReload.invoke() },
-                        style = AppTheme.typography.h6,
-                        color = AppTheme.alColors.astraOrange,
+                        style = MaterialTheme.typography.h6,
+                        color = AppTheme.customColors.astraOrange,
                         textAlign = TextAlign.Center
                     )
                 }
@@ -78,7 +79,7 @@ object PagingWidget {
         ) {
             CircularProgressIndicator(
                 modifier = Modifier.size(AppTheme.dimens.M),
-                color = AppTheme.alColors.astraOrange
+                color = AppTheme.customColors.astraOrange
             )
         }
     }

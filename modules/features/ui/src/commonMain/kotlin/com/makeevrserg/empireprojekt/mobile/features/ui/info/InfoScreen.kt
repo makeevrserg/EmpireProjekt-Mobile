@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bolt
 import androidx.compose.runtime.Composable
@@ -44,7 +45,7 @@ fun InfoScreen(
                         .fillMaxWidth(0.4f)
                         .height(AppTheme.dimens.XS)
                         .clip(RoundedCornerShape(AppTheme.dimens.L))
-                        .background(AppTheme.materialColor.onPrimary)
+                        .background(MaterialTheme.colors.onPrimary)
                 )
             }
         }

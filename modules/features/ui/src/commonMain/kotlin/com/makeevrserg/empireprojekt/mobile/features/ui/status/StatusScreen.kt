@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -47,7 +48,7 @@ fun StatusScreen(
                 Icon(
                     imageVector = Icons.Filled.WbSunny,
                     contentDescription = null,
-                    tint = AppTheme.materialColor.onPrimary,
+                    tint = MaterialTheme.colors.onPrimary,
                     modifier = Modifier
                         .clip(CircleShape)
                         .clickable {
@@ -62,7 +63,7 @@ fun StatusScreen(
         floatingActionButton = {
             FloatingActionButton(
                 modifier = Modifier.navBarsPadding(),
-                backgroundColor = AppTheme.materialColor.secondaryVariant,
+                backgroundColor = MaterialTheme.colors.secondaryVariant,
                 onClick = {
                     rootComponent.rootBottomSheetComponent.pushSlot(RootBottomSheetComponent.Child.Settings)
                 },
@@ -70,7 +71,7 @@ fun StatusScreen(
                 Icon(
                     imageVector = Icons.Filled.Info,
                     contentDescription = null,
-                    tint = AppTheme.alColors.onSecondaryVariant
+                    tint = AppTheme.customColors.onSecondaryVariant
                 )
             }
         },
@@ -82,8 +83,8 @@ fun StatusScreen(
             item {
                 Text(
                     text = MR.strings.status_subtitle.asComposableString(),
-                    style = AppTheme.typography.body1,
-                    color = AppTheme.materialColor.onPrimary.copy(alpha = .5f)
+                    style = MaterialTheme.typography.body1,
+                    color = MaterialTheme.colors.onPrimary.copy(alpha = .5f)
                 )
             }
             item {

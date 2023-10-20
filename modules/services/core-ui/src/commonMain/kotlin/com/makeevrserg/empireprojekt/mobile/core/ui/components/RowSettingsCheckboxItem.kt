@@ -2,6 +2,7 @@ package com.makeevrserg.empireprojekt.mobile.core.ui.components
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Switch
 import androidx.compose.material.SwitchDefaults
 import androidx.compose.runtime.Composable
@@ -28,7 +29,7 @@ fun RowSettingsCheckboxItem(
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
-                    tint = AppTheme.materialColor.onPrimary,
+                    tint = MaterialTheme.colors.onPrimary,
                     modifier = Modifier.size(AppTheme.dimens.M)
                 )
             }
@@ -39,7 +40,7 @@ fun RowSettingsCheckboxItem(
                 checked = checked,
                 onCheckedChange = onCheckChange,
                 enabled = enabled,
-                colors = SwitchDefaults.colors(checkedThumbColor = AppTheme.materialColor.secondaryVariant)
+                colors = SwitchDefaults.colors(checkedThumbColor = MaterialTheme.colors.secondaryVariant)
             )
         }
     )
