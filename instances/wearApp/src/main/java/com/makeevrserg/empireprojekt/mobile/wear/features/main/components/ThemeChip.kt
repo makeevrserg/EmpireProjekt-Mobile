@@ -5,6 +5,7 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bedtime
 import androidx.compose.material.icons.filled.WbSunny
@@ -16,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.Text
-import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.AstraChip
@@ -30,8 +30,8 @@ fun ThemeChip(themeSwitcherComponent: ThemeSwitcherComponent) {
     }
     val color by animateColorAsState(
         targetValue = when (theme) {
-            Theme.DARK -> AppTheme.materialColor.onPrimary
-            Theme.LIGHT -> AppTheme.materialColor.onPrimary
+            Theme.DARK -> MaterialTheme.colors.onPrimary
+            Theme.LIGHT -> MaterialTheme.colors.onPrimary
         },
         label = "LABEL"
     )
@@ -40,8 +40,8 @@ fun ThemeChip(themeSwitcherComponent: ThemeSwitcherComponent) {
         label = {
             Text(
                 text = "Switch theme",
-                style = AppTheme.typography.caption,
-                color = AppTheme.materialColor.onPrimary
+                style = MaterialTheme.typography.caption,
+                color = MaterialTheme.colors.onPrimary
             )
         },
         onClick = themeSwitcherComponent::next,

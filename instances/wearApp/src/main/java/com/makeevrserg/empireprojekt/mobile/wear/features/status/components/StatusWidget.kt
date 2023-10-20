@@ -4,6 +4,7 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.WifiTethering
 import androidx.compose.material.icons.filled.WifiTetheringError
@@ -30,9 +31,9 @@ internal fun StatusWidget(component: StatusComponent) {
     }
     val color by animateColorAsState(
         targetValue = when (model.status) {
-            StatusComponent.Model.LoadingStatus.LOADING -> AppTheme.alColors.astraOrange
-            StatusComponent.Model.LoadingStatus.SUCCESS -> AppTheme.alColors.colorPositive
-            StatusComponent.Model.LoadingStatus.ERROR -> AppTheme.alColors.colorNegative
+            StatusComponent.Model.LoadingStatus.LOADING -> AppTheme.customColors.astraOrange
+            StatusComponent.Model.LoadingStatus.SUCCESS -> AppTheme.customColors.colorPositive
+            StatusComponent.Model.LoadingStatus.ERROR -> AppTheme.customColors.colorNegative
         },
         label = "LABEL"
     )
@@ -40,8 +41,8 @@ internal fun StatusWidget(component: StatusComponent) {
         label = {
             Text(
                 text = "EmpireProjekt.ru",
-                style = AppTheme.typography.caption,
-                color = AppTheme.materialColor.onPrimary
+                style = MaterialTheme.typography.caption,
+                color = MaterialTheme.colors.onPrimary
             )
         },
         onClick = component::checkStatus,

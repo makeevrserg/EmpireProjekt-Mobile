@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.LinearProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -39,7 +40,7 @@ fun SplashScreenComponent(
         Box(
             Modifier
                 .fillMaxSize()
-                .background(AppTheme.materialColor.primaryVariant),
+                .background(MaterialTheme.colors.primaryVariant),
             contentAlignment = Alignment.Center
         ) {
             Image(
@@ -57,8 +58,8 @@ fun SplashScreenComponent(
         ) {
             LinearProgressIndicator(
                 modifier = Modifier.fillMaxWidth(),
-                color = AppTheme.alColors.astraOrange,
-                backgroundColor = AppTheme.alColors.astraYellow
+                color = AppTheme.customColors.astraOrange,
+                backgroundColor = AppTheme.customColors.astraYellow
             )
         }
     }

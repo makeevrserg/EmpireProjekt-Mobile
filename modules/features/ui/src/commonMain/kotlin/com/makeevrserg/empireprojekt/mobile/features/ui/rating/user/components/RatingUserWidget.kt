@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ThumbDown
@@ -34,7 +35,7 @@ fun RatingUserWidget(ratingModel: RatingModel) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(AppTheme.dimens.S))
-            .background(AppTheme.materialColor.primary)
+            .background(MaterialTheme.colors.primary)
             .padding(vertical = AppTheme.dimens.XS)
     ) {
         Column {
@@ -50,8 +51,8 @@ fun RatingUserWidget(ratingModel: RatingModel) {
                 )
                 Text(
                     text = ratingModel.userCreatedReport?.minecraftName ?: "-",
-                    style = AppTheme.typography.subtitle2,
-                    color = AppTheme.materialColor.onPrimary,
+                    style = MaterialTheme.typography.subtitle2,
+                    color = MaterialTheme.colors.onPrimary,
                     textAlign = TextAlign.Center
                 )
 
@@ -61,7 +62,7 @@ fun RatingUserWidget(ratingModel: RatingModel) {
                         Icon(
                             imageVector = Icons.Filled.ThumbUp,
                             contentDescription = null,
-                            tint = AppTheme.alColors.colorPositive,
+                            tint = AppTheme.customColors.colorPositive,
                             modifier = Modifier.size(AppTheme.dimens.M)
                         )
                     }
@@ -70,7 +71,7 @@ fun RatingUserWidget(ratingModel: RatingModel) {
                         Icon(
                             imageVector = Icons.Filled.ThumbDown,
                             contentDescription = null,
-                            tint = AppTheme.alColors.colorNegative,
+                            tint = AppTheme.customColors.colorNegative,
                             modifier = Modifier.size(AppTheme.dimens.M)
                         )
                     }
@@ -81,20 +82,20 @@ fun RatingUserWidget(ratingModel: RatingModel) {
                 Modifier
                     .fillMaxWidth()
                     .height(1.dp)
-                    .background(AppTheme.materialColor.onSecondary)
+                    .background(MaterialTheme.colors.onSecondary)
             )
             Spacer(Modifier.height(AppTheme.dimens.XS))
             Text(
                 text = MR.strings.rating_player_message.asComposableString(),
-                style = AppTheme.typography.subtitle2,
-                color = AppTheme.materialColor.onSecondary,
+                style = MaterialTheme.typography.subtitle2,
+                color = MaterialTheme.colors.onSecondary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(horizontal = AppTheme.dimens.S)
             )
             Text(
                 text = ratingModel.message.trim(),
-                style = AppTheme.typography.subtitle2,
-                color = AppTheme.materialColor.onPrimary,
+                style = MaterialTheme.typography.subtitle2,
+                color = MaterialTheme.colors.onPrimary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(horizontal = AppTheme.dimens.S)
             )

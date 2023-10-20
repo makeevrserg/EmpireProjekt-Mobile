@@ -12,7 +12,6 @@ import androidx.wear.protolayout.material.Button
 import androidx.wear.protolayout.material.ButtonColors
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.tiles.render.SingleTileLayoutRenderer
-import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
 import java.util.UUID
 
@@ -49,7 +48,7 @@ class StatusesRowRenderer(
             .addContent(
                 statusButton(
                     amount = state.successCount,
-                    accentColor = AppTheme.DefaultDarkTheme.alColors.colorPositive,
+                    accentColor = DefaultDarkTheme.customColor.colorPositive,
                 )
             )
             .addContent(
@@ -60,7 +59,7 @@ class StatusesRowRenderer(
             .addContent(
                 statusButton(
                     amount = state.loadingCount,
-                    accentColor = AppTheme.DefaultDarkTheme.alColors.astraOrange,
+                    accentColor = DefaultDarkTheme.customColor.astraOrange,
                 )
             )
             .addContent(
@@ -71,7 +70,7 @@ class StatusesRowRenderer(
             .addContent(
                 statusButton(
                     amount = state.failureCount,
-                    accentColor = AppTheme.DefaultDarkTheme.alColors.colorNegative,
+                    accentColor = DefaultDarkTheme.customColor.colorNegative,
                 )
             ).build()
     }

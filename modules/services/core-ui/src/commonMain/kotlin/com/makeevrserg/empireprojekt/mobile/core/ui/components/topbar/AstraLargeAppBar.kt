@@ -2,6 +2,7 @@ package com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -18,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
-import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 
 @Composable
@@ -47,8 +47,8 @@ fun AstraCenterAlignedTopAppBar(
         title = {
             Text(
                 text = title,
-                style = AppTheme.typography.body1,
-                color = AppTheme.materialColor.onPrimary,
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onPrimary,
                 textAlign = TextAlign.Center,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
@@ -76,7 +76,7 @@ fun AstraCenterAlignedTopAppBar(
                     Icon(
                         imageVector = Icons.Default.ChevronLeft,
                         contentDescription = null,
-                        tint = AppTheme.materialColor.onPrimary,
+                        tint = MaterialTheme.colors.onPrimary,
                         modifier = Modifier.size(24.dp)
                     )
                 }

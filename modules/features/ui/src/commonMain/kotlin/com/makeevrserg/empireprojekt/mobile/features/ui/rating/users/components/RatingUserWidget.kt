@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
@@ -38,7 +39,7 @@ fun RatingUserWidget(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(AppTheme.dimens.S))
-            .background(AppTheme.materialColor.primary)
+            .background(MaterialTheme.colors.primary)
             .clickable { onClick.invoke() },
     ) {
         Column {
@@ -55,8 +56,8 @@ fun RatingUserWidget(
                 Column {
                     Text(
                         text = model.minecraftName,
-                        style = AppTheme.typography.h6,
-                        color = AppTheme.materialColor.onPrimary,
+                        style = MaterialTheme.typography.h6,
+                        color = MaterialTheme.colors.onPrimary,
                         textAlign = TextAlign.Center
                     )
                     Row(
@@ -65,15 +66,15 @@ fun RatingUserWidget(
                     ) {
                         Text(
                             text = MR.strings.rating_rating.asComposableString(),
-                            style = AppTheme.typography.subtitle1,
-                            color = AppTheme.materialColor.onSecondary,
+                            style = MaterialTheme.typography.subtitle1,
+                            color = MaterialTheme.colors.onSecondary,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                         )
                         Text(
                             text = "${model.total}",
-                            style = AppTheme.typography.subtitle1,
-                            color = AppTheme.materialColor.onPrimary,
+                            style = MaterialTheme.typography.subtitle1,
+                            color = MaterialTheme.colors.onPrimary,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                         )
@@ -83,7 +84,7 @@ fun RatingUserWidget(
                 Icon(
                     imageVector = Icons.Filled.ChevronRight,
                     contentDescription = null,
-                    tint = AppTheme.materialColor.onPrimary,
+                    tint = MaterialTheme.colors.onPrimary,
                     modifier = Modifier.size(AppTheme.dimens.M)
                 )
             }
