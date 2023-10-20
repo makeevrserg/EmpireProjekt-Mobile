@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
-import com.makeevrserg.empireprojekt.mobile.features.ui.root.ComposeApplication
+import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationTheme
 import com.makeevrserg.empireprojekt.mobile.wear.di.impl.WearRootModuleImpl
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.MainScreen
 import com.makeevrserg.empireprojekt.mobile.wear.features.root.NavHostRootComponent
@@ -21,7 +21,7 @@ private fun RootScreenPreview() {
             DefaultAndroidPlatformConfiguration(context)
         }
     }
-    ComposeApplication {
+    ApplicationTheme {
         MainScreen(
             wearRootModule = wearRootModule,
             rootComponent = navHostRootComponent

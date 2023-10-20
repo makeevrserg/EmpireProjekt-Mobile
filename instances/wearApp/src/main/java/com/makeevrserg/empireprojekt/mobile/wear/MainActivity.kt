@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
-import com.makeevrserg.empireprojekt.mobile.features.ui.root.ComposeApplication
+import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationTheme
 import com.makeevrserg.empireprojekt.mobile.wear.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.wear.features.root.NavHostRootComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.root.RootScreen
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberSwipeDismissableNavController()
             val navHostRootComponent = NavHostRootComponent(navController)
-            ComposeApplication(rootModule.themeSwitcherComponent.value) {
+            ApplicationTheme(rootModule.themeSwitcherComponent.value) {
                 RootScreen(
                     rootComponent = navHostRootComponent,
                     wearRootModule = rootModule

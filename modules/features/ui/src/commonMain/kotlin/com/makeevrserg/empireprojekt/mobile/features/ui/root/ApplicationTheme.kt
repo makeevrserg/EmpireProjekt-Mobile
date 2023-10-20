@@ -11,7 +11,7 @@ import com.makeevrserg.empireprojekt.mobile.features.theme.PreviewThemeSwitcherC
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
 
-fun Theme.wrap() = when (this) {
+private fun Theme.wrap() = when (this) {
     Theme.DARK -> AppTheme(
         material2Theme = Material2Theme.DefaultDark,
         material3Theme = Material3Theme.DefaultDark,
@@ -26,7 +26,7 @@ fun Theme.wrap() = when (this) {
 }
 
 @Composable
-fun ComposeApplication(
+fun ApplicationTheme(
     themeSwitcherComponent: ThemeSwitcherComponent = PreviewThemeSwitcherComponent(),
     content: @Composable () -> Unit
 ) {
