@@ -53,6 +53,7 @@ modules/features/dicts-local/build
 modules/features/dicts-remote/build
 modules/features/rating/build
 modules/features/theme/build
+modules/features/status/build
 # Faq
 modules/features/faq/build
 modules/features/ui/build

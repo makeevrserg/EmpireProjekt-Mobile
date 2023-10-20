@@ -41,6 +41,7 @@ kotlin {
                 implementation(projects.modules.features.splash)
                 implementation(projects.modules.features.root)
                 implementation(projects.modules.features.theme)
+                implementation(projects.modules.features.status)
             }
         }
         val androidMain by getting {

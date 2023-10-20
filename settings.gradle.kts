@@ -36,5 +36,6 @@ include(":modules:features:root")
 include(":modules:features:splash")
 include(":modules:features:ui")
 include(":modules:features:theme")
+include(":modules:features:status")
 
 include(":modules:features:rating")

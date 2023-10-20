@@ -9,7 +9,6 @@ class DefaultRootStatusComponent(
     private val statusModule: StatusModule
 ) : RootStatusComponent {
     override val statusComponents: List<UrlStatusComponent> = buildList {
-
         DefaultUrlStatusComponent(
             title = "empireprojekt.ru",
             coroutineFeature = CoroutineFeature.Default(),
