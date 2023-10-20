@@ -25,7 +25,6 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCenterAlignedTopAppBar
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
@@ -65,7 +64,7 @@ fun StatusScreen(
                 modifier = Modifier.navBarsPadding(),
                 backgroundColor = MaterialTheme.colors.secondaryVariant,
                 onClick = {
-                    rootComponent.rootBottomSheetComponent.pushSlot(RootBottomSheetComponent.Child.Settings)
+                    rootComponent.rootBottomSheetComponent.showInfoSheet()
                 },
             ) {
                 Icon(

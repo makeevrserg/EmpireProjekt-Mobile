@@ -20,7 +20,6 @@ import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireAp
 import com.makeevrserg.empireprojekt.mobile.core.ui.rememberDeclarativeModalBottomSheetState
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.modal.DefaultRootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.InfoScreen
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationContent
@@ -67,10 +66,10 @@ fun RootBottomSheetContent(
     val slot by rootBottomSheetComponent.childSlot.subscribeAsState()
     val bottomSheetState = rememberDeclarativeModalBottomSheetState(
         child = slot.child,
-        onDismiss = rootBottomSheetComponent::dismissSlotChild
+        onDismiss = rootBottomSheetComponent::dismiss
     ) { child ->
         when (val instance = child.instance) {
-            is DefaultRootBottomSheetComponent.Configuration.SettingsChild -> {
+            is RootBottomSheetComponent.Child.Info -> {
                 InfoScreen(instance.linkBrowser)
             }
         }
