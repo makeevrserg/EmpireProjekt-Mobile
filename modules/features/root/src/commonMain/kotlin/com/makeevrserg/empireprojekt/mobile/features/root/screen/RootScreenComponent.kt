@@ -16,13 +16,13 @@ interface RootScreenComponent : BackHandlerOwner, PopComponent {
 
     sealed interface Child : Parcelable {
         @Parcelize
-        object Splash : Child
+        data object Splash : Child
 
         @Parcelize
-        object Status : Child
+        data object Status : Child
 
         @Parcelize
-        object RatingUsers : Child
+        data object RatingUsers : Child
 
         @Parcelize
         class RatingUser(val userId: Long, val userName: String) : Child

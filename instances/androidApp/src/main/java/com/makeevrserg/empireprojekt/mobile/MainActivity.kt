@@ -5,26 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ModalBottomSheetLayout
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.arkivanov.decompose.defaultComponentContext
-import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
-import com.makeevrserg.empireprojekt.mobile.core.ui.rememberDeclarativeModalBottomSheetState
-import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.modal.DefaultRootBottomSheetComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
-import com.makeevrserg.empireprojekt.mobile.features.ui.info.InfoScreen
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationContent
-import com.makeevrserg.empireprojekt.mobile.features.ui.root.ComposeApplication
+import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationTheme
+import com.makeevrserg.empireprojekt.mobile.features.ui.root.RootBottomSheetContent
 import com.makeevrserg.empireprojekt.mobile.resources.R
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
@@ -46,7 +36,7 @@ class MainActivity : ComponentActivity() {
         val rootComponent = DefaultRootComponent(componentContext, rootModule)
         val rootBottomSheetComponent = rootComponent.rootBottomSheetComponent
         setContent {
-            ComposeApplication(rootModule.componentsModule.themeSwitcherComponent.value) {
+            ApplicationTheme(rootModule.componentsModule.themeSwitcherComponent.value) {
                 RootBottomSheetContent(rootBottomSheetComponent) {
                     ApplicationContent(
                         rootComponent = rootComponent,
@@ -56,30 +46,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun RootBottomSheetContent(
-    rootBottomSheetComponent: RootBottomSheetComponent,
-    content: @Composable () -> Unit
-) {
-    val slot by rootBottomSheetComponent.childSlot.subscribeAsState()
-    val bottomSheetState = rememberDeclarativeModalBottomSheetState(
-        child = slot.child,
-        onDismiss = rootBottomSheetComponent::dismissSlotChild
-    ) { child ->
-        when (val instance = child.instance) {
-            is DefaultRootBottomSheetComponent.Configuration.SettingsChild -> {
-                InfoScreen(instance.linkBrowser)
-            }
-        }
-    }
-    ModalBottomSheetLayout(
-        sheetState = bottomSheetState.sheetState,
-        sheetContent = bottomSheetState.sheetContent.value,
-        sheetShape = RoundedCornerShape(AppTheme.dimens.S),
-        sheetBackgroundColor = MaterialTheme.colors.primary,
-        content = content
-    )
 }

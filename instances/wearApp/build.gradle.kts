@@ -126,6 +126,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-wearable:18.0.0")
     // Local
     implementation(projects.modules.features.root)
+    implementation(projects.modules.features.theme)
+    implementation(projects.modules.features.status)
     implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.resources)

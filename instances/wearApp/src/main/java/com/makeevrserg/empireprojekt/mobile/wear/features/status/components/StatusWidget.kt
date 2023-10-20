@@ -18,7 +18,6 @@ import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.Text
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.AstraChip
 
 @Composable

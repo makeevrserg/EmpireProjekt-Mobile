@@ -26,14 +26,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.minecraft.MinecraftStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 
 private const val FADE_DURATION = 1200
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun StatusWidget(statusComponent: StatusComponent) {
+fun StatusWidget(statusComponent: UrlStatusComponent) {
     val model by statusComponent.model.collectAsState()
 
     Row(
@@ -76,14 +75,6 @@ fun StatusWidget(statusComponent: StatusComponent) {
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.onPrimary
             )
-            (model as? MinecraftStatusComponent.Model)?.statusResult?.getOrNull()?.let {
-                Text(
-                    modifier = Modifier.padding(horizontal = AppTheme.dimens.S),
-                    text = "${it.players.online}/${it.players.max}",
-                    style = MaterialTheme.typography.subtitle2,
-                    color = MaterialTheme.colors.onPrimary.copy(alpha = 0.5f)
-                )
-            }
         }
     }
 }

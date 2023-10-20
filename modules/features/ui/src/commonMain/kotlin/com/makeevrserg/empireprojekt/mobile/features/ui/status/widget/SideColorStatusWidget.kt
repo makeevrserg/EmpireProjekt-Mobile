@@ -8,15 +8,15 @@ import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 
 @Composable
 internal fun SideColorStatusWidget(
-    status: StatusComponent.Model.LoadingStatus,
+    status: UrlStatusComponent.LoadingStatus,
     isLoading: Boolean
 ) {
     when {
-        status == StatusComponent.Model.LoadingStatus.LOADING || isLoading -> {
+        status == UrlStatusComponent.LoadingStatus.LOADING || isLoading -> {
             LinearProgressIndicator(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -26,7 +26,7 @@ internal fun SideColorStatusWidget(
             )
         }
 
-        status == StatusComponent.Model.LoadingStatus.SUCCESS -> {
+        status == UrlStatusComponent.LoadingStatus.SUCCESS -> {
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -35,7 +35,7 @@ internal fun SideColorStatusWidget(
             )
         }
 
-        status == StatusComponent.Model.LoadingStatus.ERROR -> {
+        status == UrlStatusComponent.LoadingStatus.ERROR -> {
             Box(
                 modifier = Modifier
                     .fillMaxHeight()

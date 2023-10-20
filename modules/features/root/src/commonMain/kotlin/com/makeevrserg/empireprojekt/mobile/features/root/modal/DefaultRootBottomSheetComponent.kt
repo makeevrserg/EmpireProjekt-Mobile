@@ -7,36 +7,38 @@ import com.arkivanov.decompose.router.slot.activate
 import com.arkivanov.decompose.router.slot.childSlot
 import com.arkivanov.decompose.router.slot.dismiss
 import com.arkivanov.decompose.value.Value
+import com.arkivanov.essenty.parcelable.Parcelable
+import com.arkivanov.essenty.parcelable.Parcelize
 import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
-import com.makeevrserg.empireprojekt.mobile.services.core.LinkBrowser
 
 class DefaultRootBottomSheetComponent(
     componentContext: ComponentContext,
     servicesModule: ServicesModule
 ) : RootBottomSheetComponent, ComponentContext by componentContext {
-    private val slotNavigation = SlotNavigation<RootBottomSheetComponent.Child>()
+    private val slotNavigation = SlotNavigation<Configuration>()
 
-    override val childSlot: Value<ChildSlot<*, Configuration>> = childSlot(
+    override val childSlot: Value<ChildSlot<*, RootBottomSheetComponent.Child>> = childSlot(
         source = slotNavigation,
         handleBackButton = true,
         childFactory = { configuration, context ->
             when (configuration) {
-                RootBottomSheetComponent.Child.Settings -> {
-                    Configuration.SettingsChild(servicesModule.linkBrowser.value)
+                Configuration.Info -> {
+                    RootBottomSheetComponent.Child.Info(servicesModule.linkBrowser.value)
                 }
             }
         }
     )
 
-    override fun dismissSlotChild() {
+    override fun dismiss() {
         slotNavigation.dismiss()
     }
 
-    override fun pushSlot(slot: RootBottomSheetComponent.Child) {
-        slotNavigation.activate(slot)
+    override fun showInfoSheet() {
+        slotNavigation.activate(Configuration.Info)
     }
 
-    sealed interface Configuration {
-        class SettingsChild(val linkBrowser: LinkBrowser) : Configuration
+    sealed interface Configuration : Parcelable {
+        @Parcelize
+        data object Info : Configuration
     }
 }
