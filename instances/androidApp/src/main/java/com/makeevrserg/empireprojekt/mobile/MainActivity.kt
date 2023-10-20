@@ -66,12 +66,12 @@ fun RootBottomSheetContent(
 ) {
     val slot by rootBottomSheetComponent.childSlot.subscribeAsState()
     val bottomSheetState = rememberDeclarativeModalBottomSheetState(
-        slot.child,
+        child = slot.child,
         onDismiss = rootBottomSheetComponent::dismissSlotChild
     ) { child ->
-        when (val child = child.instance) {
+        when (val instance = child.instance) {
             is DefaultRootBottomSheetComponent.Configuration.SettingsChild -> {
-                InfoScreen(child.linkBrowser)
+                InfoScreen(instance.linkBrowser)
             }
         }
     }
