@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.model.StatusModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -42,9 +42,9 @@ class CheckStatusWork(
                     title = model.title.toString(applicationContext),
                     isLoading = model.isLoading,
                     status = when (model.status) {
-                        StatusComponent.Model.LoadingStatus.LOADING -> StatusModel.LoadingStatus.LOADING
-                        StatusComponent.Model.LoadingStatus.SUCCESS -> StatusModel.LoadingStatus.SUCCESS
-                        StatusComponent.Model.LoadingStatus.ERROR -> StatusModel.LoadingStatus.ERROR
+                        UrlStatusComponent.LoadingStatus.LOADING -> StatusModel.LoadingStatus.LOADING
+                        UrlStatusComponent.LoadingStatus.SUCCESS -> StatusModel.LoadingStatus.SUCCESS
+                        UrlStatusComponent.LoadingStatus.ERROR -> StatusModel.LoadingStatus.ERROR
                     }
                 )
             }

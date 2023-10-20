@@ -1,7 +1,7 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.root
 
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 
 interface RootStatusComponent {
-    val statusComponents: List<StatusComponent>
+    val statusComponents: List<UrlStatusComponent>
 }

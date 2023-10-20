@@ -1,7 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.url
 
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
+import com.makeevrserg.empireprojekt.mobile.features.status.url.data.UrlStatusRepository
 import com.makeevrserg.empireprojekt.mobile.services.core.AnyStateFlow
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
 import com.makeevrserg.empireprojekt.mobile.services.core.wrapToAny
@@ -13,21 +12,19 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DefaultUrlStatusComponent(
-    url: String,
     title: String,
-    module: StatusModule,
+    private val urlStatusRepository: UrlStatusRepository,
     private val coroutineFeature: CoroutineFeature
-) : UrlStatusComponent, StatusModule by module {
-    private val urlStatusRepository = urlStatRepositoryFactory(url).create()
+) : UrlStatusComponent {
 
     private val _model = MutableStateFlow(
         UrlStatusComponent.Model(
             title = StringDesc.Raw(title),
             isLoading = true,
-            status = StatusComponent.Model.LoadingStatus.LOADING
+            status = UrlStatusComponent.LoadingStatus.LOADING
         )
     )
-    override val model: AnyStateFlow<StatusComponent.Model> = _model.wrapToAny()
+    override val model: AnyStateFlow<UrlStatusComponent.Model> = _model.wrapToAny()
     override fun checkStatus() {
         coroutineFeature.launch {
             checkOnce(false)
@@ -43,7 +40,7 @@ class DefaultUrlStatusComponent(
         response.onSuccess {
             _model.update {
                 it.copy(
-                    status = StatusComponent.Model.LoadingStatus.SUCCESS,
+                    status = UrlStatusComponent.LoadingStatus.SUCCESS,
                     isLoading = false
                 )
             }
@@ -51,7 +48,7 @@ class DefaultUrlStatusComponent(
         response.onFailure {
             _model.update {
                 it.copy(
-                    status = StatusComponent.Model.LoadingStatus.ERROR,
+                    status = UrlStatusComponent.LoadingStatus.ERROR,
                     isLoading = false
                 )
             }

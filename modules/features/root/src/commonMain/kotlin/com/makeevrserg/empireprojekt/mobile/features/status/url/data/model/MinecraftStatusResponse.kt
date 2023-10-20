@@ -1,9 +1,9 @@
-package com.makeevrserg.empireprojekt.mobile.features.status.data.model
+package com.makeevrserg.empireprojekt.mobile.features.status.url.data.model
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MinecraftStatusResponse(
+internal data class MinecraftStatusResponse(
     val description: String,
     val players: Players
 ) {
