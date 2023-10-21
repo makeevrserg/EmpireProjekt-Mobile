@@ -29,10 +29,12 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.material)
+                implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
                 // Local
                 implementation(project(":modules:services:resources"))
+                implementation(project(":modules:services:core"))
             }
         }
         val androidMain by getting {

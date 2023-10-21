@@ -1,6 +1,5 @@
 @file:Suppress("UnusedPrivateMember")
 
-import ru.astrainteractive.gradleplugin.util.GradleProperty.Companion.gradleProperty
 import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
 
 plugins {
@@ -9,20 +8,8 @@ plugins {
     kotlin("native.cocoapods")
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
-    id("com.github.gmazzo.buildconfig")
     id("dev.icerock.mobile.multiplatform-resources")
     alias(libs.plugins.kotlin.serialization)
-}
-
-buildConfig {
-    className("BuildKonfig") // forces the class name. Defaults to 'BuildConfig'
-    packageName("${projectInfo.group}.shared") // forces the package. Defaults to '${project.group}'
-    buildConfigField(
-        "String",
-        "VERSION_CODE",
-        "\"${gradleProperty("project.version.code").integer}\""
-    )
-    buildConfigField("String", "VERSION_NAME", "\"${projectInfo.versionString}\"")
 }
 
 kotlin {
@@ -34,7 +21,7 @@ kotlin {
         homepage = projectInfo.url
         version = projectInfo.versionString
         ios.deploymentTarget = "16.0"
-        podfile = project.file("../../../iosApp/Podfile")
+        podfile = project.file("../../../instances/iosApp/Podfile")
         framework {
             baseName = "Root"
             isStatic = false
@@ -68,6 +55,7 @@ kotlin {
                 implementation(libs.ktor.client.serialization)
                 implementation(libs.ktor.client.json)
                 implementation(libs.ktor.serialization.json)
+                implementation(libs.ktor.logging)
                 // Moko
                 api(libs.moko.mvvm.core)
                 api(libs.moko.mvvm.flow)
@@ -80,8 +68,12 @@ kotlin {
                 implementation(libs.mvikotlin)
                 // Local
                 api(projects.modules.services.resources)
-                api(projects.modules.features.splash)
                 api(projects.modules.services.core)
+                api(projects.modules.services.apiEmpireapi)
+                api(projects.modules.features.splash)
+                api(projects.modules.features.rating)
+                api(projects.modules.features.theme)
+                api(projects.modules.features.status)
             }
         }
         val androidMain by getting {
@@ -124,6 +116,7 @@ dependencies {
     implementation(libs.klibs.kstorage)
     implementation(libs.google.auth)
     implementation(libs.kotlin.coroutines.playServices)
+    implementation("io.ktor:ktor-client-logging-jvm:2.3.2")
 }
 
 multiplatformResources {

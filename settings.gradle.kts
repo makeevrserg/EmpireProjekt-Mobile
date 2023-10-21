@@ -21,14 +21,21 @@ dependencyResolutionManagement {
 }
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "EmpireProjekt-Mobile"
+// Instances
+include(":instances:androidApp")
+include(":instances:wearApp")
 // Services
-include(":androidApp")
-include(":wearApp")
 include(":modules:services:resources")
 include(":modules:services:core-ui")
 include(":modules:services:core")
 include(":modules:services:wear-messenger")
+include(":modules:services:build-konfig")
+include(":modules:services:api-empireapi")
 // Feature
 include(":modules:features:root")
 include(":modules:features:splash")
 include(":modules:features:ui")
+include(":modules:features:theme")
+include(":modules:features:status")
+
+include(":modules:features:rating")

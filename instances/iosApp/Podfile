@@ -1,0 +1,5 @@
+target 'iosApp' do
+  use_frameworks!
+  platform :ios, '16.0'
+  pod 'root', :path => '../../modules/features/root'
+end

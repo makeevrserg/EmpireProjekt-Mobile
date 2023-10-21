@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'root'
-    spec.version                  = '0.0.3'
+    spec.version                  = '0.1.0'
     spec.homepage                 = 'https://empireprojekt.ru'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''

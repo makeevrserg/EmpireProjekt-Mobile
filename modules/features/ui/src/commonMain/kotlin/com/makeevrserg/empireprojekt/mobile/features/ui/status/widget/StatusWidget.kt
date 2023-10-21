@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -25,14 +26,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.mincraft.MinecraftStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 
 private const val FADE_DURATION = 1200
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun StatusWidget(statusComponent: StatusComponent) {
+fun StatusWidget(statusComponent: UrlStatusComponent) {
     val model by statusComponent.model.collectAsState()
 
     Row(
@@ -41,7 +41,7 @@ fun StatusWidget(statusComponent: StatusComponent) {
             .height(54.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(AppTheme.dimens.XS))
-            .background(AppTheme.materialColor.primary)
+            .background(MaterialTheme.colors.primary)
             .clickable(onClick = statusComponent::checkStatus),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -72,17 +72,9 @@ fun StatusWidget(statusComponent: StatusComponent) {
         ) {
             Text(
                 text = model.title.asComposableString(),
-                style = AppTheme.typography.h6,
-                color = AppTheme.materialColor.onPrimary
+                style = MaterialTheme.typography.h6,
+                color = MaterialTheme.colors.onPrimary
             )
-            (model as? MinecraftStatusComponent.Model)?.statusResult?.getOrNull()?.let {
-                Text(
-                    modifier = Modifier.padding(horizontal = AppTheme.dimens.S),
-                    text = "${it.players.online}/${it.players.max}",
-                    style = AppTheme.typography.subtitle2,
-                    color = AppTheme.materialColor.onPrimary.copy(alpha = 0.5f)
-                )
-            }
         }
     }
 }

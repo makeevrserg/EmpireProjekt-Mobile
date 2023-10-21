@@ -2,5 +2,18 @@
 <resources>
     <string name="app_name" translatable="false">ESMP</string>
     <string name="status.title">Empire Network Status</string>
-    <string name="status.subtitle">This cards shows current status of empire network including AstraLearner, Astra Interactive and Empire SMP servers</string>
+    <string name="status.subtitle">This cards shows current status of empire network including AstraLearner, Astra
+        Interactive and Empire SMP servers
+    </string>
+    <!--    Status      -->
+    <string name="statuses.ratings">Рейтинги</string>
+    <!--    Paging      -->
+    <string name="paging_last_page">Ничего больше нет</string>
+    <string name="paging_no_pages">Тут ничего нет</string>
+    <string name="paging_network_error">Ошибка соединения</string>
+    <string name="paging_reload">Перезагрузить</string>
+    <!--    Rating      -->
+    <string name="rating.user_ratings">Рейтинги</string>
+    <string name="rating.rating">Рейтинг:</string>
+    <string name="rating.player_message">Написал:</string>
 </resources>

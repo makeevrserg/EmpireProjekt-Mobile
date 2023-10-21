@@ -19,7 +19,10 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.runtime)
+                implementation(compose.uiTooling)
+                implementation(compose.preview)
                 implementation(compose.material)
+                implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 // klibs
                 implementation(libs.klibs.mikro.core)
@@ -32,16 +35,22 @@ kotlin {
                 implementation(libs.decompose.core)
                 implementation(libs.decompose.compose.jetbrains)
                 // Local
-                implementation(projects.modules.features.splash)
                 implementation(projects.modules.services.resources)
                 implementation(projects.modules.services.coreUi)
+                implementation(projects.modules.services.buildKonfig)
+                implementation(projects.modules.features.splash)
                 implementation(projects.modules.features.root)
+                implementation(projects.modules.features.theme)
+                implementation(projects.modules.features.status)
             }
         }
         val androidMain by getting {
             dependencies {
                 // Accompanist
                 implementation(libs.google.accompanist.systemuicontroller)
+                // Image loading
+                implementation("io.coil-kt:coil:2.4.0")
+                implementation("io.coil-kt:coil-compose:2.4.0")
             }
         }
     }

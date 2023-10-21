@@ -6,6 +6,10 @@ import com.makeevrserg.empireprojekt.mobile.features.root.di.factory.SettingsFac
 import com.makeevrserg.empireprojekt.mobile.services.core.LinkBrowser
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.logging.DEFAULT
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.MainScope
 import kotlinx.serialization.json.Json
@@ -33,6 +37,10 @@ internal class ServicesModuleImpl : ServicesModule {
         HttpClient {
             install(ContentNegotiation) {
                 json(jsonConfiguration)
+            }
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.HEADERS
             }
         }
     }
