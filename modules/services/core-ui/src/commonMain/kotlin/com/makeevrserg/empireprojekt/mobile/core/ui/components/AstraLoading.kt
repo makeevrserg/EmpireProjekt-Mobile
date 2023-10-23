@@ -43,7 +43,7 @@ fun AstraLoading(size: Dp = 64.dp) {
     val list = (0..7).map { it / 5f }
 
     @Composable
-    fun BoxItem(cp: Int, i: Int, color: Color = AppTheme.alColors.astraRed) {
+    fun BoxItem(cp: Int, i: Int, color: Color = AppTheme.customColors.astraRed) {
         val mutableList = list.toMutableList()
         Collections.rotate(mutableList, cp)
         val visibility: Float = mutableList[i]
@@ -68,14 +68,14 @@ fun AstraLoading(size: Dp = 64.dp) {
         val r = (position % 8)
         Column {
             Row(Modifier.fillMaxWidth()) {
-                BoxItem(r, 7, AppTheme.alColors.astraRed)
-                BoxItem(r, 0, AppTheme.alColors.astraBlue)
-                BoxItem(r, 1, AppTheme.alColors.astraOrange)
+                BoxItem(r, 7, AppTheme.customColors.astraRed)
+                BoxItem(r, 0, AppTheme.customColors.astraBlue)
+                BoxItem(r, 1, AppTheme.customColors.astraOrange)
             }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                BoxItem(r, 6, AppTheme.alColors.astraRed)
-//                BoxItem(r, 8, AppTheme.materialColor.astraRed)
-                BoxItem(r, 2, AppTheme.alColors.astraYellow)
+                BoxItem(r, 6, AppTheme.customColors.astraRed)
+//                BoxItem(r, 8, MaterialTheme.colors.astraRed)
+                BoxItem(r, 2, AppTheme.customColors.astraYellow)
             }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                 BoxItem(r, 5)

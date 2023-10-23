@@ -28,8 +28,10 @@ desktop/build
 wearApp/build
 keys.properties
 # iosApp
-iosApp/Pods
-iosApp/Podfile.lock
+instances/iosApp/Pods
+instances/iosApp/Podfile.lock
+instances/wearApp
+instances/androidApp
 # Services
 modules/services/resources/build
 modules/services/core-ui/build
@@ -40,6 +42,8 @@ modules/services/xlsx/build
 modules/services/xlsx/libs
 modules/services/ads-yandex/build
 modules/services/wear-messenger/build
+modules/services/build-konfig/build
+modules/services/api-empireapi/build
 # Features ----------------------------------
 modules/features/dialog-confirm/build
 modules/features/words-local/build
@@ -47,6 +51,9 @@ modules/features/settings/build
 modules/features/lesson/build
 modules/features/dicts-local/build
 modules/features/dicts-remote/build
+modules/features/rating/build
+modules/features/theme/build
+modules/features/status/build
 # Faq
 modules/features/faq/build
 modules/features/ui/build

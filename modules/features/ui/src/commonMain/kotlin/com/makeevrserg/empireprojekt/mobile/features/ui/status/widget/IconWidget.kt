@@ -9,19 +9,19 @@ import androidx.compose.material.icons.filled.Token
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.StatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 
 @Composable
-internal fun IconWidget(it: StatusComponent.Model.LoadingStatus) {
+internal fun IconWidget(it: UrlStatusComponent.LoadingStatus) {
     val icon = when (it) {
-        StatusComponent.Model.LoadingStatus.LOADING -> Icons.Filled.Token
-        StatusComponent.Model.LoadingStatus.SUCCESS -> Icons.Filled.Bolt
-        StatusComponent.Model.LoadingStatus.ERROR -> Icons.Filled.Error
+        UrlStatusComponent.LoadingStatus.LOADING -> Icons.Filled.Token
+        UrlStatusComponent.LoadingStatus.SUCCESS -> Icons.Filled.Bolt
+        UrlStatusComponent.LoadingStatus.ERROR -> Icons.Filled.Error
     }
     val tint = when (it) {
-        StatusComponent.Model.LoadingStatus.LOADING -> AppTheme.alColors.astraYellow
-        StatusComponent.Model.LoadingStatus.SUCCESS -> AppTheme.alColors.colorPositive
-        StatusComponent.Model.LoadingStatus.ERROR -> AppTheme.alColors.colorNegative
+        UrlStatusComponent.LoadingStatus.LOADING -> AppTheme.customColors.astraYellow
+        UrlStatusComponent.LoadingStatus.SUCCESS -> AppTheme.customColors.colorPositive
+        UrlStatusComponent.LoadingStatus.ERROR -> AppTheme.customColors.colorNegative
     }
     Icon(
         imageVector = icon,

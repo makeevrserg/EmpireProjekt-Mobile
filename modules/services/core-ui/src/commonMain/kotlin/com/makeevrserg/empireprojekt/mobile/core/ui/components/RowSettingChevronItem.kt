@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
@@ -35,7 +36,7 @@ fun RowSettingChevronItem(
                 Icon(
                     imageVector = Icons.Filled.ChevronRight,
                     contentDescription = null,
-                    tint = AppTheme.materialColor.onPrimary,
+                    tint = MaterialTheme.colors.onPrimary,
                     modifier = Modifier.size(AppTheme.dimens.M)
                 )
             }
@@ -60,7 +61,7 @@ fun RowSettingChevronItem(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = AppTheme.materialColor.onPrimary,
+                tint = MaterialTheme.colors.onPrimary,
                 modifier = Modifier.size(AppTheme.dimens.M)
             )
         }
@@ -83,14 +84,14 @@ fun RowSettingTextInfo(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = AppTheme.materialColor.onPrimary,
+                tint = MaterialTheme.colors.onPrimary,
                 modifier = Modifier.size(AppTheme.dimens.M)
             )
         },
         postfix = {
             Text(
                 text = endText,
-                color = AppTheme.materialColor.onPrimary,
+                color = MaterialTheme.colors.onPrimary,
                 modifier = Modifier.padding(end = AppTheme.dimens.M)
             )
         },

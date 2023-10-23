@@ -1,6 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.features.ui.info.data
 
-import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
+import androidx.compose.material.MaterialTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.model.LinkModel
 import com.makeevrserg.empireprojekt.mobile.resources.MR
 
@@ -10,19 +10,19 @@ object InfoScreenLinks {
             LinkModel(
                 title = "Astra Github",
                 res = MR.images.github,
-                tint = { AppTheme.materialColor.onPrimary },
+                tint = { MaterialTheme.colors.onPrimary },
                 url = "https://github.com/Astra-Interactive/"
             ).run(::add)
             LinkModel(
                 title = "Author Github",
                 res = MR.images.github,
-                tint = { AppTheme.materialColor.onPrimary },
+                tint = { MaterialTheme.colors.onPrimary },
                 url = "https://github.com/makeevrserg"
             ).run(::add)
             LinkModel(
                 title = "Source code",
                 res = MR.images.github,
-                tint = { AppTheme.materialColor.onPrimary },
+                tint = { MaterialTheme.colors.onPrimary },
                 url = "https://github.com/makeevrserg/EmpireProjekt-Mobile"
             ).run(::add)
             LinkModel(

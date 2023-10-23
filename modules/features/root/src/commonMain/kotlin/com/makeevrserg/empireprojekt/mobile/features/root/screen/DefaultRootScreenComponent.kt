@@ -9,11 +9,15 @@ import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
+import com.arkivanov.decompose.value.operator.map
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
+import com.makeevrserg.empireprojekt.mobile.features.rating.user.RatingUserComponent
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.RatingUsersComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.di.factory.RootScreenComponentChildFactory
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
+import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 
 class DefaultRootScreenComponent(
     componentContext: ComponentContext,
@@ -30,10 +34,18 @@ class DefaultRootScreenComponent(
             RootScreenComponentChildFactory(
                 config = config,
                 context = context,
-                rootModule = rootModule
+                rootModule = rootModule,
+                instance = this
             ).create()
         }
     )
+
+    override val popModel: Value<PopComponent.Model> = childStack.map {
+        PopComponent.Model(
+            canPop = it.backStack.isNotEmpty(),
+            popAction = { pop() }
+        )
+    }
 
     override fun push(screen: RootScreenComponent.Child) {
         navigation.push(screen)
@@ -60,6 +72,14 @@ class DefaultRootScreenComponent(
         class Status(
             val rootStatusComponent: RootStatusComponent,
             val themeSwitcherComponent: ThemeSwitcherComponent
+        ) : Configuration
+
+        class RatingUsers(
+            val ratingUsersComponent: RatingUsersComponent
+        ) : Configuration
+
+        class RatingUser(
+            val ratingUserComponent: RatingUserComponent
         ) : Configuration
     }
 }
