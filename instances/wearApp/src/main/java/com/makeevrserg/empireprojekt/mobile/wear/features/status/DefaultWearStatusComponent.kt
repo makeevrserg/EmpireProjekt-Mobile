@@ -1,5 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.wear.features.status
 
+import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.model.StatusModel
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.message.DecodedWearMessage
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.receiver.WearMessageReceiver
@@ -39,7 +40,7 @@ class DefaultWearStatusComponent(
         return formatted ?: "..."
     }
 
-    override fun update(status: StatusComponent.Model.LoadingStatus, amount: Int) {
+    override fun update(status: UrlStatusComponent.LoadingStatus, amount: Int) {
         // todo
     }
 }

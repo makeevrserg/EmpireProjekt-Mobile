@@ -18,21 +18,22 @@ import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.Text
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
+import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.AstraChip
 
 @Composable
-internal fun StatusWidget(component: StatusComponent) {
+internal fun StatusWidget(component: UrlStatusComponent) {
     val model by component.model.collectAsState()
     val icon = when (model.status) {
-        StatusComponent.Model.LoadingStatus.LOADING -> Icons.Filled.WifiTetheringError
-        StatusComponent.Model.LoadingStatus.SUCCESS -> Icons.Filled.WifiTethering
-        StatusComponent.Model.LoadingStatus.ERROR -> Icons.Filled.WifiTetheringOff
+        UrlStatusComponent.LoadingStatus.LOADING -> Icons.Filled.WifiTetheringError
+        UrlStatusComponent.LoadingStatus.SUCCESS -> Icons.Filled.WifiTethering
+        UrlStatusComponent.LoadingStatus.ERROR -> Icons.Filled.WifiTetheringOff
     }
     val color by animateColorAsState(
         targetValue = when (model.status) {
-            StatusComponent.Model.LoadingStatus.LOADING -> AppTheme.customColors.astraOrange
-            StatusComponent.Model.LoadingStatus.SUCCESS -> AppTheme.customColors.colorPositive
-            StatusComponent.Model.LoadingStatus.ERROR -> AppTheme.customColors.colorNegative
+            UrlStatusComponent.LoadingStatus.LOADING -> AppTheme.customColors.astraOrange
+            UrlStatusComponent.LoadingStatus.SUCCESS -> AppTheme.customColors.colorPositive
+            UrlStatusComponent.LoadingStatus.ERROR -> AppTheme.customColors.colorNegative
         },
         label = "LABEL"
     )
