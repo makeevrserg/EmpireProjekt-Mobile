@@ -11,8 +11,7 @@ sealed class Material3Theme(
     val colorScheme: ColorScheme,
     val typography: Typography = Typography(),
     val shapes: Shapes = Shapes(),
-    override val isDarkTheme: Boolean
-) : ApplicationTheme {
+) {
 
     data object DefaultDark : Material3Theme(
         colorScheme = darkColorScheme(
@@ -26,7 +25,6 @@ sealed class Material3Theme(
             surface = Color(0xFFFFFFFF),
             onSurface = Color(0xFF000000),
         ),
-        isDarkTheme = true
     )
 
     data object DefaultLight : Material3Theme(
@@ -41,6 +39,5 @@ sealed class Material3Theme(
             surface = Color(0xFFFFFFFF),
             onSurface = Color(0xFF000000),
         ),
-        isDarkTheme = true
     )
 }
