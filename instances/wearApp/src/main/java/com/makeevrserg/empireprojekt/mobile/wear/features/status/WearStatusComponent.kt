@@ -1,5 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.wear.features.status
 
+import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -13,17 +14,17 @@ interface WearStatusComponent {
         val updatedAt: String = "..."
     )
 
-    fun update(status: StatusComponent.Model.LoadingStatus, amount: Int)
+    fun update(status: UrlStatusComponent.LoadingStatus, amount: Int)
 
     class Stub : WearStatusComponent {
         private val mutableMergeState = MutableStateFlow(Model())
         override val mergedState: StateFlow<Model> = mutableMergeState
-        override fun update(status: StatusComponent.Model.LoadingStatus, amount: Int) {
+        override fun update(status: UrlStatusComponent.LoadingStatus, amount: Int) {
             mutableMergeState.update {
                 when (status) {
-                    StatusComponent.Model.LoadingStatus.LOADING -> it.copy(loadingCount = amount)
-                    StatusComponent.Model.LoadingStatus.SUCCESS -> it.copy(successCount = amount)
-                    StatusComponent.Model.LoadingStatus.ERROR -> it.copy(failureCount = amount)
+                    UrlStatusComponent.LoadingStatus.LOADING -> it.copy(loadingCount = amount)
+                    UrlStatusComponent.LoadingStatus.SUCCESS -> it.copy(successCount = amount)
+                    UrlStatusComponent.LoadingStatus.ERROR -> it.copy(failureCount = amount)
                 }
             }
         }

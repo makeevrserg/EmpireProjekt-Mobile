@@ -29,9 +29,22 @@ private fun Material2ThemeAdapt(theme: Material2Theme, content: @Composable () -
 
 @Composable
 fun AdaptThemeFade(
-    appTheme: AppTheme,
+    composeTheme: ComposeTheme,
     content: @Composable () -> Unit
 ) {
+    val appTheme = when (composeTheme) {
+        ComposeTheme.DARK -> AppTheme(
+            material2Theme = Material2Theme.DefaultDark,
+            material3Theme = Material3Theme.DefaultDark,
+            isDark = true
+        )
+
+        ComposeTheme.LIGHT -> AppTheme(
+            material2Theme = Material2Theme.DefaultLight,
+            material3Theme = Material3Theme.DefaultLight,
+            isDark = false
+        )
+    }
     Crossfade(targetState = appTheme) { appTheme ->
         CompositionLocalProvider(
             LocalAppTheme provides appTheme,
@@ -44,6 +57,10 @@ fun AdaptThemeFade(
             }
         )
     }
+}
+
+enum class ComposeTheme(val isDark: Boolean) {
+    DARK(true), LIGHT(false)
 }
 
 @Suppress("ComposableNaming", "CompositionLocalAllowlist")
