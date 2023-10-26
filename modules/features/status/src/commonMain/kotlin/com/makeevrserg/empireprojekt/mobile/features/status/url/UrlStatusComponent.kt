@@ -16,5 +16,4 @@ interface UrlStatusComponent {
 
     val model: AnyStateFlow<Model>
     fun checkStatus()
-    suspend fun checkOnce(force: Boolean)
 }

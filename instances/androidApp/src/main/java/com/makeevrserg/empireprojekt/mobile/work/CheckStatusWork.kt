@@ -7,9 +7,11 @@ import androidx.work.WorkerParameters
 import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.model.StatusModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
 
@@ -36,7 +38,7 @@ class CheckStatusWork(
     private suspend fun sendStatus() = coroutineScope {
         val messages = rootStatusComponent.statusComponents.map {
             async {
-                it.checkStatus()
+                withContext(Dispatchers.Main) { it.checkStatus() }
                 val model = it.model.value
                 StatusModel(
                     title = model.title.toString(applicationContext),

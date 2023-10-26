@@ -1,5 +1,7 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.di
 
+import com.arkivanov.mvikotlin.core.store.StoreFactory
+import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.makeevrserg.empireprojekt.mobile.features.status.url.data.UrlStatusRepository
 import com.makeevrserg.empireprojekt.mobile.features.status.url.data.impl.MinecraftStatusRepositoryImpl
 import com.makeevrserg.empireprojekt.mobile.features.status.url.data.impl.UrlStatusRepositoryImpl
@@ -13,6 +15,7 @@ import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
 interface StatusModule : Module {
     val dispatchers: KotlinDispatchers
     val minecraftStatusRepository: UrlStatusRepository
+    val storeFactory: StoreFactory
     fun urlStatRepositoryFactory(url: String): Factory<UrlStatusRepository>
     class Default(
         override val dispatchers: KotlinDispatchers,
@@ -24,6 +27,7 @@ interface StatusModule : Module {
                 dispatchers = dispatchers
             )
         }
+        override val storeFactory: StoreFactory = DefaultStoreFactory()
         override fun urlStatRepositoryFactory(url: String): Factory<UrlStatusRepository> = Factory {
             UrlStatusRepositoryImpl(
                 url = url,

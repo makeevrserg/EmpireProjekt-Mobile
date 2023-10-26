@@ -24,6 +24,10 @@ kotlin {
                 implementation(libs.klibs.kdi)
                 // Decompose
                 implementation(libs.decompose.core)
+                // MviKotlin
+                implementation(libs.mvikotlin)
+                implementation(libs.mvikotlin.main)
+                implementation(libs.mvikotlin.coroutines)
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
                 // Moko
