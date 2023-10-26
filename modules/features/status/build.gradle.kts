@@ -38,6 +38,15 @@ kotlin {
                 implementation(projects.modules.services.core)
             }
         }
+
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.tests.assertk)
+                implementation(libs.tests.turbine)
+                implementation(libs.kotlin.coroutines.test)
+            }
+        }
     }
 }
 android {
