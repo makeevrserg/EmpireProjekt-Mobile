@@ -7,7 +7,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
-class UrlStatusBootstrapper : CoroutineBootstrapper<Action>() {
+internal class UrlStatusBootstrapper : CoroutineBootstrapper<Action>() {
     override fun invoke() {
         startPeriodicCheck()
     }

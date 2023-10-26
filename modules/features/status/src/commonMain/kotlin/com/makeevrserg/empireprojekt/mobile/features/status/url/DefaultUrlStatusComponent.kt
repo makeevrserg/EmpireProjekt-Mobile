@@ -11,7 +11,7 @@ import dev.icerock.moko.resources.desc.Raw
 import dev.icerock.moko.resources.desc.StringDesc
 import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
 
-class DefaultUrlStatusComponent(
+internal class DefaultUrlStatusComponent(
     title: String,
     storeFactory: StoreFactory,
     urlStatusRepository: UrlStatusRepository

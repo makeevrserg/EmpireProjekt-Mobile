@@ -8,7 +8,7 @@ import com.makeevrserg.empireprojekt.mobile.features.status.url.store.UrlStatusS
 import com.makeevrserg.empireprojekt.mobile.features.status.url.store.UrlStatusStore.State
 import ru.astrainteractive.klibs.kdi.Factory
 
-class UrlStatusStoreFactory(
+internal class UrlStatusStoreFactory(
     private val storeFactory: StoreFactory,
     private val urlStatusRepository: UrlStatusRepository
 ) : Factory<UrlStatusStore> {

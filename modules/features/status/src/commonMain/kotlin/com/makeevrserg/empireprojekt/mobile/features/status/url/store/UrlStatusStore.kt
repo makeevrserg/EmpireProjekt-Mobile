@@ -5,7 +5,7 @@ import com.makeevrserg.empireprojekt.mobile.features.status.url.store.UrlStatusS
 import com.makeevrserg.empireprojekt.mobile.features.status.url.store.UrlStatusStore.Label
 import com.makeevrserg.empireprojekt.mobile.features.status.url.store.UrlStatusStore.State
 
-interface UrlStatusStore : Store<Intent, State, Label> {
+internal interface UrlStatusStore : Store<Intent, State, Label> {
     enum class State {
         LOADING, SUCCESS, ERROR
     }

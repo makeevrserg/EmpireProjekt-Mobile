@@ -9,7 +9,7 @@ import com.makeevrserg.empireprojekt.mobile.features.status.url.store.UrlStatusS
 import com.makeevrserg.empireprojekt.mobile.features.status.url.store.UrlStatusStore.State
 import kotlinx.coroutines.launch
 
-class UrlStatusExecutor(
+internal class UrlStatusExecutor(
     private val urlStatusRepository: UrlStatusRepository
 ) : CoroutineExecutor<Intent, Action, State, Message, Label>() {
     override fun executeIntent(intent: Intent, getState: () -> State) {
