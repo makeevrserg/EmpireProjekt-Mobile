@@ -24,6 +24,10 @@ kotlin {
                 implementation(libs.klibs.kdi)
                 // Decompose
                 implementation(libs.decompose.core)
+                // MviKotlin
+                implementation(libs.mvikotlin)
+                implementation(libs.mvikotlin.main)
+                implementation(libs.mvikotlin.coroutines)
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
                 // Moko
@@ -32,6 +36,15 @@ kotlin {
                 implementation(libs.ktor.client.core)
                 // Local
                 implementation(projects.modules.services.core)
+            }
+        }
+
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.tests.assertk)
+                implementation(libs.tests.turbine)
+                implementation(libs.kotlin.coroutines.test)
             }
         }
     }
