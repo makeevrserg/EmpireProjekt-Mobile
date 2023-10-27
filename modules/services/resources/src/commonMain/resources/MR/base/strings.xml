@@ -2,7 +2,8 @@
 <resources>
     <string name="app_name" translatable="false">ESMP</string>
     <string name="status.title">Empire Network Status</string>
-    <string name="status.subtitle">This cards shows current status of empire network including AstraLearner, Astra
+    <string name="status.subtitle">This cards shows current status of empire network including
+        AstraLearner, Astra
         Interactive and Empire SMP servers
     </string>
     <!--    Status      -->
@@ -16,4 +17,6 @@
     <string name="rating.user_ratings">Рейтинги</string>
     <string name="rating.rating">Рейтинг:</string>
     <string name="rating.player_message">Написал:</string>
+    <!--    Info    -->
+    <string name="info.more_links">More links:</string>
 </resources>
