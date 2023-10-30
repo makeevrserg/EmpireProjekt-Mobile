@@ -10,12 +10,15 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
+import com.arkivanov.decompose.childContext
 import com.arkivanov.decompose.defaultComponentContext
 import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationContent
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.RootBottomSheetContent
+import com.makeevrserg.empireprojekt.mobile.features.ui.trading.DefaultTradingComponent
+import com.makeevrserg.empireprojekt.mobile.features.ui.trading.TradingScreen
 import com.makeevrserg.empireprojekt.mobile.resources.R
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
@@ -44,14 +47,16 @@ class MainActivity : ComponentActivity() {
         val componentContext = defaultComponentContext()
         val rootComponent = DefaultRootComponent(componentContext, rootModule)
         val rootBottomSheetComponent = rootComponent.rootBottomSheetComponent
+        val tradingComponent = DefaultTradingComponent(componentContext.childContext("adsdasd"))
         setContent {
             ApplicationTheme(rootModule.componentsModule.themeSwitcherComponent.value) {
-                RootBottomSheetContent(rootBottomSheetComponent) {
-                    ApplicationContent(
-                        rootComponent = rootComponent,
-                        modifier = Modifier
-                    )
-                }
+//                RootBottomSheetContent(rootBottomSheetComponent) {
+//                    ApplicationContent(
+//                        rootComponent = rootComponent,
+//                        modifier = Modifier
+//                    )
+//                }
+                TradingScreen(tradingComponent)
             }
         }
     }

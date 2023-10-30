@@ -7,6 +7,9 @@ kotlin-compilerExtensionVersion = "1.5.3"
 kotlin-android-application = "8.0.1"
 kotlin-serialization-json = "1.5.1"
 
+# Chart
+vico = "1.12.0"
+
 # Androidx
 androidx-lifecycle = "2.6.1"
 androidx-lifecycle-ext = "2.2.0"
@@ -87,6 +90,12 @@ lint-detekt-ruleset-compose = "0.0.26"
 dokka = "1.8.10"
 
 [libraries]
+# Chart
+vico-compose = { group = "com.patrykandpatrick.vico", name = "compose", version.ref = "vico" }
+vico-compose-m2 = { group = "com.patrykandpatrick.vico", name = "compose-m2", version.ref = "vico" }
+vico-compose-m3 = { group = "com.patrykandpatrick.vico", name = "compose-m3", version.ref = "vico" }
+vico-core = { group = "com.patrykandpatrick.vico", name = "core", version.ref = "vico" }
+
 # klibs
 klibs-mikro-core = { module = "ru.astrainteractive.klibs:mikro-core", version.ref = "klibs-mikro" }
 klibs-mikro-platform = { module = "ru.astrainteractive.klibs:mikro-platform", version.ref = "klibs-mikro" }
@@ -135,6 +144,7 @@ kotlin-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-s
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
 kotlin-coroutines-playServices = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "google-coroutinesPlayServices" }
+kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.strictly = "0.4.1" }
 android-toolsBuild = { module = "com.android.tools.build:gradle", version.ref = "kotlin-android-application" }
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 

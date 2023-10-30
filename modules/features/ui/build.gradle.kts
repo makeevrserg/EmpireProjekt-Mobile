@@ -24,6 +24,10 @@ kotlin {
                 implementation(compose.material)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
+                // Chart
+                implementation("com.tradingview:lightweightcharts:4.0.0")
+                // DateTime
+                implementation(libs.kotlin.datetime)
                 // klibs
                 implementation(libs.klibs.mikro.core)
                 implementation(libs.klibs.mikro.platform)
