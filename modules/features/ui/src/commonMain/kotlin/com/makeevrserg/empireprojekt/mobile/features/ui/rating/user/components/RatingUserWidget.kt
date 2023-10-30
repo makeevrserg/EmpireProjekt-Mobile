@@ -89,14 +89,14 @@ fun RatingUserWidget(ratingModel: RatingModel) {
                 text = MR.strings.rating_player_message.asComposableString(),
                 style = MaterialTheme.typography.subtitle2,
                 color = MaterialTheme.colors.onSecondary,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Start,
                 modifier = Modifier.padding(horizontal = AppTheme.dimens.S)
             )
             Text(
                 text = ratingModel.message.trim(),
                 style = MaterialTheme.typography.subtitle2,
                 color = MaterialTheme.colors.onPrimary,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Start,
                 modifier = Modifier.padding(horizontal = AppTheme.dimens.S)
             )
         }
