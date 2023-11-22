@@ -27,7 +27,7 @@ class DefaultRootStatusComponent(
         DefaultUrlStatusComponent(
             title = "Dev: AstraLearner",
             urlStatusRepository = statusModule.urlStatRepositoryFactory(
-                "http://astralearner.empireprojekt.ru:8083/dictionaries/4/words"
+                "http://astralearner.empireprojekt.ru:8081/dictionaries/7"
             ).create(),
             storeFactory = statusModule.storeFactory,
         ).run(::add)
@@ -35,7 +35,7 @@ class DefaultRootStatusComponent(
         DefaultUrlStatusComponent(
             title = "Prod: AstraLearner",
             urlStatusRepository = statusModule.urlStatRepositoryFactory(
-                "http://astralearner.empireprojekt.ru:8081/dictionaries/4/words"
+                "http://astralearner.empireprojekt.ru:8081/dictionaries/7"
             ).create(),
             storeFactory = statusModule.storeFactory,
         ).run(::add)
