@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'root'
-    spec.version                  = '0.2.2'
+    spec.version                  = '0.2.4'
     spec.homepage                 = 'https://empireprojekt.ru'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
@@ -10,6 +10,17 @@ Pod::Spec.new do |spec|
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '16.0'
                 
+                
+    if !Dir.exist?('build/cocoapods/framework/Root.framework') || Dir.empty?('build/cocoapods/framework/Root.framework')
+        raise "
+
+        Kotlin framework 'Root' doesn't exist yet, so a proper Xcode project can't be generated.
+        'pod install' should be executed after running ':generateDummyFramework' Gradle task:
+
+            ./gradlew :modules:features:root:generateDummyFramework
+
+        Alternatively, proper pod installation is performed during Gradle sync in the IDE (if Podfile location is set)"
+    end
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':modules:features:root',

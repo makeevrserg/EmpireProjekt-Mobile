@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cookie
 import androidx.compose.material.icons.filled.ThumbDown
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
@@ -23,10 +25,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.resources.MR
+import com.valentinilk.shimmer.shimmer
 import ru.astrainteractive.empireapi.models.rating.RatingModel
 
 @Composable
@@ -44,10 +47,28 @@ fun RatingUserWidget(ratingModel: RatingModel) {
                 horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.S),
                 modifier = Modifier.padding(horizontal = AppTheme.dimens.S)
             ) {
-                AsyncImage(
+                SubcomposeAsyncImage(
                     model = "https://mc-heads.net/avatar/${ratingModel.userCreatedReport?.minecraftUUID}",
                     contentDescription = null,
-                    modifier = Modifier.size(32.dp)
+                    modifier = Modifier
+                        .size(32.dp)
+                        .clip(RoundedCornerShape(AppTheme.dimens.XXS)),
+                    loading = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .shimmer()
+                                .background(MaterialTheme.colors.primaryVariant)
+                                .clip(RoundedCornerShape(AppTheme.dimens.XXS))
+                        )
+                    },
+                    error = {
+                        Icon(
+                            imageVector = Icons.Filled.Cookie,
+                            contentDescription = null,
+                            tint = MaterialTheme.colors.onPrimary
+                        )
+                    }
                 )
                 Text(
                     text = ratingModel.userCreatedReport?.minecraftName ?: "-",
