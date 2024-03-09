@@ -1,15 +1,13 @@
 package com.makeevrserg.empireprojekt.mobile.features.ui.pager
 
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.pager.PagerComponent
@@ -27,7 +25,7 @@ fun PagerScreenComponent(
     rootBottomSheetComponent: RootBottomSheetComponent,
     modifier: Modifier = Modifier
 ) {
-    val childStack by pagerComponent.childStack.subscribeAsState()
+    val selectedChild by pagerComponent.selectedChild.subscribeAsState()
     val selectedIndex by pagerComponent.selectedIndex.subscribeAsState()
     Scaffold(
         modifier = Modifier.navigationBarsPadding(),
@@ -38,14 +36,14 @@ fun PagerScreenComponent(
             )
         }
     ) { paddingValues ->
-        Children(
-            stack = childStack,
+        Crossfade(
             modifier = modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(paddingValues),
-            animation = stackAnimation(fade())
-        ) { child ->
-            when (val instance = child.instance) {
+            targetState = selectedChild,
+            label = "Crossfade instance composable"
+        ) { instance ->
+            when (instance) {
                 is PagerComponent.Child.RatingUsers -> RatingUsersScreenComponent(
                     ratingUsersComponent = instance.ratingUsersComponent,
                     popComponent = rootScreenComponent
@@ -65,5 +63,32 @@ fun PagerScreenComponent(
                 PagerComponent.Child.Map -> AndroidMapView()
             }
         }
+//        Children(
+//            stack = childStack,
+//            modifier = modifier
+//                .fillMaxSize()
+//                .padding(paddingValues),
+//            animation = stackAnimation(fade())
+//        ) { child ->
+//            when (val instance = child.instance) {
+//                is PagerComponent.Child.RatingUsers -> RatingUsersScreenComponent(
+//                    ratingUsersComponent = instance.ratingUsersComponent,
+//                    popComponent = rootScreenComponent
+//                )
+//
+//                is PagerComponent.Child.Status -> StatusScreen(
+//                    themeSwitcherComponent = instance.themeSwitcherComponent,
+//                    rootStatusComponent = instance.rootStatusComponent,
+//                    rootBottomSheetComponent = rootBottomSheetComponent
+//                )
+//
+//                is PagerComponent.Child.Towns -> TownsScreenComponent(
+//                    popComponent = rootScreenComponent,
+//                    townsComponent = instance.townsComponent
+//                )
+//
+//                PagerComponent.Child.Map -> AndroidMapView()
+//            }
+//        }
     }
 }
