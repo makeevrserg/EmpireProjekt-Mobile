@@ -70,3 +70,4 @@ modules/features/ui/onboard/build
 modules/features/ui/splash/build
 modules/features/common/build
 modules/features/ui/common/build
+modules/features/towns/build

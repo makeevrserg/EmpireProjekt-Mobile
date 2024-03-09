@@ -29,21 +29,14 @@ class DefaultRatingUserComponent(
     )
 
     private fun collectPagingState() = coroutineFeature.launch {
-        repository.pagingStateFlow.collectLatest {
+        repository.state.collectLatest {
             model.update { model ->
                 model.copy(
                     isLastPage = it.isLastPage,
                     isLoading = it.isLoading,
-                    isFailure = it.isFailure
+                    isFailure = it.isFailure,
+                    items = it.items
                 )
-            }
-        }
-    }
-
-    private fun collectListStateFlow() = coroutineFeature.launch {
-        repository.listStateFlow.collectLatest {
-            model.update { model ->
-                model.copy(items = it)
             }
         }
     }
@@ -56,7 +49,6 @@ class DefaultRatingUserComponent(
     }
 
     override fun loadNextPage() {
-        println("LoadingNextPage")
         coroutineFeature.launch {
             repository.loadNextPage()
         }
@@ -65,6 +57,5 @@ class DefaultRatingUserComponent(
     init {
         repository.updateRequest(model.value.request)
         collectPagingState()
-        collectListStateFlow()
     }
 }

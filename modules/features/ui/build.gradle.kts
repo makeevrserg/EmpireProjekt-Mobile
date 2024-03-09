@@ -44,6 +44,7 @@ kotlin {
                 implementation(projects.modules.features.root)
                 implementation(projects.modules.features.theme)
                 implementation(projects.modules.features.status)
+                implementation(projects.modules.features.towns)
             }
         }
         val androidMain by getting {

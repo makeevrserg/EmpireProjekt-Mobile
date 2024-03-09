@@ -8,6 +8,7 @@
     </string>
     <!--    Status      -->
     <string name="statuses.ratings">Рейтинги</string>
+    <string name="statuses.towns">Города</string>
     <!--    Paging      -->
     <string name="paging_last_page">Ничего больше нет</string>
     <string name="paging_no_pages">Тут ничего нет</string>

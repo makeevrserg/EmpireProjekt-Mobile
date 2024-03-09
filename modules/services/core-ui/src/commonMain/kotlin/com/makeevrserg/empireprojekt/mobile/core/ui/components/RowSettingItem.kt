@@ -65,3 +65,31 @@ fun RowSettingItem(
         postfix?.invoke(this)
     }
 }
+
+@Composable
+fun RowText(
+    title: String,
+    desc: String,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = title,
+            color = MaterialTheme.colors.onPrimary.copy(0.5f),
+            textAlign = TextAlign.Start,
+            modifier = Modifier,
+            style = MaterialTheme.typography.subtitle1,
+        )
+        Text(
+            text = desc,
+            color = MaterialTheme.colors.onPrimary,
+            textAlign = TextAlign.End,
+            modifier = Modifier.weight(1f),
+            style = MaterialTheme.typography.subtitle1
+        )
+    }
+}

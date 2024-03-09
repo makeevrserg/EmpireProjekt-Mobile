@@ -6,6 +6,7 @@ import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUs
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore.State
 import ru.astrainteractive.empireapi.models.rating.RatingListRequest
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
+import ru.astrainteractive.klibs.paging.context.IntPageContext
 import ru.astrainteractive.klibs.paging.state.PagingState
 
 interface RatingUsersStore : Store<Intent, State, Label> {
@@ -24,14 +25,14 @@ interface RatingUsersStore : Store<Intent, State, Label> {
 
     sealed interface Message {
         class ListChanged(val list: List<RatingUserModel>) : Message
-        class PagingStateChanged(val pagingState: PagingState<Int>) : Message
+        class PagingStateChanged(val pagingState: PagingState<RatingUserModel, IntPageContext>) : Message
     }
 
     object Label
 
     sealed interface Action {
         class ListChanged(val list: List<RatingUserModel>) : Action
-        class PagingStateChanged(val pagingState: PagingState<Int>) : Action
+        class PagingStateChanged(val pagingState: PagingState<RatingUserModel, IntPageContext>) : Action
         data object UpdateRequestModel : Action
     }
 }

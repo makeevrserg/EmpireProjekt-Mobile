@@ -4,8 +4,6 @@ import com.arkivanov.decompose.ComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.DefaultSplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.rating.user.DefaultRatingUserComponent
 import com.makeevrserg.empireprojekt.mobile.features.rating.user.di.RatingUserModule
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.DefaultRatingUsersComponent
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.DefaultRootScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
@@ -26,31 +24,6 @@ class RootScreenComponentChildFactory(
                 )
             )
 
-            RootScreenComponent.Child.Status -> {
-                DefaultRootScreenComponent.Configuration.Status(
-                    themeSwitcherComponent = rootModule.componentsModule.themeSwitcherComponent.value,
-                    rootStatusComponent = rootModule.componentsModule.rootStatusComponent.value
-                )
-            }
-
-            RootScreenComponent.Child.RatingUsers -> {
-                DefaultRootScreenComponent.Configuration.RatingUsers(
-                    ratingUsersComponent = DefaultRatingUsersComponent(
-                        componentContext = context,
-                        moduleFactory = {
-                            RatingUsersModule.Default(
-                                empireApiModule = rootModule.empireApiModule,
-                                dispatchers = rootModule.servicesModule.dispatchers.value
-                            )
-                        },
-                        onShowUserRatingsClicked = { id, userName ->
-                            val configuration = RootScreenComponent.Child.RatingUser(id, userName)
-                            instance.push(configuration)
-                        }
-                    )
-                )
-            }
-
             is RootScreenComponent.Child.RatingUser -> {
                 val module = RatingUserModule.Default(
                     empireApiModule = rootModule.empireApiModule,
@@ -62,6 +35,17 @@ class RootScreenComponentChildFactory(
                         userId = config.userId,
                         repository = module.ratingUserRepository,
                         userName = config.userName
+                    )
+                )
+            }
+
+            RootScreenComponent.Child.Pager -> {
+                DefaultRootScreenComponent.Configuration.Pager(
+                    pagerComponent = rootModule.pagerModule.createPagerComponent(
+                        componentContext = context,
+                        onRootNavigation = { configuration ->
+                            instance.push(configuration)
+                        }
                     )
                 )
             }

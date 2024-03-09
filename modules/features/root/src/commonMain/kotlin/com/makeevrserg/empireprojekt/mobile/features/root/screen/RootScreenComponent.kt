@@ -19,10 +19,7 @@ interface RootScreenComponent : BackHandlerOwner, PopComponent {
         data object Splash : Child
 
         @Parcelize
-        data object Status : Child
-
-        @Parcelize
-        data object RatingUsers : Child
+        data object Pager : Child
 
         @Parcelize
         class RatingUser(val userId: Long, val userName: String) : Child

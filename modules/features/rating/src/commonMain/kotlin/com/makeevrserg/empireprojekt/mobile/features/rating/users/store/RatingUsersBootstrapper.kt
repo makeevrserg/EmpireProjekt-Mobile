@@ -13,7 +13,6 @@ internal class RatingUsersBootstrapper(
 
     override fun invoke() {
         collectPagingState()
-        collectListStateFlow()
         updateRequestModel()
     }
 
@@ -22,14 +21,9 @@ internal class RatingUsersBootstrapper(
     }
 
     private fun collectPagingState() = scope.launch {
-        ratingUsersRepository.pagingStateFlow.collectLatest {
+        ratingUsersRepository.state.collectLatest {
             Action.PagingStateChanged(it).run(::dispatch)
-        }
-    }
-
-    private fun collectListStateFlow() = scope.launch {
-        ratingUsersRepository.listStateFlow.collectLatest {
-            Action.ListChanged(it).run(::dispatch)
+            Action.ListChanged(it.items).run(::dispatch)
         }
     }
 }
