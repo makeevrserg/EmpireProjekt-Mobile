@@ -59,12 +59,15 @@ internal class DefaultPagerComponent(
                         )
                     )
                 }
+
+                Configuration.Map -> PagerComponent.Child.Map
             }
         }
     )
 
     override val selectedIndex: Value<Int> = childStack.map {
         when (it.active.instance) {
+            PagerComponent.Child.Map -> 3
             is PagerComponent.Child.RatingUsers -> 2
             is PagerComponent.Child.Status -> 1
             is PagerComponent.Child.Towns -> 0
@@ -83,11 +86,16 @@ internal class DefaultPagerComponent(
         navigation.replaceAll(Configuration.Towns)
     }
 
+    override fun selectMap() {
+        navigation.replaceAll(Configuration.Map)
+    }
+
     override fun select(index: Int) {
         when (index) {
             0 -> selectTowns()
             1 -> selectStatus()
             2 -> selectRatings()
+            3 -> selectMap()
             else -> error("Index out of bounds")
         }
     }
@@ -101,5 +109,8 @@ internal class DefaultPagerComponent(
 
         @Parcelize
         data object Towns : Configuration
+
+        @Parcelize
+        data object Map : Configuration
     }
 }

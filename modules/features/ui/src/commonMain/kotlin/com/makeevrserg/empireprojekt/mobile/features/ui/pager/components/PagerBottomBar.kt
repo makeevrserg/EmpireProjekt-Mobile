@@ -22,7 +22,8 @@ internal fun PagerBottomBar(selectedIndex: Int, onClicked: (Int) -> Unit, modifi
         listOf(
             PagerBottomBarItem.Towns,
             PagerBottomBarItem.Status,
-            PagerBottomBarItem.Ratings
+            PagerBottomBarItem.Ratings,
+            PagerBottomBarItem.Map
         )
     }
     BottomNavigation(

@@ -14,6 +14,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.pager.PagerComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.ui.map.AndroidMapView
 import com.makeevrserg.empireprojekt.mobile.features.ui.pager.components.PagerBottomBar
 import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.RatingUsersScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.StatusScreen
@@ -60,6 +61,8 @@ fun PagerScreenComponent(
                     popComponent = rootScreenComponent,
                     townsComponent = instance.townsComponent
                 )
+
+                PagerComponent.Child.Map -> AndroidMapView()
             }
         }
     }

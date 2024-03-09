@@ -17,6 +17,8 @@ interface PagerComponent {
 
     fun selectTowns()
 
+    fun selectMap()
+
     fun select(index: Int)
 
     sealed interface Child {
@@ -33,5 +35,7 @@ interface PagerComponent {
         class Towns(
             val townsComponent: TownsComponent
         ) : Child
+
+        data object Map : Child
     }
 }
