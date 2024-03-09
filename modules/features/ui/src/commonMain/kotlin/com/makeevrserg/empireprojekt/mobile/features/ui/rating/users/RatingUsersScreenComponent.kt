@@ -1,7 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.features.ui.rating.users
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -42,7 +41,7 @@ fun RatingUsersScreenComponent(
         }
     ) {
         LazyColumn(
-            modifier = Modifier.padding(horizontal = AppTheme.dimens.XS).navigationBarsPadding(),
+            modifier = Modifier.padding(horizontal = AppTheme.dimens.XS),
             verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS),
             contentPadding = it,
             state = lazyListState

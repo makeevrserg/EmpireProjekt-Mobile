@@ -12,11 +12,9 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.operator.map
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.rating.user.RatingUserComponent
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.RatingUsersComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
+import com.makeevrserg.empireprojekt.mobile.features.root.pager.PagerComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.di.factory.RootScreenComponentChildFactory
-import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 
 class DefaultRootScreenComponent(
@@ -69,17 +67,12 @@ class DefaultRootScreenComponent(
             val splashComponent: SplashComponent
         ) : Configuration
 
-        class Status(
-            val rootStatusComponent: RootStatusComponent,
-            val themeSwitcherComponent: ThemeSwitcherComponent
-        ) : Configuration
-
-        class RatingUsers(
-            val ratingUsersComponent: RatingUsersComponent
-        ) : Configuration
-
         class RatingUser(
             val ratingUserComponent: RatingUserComponent
+        ) : Configuration
+
+        class Pager(
+            val pagerComponent: PagerComponent
         ) : Configuration
     }
 }

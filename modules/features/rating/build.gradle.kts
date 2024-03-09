@@ -28,7 +28,7 @@ kotlin {
                 // Moko
                 implementation(libs.moko.resources.core)
                 // Paging
-                implementation("ru.astrainteractive.klibs:paging:1.0.0")
+                implementation(libs.klibs.paging)
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
                 // MVIKotlin

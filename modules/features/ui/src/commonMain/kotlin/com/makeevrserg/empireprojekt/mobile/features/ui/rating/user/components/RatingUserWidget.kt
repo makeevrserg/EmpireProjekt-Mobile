@@ -23,9 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
+import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.components.PlayerHeadBox
 import com.makeevrserg.empireprojekt.mobile.resources.MR
 import ru.astrainteractive.empireapi.models.rating.RatingModel
 
@@ -44,10 +44,11 @@ fun RatingUserWidget(ratingModel: RatingModel) {
                 horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.S),
                 modifier = Modifier.padding(horizontal = AppTheme.dimens.S)
             ) {
-                AsyncImage(
-                    model = "https://mc-heads.net/avatar/${ratingModel.userCreatedReport?.minecraftUUID}",
-                    contentDescription = null,
-                    modifier = Modifier.size(32.dp)
+                PlayerHeadBox(
+                    uuid = ratingModel.userCreatedReport?.minecraftUUID.orEmpty(),
+                    modifier = Modifier
+                        .size(32.dp)
+                        .clip(RoundedCornerShape(AppTheme.dimens.XXS)),
                 )
                 Text(
                     text = ratingModel.userCreatedReport?.minecraftName ?: "-",

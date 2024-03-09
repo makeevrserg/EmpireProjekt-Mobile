@@ -24,11 +24,16 @@ kotlin {
                 implementation(compose.material)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
+                // Compose extensions
+                implementation(libs.composeext.shimmer)
                 // klibs
                 implementation(libs.klibs.mikro.core)
                 implementation(libs.klibs.mikro.platform)
+                implementation(libs.klibs.mikro.extensions)
                 implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
+                // Kotlin
+                implementation(libs.kotlin.datetime)
                 // Moko
                 implementation(libs.moko.resources.core)
                 // Decompose
@@ -42,6 +47,7 @@ kotlin {
                 implementation(projects.modules.features.root)
                 implementation(projects.modules.features.theme)
                 implementation(projects.modules.features.status)
+                implementation(projects.modules.features.towns)
             }
         }
         val androidMain by getting {

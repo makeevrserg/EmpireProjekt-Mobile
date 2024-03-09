@@ -18,7 +18,7 @@ import ru.astrainteractive.empireapi.models.response.GenericPagedModel
 
 class RatingApiImpl(
     private val httpClient: HttpClient,
-    private val baseUrl: String = "http://astralearner.empireprojekt.ru:8086"
+    private val baseUrl: String = "https://empireapi.astrainteractive.ru"
 ) : RatingApi {
 
     override suspend fun users(page: Int, size: Int, body: RatingListRequest): GenericPagedModel<RatingUserModel> {

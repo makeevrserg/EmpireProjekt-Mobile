@@ -1,5 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.core.ui.components
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -7,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -72,15 +72,19 @@ object PagingWidget {
 
     @Suppress("ModifierMissing")
     @Composable
-    fun Loading() {
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator(
-                modifier = Modifier.size(AppTheme.dimens.M),
-                color = AppTheme.customColors.astraOrange
-            )
+    fun Loading(isLoading: Boolean) {
+        Crossfade(
+            targetState = isLoading,
+            label = "crossfade loading indicator"
+        ) { localIsLoading ->
+            if (localIsLoading) {
+                Box(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    AstraLoading(AppTheme.dimens.M)
+                }
+            }
         }
     }
 
@@ -92,9 +96,8 @@ object PagingWidget {
         isFailure: Boolean,
         onReload: () -> Unit
     ) {
-        if (isLoading) {
-            Loading()
-        } else if (isLastPage && list.isNotEmpty()) {
+        Loading(isLoading = isLoading)
+        if (isLastPage && list.isNotEmpty()) {
             LastPage()
         } else if (isLastPage && list.isEmpty()) {
             NoPages()

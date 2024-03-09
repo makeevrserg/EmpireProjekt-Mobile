@@ -18,14 +18,10 @@ import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
-import com.makeevrserg.empireprojekt.mobile.core.ui.components.RowSettingChevronItem
-import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCenterAlignedTopAppBar
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
@@ -36,7 +32,7 @@ import ru.astrainteractive.klibs.mikro.core.util.next
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun StatusScreen(
-    rootComponent: RootComponent,
+    rootBottomSheetComponent: RootBottomSheetComponent,
     themeSwitcherComponent: ThemeSwitcherComponent,
     rootStatusComponent: RootStatusComponent,
 ) {
@@ -61,10 +57,9 @@ fun StatusScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                modifier = Modifier.navBarsPadding(),
                 backgroundColor = MaterialTheme.colors.secondaryVariant,
                 onClick = {
-                    rootComponent.rootBottomSheetComponent.showInfoSheet()
+                    rootBottomSheetComponent.showInfoSheet()
                 },
             ) {
                 Icon(
@@ -84,17 +79,6 @@ fun StatusScreen(
                     text = MR.strings.status_subtitle.asComposableString(),
                     style = MaterialTheme.typography.body1,
                     color = MaterialTheme.colors.onPrimary.copy(alpha = .5f)
-                )
-            }
-            item {
-                RowSettingChevronItem(
-                    icon = MR.images.ic_splash,
-                    text = MR.strings.statuses_ratings.asComposableString(),
-                    tint = Color.Unspecified,
-                    onClick = {
-                        val configuration = RootScreenComponent.Child.RatingUsers
-                        rootComponent.rootScreenComponent.push(configuration)
-                    }
                 )
             }
             items(rootStatusComponent.statusComponents) {

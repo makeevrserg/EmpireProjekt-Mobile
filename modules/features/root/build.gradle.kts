@@ -74,6 +74,7 @@ kotlin {
                 api(projects.modules.features.rating)
                 api(projects.modules.features.theme)
                 api(projects.modules.features.status)
+                api(projects.modules.features.towns)
             }
         }
         val androidMain by getting {

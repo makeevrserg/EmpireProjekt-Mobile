@@ -23,10 +23,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
+import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
+import com.makeevrserg.empireprojekt.mobile.core.ui.theme.ComposeTheme
 import com.makeevrserg.empireprojekt.mobile.resources.MR
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 
@@ -48,10 +50,11 @@ fun RatingUserWidget(
                 modifier = Modifier.padding(vertical = AppTheme.dimens.XS, horizontal = AppTheme.dimens.S),
                 horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
             ) {
-                AsyncImage(
-                    model = "https://mc-heads.net/avatar/${model.minecraftUUID}",
-                    contentDescription = null,
-                    modifier = Modifier.size(32.dp)
+                PlayerHeadBox(
+                    uuid = model.minecraftUUID,
+                    modifier = Modifier
+                        .size(32.dp)
+                        .clip(RoundedCornerShape(AppTheme.dimens.XXS)),
                 )
                 Column {
                     Text(
@@ -108,5 +111,22 @@ fun RatingUserWidget(
                 }
             )
         }
+    }
+}
+
+@Composable
+@Preview
+private fun RatingUserWidgetPreview() {
+    AdaptThemeFade(composeTheme = ComposeTheme.DARK) {
+        RatingUserWidget(
+            model = RatingUserModel(
+                id = 1,
+                minecraftUUID = "uuid",
+                minecraftName = "name",
+                lastUpdated = 0,
+                total = 10
+            ),
+            onClick = {}
+        )
     }
 }
