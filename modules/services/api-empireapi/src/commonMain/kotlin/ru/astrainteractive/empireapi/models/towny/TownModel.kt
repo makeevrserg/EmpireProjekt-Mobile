@@ -16,4 +16,5 @@ class TownModel(
     val outlaws: List<String>,
     val registered: Long,
     val ruined: Boolean,
+    val residentsCount: Long
 )

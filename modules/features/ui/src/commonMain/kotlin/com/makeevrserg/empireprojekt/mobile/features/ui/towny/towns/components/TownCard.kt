@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,6 +24,9 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.ComposeTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.components.PlayerHeadBox
+import kotlinx.datetime.Instant
+import ru.astrainteractive.klibs.mikro.extensions.JvmTimeFormatter
+import ru.astrainteractive.klibs.mikro.extensions.TimeFormatter
 
 @Composable
 fun TownCard(
@@ -30,8 +34,14 @@ fun TownCard(
     townName: String,
     board: String,
     founder: String,
-    nation: String
+    nation: String,
+    outlawsAmount: Int,
+    tag: String,
+    registered: Long,
+    residentsCount: Long,
+    isOpen: Boolean
 ) {
+    val timeFormatter: TimeFormatter = JvmTimeFormatter()
     Column(
         modifier = Modifier
             .clip(RoundedCornerShape(AppTheme.dimens.XS))
@@ -43,19 +53,36 @@ fun TownCard(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            PlayerHeadBox(
-                uuid = mayor,
-                modifier = Modifier
-                    .size(32.dp)
-                    .clip(RoundedCornerShape(AppTheme.dimens.XXS)),
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
+            ) {
+                PlayerHeadBox(
+                    uuid = mayor,
+                    modifier = Modifier
+                        .size(32.dp)
+                        .clip(RoundedCornerShape(AppTheme.dimens.XXS)),
+                )
+                Text(
+                    text = mayor,
+                    style = MaterialTheme.typography.h6,
+                    color = MaterialTheme.colors.onPrimary,
+                    textAlign = TextAlign.Center
+                )
+            }
             Text(
-                text = mayor,
-                style = MaterialTheme.typography.h6,
-                color = MaterialTheme.colors.onPrimary,
-                textAlign = TextAlign.Center
+                text = residentsCount.toString(),
+                style = MaterialTheme.typography.subtitle2,
+                color = MaterialTheme.colors.primary,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(AppTheme.dimens.XS))
+                    .background(AppTheme.customColors.astraYellow)
+                    .padding(horizontal = AppTheme.dimens.XS)
+                    .padding(vertical = AppTheme.dimens.XXS)
             )
         }
         Text(
@@ -72,13 +99,52 @@ fun TownCard(
             )
         }
         RowText(
+            title = "Tag:",
+            desc = tag,
+            modifier = Modifier.fillMaxWidth()
+        )
+        RowText(
             title = "Founder:",
             desc = founder,
             modifier = Modifier.fillMaxWidth()
         )
+        if (nation.isNotBlank()) {
+            RowText(
+                title = "Nation:",
+                desc = nation,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        if (outlawsAmount > 0) {
+            RowText(
+                title = "Outlaws count:",
+                desc = outlawsAmount.toString(),
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
         RowText(
-            title = "Nation:",
-            desc = nation,
+            title = "Registered:",
+            desc = remember {
+                timeFormatter.format(
+                    instant = Instant.fromEpochMilliseconds(registered),
+                    format = "dd.MM.yyyy"
+                )
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+        RowText(
+            title = "Enterance:",
+            desc = remember {
+                when (isOpen) {
+                    true -> "Public"
+                    false -> "Private"
+                }
+            },
+            descColor = when (isOpen) {
+                true -> AppTheme.customColors.colorPositive
+                false -> AppTheme.customColors.colorNegative
+            },
             modifier = Modifier.fillMaxWidth()
         )
     }
@@ -94,7 +160,12 @@ private fun TownCardPreview() {
                 townName = "Rostov",
                 board = "Международный контролирующий орган по борьбе с пивом",
                 founder = "cinnamonrein",
-                nation = "NCR"
+                nation = "NCR",
+                outlawsAmount = 1,
+                tag = "NCR",
+                registered = 1706549308031,
+                residentsCount = 10,
+                isOpen = true
             )
         }
     }

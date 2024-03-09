@@ -53,7 +53,12 @@ fun TownsScreenComponent(
                     townName = townModel.name,
                     board = townModel.townBoard,
                     founder = townModel.founder,
-                    nation = townModel.nation
+                    nation = townModel.nation,
+                    outlawsAmount = townModel.outlaws.size,
+                    tag = townModel.tag,
+                    registered = townModel.registered,
+                    residentsCount = townModel.residentsCount,
+                    isOpen = townModel.open
                 )
             }
 

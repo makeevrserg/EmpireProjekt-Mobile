@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
@@ -70,7 +71,9 @@ fun RowSettingItem(
 fun RowText(
     title: String,
     desc: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    titleColor: Color = MaterialTheme.colors.onPrimary.copy(0.5f),
+    descColor: Color = MaterialTheme.colors.onPrimary
 ) {
     Row(
         modifier = modifier,
@@ -79,14 +82,14 @@ fun RowText(
     ) {
         Text(
             text = title,
-            color = MaterialTheme.colors.onPrimary.copy(0.5f),
+            color = titleColor,
             textAlign = TextAlign.Start,
             modifier = Modifier,
             style = MaterialTheme.typography.subtitle1,
         )
         Text(
             text = desc,
-            color = MaterialTheme.colors.onPrimary,
+            color = descColor,
             textAlign = TextAlign.End,
             modifier = Modifier.weight(1f),
             style = MaterialTheme.typography.subtitle1

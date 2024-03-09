@@ -29,8 +29,11 @@ kotlin {
                 // klibs
                 implementation(libs.klibs.mikro.core)
                 implementation(libs.klibs.mikro.platform)
+                implementation(libs.klibs.mikro.extensions)
                 implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
+                // Kotlin
+                implementation(libs.kotlin.datetime)
                 // Moko
                 implementation(libs.moko.resources.core)
                 // Decompose

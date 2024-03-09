@@ -131,6 +131,7 @@ decompose-android = { module = "com.arkivanov.decompose:extensions-android", ver
 essenty = { module = "com.arkivanov.essenty:lifecycle", version.ref = "essenty" }
 # Kotlin
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-version" }
+kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.strictly = "0.4.0" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-javafx = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-javafx", version.ref = "kotlin-coroutines" }
