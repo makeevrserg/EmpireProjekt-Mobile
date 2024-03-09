@@ -17,6 +17,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCente
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.towny.towns.presentation.TownsComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.components.TownCard
+import com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.components.TownFilterCard
 import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 
 @Composable
@@ -47,6 +48,13 @@ fun TownsScreenComponent(
             contentPadding = it,
             state = lazyListState
         ) {
+            item {
+                TownFilterCard(
+                    townsFilter = model.filter,
+                    onSortSelected = townsComponent::selectSortType,
+                    onPublicSelected = townsComponent::selectPublicType
+                )
+            }
             items(model.items) { townModel ->
                 TownCard(
                     mayor = townModel.mayor,
