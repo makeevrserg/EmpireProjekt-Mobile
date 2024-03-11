@@ -41,7 +41,8 @@ class RootModuleImpl : RootModule {
     override val townsModule: TownsModule by Provider {
         TownsModule.Default(
             empireApiModule = empireApiModule,
-            dispatchers = servicesModule.dispatchers.value
+            dispatchers = servicesModule.dispatchers.value,
+            settings = servicesModule.settings.value
         )
     }
     override val pagerModule: PagerModule by Provider {

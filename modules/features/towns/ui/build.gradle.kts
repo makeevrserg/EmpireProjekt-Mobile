@@ -34,6 +34,8 @@ kotlin {
                 // Local
                 implementation(projects.modules.services.coreResources)
                 implementation(projects.modules.services.coreUi)
+                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.apiEmpireapi)
                 implementation(projects.modules.features.towns.impl)
             }
         }

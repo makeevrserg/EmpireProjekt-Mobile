@@ -5,7 +5,7 @@ import ru.astrainteractive.klibs.paging.context.PageContext
 
 internal data class TownyPageContext(
     val page: Int = 0,
-    val filter: TownsFilter = TownsFilter()
+    val filter: TownsFilter
 ) : PageContext {
     object Factory : PageContext.Factory<TownyPageContext> {
         override fun next(pageContext: TownyPageContext): TownyPageContext {

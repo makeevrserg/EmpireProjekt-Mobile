@@ -10,7 +10,7 @@ internal class TownyPagingCollector<T>(
     private val initialPage: Int = 0,
     private val pageSize: Int = 10,
     private val pager: PagedListDataSource<T, TownyPageContext>,
-    private val initialFilter: TownsFilter = TownsFilter()
+    private val initialFilter: TownsFilter
 ) : PagingCollector<T, TownyPageContext> by DefaultPagingCollector(
     initialPagingState = PagingState(
         pageContext = TownyPageContext(page = initialPage, filter = initialFilter),
