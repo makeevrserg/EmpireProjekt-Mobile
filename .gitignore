@@ -40,10 +40,19 @@ modules/services/core-resources/build
 modules/services/core-ui/build
 modules/services/wear-messenger/build
 # Features ----------------------------------
+modules/features/info/ui/build
+modules/features/map/ui/build
 modules/features/rating/impl/build
+modules/features/rating/ui/build
+modules/features/root/api/build
 modules/features/root/impl/build
-modules/features/root/impl/impl.podspec
+modules/features/root/ui/build
 modules/features/splash/impl/build
+modules/features/splash/ui/build
 modules/features/status/impl/build
+modules/features/status/ui/build
+modules/features/theme/api/build
 modules/features/theme/impl/build
+modules/features/theme/ui/build
 modules/features/towns/impl/build
+modules/features/towns/ui/build

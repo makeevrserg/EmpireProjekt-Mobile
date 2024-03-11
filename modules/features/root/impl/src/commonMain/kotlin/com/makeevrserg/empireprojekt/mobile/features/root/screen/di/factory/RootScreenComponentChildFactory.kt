@@ -6,25 +6,26 @@ import com.makeevrserg.empireprojekt.mobile.features.rating.user.DefaultRatingUs
 import com.makeevrserg.empireprojekt.mobile.features.rating.user.di.RatingUserModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.DefaultRootScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootRouter
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
 import ru.astrainteractive.klibs.kdi.Factory
 
 class RootScreenComponentChildFactory(
-    private val config: RootScreenComponent.Child,
+    private val config: RootRouter.Configuration,
     private val context: ComponentContext,
     private val rootModule: RootModule,
     private val instance: RootScreenComponent
 ) : Factory<DefaultRootScreenComponent.Configuration> {
     override fun create(): DefaultRootScreenComponent.Configuration {
         return when (config) {
-            RootScreenComponent.Child.Splash -> DefaultRootScreenComponent.Configuration.Splash(
+            RootRouter.Configuration.Splash -> DefaultRootScreenComponent.Configuration.Splash(
                 splashComponent = DefaultSplashComponent(
                     context = context,
                     module = rootModule.splashModule
                 )
             )
 
-            is RootScreenComponent.Child.RatingUser -> {
+            is RootRouter.Configuration.RatingUser -> {
                 val module = RatingUserModule.Default(
                     empireApiModule = rootModule.empireApiModule,
                     dispatchers = rootModule.servicesModule.dispatchers.value
@@ -39,7 +40,7 @@ class RootScreenComponentChildFactory(
                 )
             }
 
-            RootScreenComponent.Child.Pager -> {
+            RootRouter.Configuration.Pager -> {
                 DefaultRootScreenComponent.Configuration.Pager(
                     pagerComponent = rootModule.pagerModule.createPagerComponent(
                         componentContext = context,

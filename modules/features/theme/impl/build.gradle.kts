@@ -27,10 +27,12 @@ kotlin {
                 implementation(libs.decompose.core)
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
+                // Local
+                implementation(projects.modules.features.theme.api)
             }
         }
     }
 }
 android {
-    namespace = "${projectInfo.group}.theme"
+    namespace = "${projectInfo.group}.theme.impl"
 }

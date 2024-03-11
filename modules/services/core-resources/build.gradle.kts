@@ -1,3 +1,5 @@
+@file:Suppress("UnusedPrivateMember")
+
 import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
 
 plugins {
@@ -7,6 +9,7 @@ plugins {
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
 }
+
 kotlin {
     android()
     ios()

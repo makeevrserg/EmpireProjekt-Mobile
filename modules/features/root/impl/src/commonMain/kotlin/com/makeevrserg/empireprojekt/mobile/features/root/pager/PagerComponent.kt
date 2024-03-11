@@ -3,7 +3,7 @@ package com.makeevrserg.empireprojekt.mobile.features.root.pager
 import com.arkivanov.decompose.value.Value
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.RatingUsersComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.presentation.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.features.towny.towns.presentation.TownsComponent
 
 interface PagerComponent {

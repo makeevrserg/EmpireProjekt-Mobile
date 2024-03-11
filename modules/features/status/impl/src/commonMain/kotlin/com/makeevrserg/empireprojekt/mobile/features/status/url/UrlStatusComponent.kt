@@ -1,7 +1,7 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.url
 
-import com.makeevrserg.empireprojekt.mobile.services.core.AnyStateFlow
 import dev.icerock.moko.resources.desc.StringDesc
+import kotlinx.coroutines.flow.StateFlow
 
 interface UrlStatusComponent {
     data class Model(
@@ -14,6 +14,6 @@ interface UrlStatusComponent {
         LOADING, SUCCESS, ERROR
     }
 
-    val model: AnyStateFlow<Model>
+    val model: StateFlow<Model>
     fun checkStatus()
 }

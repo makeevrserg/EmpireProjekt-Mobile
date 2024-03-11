@@ -8,6 +8,7 @@ plugins {
     kotlin("multiplatform")
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
+    id("ru.astrainteractive.gradleplugin.android.compose")
 }
 kotlin {
     android()
@@ -22,6 +23,8 @@ kotlin {
                 // Decompose
                 implementation(libs.decompose.core)
                 implementation(libs.decompose.compose.jetbrains)
+                // Compose extensions
+                implementation(libs.composeext.shimmer)
                 // Moko
                 implementation(libs.moko.resources.core)
                 implementation(libs.moko.resources.compose)
@@ -37,19 +40,16 @@ kotlin {
                 implementation(projects.modules.services.core)
             }
         }
+
         val androidMain by getting {
             dependencies {
                 implementation(libs.google.accompanist.flowlayout)
+                // Image loading
+                implementation("io.coil-kt:coil-compose:2.4.0")
             }
         }
     }
 }
 android {
     namespace = "${projectInfo.group}.core.ui"
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
-    }
-    buildFeatures {
-        compose = true
-    }
 }

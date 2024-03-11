@@ -8,12 +8,12 @@ import com.arkivanov.decompose.value.operator.map
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.DefaultRatingUsersComponent
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
-import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootRouter
 
 internal class DefaultPagerComponent(
     componentContext: ComponentContext,
     rootModule: RootModule,
-    onRootNavigation: (RootScreenComponent.Child) -> Unit
+    onRootNavigation: (RootRouter.Configuration) -> Unit
 ) : PagerComponent, ComponentContext by componentContext {
     private val ratingUsersChild by lazy {
         PagerComponent.Child.RatingUsers(
@@ -26,7 +26,7 @@ internal class DefaultPagerComponent(
                     )
                 },
                 onShowUserRatingsClicked = { id, userName ->
-                    val configuration = RootScreenComponent.Child.RatingUser(id, userName)
+                    val configuration = RootRouter.Configuration.RatingUser(id, userName)
                     onRootNavigation.invoke(configuration)
                 }
             )

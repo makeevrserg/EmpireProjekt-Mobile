@@ -8,6 +8,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.compose")
     id("ru.astrainteractive.gradleplugin.android.apk.name")
 }
 
@@ -70,12 +71,6 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -126,9 +121,10 @@ dependencies {
     implementation("com.google.android.gms:play-services-wearable:18.0.0")
     // Local
     implementation(projects.modules.features.root.impl)
+    implementation(projects.modules.features.theme.api)
     implementation(projects.modules.features.theme.impl)
+    implementation(projects.modules.features.theme.ui)
     implementation(projects.modules.features.status.impl)
-    implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.coreResources)
     implementation(projects.modules.services.wearMessenger)

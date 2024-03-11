@@ -22,11 +22,11 @@ class DefaultRootScreenComponent(
     rootModule: RootModule,
 ) : RootScreenComponent, ComponentContext by componentContext {
 
-    private val navigation = StackNavigation<RootScreenComponent.Child>()
+    private val navigation = StackNavigation<RootRouter.Configuration>()
 
     override val childStack: Value<ChildStack<*, Configuration>> = childStack(
         source = navigation,
-        initialConfiguration = RootScreenComponent.Child.Splash,
+        initialConfiguration = RootRouter.Configuration.Splash,
         handleBackButton = true,
         childFactory = { config, context ->
             RootScreenComponentChildFactory(
@@ -45,16 +45,16 @@ class DefaultRootScreenComponent(
         )
     }
 
-    override fun push(screen: RootScreenComponent.Child) {
-        navigation.push(screen)
+    override fun push(configuration: RootRouter.Configuration) {
+        navigation.push(configuration)
     }
 
-    override fun replaceCurrent(screen: RootScreenComponent.Child) {
-        navigation.replaceCurrent(screen)
+    override fun replaceCurrent(configuration: RootRouter.Configuration) {
+        navigation.replaceCurrent(configuration)
     }
 
-    override fun replaceAll(screen: RootScreenComponent.Child) {
-        navigation.replaceAll(screen)
+    override fun replaceAll(configuration: RootRouter.Configuration) {
+        navigation.replaceAll(configuration)
     }
 
     override fun pop() {

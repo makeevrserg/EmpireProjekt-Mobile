@@ -2,7 +2,7 @@ package com.makeevrserg.empireprojekt.mobile.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-class CustomColors(
+data class CustomColors(
     val colorNegative: Color = Color(0xFFB00020),
     val colorPositive: Color = Color(0xFF26B000),
     val astraRed: Color = Color(0xFFbc2551),

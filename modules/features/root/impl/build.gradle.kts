@@ -5,37 +5,13 @@ import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
-    id("dev.icerock.mobile.multiplatform-resources")
     alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
     android()
-    ios()
-    iosSimulatorArm64()
-    cocoapods {
-        summary = projectInfo.description
-        homepage = projectInfo.url
-        version = projectInfo.versionString
-        ios.deploymentTarget = "16.0"
-        podfile = project.file("../../../instances/iosApp/Podfile")
-        framework {
-            baseName = "Root"
-            isStatic = false
-            export(libs.moko.resources.core)
-            export(projects.modules.services.coreResources)
-            export(projects.modules.features.splash)
-            export(projects.modules.services.core)
-            export(libs.decompose.core)
-            export(libs.essenty)
-            export(libs.moko.mvvm.core)
-            export(libs.moko.mvvm.flow)
-            export(libs.klibs.mikro.platform)
-        }
-    }
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -70,8 +46,10 @@ kotlin {
                 api(projects.modules.services.coreResources)
                 api(projects.modules.services.core)
                 api(projects.modules.services.apiEmpireapi)
+                api(projects.modules.features.root.api)
                 api(projects.modules.features.splash.impl)
                 api(projects.modules.features.rating.impl)
+                api(projects.modules.features.theme.api)
                 api(projects.modules.features.theme.impl)
                 api(projects.modules.features.status.impl)
                 api(projects.modules.features.towns.impl)
@@ -83,21 +61,6 @@ kotlin {
                 implementation(libs.ktor.client.cio)
             }
         }
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
-            }
-        }
-        val iosX64Main by getting {
-            resources.srcDirs("build/generated/moko/iosX64Main/src")
-        }
-        val iosArm64Main by getting {
-            resources.srcDirs("build/generated/moko/iosArm64Main/src")
-        }
-        val iosSimulatorArm64Main by getting {
-            this.dependsOn(iosMain)
-            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
-        }
     }
 }
 android {
@@ -107,6 +70,7 @@ android {
         getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
     }
 }
+
 dependencies {
     // FireBase
     implementation(platform(libs.google.firebase.bom))
@@ -118,8 +82,4 @@ dependencies {
     implementation(libs.google.auth)
     implementation(libs.kotlin.coroutines.playServices)
     implementation("io.ktor:ktor-client-logging-jvm:2.3.2")
-}
-
-multiplatformResources {
-    multiplatformResourcesPackage = "mock"
 }

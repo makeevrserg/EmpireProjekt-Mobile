@@ -1,6 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.wear.di
 
-import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.presentation.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.di.WearMessengerModule
 import com.russhwolf.settings.Settings

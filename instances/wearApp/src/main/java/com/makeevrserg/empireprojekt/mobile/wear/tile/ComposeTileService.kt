@@ -26,7 +26,7 @@ import androidx.glance.wear.tiles.LocalTimeInterval
 import androidx.glance.wear.tiles.TimeInterval
 import androidx.glance.wear.tiles.TimelineMode
 import androidx.glance.wear.tiles.action.ActionCallback
-import com.makeevrserg.empireprojekt.mobile.resources.R
+import com.makeevrserg.empireprojekt.mobile.core.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.MainActivity
 import java.time.Instant
 

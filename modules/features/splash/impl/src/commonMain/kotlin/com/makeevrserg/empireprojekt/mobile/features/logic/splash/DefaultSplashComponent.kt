@@ -2,7 +2,6 @@ package com.makeevrserg.empireprojekt.mobile.features.logic.splash
 
 import com.arkivanov.decompose.ComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.di.SplashComponentModule
-import dev.icerock.moko.mvvm.flow.cFlow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
@@ -14,7 +13,7 @@ class DefaultSplashComponent(
     SplashComponentModule by module,
     ComponentContext by context {
     private val _screenChannel = Channel<SplashComponent.Label>()
-    override val screenChannelFlow = _screenChannel.consumeAsFlow().cFlow()
+    override val screenChannelFlow = _screenChannel.consumeAsFlow()
 
     init {
         mainScope.launch(dispatchers.IO) {
