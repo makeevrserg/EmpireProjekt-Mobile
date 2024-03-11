@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.RowDropdownText
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
@@ -44,7 +45,7 @@ fun TownFilterCard(
         verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
     ) {
         Text(
-            text = "Filter",
+            text = MR.strings.towns_towns_filter_filter.asComposableString(),
             color = MaterialTheme.colors.onPrimary,
             textAlign = TextAlign.Start,
             style = MaterialTheme.typography.h5,
@@ -52,7 +53,7 @@ fun TownFilterCard(
         Spacer(modifier = Modifier.height(AppTheme.dimens.XS))
 
         RowDropdownText(
-            title = "Public:",
+            title = MR.strings.towns_towns_filter_public.asComposableString(),
             items = TownPublicType.entries,
             modifier = Modifier.fillMaxWidth(),
             toString = { it.toStringDesc().asComposableString() },
@@ -61,7 +62,7 @@ fun TownFilterCard(
         )
 
         RowDropdownText(
-            title = "Sort by:",
+            title = MR.strings.towns_towns_filter_sort.asComposableString(),
             items = TownSortBy.entries,
             modifier = Modifier.fillMaxWidth(),
             toString = { it.toStringDesc().asComposableString() },

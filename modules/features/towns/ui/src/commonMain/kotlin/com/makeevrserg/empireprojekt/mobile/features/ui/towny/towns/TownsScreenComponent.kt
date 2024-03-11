@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.OnEndReached
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.PagingWidget
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCenterAlignedTopAppBar
@@ -35,7 +37,7 @@ fun TownsScreenComponent(
         modifier = Modifier,
         topBar = {
             AstraCenterAlignedTopAppBar(
-                title = "Towns",
+                title = MR.strings.towns_title.asComposableString(),
                 popComponent = popComponent
             )
         }

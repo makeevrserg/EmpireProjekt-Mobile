@@ -19,6 +19,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.PlayerHeadBox
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.RowText
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
@@ -99,32 +101,32 @@ fun TownCard(
             )
         }
         RowText(
-            title = "Tag:",
+            title = MR.strings.towns_town_card_tag.asComposableString(),
             desc = tag,
             modifier = Modifier.fillMaxWidth()
         )
         RowText(
-            title = "Founder:",
+            title = MR.strings.towns_town_card_founder.asComposableString(),
             desc = founder,
             modifier = Modifier.fillMaxWidth()
         )
         if (nation.isNotBlank()) {
             RowText(
-                title = "Nation:",
+                title = MR.strings.towns_town_card_nation.asComposableString(),
                 desc = nation,
                 modifier = Modifier.fillMaxWidth()
             )
         }
         if (outlawsAmount > 0) {
             RowText(
-                title = "Outlaws count:",
+                title = MR.strings.towns_town_card_outlaw_count.asComposableString(),
                 desc = outlawsAmount.toString(),
                 modifier = Modifier.fillMaxWidth()
             )
         }
 
         RowText(
-            title = "Registered:",
+            title = MR.strings.towns_town_card_registered.asComposableString(),
             desc = remember {
                 timeFormatter.format(
                     instant = Instant.fromEpochMilliseconds(registered),
@@ -134,12 +136,10 @@ fun TownCard(
             modifier = Modifier.fillMaxWidth()
         )
         RowText(
-            title = "Enterance:",
-            desc = remember {
-                when (isOpen) {
-                    true -> "Public"
-                    false -> "Private"
-                }
+            title = MR.strings.towns_town_card_entrance.asComposableString(),
+            desc = when (isOpen) {
+                true -> MR.strings.towns_town_card_entrance_public.asComposableString()
+                false -> MR.strings.towns_town_card_entrance_private.asComposableString()
             },
             descColor = when (isOpen) {
                 true -> AppTheme.customColors.colorPositive

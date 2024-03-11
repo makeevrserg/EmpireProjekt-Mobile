@@ -19,5 +19,40 @@
     <string name="rating.rating">Рейтинг:</string>
     <string name="rating.player_message">Написал:</string>
     <!--    Info    -->
-    <string name="info.more_links">More links:</string>
+    <string name="info.more_links">Больше ссылок:</string>
+    <!--    Towns      -->
+    <string name="towns.title">Города</string>
+    <string name="towns.towns_filter.filter">Фильтр</string>
+    <string name="towns.towns_filter.public">Публичные</string>
+    <string name="towns.towns_filter.sort">Сортировка</string>
+    <string name="towns.town_public_type.none">Не важно</string>
+    <string name="towns.town_public_type.public">Публичные</string>
+    <string name="towns.town_public_type.private">Приватные</string>
+    <string name="towns.town_sort_by.none">Не важно</string>
+    <string name="towns.town_sort_by.name_asc">Имя ↓</string>
+    <string name="towns.town_sort_by.name_desc">Имя ↑</string>
+
+    <string name="towns.town_sort_by.tag_asc">Тэг ↓</string>
+    <string name="towns.town_sort_by.tag_desc">Тэг ↑</string>
+
+    <string name="towns.town_sort_by.founder_asc">Основатель ↓</string>
+    <string name="towns.town_sort_by.founder_desc">Основатель ↑</string>
+
+    <string name="towns.town_sort_by.nation_asc">Нация ↓</string>
+    <string name="towns.town_sort_by.nation_desc">Нация ↑</string>
+
+    <string name="towns.town_sort_by.date_asc">Создан ↓</string>
+    <string name="towns.town_sort_by.date_desc">Создан ↑</string>
+
+    <string name="towns.town_sort_by.residents_asc">Жители ↓</string>
+    <string name="towns.town_sort_by.residents_desc">Жители ↑</string>
+
+    <string name="towns.town_card.tag">Тэг:</string>
+    <string name="towns.town_card.founder">Основатель:</string>
+    <string name="towns.town_card.nation">Нация:</string>
+    <string name="towns.town_card.outlaw_count">Изгоев:</string>
+    <string name="towns.town_card.registered">Создан:</string>
+    <string name="towns.town_card.entrance">Вход:</string>
+    <string name="towns.town_card.entrance.public">Открыт</string>
+    <string name="towns.town_card.entrance.private">Закрыт</string>
 </resources>

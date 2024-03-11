@@ -1,23 +1,22 @@
 package com.makeevrserg.empireprojekt.mobile.features.towny.towns.util
 
-import dev.icerock.moko.resources.desc.Raw
-import dev.icerock.moko.resources.desc.StringDesc
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import ru.astrainteractive.empireapi.models.towny.TownSortBy
 
 object TownSortByExt {
     fun TownSortBy.toStringDesc() = when (this) {
-        TownSortBy.NONE -> StringDesc.Raw("None")
-        TownSortBy.NAME_ASC -> StringDesc.Raw("Name (asc)")
-        TownSortBy.NAME_DESC -> StringDesc.Raw("Name (desc)")
-        TownSortBy.TAG_ASC -> StringDesc.Raw("Tag (asc)")
-        TownSortBy.TAG_DESC -> StringDesc.Raw("Tag (desc)")
-        TownSortBy.FOUNDER_ASC -> StringDesc.Raw("Founder (asc)")
-        TownSortBy.FOUNDER_DESC -> StringDesc.Raw("Founder (desc)")
-        TownSortBy.NATION_ASC -> StringDesc.Raw("Nation (asc)")
-        TownSortBy.NATION_DESC -> StringDesc.Raw("Nation (desc)")
-        TownSortBy.DATE_ASC -> StringDesc.Raw("Date (asc)")
-        TownSortBy.DATE_DESC -> StringDesc.Raw("Date (desc)")
-        TownSortBy.RESIDENTS_ASC -> StringDesc.Raw("Residents (asc)")
-        TownSortBy.RESIDENTS_DESC -> StringDesc.Raw("Residents (desc)")
+        TownSortBy.NONE -> MR.strings.towns_town_sort_by_none
+        TownSortBy.NAME_ASC -> MR.strings.towns_town_sort_by_name_asc
+        TownSortBy.NAME_DESC -> MR.strings.towns_town_sort_by_name_desc
+        TownSortBy.TAG_ASC -> MR.strings.towns_town_sort_by_tag_asc
+        TownSortBy.TAG_DESC -> MR.strings.towns_town_sort_by_tag_desc
+        TownSortBy.FOUNDER_ASC -> MR.strings.towns_town_sort_by_founder_asc
+        TownSortBy.FOUNDER_DESC -> MR.strings.towns_town_sort_by_founder_desc
+        TownSortBy.NATION_ASC -> MR.strings.towns_town_sort_by_nation_asc
+        TownSortBy.NATION_DESC -> MR.strings.towns_town_sort_by_nation_desc
+        TownSortBy.DATE_ASC -> MR.strings.towns_town_sort_by_date_asc
+        TownSortBy.DATE_DESC -> MR.strings.towns_town_sort_by_date_desc
+        TownSortBy.RESIDENTS_ASC -> MR.strings.towns_town_sort_by_residents_asc
+        TownSortBy.RESIDENTS_DESC -> MR.strings.towns_town_sort_by_residents_desc
     }
 }

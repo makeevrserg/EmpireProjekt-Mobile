@@ -41,6 +41,14 @@ class DefaultRootStatusComponent(
         ).run(::add)
 
         DefaultUrlStatusComponent(
+            title = "Prod: EmpireApi",
+            urlStatusRepository = statusModule.urlStatRepositoryFactory(
+                "https://empireapi.astrainteractive.ru/status"
+            ).create(),
+            storeFactory = statusModule.storeFactory,
+        ).run(::add)
+
+        DefaultUrlStatusComponent(
             title = "Empire SMP",
             urlStatusRepository = statusModule.minecraftStatusRepository,
             storeFactory = statusModule.storeFactory,

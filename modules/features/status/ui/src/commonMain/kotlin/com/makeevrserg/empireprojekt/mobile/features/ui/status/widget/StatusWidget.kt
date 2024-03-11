@@ -50,7 +50,8 @@ fun StatusWidget(statusComponent: UrlStatusComponent) {
             targetState = (model.status to model.isLoading),
             transitionSpec = {
                 fadeIn(tween(FADE_DURATION)) with fadeOut(tween(FADE_DURATION))
-            }
+            },
+            label = "null"
         ) { (status, isLoading) ->
             SideColorStatusWidget(status, isLoading)
         }
@@ -60,7 +61,8 @@ fun StatusWidget(statusComponent: UrlStatusComponent) {
             targetState = model.status,
             transitionSpec = {
                 fadeIn(tween(FADE_DURATION)) with fadeOut(tween(FADE_DURATION))
-            }
+            },
+            label = "null"
         ) {
             IconWidget(it)
         }
