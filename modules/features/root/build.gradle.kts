@@ -26,7 +26,7 @@ kotlin {
             baseName = "Root"
             isStatic = false
             export(libs.moko.resources.core)
-            export(projects.modules.services.resources)
+            export(projects.modules.services.coreResources)
             export(projects.modules.features.splash)
             export(projects.modules.services.core)
             export(libs.decompose.core)
@@ -67,7 +67,7 @@ kotlin {
                 // MVIKotlin
                 implementation(libs.mvikotlin)
                 // Local
-                api(projects.modules.services.resources)
+                api(projects.modules.services.coreResources)
                 api(projects.modules.services.core)
                 api(projects.modules.services.apiEmpireapi)
                 api(projects.modules.features.splash)

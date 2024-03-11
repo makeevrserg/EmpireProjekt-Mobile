@@ -33,8 +33,8 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
                 // Local
-                implementation(project(":modules:services:resources"))
-                implementation(project(":modules:services:core"))
+                implementation(projects.modules.services.coreResources)
+                implementation(projects.modules.services.core)
             }
         }
         val androidMain by getting {

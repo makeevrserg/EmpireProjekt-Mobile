@@ -29,7 +29,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.ComposeTheme
-import com.makeevrserg.empireprojekt.mobile.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 
 @Composable

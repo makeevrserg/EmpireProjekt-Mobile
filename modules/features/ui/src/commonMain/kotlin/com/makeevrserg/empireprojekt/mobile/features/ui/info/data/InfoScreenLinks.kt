@@ -2,7 +2,7 @@ package com.makeevrserg.empireprojekt.mobile.features.ui.info.data
 
 import androidx.compose.material.MaterialTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.model.LinkModel
-import com.makeevrserg.empireprojekt.mobile.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 
 object InfoScreenLinks {
     fun get(): List<LinkModel> {

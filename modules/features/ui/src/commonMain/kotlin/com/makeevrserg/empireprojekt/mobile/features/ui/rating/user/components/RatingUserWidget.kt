@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.components.PlayerHeadBox
-import com.makeevrserg.empireprojekt.mobile.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import ru.astrainteractive.empireapi.models.rating.RatingModel
 
 @Composable

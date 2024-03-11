@@ -19,7 +19,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.logic.splash.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
-import com.makeevrserg.empireprojekt.mobile.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable

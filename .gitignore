@@ -33,7 +33,7 @@ instances/iosApp/Podfile.lock
 instances/wearApp
 instances/androidApp
 # Services
-modules/services/resources/build
+modules/services/core-resources/build
 modules/services/core-ui/build
 modules/services/core/build
 modules/services/locale/build

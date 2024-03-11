@@ -17,7 +17,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCente
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.RatingUsersComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.components.RatingUserWidget
-import com.makeevrserg.empireprojekt.mobile.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 
 @Composable

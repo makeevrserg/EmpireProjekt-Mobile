@@ -26,7 +26,7 @@ import com.makeevrserg.empireprojekt.mobile.features.status.root.RootStatusCompo
 import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
 import com.makeevrserg.empireprojekt.mobile.features.ui.status.widget.StatusWidget
-import com.makeevrserg.empireprojekt.mobile.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import ru.astrainteractive.klibs.mikro.core.util.next
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

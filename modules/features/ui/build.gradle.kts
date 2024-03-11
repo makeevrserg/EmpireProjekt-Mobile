@@ -40,7 +40,7 @@ kotlin {
                 implementation(libs.decompose.core)
                 implementation(libs.decompose.compose.jetbrains)
                 // Local
-                implementation(projects.modules.services.resources)
+                implementation(projects.modules.services.coreResources)
                 implementation(projects.modules.services.coreUi)
                 implementation(projects.modules.services.buildKonfig)
                 implementation(projects.modules.features.splash)

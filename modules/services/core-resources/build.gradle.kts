@@ -29,10 +29,10 @@ kotlin {
     }
 }
 multiplatformResources {
-    multiplatformResourcesPackage = "${projectInfo.group}.resources"
+    multiplatformResourcesPackage = "${projectInfo.group}.core.resources"
 }
 android {
-    namespace = "${projectInfo.group}.resources"
+    namespace = "${projectInfo.group}.core.resources"
     dependencies {
         implementation("com.google.android.material:material:1.9.0")
     }

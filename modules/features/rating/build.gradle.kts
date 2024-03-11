@@ -36,7 +36,7 @@ kotlin {
                 implementation(libs.mvikotlin.main)
                 implementation(libs.mvikotlin.coroutines)
                 // Local
-                api(projects.modules.services.resources)
+                api(projects.modules.services.coreResources)
                 api(projects.modules.services.core)
                 api(projects.modules.services.apiEmpireapi)
             }

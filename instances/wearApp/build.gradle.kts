@@ -130,6 +130,6 @@ dependencies {
     implementation(projects.modules.features.status)
     implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
-    implementation(projects.modules.services.resources)
+    implementation(projects.modules.services.coreResources)
     implementation(projects.modules.services.wearMessenger)
 }
