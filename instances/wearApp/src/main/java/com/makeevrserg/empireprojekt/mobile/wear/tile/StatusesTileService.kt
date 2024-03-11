@@ -13,7 +13,7 @@ import androidx.wear.tiles.TileBuilders
 import androidx.wear.tiles.TileService
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.tiles.SuspendingTileService
-import com.makeevrserg.empireprojekt.mobile.resources.R
+import com.makeevrserg.empireprojekt.mobile.core.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.wear.tile.components.MainTileRenderer
 import kotlinx.coroutines.delay

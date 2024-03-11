@@ -1,9 +1,9 @@
 package com.makeevrserg.empireprojekt.mobile.wear.di.impl
 
 import com.makeevrserg.empireprojekt.mobile.features.root.di.factory.SettingsFactory
-import com.makeevrserg.empireprojekt.mobile.features.theme.DefaultThemeSwitcherComponentComponent
-import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.di.ThemeSwitcherModule
+import com.makeevrserg.empireprojekt.mobile.features.theme.presentation.DefaultThemeSwitcherComponentComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.presentation.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.services.core.CoroutineFeature
 import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.DefaultWearStatusComponent

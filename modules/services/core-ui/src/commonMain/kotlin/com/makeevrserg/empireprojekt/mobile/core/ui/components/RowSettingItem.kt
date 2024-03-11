@@ -151,6 +151,7 @@ fun RowText(
     }
 }
 
+@Suppress("LongMethod")
 @Composable
 fun <T> RowDropdownText(
     title: String,

@@ -3,7 +3,7 @@ package ru.astrainteractive.empireapi.models.towny
 import kotlinx.serialization.Serializable
 
 @Serializable
-class TownModel(
+data class TownModel(
     val name: String,
     val mayor: String,
     val nation: String,

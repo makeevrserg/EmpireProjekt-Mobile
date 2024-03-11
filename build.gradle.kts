@@ -4,8 +4,8 @@ buildscript {
         classpath(libs.google.gms.services.gradle)
         classpath(libs.moko.resources.generator)
         classpath(libs.moko.network.generator)
-        classpath("ru.astrainteractive.gradleplugin:convention:0.1.1")
-        classpath("ru.astrainteractive.gradleplugin:android:0.1.1")
+        classpath("ru.astrainteractive.gradleplugin:convention:0.5.2")
+        classpath("ru.astrainteractive.gradleplugin:android:0.5.2")
     }
 }
 

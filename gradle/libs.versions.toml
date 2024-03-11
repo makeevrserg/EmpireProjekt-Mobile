@@ -3,7 +3,6 @@
 kotlin-version = "1.9.22"
 kotlin-dokka = "1.8.10"
 kotlin-coroutines = "1.7.2"
-kotlin-compilerExtensionVersion = "1.5.10"
 kotlin-android-application = "8.0.1"
 kotlin-serialization-json = "1.5.1"
 

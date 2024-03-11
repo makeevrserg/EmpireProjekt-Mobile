@@ -18,7 +18,7 @@ import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.tools.TileLayoutPreview
 import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.render.SingleTileLayoutRenderer
-import com.makeevrserg.empireprojekt.mobile.resources.R
+import com.makeevrserg.empireprojekt.mobile.core.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.MainActivity
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.tile.asColorProp
@@ -27,6 +27,7 @@ import com.makeevrserg.empireprojekt.mobile.wear.tile.asColorProp
 class MainTileRenderer(
     context: Context,
 ) : SingleTileLayoutRenderer<WearStatusComponent.Model, WearStatusComponent.Model>(context) {
+    @Suppress("LongMethod")
     private fun tileLayout(
         state: WearStatusComponent.Model,
         deviceParameters: DeviceParametersBuilders.DeviceParameters

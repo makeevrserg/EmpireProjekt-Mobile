@@ -33,41 +33,26 @@ instances/iosApp/Podfile.lock
 instances/wearApp
 instances/androidApp
 # Services
-modules/services/resources/build
-modules/services/core-ui/build
-modules/services/core/build
-modules/services/locale/build
-modules/services/file_system/build
-modules/services/xlsx/build
-modules/services/xlsx/libs
-modules/services/ads-yandex/build
-modules/services/wear-messenger/build
-modules/services/build-konfig/build
 modules/services/api-empireapi/build
+modules/services/build-konfig/build
+modules/services/core/build
+modules/services/core-resources/build
+modules/services/core-ui/build
+modules/services/wear-messenger/build
 # Features ----------------------------------
-modules/features/dialog-confirm/build
-modules/features/words-local/build
-modules/features/settings/build
-modules/features/lesson/build
-modules/features/dicts-local/build
-modules/features/dicts-remote/build
-modules/features/rating/build
-modules/features/theme/build
-modules/features/status/build
-# Faq
-modules/features/faq/build
-modules/features/ui/build
-# Splash
-modules/features/root/build
-modules/features/splash/build
-modules/features/splash/logic/build
+modules/features/info/ui/build
+modules/features/map/ui/build
+modules/features/rating/impl/build
+modules/features/rating/ui/build
+modules/features/root/api/build
+modules/features/root/impl/build
+modules/features/root/ui/build
+modules/features/splash/impl/build
 modules/features/splash/ui/build
-# Paging
-modules/features/paging/build
-# Onboard
-modules/features/onboard/build
-modules/features/ui/onboard/build
-modules/features/ui/splash/build
-modules/features/common/build
-modules/features/ui/common/build
-modules/features/towns/build
+modules/features/status/impl/build
+modules/features/status/ui/build
+modules/features/theme/api/build
+modules/features/theme/impl/build
+modules/features/theme/ui/build
+modules/features/towns/impl/build
+modules/features/towns/ui/build
