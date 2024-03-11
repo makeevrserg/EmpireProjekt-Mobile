@@ -70,11 +70,11 @@ kotlin {
                 api(projects.modules.services.coreResources)
                 api(projects.modules.services.core)
                 api(projects.modules.services.apiEmpireapi)
-                api(projects.modules.features.splash)
-                api(projects.modules.features.rating)
-                api(projects.modules.features.theme)
-                api(projects.modules.features.status)
-                api(projects.modules.features.towns)
+                api(projects.modules.features.splash.impl)
+                api(projects.modules.features.rating.impl)
+                api(projects.modules.features.theme.impl)
+                api(projects.modules.features.status.impl)
+                api(projects.modules.features.towns.impl)
             }
         }
         val androidMain by getting {

@@ -132,9 +132,9 @@ dependencies {
     implementation("androidx.work:work-runtime:2.8.0")
     implementation("androidx.work:work-runtime-ktx:2.8.0")
     // Local
-    implementation(projects.modules.features.root)
-    implementation(projects.modules.features.theme)
-    implementation(projects.modules.features.status)
+    implementation(projects.modules.features.root.impl)
+    implementation(projects.modules.features.theme.impl)
+    implementation(projects.modules.features.status.impl)
     implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.coreResources)
