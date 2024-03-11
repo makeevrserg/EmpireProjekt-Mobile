@@ -29,6 +29,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.PlayerHeadBox
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import ru.astrainteractive.empireapi.models.rating.RatingModel
 
+@Suppress("LongMethod")
 @Composable
 fun RatingUserWidget(ratingModel: RatingModel) {
     Box(

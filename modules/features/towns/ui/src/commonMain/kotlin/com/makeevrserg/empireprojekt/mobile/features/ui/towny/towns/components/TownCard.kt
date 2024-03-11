@@ -30,6 +30,7 @@ import kotlinx.datetime.Instant
 import ru.astrainteractive.klibs.mikro.extensions.JvmTimeFormatter
 import ru.astrainteractive.klibs.mikro.extensions.TimeFormatter
 
+@Suppress("LongMethod")
 @Composable
 fun TownCard(
     mayor: String,

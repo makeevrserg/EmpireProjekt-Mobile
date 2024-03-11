@@ -33,6 +33,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.ComposeTheme
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 
+@Suppress("LongMethod")
 @Composable
 fun RatingUserWidget(
     model: RatingUserModel,
