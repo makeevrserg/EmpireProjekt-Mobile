@@ -26,13 +26,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.url.presentation.UrlStatusComponent
 
 private const val FADE_DURATION = 1200
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun StatusWidget(statusComponent: UrlStatusComponent) {
+internal fun StatusWidget(statusComponent: UrlStatusComponent) {
     val model by statusComponent.model.collectAsState()
 
     Row(

@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
-import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationTheme
-import com.makeevrserg.empireprojekt.mobile.wear.di.impl.WearRootModuleImpl
+import com.makeevrserg.empireprojekt.mobile.features.theme.ApplicationTheme
+import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.MainScreen
 import com.makeevrserg.empireprojekt.mobile.wear.features.root.NavHostRootComponent
 import ru.astrainteractive.klibs.mikro.platform.DefaultAndroidPlatformConfiguration
@@ -16,8 +16,8 @@ private fun RootScreenPreview() {
     val navController = rememberSwipeDismissableNavController()
     val navHostRootComponent = NavHostRootComponent(navController)
     val context = LocalContext.current
-    val wearRootModule = WearRootModuleImpl().apply {
-        platformConfiguration.initialize {
+    val wearRootModule = WearRootModule.Default().apply {
+        coreModule.platformConfiguration.initialize {
             DefaultAndroidPlatformConfiguration(context)
         }
     }

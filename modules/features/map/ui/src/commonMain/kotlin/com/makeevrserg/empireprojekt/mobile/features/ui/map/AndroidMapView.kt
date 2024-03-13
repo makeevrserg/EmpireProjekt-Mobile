@@ -1,7 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.features.ui.map
 
 import android.view.ViewGroup
-import android.webkit.WebSettings
 import android.webkit.WebView
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Box
@@ -36,7 +35,6 @@ fun AndroidMapView() {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT
                 )
-                loadUrl("https://map.astrainteractive.ru")
                 settings.javaScriptEnabled = true
                 settings.useWideViewPort = true
                 settings.allowFileAccess = true
@@ -49,13 +47,11 @@ fun AndroidMapView() {
                 settings.blockNetworkLoads = false
                 settings.blockNetworkImage = false
                 settings.databaseEnabled = true
-                settings.cacheMode = WebSettings.LOAD_NO_CACHE
                 settings.setSupportZoom(true)
                 scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
                 isScrollbarFadingEnabled = false
-                webViewClient = LoadingWebViewClient {
-                    isLoading = it
-                }
+                webViewClient = LoadingWebViewClient { isLoading = it }
+                loadUrl("https://map.astrainteractive.ru")
             }.also { webView = it }
         },
         update = {

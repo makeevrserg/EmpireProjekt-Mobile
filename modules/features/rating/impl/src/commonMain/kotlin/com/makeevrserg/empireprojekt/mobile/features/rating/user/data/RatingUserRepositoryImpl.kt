@@ -13,7 +13,7 @@ import ru.astrainteractive.klibs.paging.context.IntPageContext
 import ru.astrainteractive.klibs.paging.data.LambdaPagedListDataSource
 import ru.astrainteractive.klibs.paging.state.PagingState
 
-class RatingUserRepositoryImpl(
+internal class RatingUserRepositoryImpl(
     private val ratingApi: RatingApi,
     private val dispatchers: KotlinDispatchers
 ) : RatingUserRepository {

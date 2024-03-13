@@ -1,23 +1,40 @@
 package com.makeevrserg.empireprojekt.mobile.features.rating.user.di
 
-import com.makeevrserg.empireprojekt.mobile.api.empireapi.di.EmpireApiModule
-import com.makeevrserg.empireprojekt.mobile.features.rating.user.data.RatingUserRepository
+import com.arkivanov.decompose.ComponentContext
+import com.makeevrserg.empireprojekt.mobile.api.empireapi.di.ApiEmpireApiModule
 import com.makeevrserg.empireprojekt.mobile.features.rating.user.data.RatingUserRepositoryImpl
-import ru.astrainteractive.klibs.kdi.Single
-import ru.astrainteractive.klibs.kdi.getValue
-import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
+import com.makeevrserg.empireprojekt.mobile.features.rating.user.presentation.DefaultRatingUserComponent
+import com.makeevrserg.empireprojekt.mobile.features.rating.user.presentation.RatingUserComponent
+import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
 
 interface RatingUserModule {
-    val ratingUserRepository: RatingUserRepository
+    fun createRatingUserComponent(
+        componentContext: ComponentContext,
+        userId: Long,
+        userName: String
+    ): RatingUserComponent
 
     class Default(
-        empireApiModule: EmpireApiModule,
-        dispatchers: KotlinDispatchers
+        apiEmpireApiModule: ApiEmpireApiModule,
+        coreModule: CoreModule
     ) : RatingUserModule {
-        override val ratingUserRepository: RatingUserRepository by Single {
+        private val ratingUserRepository by lazy {
             RatingUserRepositoryImpl(
-                ratingApi = empireApiModule.ratingApi,
-                dispatchers = dispatchers
+                ratingApi = apiEmpireApiModule.ratingApi,
+                dispatchers = coreModule.dispatchers
+            )
+        }
+
+        override fun createRatingUserComponent(
+            componentContext: ComponentContext,
+            userId: Long,
+            userName: String
+        ): RatingUserComponent {
+            return DefaultRatingUserComponent(
+                componentContext = componentContext,
+                userId = userId,
+                userName = userName,
+                ratingUserRepository = ratingUserRepository
             )
         }
     }

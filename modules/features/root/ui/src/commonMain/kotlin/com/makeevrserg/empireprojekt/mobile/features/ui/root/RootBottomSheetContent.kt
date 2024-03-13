@@ -5,8 +5,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.core.ui.rememberDeclarativeModalBottomSheetState
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
@@ -18,9 +16,8 @@ fun RootBottomSheetContent(
     rootBottomSheetComponent: RootBottomSheetComponent,
     content: @Composable () -> Unit
 ) {
-    val slot by rootBottomSheetComponent.childSlot.subscribeAsState()
     val bottomSheetState = rememberDeclarativeModalBottomSheetState(
-        child = slot.child,
+        slot = rootBottomSheetComponent.childSlot,
         onDismiss = rootBottomSheetComponent::dismiss
     ) { child ->
         when (val instance = child.instance) {

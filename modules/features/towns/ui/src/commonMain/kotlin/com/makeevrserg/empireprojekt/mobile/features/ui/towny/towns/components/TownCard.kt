@@ -32,7 +32,7 @@ import ru.astrainteractive.klibs.mikro.extensions.TimeFormatter
 
 @Suppress("LongMethod")
 @Composable
-fun TownCard(
+internal fun TownCard(
     mayor: String,
     townName: String,
     board: String,

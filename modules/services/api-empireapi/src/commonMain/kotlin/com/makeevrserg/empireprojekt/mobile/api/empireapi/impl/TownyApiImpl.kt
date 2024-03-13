@@ -14,9 +14,9 @@ import ru.astrainteractive.empireapi.models.response.GenericPagedModel
 import ru.astrainteractive.empireapi.models.towny.TownModel
 import ru.astrainteractive.empireapi.models.towny.TownsFilter
 
-class TownyApiImpl(
+internal class TownyApiImpl(
     private val httpClient: HttpClient,
-    private val baseUrl: String = "https://empireapi.astrainteractive.ru"
+    private val baseUrl: String
 ) : TownyApi {
 
     override suspend fun towns(page: Int, size: Int, filter: TownsFilter): GenericPagedModel<TownModel> {

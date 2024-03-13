@@ -16,7 +16,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // Decompose
-                api(libs.decompose.core)
+                implementation(libs.decompose.core)
             }
         }
     }

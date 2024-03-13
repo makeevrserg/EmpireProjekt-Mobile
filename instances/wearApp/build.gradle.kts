@@ -81,6 +81,8 @@ android {
 dependencies {
     // Kotlin
     implementation(libs.kotlin.serialization.json)
+    // klibs
+    implementation(libs.klibs.mikro.extensions)
     // Coroutines
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
@@ -128,4 +130,5 @@ dependencies {
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.coreResources)
     implementation(projects.modules.services.wearMessenger)
+    implementation(projects.modules.services.core)
 }

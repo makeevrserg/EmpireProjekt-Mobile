@@ -9,7 +9,7 @@ import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 import ru.astrainteractive.klibs.paging.context.IntPageContext
 import ru.astrainteractive.klibs.paging.state.PagingState
 
-interface RatingUsersStore : Store<Intent, State, Label> {
+internal interface RatingUsersStore : Store<Intent, State, Label> {
     data class State(
         val items: List<RatingUserModel> = emptyList(),
         val request: RatingListRequest = RatingListRequest(),

@@ -12,7 +12,7 @@ class DefaultRootComponent(
 ) : RootComponent, ComponentContext by componentContext {
     override val rootBottomSheetComponent = DefaultRootBottomSheetComponent(
         componentContext = childContext("RootBottomSheetComponent"),
-        servicesModule = rootModule.servicesModule,
+        coreModule = rootModule.coreModule,
     )
     override val rootScreenComponent = DefaultRootScreenComponent(
         componentContext = childContext("RootScreenComponent"),

@@ -1,15 +1,15 @@
 package com.makeevrserg.empireprojekt.mobile.features.rating.users.store
 
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersModule
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersDependencies
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore.Action
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 internal class RatingUsersBootstrapper(
-    module: RatingUsersModule
+    dependencies: RatingUsersDependencies
 ) : CoroutineBootstrapper<Action>(),
-    RatingUsersModule by module {
+    RatingUsersDependencies by dependencies {
 
     override fun invoke() {
         collectPagingState()

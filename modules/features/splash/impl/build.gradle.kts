@@ -11,8 +11,6 @@ plugins {
 
 kotlin {
     android()
-    ios()
-    iosSimulatorArm64()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -28,6 +26,8 @@ kotlin {
                 implementation(libs.moko.mvvm.flow)
                 // Decompose
                 implementation(libs.decompose.core)
+                // Local
+                implementation(projects.modules.services.core)
             }
         }
         val commonTest by getting {

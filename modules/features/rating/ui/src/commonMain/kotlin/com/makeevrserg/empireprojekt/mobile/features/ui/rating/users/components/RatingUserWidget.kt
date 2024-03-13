@@ -35,7 +35,7 @@ import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 
 @Suppress("LongMethod")
 @Composable
-fun RatingUserWidget(
+internal fun RatingUserWidget(
     model: RatingUserModel,
     onClick: () -> Unit
 ) {

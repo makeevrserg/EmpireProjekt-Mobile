@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-actual fun TransparentBars(isDarkTheme: Boolean) {
+internal actual fun TransparentBars(isDarkTheme: Boolean) {
     val systemUiController = rememberSystemUiController()
     DisposableEffect(systemUiController, isDarkTheme) {
         systemUiController.setSystemBarsColor(

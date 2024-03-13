@@ -11,18 +11,26 @@ plugins {
 
 kotlin {
     android()
-    ios()
-    iosSimulatorArm64()
     sourceSets {
         val commonMain by getting {
             dependencies {
+                // Settings
+                implementation(libs.mppsettings)
+                // Ktor
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.contentNegitiation)
+                implementation(libs.ktor.client.serialization)
+                implementation(libs.ktor.client.json)
+                implementation(libs.ktor.serialization.json)
+                implementation(libs.ktor.logging)
+                // Decompose
+                implementation(libs.decompose.core)
+                // Serialization
+                implementation(libs.kotlin.serialization.json)
                 // klibs
                 implementation(libs.klibs.mikro.core)
                 implementation(libs.klibs.mikro.platform)
-                implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
-                // Decompose
-                implementation(libs.decompose.core)
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
             }
