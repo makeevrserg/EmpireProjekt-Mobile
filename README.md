@@ -4,10 +4,6 @@
 
 This mobile application made specially for [EmpireProjekt](https://empireprojekt.ru)
 
-It allows to monitor Empire Network status and see player ratings
-
-It also contains self-written backend and minecraft game integration
-
 ## Content
 
 You can check statuses of network or see useful links
@@ -17,10 +13,16 @@ You can check statuses of network or see useful links
     <img src="./media/status.jpg" width="200" height="auto"/>  
 </p>
 
-Also, it allows you to see player ratings
+See the ratings for players
 <p align="center">
     <img src="./media/ratings.jpg" width="200" height="auto"/> 
     <img src="./media/rating_detail.jpg" width="200" height="auto"/>  
+</p>
+
+Watch towns and online-map
+<p align="center">
+    <img src="./media/towns_list.jpg" width="200" height="auto"/> 
+    <img src="./media/map_view.jpg" width="200" height="auto"/>  
 </p>
 
 ### Don't forget to check out [AstraLearner](https://play.google.com/store/apps/details?id=com.makeevrserg.astralearner)!
@@ -45,13 +47,6 @@ The application is build on [The Architecture GuideLines](https://makeevrserg.gi
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=com.makeevrserg.empireprojekt.mobile)
 
 ### Or find app in the [GitHub Releases Section](https://github.com/makeevrserg/EmpireProjekt-Mobile/releases/latest)
-
-### Licence
-
-`Empire Projekt Mobile` has its own terms.
-
-For more information, see [LICENSE](./LICENSE.md) file. License of components and third-party dependencies it relies on
-might differ
 
 ### Gratitude
 
