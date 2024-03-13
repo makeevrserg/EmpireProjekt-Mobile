@@ -1,7 +1,7 @@
 package com.makeevrserg.empireprojekt.mobile.features.rating.users.store
 
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersModule
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersDependencies
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore.Action
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore.Intent
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore.Label
@@ -10,9 +10,9 @@ import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUs
 import kotlinx.coroutines.launch
 
 internal class RatingUsersExecutor(
-    module: RatingUsersModule
+    dependencies: RatingUsersDependencies
 ) : CoroutineExecutor<Intent, Action, State, Message, Label>(),
-    RatingUsersModule by module {
+    RatingUsersDependencies by dependencies {
     override fun executeIntent(intent: Intent, getState: () -> State) {
         when (intent) {
             Intent.LoadNextPage -> scope.launch {

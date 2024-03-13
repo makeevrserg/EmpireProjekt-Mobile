@@ -4,7 +4,7 @@ import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
 import com.russhwolf.settings.Settings
 import ru.astrainteractive.klibs.kstorage.StateFlowMutableStorageValue
 
-class ThemeSwitcherRepositoryImpl(
+internal class ThemeSwitcherRepositoryImpl(
     private val settings: Settings
 ) : ThemeSwitcherRepository {
 

@@ -15,44 +15,33 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // Settings
-                implementation(libs.mppsettings)
                 // klibs
                 implementation(libs.klibs.mikro.core)
-                api(libs.klibs.mikro.platform)
+                implementation(libs.klibs.mikro.platform)
                 implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
                 // Decompose
-                api(libs.decompose.core)
-                api(libs.essenty)
-                // Ktor
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.contentNegitiation)
-                implementation(libs.ktor.client.serialization)
-                implementation(libs.ktor.client.json)
-                implementation(libs.ktor.serialization.json)
-                implementation(libs.ktor.logging)
+                implementation(libs.decompose.core)
+                implementation(libs.essenty)
                 // Moko
-                api(libs.moko.mvvm.core)
-                api(libs.moko.mvvm.flow)
+                implementation(libs.moko.mvvm.core)
+                implementation(libs.moko.mvvm.flow)
                 implementation(libs.moko.resources.core)
-                // Serialization
-                implementation(libs.kotlin.serialization.json)
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
                 // MVIKotlin
                 implementation(libs.mvikotlin)
                 // Local
-                api(projects.modules.services.coreResources)
-                api(projects.modules.services.core)
-                api(projects.modules.services.apiEmpireapi)
-                api(projects.modules.features.root.api)
-                api(projects.modules.features.splash.impl)
-                api(projects.modules.features.rating.impl)
-                api(projects.modules.features.theme.api)
-                api(projects.modules.features.theme.impl)
-                api(projects.modules.features.status.impl)
-                api(projects.modules.features.towns.impl)
+                implementation(projects.modules.services.coreResources)
+                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.apiEmpireapi)
+                implementation(projects.modules.features.root.api)
+                implementation(projects.modules.features.splash.impl)
+                implementation(projects.modules.features.rating.impl)
+                implementation(projects.modules.features.theme.api)
+                implementation(projects.modules.features.theme.impl)
+                implementation(projects.modules.features.status.impl)
+                implementation(projects.modules.features.towns.impl)
             }
         }
         val androidMain by getting {

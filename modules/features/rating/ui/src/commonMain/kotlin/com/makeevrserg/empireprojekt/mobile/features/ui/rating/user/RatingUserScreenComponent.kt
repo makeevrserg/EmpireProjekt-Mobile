@@ -15,7 +15,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.OnEndReached
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.PagingWidget
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCenterAlignedTopAppBar
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.rating.user.RatingUserComponent
+import com.makeevrserg.empireprojekt.mobile.features.rating.user.presentation.RatingUserComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.rating.user.components.RatingUserWidget
 import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 

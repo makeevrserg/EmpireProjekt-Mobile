@@ -36,7 +36,6 @@ fun AndroidMapView() {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT
                 )
-                loadUrl("https://map.astrainteractive.ru")
                 settings.javaScriptEnabled = true
                 settings.useWideViewPort = true
                 settings.allowFileAccess = true
@@ -53,9 +52,8 @@ fun AndroidMapView() {
                 settings.setSupportZoom(true)
                 scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
                 isScrollbarFadingEnabled = false
-                webViewClient = LoadingWebViewClient {
-                    isLoading = it
-                }
+                webViewClient = LoadingWebViewClient { isLoading = it }
+                loadUrl("https://map.astrainteractive.ru")
             }.also { webView = it }
         },
         update = {

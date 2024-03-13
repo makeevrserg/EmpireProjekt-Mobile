@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
         val rootComponent = DefaultRootComponent(componentContext, rootModule)
         val rootBottomSheetComponent = rootComponent.rootBottomSheetComponent
         setContent {
-            ApplicationTheme(rootModule.componentsModule.themeSwitcherComponent.value) {
+            ApplicationTheme(rootModule.themeSwitcherModule.themeSwitcherComponent) {
                 RootBottomSheetContent(rootBottomSheetComponent) {
                     ApplicationContent(
                         rootComponent = rootComponent,

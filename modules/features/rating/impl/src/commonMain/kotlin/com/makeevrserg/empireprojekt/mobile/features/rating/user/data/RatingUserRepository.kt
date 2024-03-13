@@ -6,7 +6,7 @@ import ru.astrainteractive.empireapi.models.rating.UserRatingsRequest
 import ru.astrainteractive.klibs.paging.context.IntPageContext
 import ru.astrainteractive.klibs.paging.state.PagingState
 
-interface RatingUserRepository {
+internal interface RatingUserRepository {
 
     val state: StateFlow<PagingState<RatingModel, IntPageContext>>
 

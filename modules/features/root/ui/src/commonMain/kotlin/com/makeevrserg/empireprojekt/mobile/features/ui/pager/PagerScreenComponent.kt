@@ -63,32 +63,5 @@ fun PagerScreenComponent(
                 PagerComponent.Child.Map -> AndroidMapView()
             }
         }
-//        Children(
-//            stack = childStack,
-//            modifier = modifier
-//                .fillMaxSize()
-//                .padding(paddingValues),
-//            animation = stackAnimation(fade())
-//        ) { child ->
-//            when (val instance = child.instance) {
-//                is PagerComponent.Child.RatingUsers -> RatingUsersScreenComponent(
-//                    ratingUsersComponent = instance.ratingUsersComponent,
-//                    popComponent = rootScreenComponent
-//                )
-//
-//                is PagerComponent.Child.Status -> StatusScreen(
-//                    themeSwitcherComponent = instance.themeSwitcherComponent,
-//                    rootStatusComponent = instance.rootStatusComponent,
-//                    rootBottomSheetComponent = rootBottomSheetComponent
-//                )
-//
-//                is PagerComponent.Child.Towns -> TownsScreenComponent(
-//                    popComponent = rootScreenComponent,
-//                    townsComponent = instance.townsComponent
-//                )
-//
-//                PagerComponent.Child.Map -> AndroidMapView()
-//            }
-//        }
     }
 }

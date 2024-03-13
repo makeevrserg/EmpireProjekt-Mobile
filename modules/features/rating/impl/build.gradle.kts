@@ -12,19 +12,18 @@ plugins {
 
 kotlin {
     android()
-    ios()
-    iosSimulatorArm64()
     sourceSets {
         val commonMain by getting {
             dependencies {
                 // klibs
                 implementation(libs.klibs.mikro.core)
-                api(libs.klibs.mikro.platform)
+                implementation(libs.klibs.mikro.extensions)
+                implementation(libs.klibs.mikro.platform)
                 implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
                 // Decompose
-                api(libs.decompose.core)
-                api(libs.essenty)
+                implementation(libs.decompose.core)
+                implementation(libs.essenty)
                 // Moko
                 implementation(libs.moko.resources.core)
                 // Paging
@@ -36,9 +35,9 @@ kotlin {
                 implementation(libs.mvikotlin.main)
                 implementation(libs.mvikotlin.coroutines)
                 // Local
-                api(projects.modules.services.coreResources)
-                api(projects.modules.services.core)
-                api(projects.modules.services.apiEmpireapi)
+                implementation(projects.modules.services.coreResources)
+                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.apiEmpireapi)
             }
         }
     }

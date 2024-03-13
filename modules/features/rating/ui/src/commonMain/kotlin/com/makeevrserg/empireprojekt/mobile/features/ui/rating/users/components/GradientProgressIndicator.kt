@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun GradientProgressIndicator(
+internal fun GradientProgressIndicator(
     brush: Brush,
     progress: Float,
     modifier: Modifier = Modifier,

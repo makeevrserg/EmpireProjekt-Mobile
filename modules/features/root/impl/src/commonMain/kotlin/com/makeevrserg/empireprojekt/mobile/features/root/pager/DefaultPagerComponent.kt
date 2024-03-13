@@ -5,8 +5,6 @@ import com.arkivanov.decompose.childContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.operator.map
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.DefaultRatingUsersComponent
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersModule
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootRouter
 
@@ -17,14 +15,8 @@ internal class DefaultPagerComponent(
 ) : PagerComponent, ComponentContext by componentContext {
     private val ratingUsersChild by lazy {
         PagerComponent.Child.RatingUsers(
-            ratingUsersComponent = DefaultRatingUsersComponent(
-                componentContext = componentContext.childContext("RatingUsers"),
-                moduleFactory = {
-                    RatingUsersModule.Default(
-                        empireApiModule = rootModule.empireApiModule,
-                        dispatchers = rootModule.servicesModule.dispatchers.value
-                    )
-                },
+            ratingUsersComponent = rootModule.ratingUsersModule.createRatingUsersComponent(
+                componentContext = componentContext.childContext("RatingUsersComponent"),
                 onShowUserRatingsClicked = { id, userName ->
                     val configuration = RootRouter.Configuration.RatingUser(id, userName)
                     onRootNavigation.invoke(configuration)
@@ -35,15 +27,15 @@ internal class DefaultPagerComponent(
 
     private val statusChild by lazy {
         PagerComponent.Child.Status(
-            themeSwitcherComponent = rootModule.componentsModule.themeSwitcherComponent.value,
-            rootStatusComponent = rootModule.componentsModule.rootStatusComponent.value
+            themeSwitcherComponent = rootModule.themeSwitcherModule.themeSwitcherComponent,
+            rootStatusComponent = rootModule.statusModule.rootStatusComponent
         )
     }
 
     private val townsChild by lazy {
         PagerComponent.Child.Towns(
             townsComponent = rootModule.townsModule.createTownsComponent(
-                componentContext = componentContext.childContext("Towns")
+                componentContext = componentContext.childContext("TownsComponent")
             )
         )
     }

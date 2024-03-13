@@ -31,7 +31,7 @@ import ru.astrainteractive.empireapi.models.rating.RatingModel
 
 @Suppress("LongMethod")
 @Composable
-fun RatingUserWidget(ratingModel: RatingModel) {
+internal fun RatingUserWidget(ratingModel: RatingModel) {
     Box(
         modifier = Modifier
             .fillMaxWidth()

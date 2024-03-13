@@ -1,6 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.wear.features.status
 
-import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.url.presentation.UrlStatusComponent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

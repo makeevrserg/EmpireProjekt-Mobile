@@ -9,11 +9,11 @@ import com.arkivanov.decompose.router.slot.dismiss
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import com.makeevrserg.empireprojekt.mobile.features.root.di.ServicesModule
+import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
 
 class DefaultRootBottomSheetComponent(
     componentContext: ComponentContext,
-    servicesModule: ServicesModule
+    coreModule: CoreModule
 ) : RootBottomSheetComponent, ComponentContext by componentContext {
     private val slotNavigation = SlotNavigation<Configuration>()
 
@@ -23,7 +23,7 @@ class DefaultRootBottomSheetComponent(
         childFactory = { configuration, context ->
             when (configuration) {
                 Configuration.Info -> {
-                    RootBottomSheetComponent.Child.Info(servicesModule.linkBrowser.value)
+                    RootBottomSheetComponent.Child.Info(coreModule.linkBrowser)
                 }
             }
         }

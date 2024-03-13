@@ -6,7 +6,7 @@ import com.makeevrserg.empireprojekt.mobile.features.ui.info.model.LinkModel
 import com.makeevrserg.empireprojekt.mobile.services.core.LinkBrowser
 
 @Composable
-fun LinkWidget(
+internal fun LinkWidget(
     linkBrowser: LinkBrowser,
     linkModel: LinkModel
 ) {

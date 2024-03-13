@@ -6,7 +6,7 @@ import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 import ru.astrainteractive.klibs.paging.context.IntPageContext
 import ru.astrainteractive.klibs.paging.state.PagingState
 
-interface RatingUsersRepository {
+internal interface RatingUsersRepository {
     fun updateRequest(request: RatingListRequest)
     suspend fun loadNextPage()
     suspend fun reset()

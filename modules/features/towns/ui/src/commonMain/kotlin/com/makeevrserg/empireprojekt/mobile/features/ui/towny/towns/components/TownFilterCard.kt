@@ -29,7 +29,7 @@ import ru.astrainteractive.empireapi.models.towny.TownSortBy
 import ru.astrainteractive.empireapi.models.towny.TownsFilter
 
 @Composable
-fun TownFilterCard(
+internal fun TownFilterCard(
     townsFilter: TownsFilter,
     onSortSelected: (TownSortBy) -> Unit,
     onPublicSelected: (TownPublicType) -> Unit

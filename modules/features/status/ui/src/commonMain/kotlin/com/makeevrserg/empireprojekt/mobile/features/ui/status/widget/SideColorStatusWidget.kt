@@ -8,7 +8,7 @@ import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
+import com.makeevrserg.empireprojekt.mobile.features.status.url.presentation.UrlStatusComponent
 
 @Composable
 internal fun SideColorStatusWidget(

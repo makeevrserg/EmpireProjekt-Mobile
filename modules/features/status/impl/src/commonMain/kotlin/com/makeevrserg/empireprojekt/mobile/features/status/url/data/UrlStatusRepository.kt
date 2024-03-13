@@ -1,5 +1,5 @@
 package com.makeevrserg.empireprojekt.mobile.features.status.url.data
 
-interface UrlStatusRepository {
+internal interface UrlStatusRepository {
     suspend fun isActive(): Result<Boolean>
 }
