@@ -17,10 +17,10 @@ class DefaultRootBottomSheetComponent(
 ) : RootBottomSheetComponent, ComponentContext by componentContext {
     private val slotNavigation = SlotNavigation<Configuration>()
 
-    override val childSlot: Value<ChildSlot<*, RootBottomSheetComponent.Child>> = childSlot(
+    override val childSlot: Value<ChildSlot<Configuration, RootBottomSheetComponent.Child>> = childSlot(
         source = slotNavigation,
         handleBackButton = true,
-        childFactory = { configuration, context ->
+        childFactory = { configuration, childContext ->
             when (configuration) {
                 Configuration.Info -> {
                     RootBottomSheetComponent.Child.Info(coreModule.linkBrowser)
@@ -29,12 +29,29 @@ class DefaultRootBottomSheetComponent(
         }
     )
 
+    private fun activateConfiguration(
+        configuration: Configuration,
+        isSameConfiguration: (configuration: Configuration?) -> Boolean
+    ) {
+        val currentChild = childSlot.value.child
+        when {
+            isSameConfiguration.invoke(currentChild?.configuration) -> dismiss()
+            currentChild == null -> slotNavigation.activate(configuration)
+            else -> dismiss()
+        }
+    }
+
     override fun dismiss() {
         slotNavigation.dismiss()
     }
 
     override fun showInfoSheet() {
-        slotNavigation.activate(Configuration.Info)
+        activateConfiguration(
+            configuration = Configuration.Info,
+            isSameConfiguration = { configuration ->
+                configuration is Configuration.Info
+            }
+        )
     }
 
     sealed interface Configuration : Parcelable {
