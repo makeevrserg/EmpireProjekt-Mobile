@@ -1,7 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.features.ui.map
 
 import android.view.ViewGroup
-import android.webkit.WebSettings
 import android.webkit.WebView
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Box
@@ -48,7 +47,6 @@ fun AndroidMapView() {
                 settings.blockNetworkLoads = false
                 settings.blockNetworkImage = false
                 settings.databaseEnabled = true
-                settings.cacheMode = WebSettings.LOAD_NO_CACHE
                 settings.setSupportZoom(true)
                 scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
                 isScrollbarFadingEnabled = false
