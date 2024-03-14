@@ -8,12 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.EnumOption
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.FilterCard
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.ComposeTheme
 import com.makeevrserg.empireprojekt.mobile.features.towny.towns.util.LocalSortOrderExt.toStringDesc
 import com.makeevrserg.empireprojekt.mobile.features.towny.towns.util.TownPublicTypeExt.toStringDesc
-import com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.components.filtercard.EnumOption
-import com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.components.filtercard.FilterCard
 import ru.astrainteractive.empireapi.models.towny.LocalSortOrder
 import ru.astrainteractive.empireapi.models.towny.TownPublicType
 import ru.astrainteractive.empireapi.models.towny.TownsFilterModel

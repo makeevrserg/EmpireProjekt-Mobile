@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.components.filtercard
+package com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard
 
 import androidx.compose.foundation.layout.ColumnScope
 
