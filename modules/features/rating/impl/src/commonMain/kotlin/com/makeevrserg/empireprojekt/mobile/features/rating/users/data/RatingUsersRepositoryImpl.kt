@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
-import ru.astrainteractive.empireapi.models.rating.RatingListRequest
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
+import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
 import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
 import ru.astrainteractive.klibs.paging.IntPagerCollector
 import ru.astrainteractive.klibs.paging.context.IntPageContext
@@ -17,7 +17,7 @@ internal class RatingUsersRepositoryImpl(
     private val ratingApi: RatingApi,
     private val dispatchers: KotlinDispatchers
 ) : RatingUsersRepository {
-    private val request = MutableStateFlow(RatingListRequest())
+    private val request = MutableStateFlow(RatingsFilterModel())
 
     private val pagingCollector = IntPagerCollector(
         initialPage = 0,
@@ -48,7 +48,7 @@ internal class RatingUsersRepositoryImpl(
         pagingCollector.loadNextPage()
     }
 
-    override fun updateRequest(request: RatingListRequest) {
+    override fun updateRequest(request: RatingsFilterModel) {
         this.request.update {
             request
         }

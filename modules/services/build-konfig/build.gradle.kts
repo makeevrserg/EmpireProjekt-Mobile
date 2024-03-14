@@ -20,7 +20,7 @@ buildConfig {
         "\"${gradleProperty("project.version.code").integer}\""
     )
     buildConfigField("String", "VERSION_NAME", "\"${projectInfo.versionString}\"")
-    buildConfigField("String", "PROD_URL", "\"https://empireapi.astrainteractive.ru\"")
+    buildConfigField("String", "PROD_URL", "\"http://192.168.1.2:8080\"")
 }
 kotlin {
     android()

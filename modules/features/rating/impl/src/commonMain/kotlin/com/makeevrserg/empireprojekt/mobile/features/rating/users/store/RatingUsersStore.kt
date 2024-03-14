@@ -4,15 +4,15 @@ import com.arkivanov.mvikotlin.core.store.Store
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore.Intent
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore.Label
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore.State
-import ru.astrainteractive.empireapi.models.rating.RatingListRequest
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
+import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
 import ru.astrainteractive.klibs.paging.context.IntPageContext
 import ru.astrainteractive.klibs.paging.state.PagingState
 
 internal interface RatingUsersStore : Store<Intent, State, Label> {
     data class State(
         val items: List<RatingUserModel> = emptyList(),
-        val request: RatingListRequest = RatingListRequest(),
+        val request: RatingsFilterModel = RatingsFilterModel(),
         val isLoading: Boolean = false,
         val isFailure: Boolean = false,
         val isLastPage: Boolean = false

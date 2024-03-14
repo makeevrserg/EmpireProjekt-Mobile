@@ -1,6 +1,6 @@
 package com.makeevrserg.empireprojekt.mobile.features.towny.towns.data.paging
 
-import ru.astrainteractive.empireapi.models.towny.TownsFilter
+import ru.astrainteractive.empireapi.models.towny.TownsFilterModel
 import ru.astrainteractive.klibs.paging.DefaultPagingCollector
 import ru.astrainteractive.klibs.paging.PagingCollector
 import ru.astrainteractive.klibs.paging.data.PagedListDataSource
@@ -10,7 +10,7 @@ internal class TownyPagingCollector<T>(
     private val initialPage: Int = 0,
     private val pageSize: Int = 10,
     private val pager: PagedListDataSource<T, TownyPageContext>,
-    private val initialFilter: TownsFilter
+    private val initialFilter: TownsFilterModel
 ) : PagingCollector<T, TownyPageContext> by DefaultPagingCollector(
     initialPagingState = PagingState(
         pageContext = TownyPageContext(page = initialPage, filter = initialFilter),

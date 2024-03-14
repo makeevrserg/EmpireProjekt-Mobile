@@ -12,14 +12,14 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import ru.astrainteractive.empireapi.models.response.GenericPagedModel
 import ru.astrainteractive.empireapi.models.towny.TownModel
-import ru.astrainteractive.empireapi.models.towny.TownsFilter
+import ru.astrainteractive.empireapi.models.towny.TownsFilterModel
 
 internal class TownyApiImpl(
     private val httpClient: HttpClient,
     private val baseUrl: String
 ) : TownyApi {
 
-    override suspend fun towns(page: Int, size: Int, filter: TownsFilter): GenericPagedModel<TownModel> {
+    override suspend fun towns(page: Int, size: Int, filter: TownsFilterModel): GenericPagedModel<TownModel> {
         return httpClient.post {
             url("$baseUrl/towny/towns")
             parameter("page", page)

@@ -10,9 +10,9 @@ import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
-import ru.astrainteractive.empireapi.models.rating.RatingListRequest
 import ru.astrainteractive.empireapi.models.rating.RatingModel
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
+import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
 import ru.astrainteractive.empireapi.models.rating.UserRatingsRequest
 import ru.astrainteractive.empireapi.models.response.GenericPagedModel
 
@@ -21,7 +21,7 @@ internal class RatingApiImpl(
     private val baseUrl: String
 ) : RatingApi {
 
-    override suspend fun users(page: Int, size: Int, body: RatingListRequest): GenericPagedModel<RatingUserModel> {
+    override suspend fun users(page: Int, size: Int, body: RatingsFilterModel): GenericPagedModel<RatingUserModel> {
         return httpClient.post {
             url("$baseUrl/rating/users")
             parameter("page", page)
