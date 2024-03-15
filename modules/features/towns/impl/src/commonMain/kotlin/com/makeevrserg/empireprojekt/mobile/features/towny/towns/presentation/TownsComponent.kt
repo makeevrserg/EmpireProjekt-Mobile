@@ -2,9 +2,7 @@ package com.makeevrserg.empireprojekt.mobile.features.towny.towns.presentation
 
 import kotlinx.coroutines.flow.StateFlow
 import ru.astrainteractive.empireapi.models.towny.TownModel
-import ru.astrainteractive.empireapi.models.towny.TownPublicType
-import ru.astrainteractive.empireapi.models.towny.TownSortBy
-import ru.astrainteractive.empireapi.models.towny.TownsFilter
+import ru.astrainteractive.empireapi.models.towny.TownsFilterModel
 
 interface TownsComponent {
     val model: StateFlow<Model>
@@ -15,13 +13,23 @@ interface TownsComponent {
 
     fun updateQuery(query: String)
 
-    fun selectPublicType(townPublicType: TownPublicType)
+    fun nextPublicType()
 
-    fun selectSortType(townSortBy: TownSortBy)
+    fun nextNameSort()
+
+    fun nextTagSort()
+
+    fun nextFounderSort()
+
+    fun nextNationSort()
+
+    fun nextDateSort()
+
+    fun nextResidentsSort()
 
     data class Model(
         val items: List<TownModel> = emptyList(),
-        val filter: TownsFilter,
+        val filter: TownsFilterModel,
         val isLoading: Boolean = false,
         val isFailure: Boolean = false,
         val isLastPage: Boolean = false

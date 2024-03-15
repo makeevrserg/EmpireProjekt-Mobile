@@ -2,8 +2,7 @@ package com.makeevrserg.empireprojekt.mobile.features.towny.towns.presentation
 
 import com.makeevrserg.empireprojekt.mobile.features.towny.towns.di.TownsDependencies
 import kotlinx.coroutines.launch
-import ru.astrainteractive.empireapi.models.towny.TownPublicType
-import ru.astrainteractive.empireapi.models.towny.TownSortBy
+import ru.astrainteractive.empireapi.models.towny.TownsFilterModel
 import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
 import ru.astrainteractive.klibs.mikro.extensions.arkivanov.CoroutineFeature
 
@@ -20,22 +19,8 @@ internal class TownsFeature(
         townsRepository.pagingCollector.reset()
     }
 
-    fun updateQuery(query: String) = launch {
-        townsRepository.updateFilter { filter ->
-            filter.copy(query = query)
-        }
-    }
-
-    fun selectPublicType(townPublicType: TownPublicType) = launch {
-        townsRepository.updateFilter { filter ->
-            filter.copy(publicType = townPublicType)
-        }
-    }
-
-    fun selectSortType(townSortBy: TownSortBy) = launch {
-        townsRepository.updateFilter { filter ->
-            filter.copy(sortBy = townSortBy)
-        }
+    fun updateFilter(block: (TownsFilterModel) -> TownsFilterModel) = launch {
+        townsRepository.updateFilter(block)
     }
 
     val model = townsRepository.pagingCollector.state.mapStateFlow {

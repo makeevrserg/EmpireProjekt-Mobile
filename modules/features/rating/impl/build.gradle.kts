@@ -21,6 +21,8 @@ kotlin {
                 implementation(libs.klibs.mikro.platform)
                 implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
+                // settings
+                implementation(libs.mppsettings)
                 // Decompose
                 implementation(libs.decompose.core)
                 implementation(libs.essenty)

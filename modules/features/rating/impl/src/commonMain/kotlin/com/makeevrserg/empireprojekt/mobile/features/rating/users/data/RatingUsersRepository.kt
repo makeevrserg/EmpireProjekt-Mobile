@@ -1,14 +1,10 @@
 package com.makeevrserg.empireprojekt.mobile.features.rating.users.data
 
-import kotlinx.coroutines.flow.StateFlow
-import ru.astrainteractive.empireapi.models.rating.RatingListRequest
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.data.paging.RatingsPagingCollector
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
-import ru.astrainteractive.klibs.paging.context.IntPageContext
-import ru.astrainteractive.klibs.paging.state.PagingState
+import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
 
 internal interface RatingUsersRepository {
-    fun updateRequest(request: RatingListRequest)
-    suspend fun loadNextPage()
-    suspend fun reset()
-    val state: StateFlow<PagingState<RatingUserModel, IntPageContext>>
+    val pagingCollector: RatingsPagingCollector<RatingUserModel>
+    suspend fun updateFilter(buildFilter: (RatingsFilterModel) -> RatingsFilterModel)
 }

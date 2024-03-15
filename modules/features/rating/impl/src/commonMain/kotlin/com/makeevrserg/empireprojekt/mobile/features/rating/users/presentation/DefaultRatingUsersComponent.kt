@@ -1,14 +1,12 @@
 package com.makeevrserg.empireprojekt.mobile.features.rating.users.presentation
 
 import com.arkivanov.decompose.ComponentContext
-import com.arkivanov.mvikotlin.core.instancekeeper.getStore
-import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
-import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
+import com.arkivanov.essenty.instancekeeper.getOrCreate
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersDependencies
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.presentation.RatingUsersComponent.Model
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStore
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.store.RatingUsersStoreFactory
-import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import ru.astrainteractive.empireapi.models.towny.LocalSortOrder
+import ru.astrainteractive.klibs.mikro.core.util.next
 
 internal class DefaultRatingUsersComponent(
     componentContext: ComponentContext,
@@ -16,33 +14,41 @@ internal class DefaultRatingUsersComponent(
     private val onShowUserRatingsClicked: (userId: Long, userName: String) -> Unit
 ) : RatingUsersComponent,
     ComponentContext by componentContext {
+    private val ratingUsersFeature = instanceKeeper.getOrCreate {
+        RatingUsersFeature(dependencies = dependencies)
+    }
+    override val model: StateFlow<Model>
+        get() = ratingUsersFeature.model
 
-    private val store = instanceKeeper.getStore {
-        RatingUsersStoreFactory(
-            storeFactory = DefaultStoreFactory(),
-            dependencies = dependencies
-        ).create()
+    private fun LocalSortOrder?.next(): LocalSortOrder {
+        return this?.next(LocalSortOrder.entries.toTypedArray()) ?: LocalSortOrder.entries.first()
     }
 
-    override val model = store.stateFlow.mapStateFlow {
-        Model(
-            items = it.items,
-            request = it.request,
-            isLoading = it.isLoading,
-            isFailure = it.isFailure,
-            isLastPage = it.isLastPage
-        )
+    override fun reset() {
+        ratingUsersFeature.reset()
+    }
+
+    override fun loadNextPage() {
+        ratingUsersFeature.loadNextPage()
+    }
+
+    override fun updateQuery(query: String) {
+        ratingUsersFeature.updateFilter { it.copy(query = query) }
+    }
+
+    override fun nextLastUpdateSort() {
+        ratingUsersFeature.updateFilter { it.copy(lastUpdatedSort = it.lastUpdatedSort.next()) }
+    }
+
+    override fun nextRatingSort() {
+        ratingUsersFeature.updateFilter { it.copy(ratingSort = it.ratingSort.next()) }
+    }
+
+    override fun nextNameSort() {
+        ratingUsersFeature.updateFilter { it.copy(nameSort = it.nameSort.next()) }
     }
 
     override fun showUserRatings(id: Long, userName: String) {
         onShowUserRatingsClicked.invoke(id, userName)
-    }
-
-    override fun reset() {
-        RatingUsersStore.Intent.Reset.run(store::accept)
-    }
-
-    override fun loadNextPage() {
-        RatingUsersStore.Intent.LoadNextPage.run(store::accept)
     }
 }

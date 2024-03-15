@@ -37,7 +37,7 @@ internal fun StatusWidget(statusComponent: UrlStatusComponent) {
 
     Row(
         modifier = Modifier
-            .padding(vertical = AppTheme.dimens.M)
+            .padding(vertical = AppTheme.dimens.S)
             .height(54.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(AppTheme.dimens.XS))

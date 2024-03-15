@@ -18,6 +18,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCente
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.presentation.RatingUsersComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.components.RatingUserWidget
+import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.components.RatingsFilterCard
 import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 
 @Composable
@@ -46,6 +47,14 @@ fun RatingUsersScreenComponent(
             contentPadding = it,
             state = lazyListState
         ) {
+            item {
+                RatingsFilterCard(
+                    filter = model.filter,
+                    onNameSortClicked = ratingUsersComponent::nextNameSort,
+                    onLastUpdateSortClicked = ratingUsersComponent::nextLastUpdateSort,
+                    onRatingSortClicked = ratingUsersComponent::nextRatingSort
+                )
+            }
             items(model.items) { ratingUserModel ->
                 RatingUserWidget(
                     model = ratingUserModel,

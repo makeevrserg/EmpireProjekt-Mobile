@@ -69,7 +69,7 @@ fun StatusScreen(
             modifier = Modifier
                 .padding(horizontal = AppTheme.dimens.S)
                 .navigationBarsPadding(),
-            contentPadding = it
+            contentPadding = it,
         ) {
             item {
                 Text(

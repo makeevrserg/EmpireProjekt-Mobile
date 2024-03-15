@@ -22,6 +22,7 @@ import com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.components.T
 import com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.components.TownFilterCard
 import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 
+@Suppress("LongMethod")
 @Composable
 fun TownsScreenComponent(
     popComponent: PopComponent,
@@ -53,8 +54,13 @@ fun TownsScreenComponent(
             item {
                 TownFilterCard(
                     townsFilter = model.filter,
-                    onSortSelected = townsComponent::selectSortType,
-                    onPublicSelected = townsComponent::selectPublicType
+                    onSortByNationClicked = townsComponent::nextNationSort,
+                    onSortByResidentsClicked = townsComponent::nextResidentsSort,
+                    onSortByTagClicked = townsComponent::nextTagSort,
+                    onSortByDateClicked = townsComponent::nextDateSort,
+                    onSortByNameClicked = townsComponent::nextNameSort,
+                    onPublicTypeClicked = townsComponent::nextPublicType,
+                    onSortByFounderClicked = townsComponent::nextFounderSort
                 )
             }
             items(model.items) { townModel ->
