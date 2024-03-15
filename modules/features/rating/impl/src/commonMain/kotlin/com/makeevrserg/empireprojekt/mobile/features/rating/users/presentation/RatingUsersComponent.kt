@@ -11,11 +11,19 @@ interface RatingUsersComponent {
 
     fun loadNextPage()
 
+    fun updateQuery(query: String)
+
+    fun nextLastUpdateSort()
+
+    fun nextRatingSort()
+
+    fun nextNameSort()
+
     fun showUserRatings(id: Long, userName: String)
 
     data class Model(
         val items: List<RatingUserModel> = emptyList(),
-        val request: RatingsFilterModel = RatingsFilterModel(),
+        val filter: RatingsFilterModel = RatingsFilterModel(),
         val isLoading: Boolean = false,
         val isFailure: Boolean = false,
         val isLastPage: Boolean = false

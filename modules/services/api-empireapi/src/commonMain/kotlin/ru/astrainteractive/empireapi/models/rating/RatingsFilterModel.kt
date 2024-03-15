@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 import ru.astrainteractive.empireapi.models.towny.LocalSortOrder
 
 @Serializable
-class RatingsFilterModel(
-    val nameSort: LocalSortOrder? = null,
-    val lastUpdatedSort: LocalSortOrder? = null,
-    val ratingSort: LocalSortOrder? = null,
+data class RatingsFilterModel(
+    val nameSort: LocalSortOrder = LocalSortOrder.NONE,
+    val lastUpdatedSort: LocalSortOrder = LocalSortOrder.NONE,
+    val ratingSort: LocalSortOrder = LocalSortOrder.NONE,
     val query: String = "",
 )

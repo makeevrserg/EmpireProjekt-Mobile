@@ -1,56 +1,62 @@
 package com.makeevrserg.empireprojekt.mobile.features.rating.users.data
 
 import com.makeevrserg.empireprojekt.mobile.api.empireapi.RatingApi
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.data.paging.RatingsPagingCollector
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.storage.RatingsFilterStorageValue
+import com.russhwolf.settings.Settings
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.job
 import kotlinx.coroutines.withContext
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
 import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
-import ru.astrainteractive.klibs.paging.IntPagerCollector
-import ru.astrainteractive.klibs.paging.context.IntPageContext
+import ru.astrainteractive.klibs.paging.PagingCollectorExt.updatePageContext
 import ru.astrainteractive.klibs.paging.data.LambdaPagedListDataSource
-import ru.astrainteractive.klibs.paging.state.PagingState
 
 internal class RatingUsersRepositoryImpl(
+    private val settings: Settings,
     private val ratingApi: RatingApi,
     private val dispatchers: KotlinDispatchers
 ) : RatingUsersRepository {
-    private val request = MutableStateFlow(RatingsFilterModel())
-
-    private val pagingCollector = IntPagerCollector(
-        initialPage = 0,
-        pager = LambdaPagedListDataSource {
-            loadPage(it.pageContext.page)
-        }
+    private val townsFilterStorageValue = RatingsFilterStorageValue(
+        settings = settings,
+        key = "ratings_filter_storage_key"
     )
+    private var currentJob: Job? = null
 
-    override val state: StateFlow<PagingState<RatingUserModel, IntPageContext>> = pagingCollector.state
-
-    private suspend fun loadPage(page: Int): Result<List<RatingUserModel>> {
-        return runCatching {
+    private suspend fun loadPage(
+        page: Int,
+        filter: RatingsFilterModel
+    ): Result<List<RatingUserModel>> = coroutineScope {
+        currentJob?.cancelAndJoin()
+        currentJob = this.coroutineContext.job
+        runCatching {
             withContext(dispatchers.IO) {
                 ratingApi.users(
                     page = page,
                     size = 10,
-                    body = request.value
+                    body = filter
                 ).data
             }
         }.onFailure(Throwable::printStackTrace)
     }
 
-    override suspend fun reset() {
+    override val pagingCollector = RatingsPagingCollector(
+        initialPage = 0,
+        pager = LambdaPagedListDataSource {
+            loadPage(it.pageContext.page, it.pageContext.filter)
+        },
+        initialFilter = townsFilterStorageValue.value
+    )
+
+    override suspend fun updateFilter(buildFilter: (RatingsFilterModel) -> RatingsFilterModel) {
+        val newFilter = buildFilter.invoke(pagingCollector.state.value.pageContext.filter)
+        townsFilterStorageValue.save(newFilter)
+        currentJob?.cancelAndJoin()
         pagingCollector.reset()
-    }
-
-    override suspend fun loadNextPage() {
+        pagingCollector.updatePageContext { it.copy(filter = newFilter) }
         pagingCollector.loadNextPage()
-    }
-
-    override fun updateRequest(request: RatingsFilterModel) {
-        this.request.update {
-            request
-        }
     }
 }

@@ -21,7 +21,8 @@ interface RatingUsersModule {
         private val ratingUsersRepository: RatingUsersRepository by lazy {
             RatingUsersRepositoryImpl(
                 ratingApi = apiEmpireApiModule.ratingApi,
-                dispatchers = coreModule.dispatchers
+                dispatchers = coreModule.dispatchers,
+                settings = coreModule.settings
             )
         }
 

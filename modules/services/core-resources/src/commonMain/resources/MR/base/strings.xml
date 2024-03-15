@@ -18,6 +18,9 @@
     <string name="rating.user_ratings">Рейтинги</string>
     <string name="rating.rating">Рейтинг:</string>
     <string name="rating.player_message">Написал:</string>
+    <string name="rating.ratings_filter.name">Имя</string>
+    <string name="rating.ratings_filter.last_update">Последние</string>
+    <string name="rating.ratings_filter.rating">Рейтинг</string>
     <!--    Info    -->
     <string name="info.more_links">Больше ссылок:</string>
     <!--    Towns      -->

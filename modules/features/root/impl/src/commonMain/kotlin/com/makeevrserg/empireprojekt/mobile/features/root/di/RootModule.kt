@@ -56,12 +56,11 @@ interface RootModule {
             )
         }
 
-        override val ratingUserModule: RatingUserModule by lazy {
-            RatingUserModule.Default(
+        override val ratingUserModule: RatingUserModule
+            get() = RatingUserModule.Default(
                 apiEmpireApiModule = apiEmpireApiModule,
                 coreModule = coreModule
             )
-        }
 
         override val ratingUsersModule: RatingUsersModule by lazy {
             RatingUsersModule.Default(
