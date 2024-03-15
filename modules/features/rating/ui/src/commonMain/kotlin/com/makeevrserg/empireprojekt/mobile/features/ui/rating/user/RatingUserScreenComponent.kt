@@ -42,12 +42,20 @@ fun RatingUserScreenComponent(
     ) {
         LazyColumn(
             contentPadding = it,
-            modifier = Modifier.padding(horizontal = AppTheme.dimens.XS).navigationBarsPadding(),
+            modifier = Modifier
+                .padding(horizontal = AppTheme.dimens.XS)
+                .navigationBarsPadding(),
             verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS),
             state = lazyListState
         ) {
             items(model.items) { ratingModel ->
-                RatingUserWidget(ratingModel)
+                RatingUserWidget(
+                    uuid = ratingModel.userCreatedReport?.minecraftUUID,
+                    name = ratingModel.userCreatedReport?.minecraftName,
+                    rating = ratingModel.rating,
+                    message = ratingModel.message,
+                    time = ratingModel.time
+                )
             }
             item {
                 PagingWidget.Auto(

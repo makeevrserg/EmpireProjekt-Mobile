@@ -18,20 +18,35 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ThumbDown
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.PlayerHeadBox
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.RowText
+import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import ru.astrainteractive.empireapi.models.rating.RatingModel
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
+import ru.astrainteractive.klibs.mikro.extensions.JvmTimeFormatter
+import ru.astrainteractive.klibs.mikro.extensions.TimeFormatter
+import java.util.UUID
 
 @Suppress("LongMethod")
 @Composable
-internal fun RatingUserWidget(ratingModel: RatingModel) {
+internal fun RatingUserWidget(
+    uuid: String?,
+    name: String?,
+    rating: Int,
+    message: String,
+    time: Long
+) {
+    val timeFormatter: TimeFormatter = JvmTimeFormatter()
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,13 +61,13 @@ internal fun RatingUserWidget(ratingModel: RatingModel) {
                 modifier = Modifier.padding(horizontal = AppTheme.dimens.S)
             ) {
                 PlayerHeadBox(
-                    uuid = ratingModel.userCreatedReport?.minecraftUUID.orEmpty(),
+                    uuid = uuid.orEmpty(),
                     modifier = Modifier
                         .size(32.dp)
                         .clip(RoundedCornerShape(AppTheme.dimens.XXS)),
                 )
                 Text(
-                    text = ratingModel.userCreatedReport?.minecraftName ?: "-",
+                    text = name ?: "-",
                     style = MaterialTheme.typography.subtitle2,
                     color = MaterialTheme.colors.onPrimary,
                     textAlign = TextAlign.Center
@@ -60,7 +75,7 @@ internal fun RatingUserWidget(ratingModel: RatingModel) {
 
                 Spacer(Modifier.weight(1f))
                 when {
-                    ratingModel.rating > 0 -> {
+                    rating > 0 -> {
                         Icon(
                             imageVector = Icons.Filled.ThumbUp,
                             contentDescription = null,
@@ -87,6 +102,16 @@ internal fun RatingUserWidget(ratingModel: RatingModel) {
                     .background(MaterialTheme.colors.onSecondary)
             )
             Spacer(Modifier.height(AppTheme.dimens.XS))
+            RowText(
+                title = MR.strings.rating_last_updated.asComposableString(),
+                desc = remember {
+                    timeFormatter.format(
+                        instant = Instant.fromEpochMilliseconds(time),
+                        format = "dd.MM.yyyy HH:mm"
+                    )
+                },
+                modifier = Modifier.fillMaxWidth().padding(horizontal = AppTheme.dimens.S)
+            )
             Text(
                 text = MR.strings.rating_player_message.asComposableString(),
                 style = MaterialTheme.typography.subtitle2,
@@ -95,12 +120,26 @@ internal fun RatingUserWidget(ratingModel: RatingModel) {
                 modifier = Modifier.padding(horizontal = AppTheme.dimens.S)
             )
             Text(
-                text = ratingModel.message.trim(),
+                text = message.trim(),
                 style = MaterialTheme.typography.subtitle2,
                 color = MaterialTheme.colors.onPrimary,
                 textAlign = TextAlign.Start,
                 modifier = Modifier.padding(horizontal = AppTheme.dimens.S)
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun RatingUserWidgetPreview() {
+    AdaptThemeFade {
+        RatingUserWidget(
+            uuid = UUID.randomUUID().toString(),
+            name = "RomaRoman",
+            rating = 10,
+            message = "Hello world",
+            time = Clock.System.now().toEpochMilliseconds()
+        )
     }
 }

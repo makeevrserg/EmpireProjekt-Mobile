@@ -85,7 +85,7 @@ fun RowText(
     title: String,
     desc: String,
     modifier: Modifier = Modifier,
-    titleColor: Color = MaterialTheme.colors.onPrimary.copy(0.5f),
+    titleColor: Color = MaterialTheme.colors.onSecondary,
     descColor: Color = MaterialTheme.colors.onPrimary
 ) {
     Row(
@@ -98,7 +98,7 @@ fun RowText(
             color = titleColor,
             textAlign = TextAlign.Start,
             modifier = Modifier,
-            style = MaterialTheme.typography.subtitle1,
+            style = MaterialTheme.typography.subtitle2,
         )
         Text(
             text = desc,
