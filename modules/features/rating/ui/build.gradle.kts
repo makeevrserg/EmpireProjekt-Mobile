@@ -24,6 +24,10 @@ kotlin {
                 implementation(compose.preview)
                 implementation(compose.material)
                 implementation(compose.materialIconsExtended)
+                // klibs
+                implementation(libs.klibs.mikro.extensions)
+                // Kotlin
+                implementation(libs.kotlin.datetime)
                 // Moko
                 implementation(libs.moko.resources.core)
                 // Local

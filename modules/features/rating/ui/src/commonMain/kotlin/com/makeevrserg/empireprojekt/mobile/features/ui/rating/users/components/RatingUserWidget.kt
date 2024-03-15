@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -17,6 +18,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,10 +30,14 @@ import androidx.compose.ui.unit.dp
 import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.PlayerHeadBox
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.RowText
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.ComposeTheme
+import kotlinx.datetime.Instant
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
+import ru.astrainteractive.klibs.mikro.extensions.JvmTimeFormatter
+import ru.astrainteractive.klibs.mikro.extensions.TimeFormatter
 
 @Suppress("LongMethod")
 @Composable
@@ -39,6 +45,7 @@ internal fun RatingUserWidget(
     model: RatingUserModel,
     onClick: () -> Unit
 ) {
+    val timeFormatter: TimeFormatter = JvmTimeFormatter()
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -52,46 +59,50 @@ internal fun RatingUserWidget(
                 modifier = Modifier.padding(vertical = AppTheme.dimens.XS, horizontal = AppTheme.dimens.S),
                 horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
             ) {
-                PlayerHeadBox(
-                    uuid = model.minecraftUUID,
-                    modifier = Modifier
-                        .size(32.dp)
-                        .clip(RoundedCornerShape(AppTheme.dimens.XXS)),
-                )
                 Column {
-                    Text(
-                        text = model.minecraftName,
-                        style = MaterialTheme.typography.h6,
-                        color = MaterialTheme.colors.onPrimary,
-                        textAlign = TextAlign.Center
-                    )
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.XS)
-                    ) {
-                        Text(
-                            text = MR.strings.rating_rating.asComposableString(),
-                            style = MaterialTheme.typography.subtitle1,
-                            color = MaterialTheme.colors.onSecondary,
-                            textAlign = TextAlign.Center,
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        PlayerHeadBox(
+                            uuid = model.minecraftUUID,
                             modifier = Modifier
+                                .size(32.dp)
+                                .clip(RoundedCornerShape(AppTheme.dimens.XXS)),
                         )
+                        Spacer(Modifier.width(AppTheme.dimens.XS))
                         Text(
-                            text = "${model.total}",
-                            style = MaterialTheme.typography.subtitle1,
+                            text = model.minecraftName,
+                            style = MaterialTheme.typography.h6,
                             color = MaterialTheme.colors.onPrimary,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
+                            textAlign = TextAlign.Center
+                        )
+                        Spacer(Modifier.weight(1f))
+                        Icon(
+                            imageVector = Icons.Filled.ChevronRight,
+                            contentDescription = null,
+                            tint = MaterialTheme.colors.onPrimary,
+                            modifier = Modifier.size(AppTheme.dimens.M)
                         )
                     }
+                    RowText(
+                        title = MR.strings.rating_rating.asComposableString(),
+                        desc = "${model.totalRating}",
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    RowText(
+                        title = MR.strings.rating_votes_count.asComposableString(),
+                        desc = "${model.ratingVotes}",
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    RowText(
+                        title = MR.strings.rating_last_updated.asComposableString(),
+                        desc = remember {
+                            timeFormatter.format(
+                                instant = Instant.fromEpochMilliseconds(model.lastUpdated),
+                                format = "dd.MM.yyyy"
+                            )
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
-                Spacer(Modifier.weight(1f))
-                Icon(
-                    imageVector = Icons.Filled.ChevronRight,
-                    contentDescription = null,
-                    tint = MaterialTheme.colors.onPrimary,
-                    modifier = Modifier.size(AppTheme.dimens.M)
-                )
             }
             GradientProgressIndicator(
                 brush = Brush.horizontalGradient(
@@ -107,8 +118,8 @@ internal fun RatingUserWidget(
                     )
                 ),
                 progress = let {
-                    val coerse = 20L
-                    val total = (model.total + coerse).coerceIn(0, coerse * 2)
+                    val coerse = 10L
+                    val total = (model.totalRating + coerse).coerceIn(0, coerse * 2)
                     (total / (coerse * 2f)).coerceIn(0f, 1f)
                 }
             )
@@ -126,7 +137,8 @@ private fun RatingUserWidgetPreview() {
                 minecraftUUID = "uuid",
                 minecraftName = "name",
                 lastUpdated = 0,
-                total = 10
+                totalRating = 10,
+                ratingVotes = 1
             ),
             onClick = {}
         )
