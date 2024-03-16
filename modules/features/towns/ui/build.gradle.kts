@@ -1,6 +1,6 @@
 @file:Suppress("UnusedPrivateMember")
 
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
 
 plugins {
     id("org.jetbrains.compose")
@@ -43,5 +43,5 @@ kotlin {
 }
 
 android {
-    namespace = "${projectInfo.group}.features.towns.ui"
+    namespace = "${requireProjectInfo.group}.features.towns.ui"
 }
