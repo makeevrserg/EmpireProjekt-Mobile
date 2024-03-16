@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - test
+      - master
 jobs:
   gradle_validation:
     uses: ./.github/workflows/gradle-wrapper-validation.yml
