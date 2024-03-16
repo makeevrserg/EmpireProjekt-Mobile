@@ -1,6 +1,9 @@
-import ru.astrainteractive.gradleplugin.util.GradleProperty.Companion.gradleProperty
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
-import ru.astrainteractive.gradleplugin.util.SecretProperty.Companion.secretProperty
+import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.baseGradleProperty
+import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.secretProperty
+import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
+import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.requireInt
+import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.stringOrEmpty
+import ru.astrainteractive.gradleplugin.util.Base64Util
 
 plugins {
     kotlin("plugin.serialization")
@@ -13,17 +16,29 @@ plugins {
 }
 
 android {
-    namespace = "${projectInfo.group}"
+    namespace = "${requireProjectInfo.group}"
     apply(plugin = "kotlin-parcelize")
+    val gServicesFile = file("google-services.json")
+    if (!gServicesFile.exists()) {
+        logger.warn("google-services.json not exists - creating")
+        val base64String = secretProperty("GSERVICES_BASE64").stringOrEmpty
+        if (base64String.isNotBlank()) Base64Util.fromBase64(base64String, gServicesFile)
+    }
+
     if (file("google-services.json").exists()) {
         apply(plugin = "com.google.gms.google-services")
         apply(plugin = "com.google.firebase.crashlytics")
+    } else {
+        logger.error("google-services.json not exists - could not create from secret!")
     }
     defaultConfig {
-        applicationId = projectInfo.group
-        versionCode = gradleProperty("project.version.code").integer
-        versionName = projectInfo.versionString
-        setProperty("archivesBaseName", "${projectInfo.name}-${projectInfo.versionString}")
+        applicationId = requireProjectInfo.group
+        versionCode = baseGradleProperty("project.version.code").requireInt
+        versionName = requireProjectInfo.versionString
+        setProperty(
+            "archivesBaseName",
+            "${requireProjectInfo.name}-${requireProjectInfo.versionString}"
+        )
     }
     defaultConfig {
         multiDexEnabled = true
@@ -34,29 +49,32 @@ android {
     }
 
     signingConfigs {
-        val secretKeyAlias = runCatching {
-            secretProperty("KEY_ALIAS").string
-        }.getOrNull() ?: ""
-        val secretKeyPassword = runCatching {
-            secretProperty("KEY_PASSWORD").string
-        }.getOrNull() ?: ""
-        val secretStorePassword = runCatching {
-            secretProperty("STORE_PASSWORD").string
-        }.getOrNull() ?: ""
+        val keyStoreFile = file("keystore.jks")
+        val secretKeyAlias = secretProperty("KEY_ALIAS").stringOrEmpty
+        val secretKeyPassword = secretProperty("KEY_PASSWORD").stringOrEmpty
+        val secretStorePassword = secretProperty("STORE_PASSWORD").stringOrEmpty
+        if (!keyStoreFile.exists()) {
+            logger.warn("Keystore file not exists - creating")
+            val base64String = secretProperty("KEYSTORE_BASE64").stringOrEmpty
+            if (base64String.isNotBlank()) Base64Util.fromBase64(base64String, keyStoreFile)
+        }
+        if (!keyStoreFile.exists()) {
+            logger.error("Keystore file could not be created")
+        }
         getByName("debug") {
-            if (file("keystore.jks").exists()) {
+            if (keyStoreFile.exists()) {
                 keyAlias = secretKeyAlias
                 keyPassword = secretKeyPassword
                 storePassword = secretStorePassword
-                storeFile = file("keystore.jks")
+                storeFile = keyStoreFile
             }
         }
         create("release") {
-            if (file("keystore.jks").exists()) {
+            if (keyStoreFile.exists()) {
                 keyAlias = secretKeyAlias
                 keyPassword = secretKeyPassword
                 storePassword = secretStorePassword
-                storeFile = file("keystore.jks")
+                storeFile = keyStoreFile
             }
         }
     }

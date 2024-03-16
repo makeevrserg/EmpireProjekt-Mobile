@@ -1,6 +1,6 @@
 @file:Suppress("UnusedPrivateMember")
 
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
 
 plugins {
     id("dev.icerock.mobile.multiplatform-resources")
@@ -32,10 +32,10 @@ kotlin {
     }
 }
 multiplatformResources {
-    multiplatformResourcesPackage = "${projectInfo.group}.core.resources"
+    multiplatformResourcesPackage = "${requireProjectInfo.group}.core.resources"
 }
 android {
-    namespace = "${projectInfo.group}.core.resources"
+    namespace = "${requireProjectInfo.group}.core.resources"
     dependencies {
         implementation("com.google.android.material:material:1.9.0")
     }

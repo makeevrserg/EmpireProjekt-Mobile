@@ -1,7 +1,8 @@
-import ru.astrainteractive.gradleplugin.util.GradleProperty.Companion.gradleProperty
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.jinfo
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
-import ru.astrainteractive.gradleplugin.util.SecretProperty.Companion.secretProperty
+import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.baseGradleProperty
+import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.secretProperty
+import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
+import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.requireInt
+import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.stringOrEmpty
 
 plugins {
     kotlin("plugin.serialization")
@@ -13,33 +14,25 @@ plugins {
 }
 
 android {
-    namespace = "${projectInfo.group}"
-    compileSdk = gradleProperty("android.sdk.compile").integer
+    namespace = "${requireProjectInfo.group}"
+    compileSdk = baseGradleProperty("android.sdk.compile").requireInt
 
     defaultConfig {
-        applicationId = "${projectInfo.group}"
+        applicationId = "${requireProjectInfo.group}"
         minSdk = 26
-        targetSdk = gradleProperty("android.sdk.target").integer
-        versionCode = gradleProperty("project.version.code").integer
-        versionName = projectInfo.versionString
+        targetSdk = baseGradleProperty("android.sdk.target").requireInt
+        versionCode = baseGradleProperty("project.version.code").requireInt
+        versionName = requireProjectInfo.versionString
         vectorDrawables {
             useSupportLibrary = true
         }
     }
-
-    compileOptions {
-        sourceCompatibility = jinfo.jsource
-        targetCompatibility = jinfo.jtarget
-    }
-    kotlinOptions {
-        jvmTarget = jinfo.jtarget.majorVersion
-    }
     signingConfigs {
-        val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").string }.getOrNull() ?: ""
+        val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").stringOrEmpty }.getOrNull() ?: ""
         val secretKeyPassword =
-            runCatching { secretProperty("KEY_PASSWORD").string }.getOrNull() ?: ""
+            runCatching { secretProperty("KEY_PASSWORD").stringOrEmpty }.getOrNull() ?: ""
         val secretStorePassword =
-            runCatching { secretProperty("STORE_PASSWORD").string }.getOrNull() ?: ""
+            runCatching { secretProperty("STORE_PASSWORD").stringOrEmpty }.getOrNull() ?: ""
         getByName("debug") {
             if (file("../androidApp/keystore.jks").exists()) {
                 keyAlias = secretKeyAlias
