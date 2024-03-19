@@ -3,7 +3,6 @@ package com.makeevrserg.empireprojekt.mobile.api.empireapi
 import ru.astrainteractive.empireapi.models.rating.RatingModel
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
-import ru.astrainteractive.empireapi.models.rating.UserRatingsRequest
 import ru.astrainteractive.empireapi.models.response.GenericPagedModel
 
 interface RatingApi {
@@ -20,5 +19,5 @@ interface RatingApi {
     /**
      * Fetch ratings of selected user
      */
-    suspend fun ratings(page: Int, size: Int, body: UserRatingsRequest): GenericPagedModel<RatingModel>
+    suspend fun ratings(page: Int, size: Int, userId: Long): GenericPagedModel<RatingModel>
 }

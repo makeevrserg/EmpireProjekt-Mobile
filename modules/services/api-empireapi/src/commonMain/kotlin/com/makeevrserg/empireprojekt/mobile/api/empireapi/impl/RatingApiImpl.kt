@@ -39,13 +39,13 @@ internal class RatingApiImpl(
         }.body()
     }
 
-    override suspend fun ratings(page: Int, size: Int, body: UserRatingsRequest): GenericPagedModel<RatingModel> {
+    override suspend fun ratings(page: Int, size: Int, userId: Long): GenericPagedModel<RatingModel> {
         return httpClient.post {
             url("$baseUrl/rating/user/votes")
             parameter("page", page)
             parameter("size", size)
             contentType(ContentType.Application.Json)
-            setBody(body)
+            setBody(UserRatingsRequest(id = userId))
         }.body()
     }
 }

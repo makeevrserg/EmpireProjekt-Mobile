@@ -4,16 +4,9 @@ import com.makeevrserg.empireprojekt.mobile.api.empireapi.RatingApi
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.data.paging.RatingsPagingCollector
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.storage.RatingsFilterStorageValue
 import com.russhwolf.settings.Settings
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.job
-import kotlinx.coroutines.withContext
-import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
 import ru.astrainteractive.klibs.mikro.core.dispatchers.KotlinDispatchers
-import ru.astrainteractive.klibs.paging.PagingCollectorExt.updatePageContext
-import ru.astrainteractive.klibs.paging.data.LambdaPagedListDataSource
+import ru.astrainteractive.klibs.paging.data.CoroutineHandledPagedListDataSource
 
 internal class RatingUsersRepositoryImpl(
     private val settings: Settings,
@@ -24,39 +17,23 @@ internal class RatingUsersRepositoryImpl(
         settings = settings,
         key = "ratings_filter_storage_key"
     )
-    private var currentJob: Job? = null
-
-    private suspend fun loadPage(
-        page: Int,
-        filter: RatingsFilterModel
-    ): Result<List<RatingUserModel>> = coroutineScope {
-        currentJob?.cancelAndJoin()
-        currentJob = this.coroutineContext.job
-        runCatching {
-            withContext(dispatchers.IO) {
-                ratingApi.users(
-                    page = page,
-                    size = 10,
-                    body = filter
-                ).data
-            }
-        }.onFailure(Throwable::printStackTrace)
-    }
 
     override val pagingCollector = RatingsPagingCollector(
         initialPage = 0,
-        pager = LambdaPagedListDataSource {
-            loadPage(it.pageContext.page, it.pageContext.filter)
+        pager = CoroutineHandledPagedListDataSource(dispatchers.IO) { pagingState ->
+            ratingApi.users(
+                page = pagingState.pageContext.page,
+                size = 10,
+                body = pagingState.pageContext.filter
+            ).data
         },
-        initialFilter = townsFilterStorageValue.value
+        initialFilterFactory = { townsFilterStorageValue.value }
     )
 
     override suspend fun updateFilter(buildFilter: (RatingsFilterModel) -> RatingsFilterModel) {
         val newFilter = buildFilter.invoke(pagingCollector.state.value.pageContext.filter)
         townsFilterStorageValue.save(newFilter)
-        currentJob?.cancelAndJoin()
-        pagingCollector.reset()
-        pagingCollector.updatePageContext { it.copy(filter = newFilter) }
+        pagingCollector.resetAndJoin()
         pagingCollector.loadNextPage()
     }
 }

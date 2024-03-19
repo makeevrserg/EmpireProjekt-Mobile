@@ -5,6 +5,7 @@ import kotlinx.coroutines.launch
 import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
 import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
 import ru.astrainteractive.klibs.mikro.extensions.arkivanov.CoroutineFeature
+import ru.astrainteractive.klibs.paging.PagingCollectorExt.resetAndLoadNextPage
 
 internal class RatingUsersFeature(
     dependencies: RatingUsersDependencies
@@ -16,7 +17,7 @@ internal class RatingUsersFeature(
     }
 
     fun reset() {
-        ratingUsersRepository.pagingCollector.reset()
+        launch { ratingUsersRepository.pagingCollector.resetAndLoadNextPage() }
     }
 
     fun updateFilter(block: (RatingsFilterModel) -> RatingsFilterModel) = launch {
