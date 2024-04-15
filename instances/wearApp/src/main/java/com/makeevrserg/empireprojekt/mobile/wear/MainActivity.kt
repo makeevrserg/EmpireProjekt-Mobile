@@ -4,31 +4,31 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
-import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
+import com.arkivanov.decompose.defaultComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationTheme
+import com.makeevrserg.empireprojekt.mobile.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.application.App.Companion.asEmpireApp
-import com.makeevrserg.empireprojekt.mobile.wear.features.root.NavHostRootComponent
+import com.makeevrserg.empireprojekt.mobile.wear.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.root.RootScreen
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
 
 class MainActivity : ComponentActivity() {
-    private val rootModule by Provider {
+    private val wearRootModule by Provider {
         application.asEmpireApp().wearRootModule
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        setTheme(com.makeevrserg.empireprojekt.mobile.resources.R.style.AppTheme)
+        setTheme(R.style.AppTheme)
+        val rootComponent = DefaultRootComponent(
+            componentContext = defaultComponentContext(),
+            wearRootModule = wearRootModule
+        )
         setContent {
-            val navController = rememberSwipeDismissableNavController()
-            val navHostRootComponent = NavHostRootComponent(navController)
-            ApplicationTheme(rootModule.themeSwitcherComponent.value) {
-                RootScreen(
-                    rootComponent = navHostRootComponent,
-                    wearRootModule = rootModule
-                )
+            ApplicationTheme(wearRootModule.themeSwitcherComponent.value) {
+                RootScreen(rootComponent = rootComponent)
             }
         }
     }

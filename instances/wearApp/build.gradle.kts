@@ -13,6 +13,7 @@ plugins {
 
 android {
     namespace = "${projectInfo.group}"
+    apply(plugin = "kotlin-parcelize")
     compileSdk = gradleProperty("android.sdk.compile").integer
 
     defaultConfig {

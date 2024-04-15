@@ -15,18 +15,15 @@ import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
+import com.makeevrserg.empireprojekt.mobile.features.theme.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.NavChip
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.ThemeChip
-import com.makeevrserg.empireprojekt.mobile.wear.features.root.NavHostRootComponent
-import ru.astrainteractive.klibs.kdi.getValue
 
 @Composable
 fun MainScreen(
-    wearRootModule: WearRootModule,
-    rootComponent: NavHostRootComponent
+    themeSwitcherComponent: ThemeSwitcherComponent,
+    onOpenStatusesClicked: () -> Unit
 ) {
-    val themeSwitcher by wearRootModule.themeSwitcherComponent
     Scaffold(
         modifier = Modifier.background(MaterialTheme.colors.primaryVariant),
         vignette = {
@@ -43,13 +40,11 @@ fun MainScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(AppTheme.dimens.S))
-            ThemeChip(themeSwitcherComponent = themeSwitcher)
+            ThemeChip(themeSwitcherComponent = themeSwitcherComponent)
             Spacer(modifier = Modifier.height(AppTheme.dimens.S))
             NavChip(
                 text = "Statuses",
-                onClick = {
-                    rootComponent.openStatuses()
-                }
+                onClick = onOpenStatusesClicked
             )
         }
     }
