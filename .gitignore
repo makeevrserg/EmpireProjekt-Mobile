@@ -30,8 +30,10 @@ keys.properties
 # iosApp
 instances/iosApp/Pods
 instances/iosApp/Podfile.lock
-instances/wearApp
-instances/androidApp
+instances/wearApp/build
+instances/androidApp/build
+instances/androidApp/google-services.json
+instances/androidApp/keystore.jks
 # Services
 modules/services/resources/build
 modules/services/core-ui/build

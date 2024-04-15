@@ -22,7 +22,8 @@ import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.ThemeC
 @Composable
 fun MainScreen(
     themeSwitcherComponent: ThemeSwitcherComponent,
-    onOpenStatusesClicked: () -> Unit
+    onOpenStatusesClicked: () -> Unit,
+    onOpenPingClicked: () -> Unit
 ) {
     Scaffold(
         modifier = Modifier.background(MaterialTheme.colors.primaryVariant),
@@ -45,6 +46,11 @@ fun MainScreen(
             NavChip(
                 text = "Statuses",
                 onClick = onOpenStatusesClicked
+            )
+            Spacer(modifier = Modifier.height(AppTheme.dimens.S))
+            NavChip(
+                text = "Ping",
+                onClick = onOpenPingClicked
             )
         }
     }

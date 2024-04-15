@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
 import com.makeevrserg.empireprojekt.mobile.wear.application.App.Companion.asEmpireApp
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.message.ByteWearMessage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -23,13 +24,22 @@ class DataLayerListenerService : WearableListenerService() {
     }
 
     private suspend fun receiveStatusModelMessage(messageEvent: MessageEvent) {
-        val statusModelMessage = wearRootModule.wearMessengerModule.statusModelMessage
         val wearMessageReceiver = wearRootModule.wearMessengerModule.wearMessageReceiver
-        if (statusModelMessage.path != messageEvent.path) return
-        wearMessageReceiver.consume(
-            message = statusModelMessage,
-            byteArray = messageEvent.data
-        )
+        when (messageEvent.path) {
+            ByteWearMessage.PATH -> wearMessageReceiver.consume(
+                message = ByteWearMessage(),
+                byteArray = messageEvent.data
+            )
+
+//            StatusModelMessage.PATH -> wearMessageReceiver.consume(
+//                message = wearRootModule.wearMessengerModule.statusModelMessage,
+//                byteArray = messageEvent.data
+//            )
+
+            else -> {
+                Log.d(TAG, "receiveStatusModelMessage: can't handle message ${messageEvent.path}")
+            }
+        }
     }
 
     override fun onCreate() {

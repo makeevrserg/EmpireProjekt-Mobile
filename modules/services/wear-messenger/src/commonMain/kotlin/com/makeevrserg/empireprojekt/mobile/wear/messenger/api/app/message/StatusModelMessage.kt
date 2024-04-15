@@ -9,5 +9,9 @@ class StatusModelMessage(
     private val json: Json
 ) : WearMessage<List<StatusModel>> by InlineWearMessage(
     json = json,
-    path = "/statuses"
-)
+    path = PATH
+) {
+    companion object {
+        const val PATH = "/wear/statuses"
+    }
+}

@@ -1,8 +1,8 @@
 package com.makeevrserg.empireprojekt.mobile.wear.features.root
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.MainScreen
+import com.makeevrserg.empireprojekt.mobile.wear.features.ping.ui.PingScreen
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.StatusesScreen
 import com.makeevrserg.empireprojekt.mobile.wear.ui.SwipeToDismissBox
 
@@ -15,10 +15,13 @@ fun RootScreen(
             is RootComponent.Child.Main -> MainScreen(
                 themeSwitcherComponent =
                 instance.themeSwitcherComponent,
-                onOpenStatusesClicked = rootComponent::openStatuses
+                onOpenStatusesClicked = rootComponent::openStatuses,
+                onOpenPingClicked = rootComponent::openPing
             )
 
-            RootComponent.Child.Ping -> TODO()
+            is RootComponent.Child.Ping -> PingScreen(
+                pingComponent = instance.pingComponent
+            )
             is RootComponent.Child.Statuses -> StatusesScreen(
                 wearStatusComponent = instance.wearStatusComponent
             )
