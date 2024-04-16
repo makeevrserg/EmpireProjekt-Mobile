@@ -109,8 +109,8 @@ dependencies {
     implementation("com.google.android.horologist:horologist-compose-tools:0.5.3")
     implementation("com.google.android.horologist:horologist-tiles:0.5.3")
     implementation("androidx.wear.watchface:watchface-complications-data-source-ktx:1.1.1")
-    implementation("com.google.android.horologist:horologist-datalayer-watch:0.5.3")
-    implementation("com.google.android.horologist:horologist-datalayer-phone:0.5.3")
+    implementation(libs.google.horologist.datalayer.watch)
+    implementation(libs.google.horologist.datalayer.phone)
     // klibs
     implementation(libs.klibs.mikro.core)
     implementation(libs.klibs.mikro.platform)
@@ -132,5 +132,6 @@ dependencies {
     implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.resources)
-    implementation(projects.modules.services.wearMessenger)
+    implementation(projects.modules.services.wearMessenger.api)
+    implementation(projects.modules.services.wearMessenger.pingWear)
 }

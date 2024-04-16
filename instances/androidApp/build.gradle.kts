@@ -127,7 +127,7 @@ dependencies {
     implementation(libs.decompose.android)
     implementation("com.google.android.gms:play-services-wearable:18.0.0")
     // wear
-    implementation("com.google.android.horologist:horologist-datalayer:0.5.3")
+    implementation(libs.google.horologist.datalayer)
     // work
     implementation("androidx.work:work-runtime:2.8.0")
     implementation("androidx.work:work-runtime-ktx:2.8.0")
@@ -138,5 +138,6 @@ dependencies {
     implementation(projects.modules.features.ui)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.resources)
-    implementation(projects.modules.services.wearMessenger)
+    implementation(projects.modules.services.wearMessenger.api)
+    implementation(projects.modules.services.wearMessenger.pingWear)
 }

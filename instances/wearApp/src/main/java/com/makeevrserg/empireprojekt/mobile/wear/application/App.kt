@@ -3,12 +3,17 @@ package com.makeevrserg.empireprojekt.mobile.wear.application
 import android.app.Application
 import android.content.Context
 import com.makeevrserg.empireprojekt.mobile.wear.di.impl.WearRootModuleImpl
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.application.WearMessengerApplication
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.di.WearMessengerModule
 import ru.astrainteractive.klibs.mikro.platform.DefaultAndroidPlatformConfiguration
 
-class App : Application() {
+class App : Application(), WearMessengerApplication {
     val wearRootModule by lazy {
         WearRootModuleImpl()
     }
+
+    override val wearMessengerModule: WearMessengerModule
+        get() = wearRootModule.wearMessengerModule
 
     override fun onCreate() {
         super.onCreate()
@@ -18,6 +23,7 @@ class App : Application() {
             )
         }
     }
+
     companion object {
         fun Application.asEmpireApp(): App = (this as App)
         fun Context.asEmpireApp(): App = (applicationContext as App)

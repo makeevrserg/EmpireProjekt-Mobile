@@ -10,8 +10,8 @@ import com.google.android.horologist.data.WearDataLayerRegistry
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.RootModuleImpl
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.message.ByteWearMessage
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.di.WearMessengerModule
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.ping.util.PingWearMessage
 import com.makeevrserg.empireprojekt.mobile.work.CheckStatusWork
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.cancel
@@ -63,9 +63,10 @@ class App : Application() {
     private fun initPingWork() {
         GlobalScope.launch {
             while (isActive) {
-                delay(1000L)
+                delay(PingWearMessage.DELAY)
+                println("SENDING PING")
                 wearMessengerModule.wearMessageProducer.produce(
-                    message = ByteWearMessage.Message,
+                    message = PingWearMessage.Message,
                     value = 0.toByte()
                 )
             }

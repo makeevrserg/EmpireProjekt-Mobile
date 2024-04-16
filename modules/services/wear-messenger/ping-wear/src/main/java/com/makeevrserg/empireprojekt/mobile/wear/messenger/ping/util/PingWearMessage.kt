@@ -1,10 +1,20 @@
-package com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.message
+package com.makeevrserg.empireprojekt.mobile.wear.messenger.ping.util
 
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.message.InlineWearMessage
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.message.WearMessage
 
-object ByteWearMessage {
+object PingWearMessage {
     const val PATH = "/wear/ping"
+
+    /**
+     * Delay between each ping
+     */
+    const val DELAY = 1_000L
+
+    /**
+     * Debounce after which device is not connected
+     */
+    const val DEBOUNCE = 10_000L
 
     object Message : WearMessage<Byte> by InlineWearMessage(
         path = PATH,

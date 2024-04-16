@@ -23,7 +23,7 @@ kotlin {
                 implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
                 // horologist
-                implementation("com.google.android.horologist:horologist-datalayer:0.5.3")
+                implementation(libs.google.horologist.datalayer)
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
                 implementation(libs.kotlin.coroutines.playServices)
@@ -32,5 +32,5 @@ kotlin {
     }
 }
 android {
-    namespace = "${projectInfo.group}.wear.messenger"
+    namespace = "${projectInfo.group}.wear.messenger.api"
 }

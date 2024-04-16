@@ -6,10 +6,7 @@ interface PingComponent {
     val model: StateFlow<Model>
 
     sealed interface Model {
-        data class Success(
-            val amount: Int,
-            val updatedAt: String = "..."
-        ) : Model
+        data class Success(val updatedAt: String = "...") : Model
 
         data class NoConnection(val updatedAt: String = "...") : Model
     }
