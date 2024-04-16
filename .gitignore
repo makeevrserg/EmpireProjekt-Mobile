@@ -38,7 +38,8 @@ modules/services/build-konfig/build
 modules/services/core/build
 modules/services/core-resources/build
 modules/services/core-ui/build
-modules/services/wear-messenger/build
+modules/services/wear-messenger/api/build
+modules/services/wear-messenger/ping-wear/build
 # Features ----------------------------------
 modules/features/info/ui/build
 modules/features/map/ui/build

@@ -9,7 +9,7 @@ import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.data.WearDataLayerRegistry
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
-import com.makeevrserg.empireprojekt.mobile.features.root.di.impl.RootModuleImpl
+import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.di.WearMessengerModule
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.ping.util.PingWearMessage
 import com.makeevrserg.empireprojekt.mobile.work.CheckStatusWork
@@ -25,18 +25,18 @@ import kotlin.time.Duration.Companion.seconds
 @OptIn(ExperimentalHorologistApi::class)
 class App : Application() {
     val rootModule by lazy {
-        RootModuleImpl()
+        RootModule.Default()
     }
     val wearMessengerModule by lazy {
         WearMessengerModule.Default(
-            context = rootModule.servicesModule.platformConfiguration.value.applicationContext,
-            coroutineScope = rootModule.servicesModule.mainScope.value,
+            context = rootModule.coreModule.platformConfiguration.value.applicationContext,
+            coroutineScope = rootModule.coreModule.mainScope,
         )
     }
     private val wearDataLayerRegistry by lazy {
         WearDataLayerRegistry.fromContext(
             application = applicationContext,
-            coroutineScope = rootModule.servicesModule.mainScope.value
+            coroutineScope = rootModule.coreModule.mainScope
         )
     }
     private val messageClient by lazy {
@@ -45,13 +45,13 @@ class App : Application() {
 
     override fun onTerminate() {
         super.onTerminate()
-        rootModule.servicesModule.mainScope.value.cancel()
+        rootModule.coreModule.mainScope.cancel()
     }
 
     override fun onCreate() {
         super.onCreate()
         Firebase.initialize(this)
-        rootModule.servicesModule.platformConfiguration.initialize {
+        rootModule.coreModule.platformConfiguration.initialize {
             DefaultAndroidPlatformConfiguration(
                 applicationContext
             )
@@ -81,7 +81,7 @@ class App : Application() {
         ).build()
         val instanceWorkManager = WorkManager.getInstance(applicationContext)
 
-        rootModule.servicesModule.mainScope.value.launch {
+        rootModule.coreModule.mainScope.launch {
             while (isActive) {
                 instanceWorkManager.enqueueUniquePeriodicWork(
                     CheckStatusWork::class.java.simpleName,

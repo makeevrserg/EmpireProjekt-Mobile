@@ -6,7 +6,6 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.features.status.url.presentation.UrlStatusComponent
-import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.message.StatusModelMessage
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.model.StatusModel
 import kotlinx.coroutines.Dispatchers

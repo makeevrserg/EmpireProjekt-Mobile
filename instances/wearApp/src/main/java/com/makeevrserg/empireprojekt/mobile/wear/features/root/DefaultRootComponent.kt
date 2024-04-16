@@ -26,7 +26,7 @@ class DefaultRootComponent(
         childFactory = { config, childContext ->
             when (config) {
                 Configuration.Main -> RootComponent.Child.Main(
-                    themeSwitcherComponent = wearRootModule.themeSwitcherComponent.value
+                    themeSwitcherComponent = wearRootModule.themeSwitcherModule.themeSwitcherComponent
                 )
 
                 Configuration.Ping -> RootComponent.Child.Ping(

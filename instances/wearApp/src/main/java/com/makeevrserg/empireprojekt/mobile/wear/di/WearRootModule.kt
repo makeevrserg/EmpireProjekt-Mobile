@@ -27,13 +27,12 @@ interface WearRootModule : Module {
             WearMessengerModule.Default(
                 context = coreModule.platformConfiguration.value.applicationContext,
                 coroutineScope = coreModule.mainScope,
-                json = coreModule.jsonConfiguration
             )
         }
 
         override val wearStatusComponent: Single<WearStatusComponent> = Single {
             DefaultWearStatusComponent(
-                wearMessageReceiver = wearMessengerModule.wearMessageReceiver,
+                wearMessageConsumer = wearMessengerModule.wearMessageConsumer,
                 coroutineScope = coreModule.mainScope
             )
         }

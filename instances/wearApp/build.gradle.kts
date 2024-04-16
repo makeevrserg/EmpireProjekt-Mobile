@@ -9,6 +9,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
     id("ru.astrainteractive.gradleplugin.android.compose")
     id("ru.astrainteractive.gradleplugin.android.apk.name")
 }

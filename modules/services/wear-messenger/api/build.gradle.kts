@@ -31,6 +31,7 @@ kotlin {
         }
     }
 }
+
 android {
-    namespace = "${projectInfo.group}.wear.messenger.api"
+    namespace = "${requireProjectInfo.group}.wear.messenger.api"
 }

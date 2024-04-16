@@ -5,8 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import com.arkivanov.decompose.defaultComponentContext
-import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationTheme
-import com.makeevrserg.empireprojekt.mobile.resources.R
+import com.makeevrserg.empireprojekt.mobile.core.resources.R
+import com.makeevrserg.empireprojekt.mobile.features.theme.ApplicationTheme
 import com.makeevrserg.empireprojekt.mobile.wear.application.App.Companion.asEmpireApp
 import com.makeevrserg.empireprojekt.mobile.wear.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.root.RootScreen
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
             wearRootModule = wearRootModule
         )
         setContent {
-            ApplicationTheme(wearRootModule.themeSwitcherComponent.value) {
+            ApplicationTheme(wearRootModule.themeSwitcherModule.themeSwitcherComponent) {
                 RootScreen(rootComponent = rootComponent)
             }
         }
