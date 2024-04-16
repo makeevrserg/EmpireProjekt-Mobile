@@ -1,7 +1,8 @@
 @file:Suppress("UnusedPrivateMember")
 
-import ru.astrainteractive.gradleplugin.util.GradleProperty.Companion.gradleProperty
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.baseGradleProperty
+import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
+import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.requireInt
 
 plugins {
     id("com.android.library")
@@ -13,21 +14,19 @@ plugins {
 
 buildConfig {
     className("BuildKonfig") // forces the class name. Defaults to 'BuildConfig'
-    packageName("${projectInfo.group}.buildkonfig") // forces the package. Defaults to '${project.group}'
+    packageName("${requireProjectInfo.group}.buildkonfig") // forces the package. Defaults to '${project.group}'
     buildConfigField(
         "String",
         "VERSION_CODE",
-        "\"${gradleProperty("project.version.code").integer}\""
+        "\"${baseGradleProperty("project.version.code").requireInt}\""
     )
-    buildConfigField("String", "VERSION_NAME", "\"${projectInfo.versionString}\"")
+    buildConfigField("String", "VERSION_NAME", "\"${requireProjectInfo.versionString}\"")
+    buildConfigField("String", "PROD_URL", "\"https://empireapi.astrainteractive.ru\"")
 }
-
 kotlin {
     android()
-    ios()
-    iosSimulatorArm64()
 }
 
 android {
-    namespace = "${projectInfo.group}.buildkonfig"
+    namespace = "${requireProjectInfo.group}.buildkonfig"
 }

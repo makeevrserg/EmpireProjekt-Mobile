@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
+import com.makeevrserg.empireprojekt.mobile.features.status.url.presentation.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.message.StatusModelMessage
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.model.StatusModel
@@ -27,7 +28,7 @@ class CheckStatusWork(
         applicationContext.asEmpireApp().rootModule
     }
     private val rootStatusComponent by Provider {
-        rootModule.componentsModule.rootStatusComponent.value
+        rootModule.statusModule.rootStatusComponent
     }
 
     override suspend fun doWork(): Result {

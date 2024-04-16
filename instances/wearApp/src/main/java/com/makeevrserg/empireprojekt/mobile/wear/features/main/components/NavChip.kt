@@ -12,7 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.Text
-import com.makeevrserg.empireprojekt.mobile.resources.R
+import com.makeevrserg.empireprojekt.mobile.core.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.AstraChip
 
 @Composable

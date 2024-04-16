@@ -4,8 +4,8 @@ buildscript {
         classpath(libs.google.gms.services.gradle)
         classpath(libs.moko.resources.generator)
         classpath(libs.moko.network.generator)
-        classpath("ru.astrainteractive.gradleplugin:convention:0.1.1")
-        classpath("ru.astrainteractive.gradleplugin:android:0.1.1")
+        classpath("ru.astrainteractive.gradleplugin:convention:1.0.0-alpha01")
+        classpath("ru.astrainteractive.gradleplugin:android:1.0.0-alpha01")
     }
 }
 
@@ -18,6 +18,7 @@ plugins {
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.gradle.buildconfig) apply false
 }
+
 apply(plugin = "ru.astrainteractive.gradleplugin.detekt")
 
 /**

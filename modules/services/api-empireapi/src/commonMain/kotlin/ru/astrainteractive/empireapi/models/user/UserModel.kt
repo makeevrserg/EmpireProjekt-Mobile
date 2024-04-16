@@ -3,4 +3,7 @@ package ru.astrainteractive.empireapi.models.user
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserModel(val id: Long, val mail: String)
+class UserModel(
+    val uuid: String,
+    val nickname: String
+)

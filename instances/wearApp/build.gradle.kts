@@ -1,45 +1,39 @@
-import ru.astrainteractive.gradleplugin.util.GradleProperty.Companion.gradleProperty
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.jinfo
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
-import ru.astrainteractive.gradleplugin.util.SecretProperty.Companion.secretProperty
+import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.baseGradleProperty
+import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.secretProperty
+import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
+import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.requireInt
+import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.stringOrEmpty
 
 plugins {
     kotlin("plugin.serialization")
     id("com.android.application")
     id("kotlin-android")
     id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.compose")
     id("ru.astrainteractive.gradleplugin.android.apk.name")
 }
 
 android {
-    namespace = "${projectInfo.group}"
+    namespace = "${requireProjectInfo.group}"
+    compileSdk = baseGradleProperty("android.sdk.compile").requireInt
     apply(plugin = "kotlin-parcelize")
-    compileSdk = gradleProperty("android.sdk.compile").integer
 
     defaultConfig {
-        applicationId = "${projectInfo.group}"
+        applicationId = "${requireProjectInfo.group}"
         minSdk = 26
-        targetSdk = gradleProperty("android.sdk.target").integer
-        versionCode = gradleProperty("project.version.code").integer
-        versionName = projectInfo.versionString
+        targetSdk = baseGradleProperty("android.sdk.target").requireInt
+        versionCode = baseGradleProperty("project.version.code").requireInt
+        versionName = requireProjectInfo.versionString
         vectorDrawables {
             useSupportLibrary = true
         }
     }
-
-    compileOptions {
-        sourceCompatibility = jinfo.jsource
-        targetCompatibility = jinfo.jtarget
-    }
-    kotlinOptions {
-        jvmTarget = jinfo.jtarget.majorVersion
-    }
     signingConfigs {
-        val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").string }.getOrNull() ?: ""
+        val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").stringOrEmpty }.getOrNull() ?: ""
         val secretKeyPassword =
-            runCatching { secretProperty("KEY_PASSWORD").string }.getOrNull() ?: ""
+            runCatching { secretProperty("KEY_PASSWORD").stringOrEmpty }.getOrNull() ?: ""
         val secretStorePassword =
-            runCatching { secretProperty("STORE_PASSWORD").string }.getOrNull() ?: ""
+            runCatching { secretProperty("STORE_PASSWORD").stringOrEmpty }.getOrNull() ?: ""
         getByName("debug") {
             if (file("../androidApp/keystore.jks").exists()) {
                 keyAlias = secretKeyAlias
@@ -71,12 +65,6 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -87,6 +75,8 @@ android {
 dependencies {
     // Kotlin
     implementation(libs.kotlin.serialization.json)
+    // klibs
+    implementation(libs.klibs.mikro.extensions)
     // Coroutines
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
@@ -126,12 +116,14 @@ dependencies {
     implementation(libs.decompose.android)
     implementation("com.google.android.gms:play-services-wearable:18.0.0")
     // Local
-    implementation(projects.modules.features.root)
-    implementation(projects.modules.features.theme)
-    implementation(projects.modules.features.status)
-    implementation(projects.modules.features.ui)
+    implementation(projects.modules.features.root.impl)
+    implementation(projects.modules.features.theme.api)
+    implementation(projects.modules.features.theme.impl)
+    implementation(projects.modules.features.theme.ui)
+    implementation(projects.modules.features.status.impl)
     implementation(projects.modules.services.coreUi)
-    implementation(projects.modules.services.resources)
+    implementation(projects.modules.services.coreResources)
     implementation(projects.modules.services.wearMessenger.api)
     implementation(projects.modules.services.wearMessenger.pingWear)
+    implementation(projects.modules.services.core)
 }

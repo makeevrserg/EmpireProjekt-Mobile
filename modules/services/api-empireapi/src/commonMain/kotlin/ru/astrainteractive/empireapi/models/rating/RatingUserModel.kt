@@ -8,5 +8,6 @@ data class RatingUserModel(
     val minecraftUUID: String,
     val minecraftName: String,
     val lastUpdated: Long,
-    val total: Long
+    val totalRating: Long,
+    val ratingVotes: Long,
 )

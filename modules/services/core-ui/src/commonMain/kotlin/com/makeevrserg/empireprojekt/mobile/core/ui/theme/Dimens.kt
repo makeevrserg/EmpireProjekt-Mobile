@@ -4,7 +4,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Suppress("ConstructorParameterNaming")
-class Dimens(
+data class Dimens(
     val XXS: Dp = 4.dp,
     val XS: Dp = 8.dp,
     val S: Dp = 16.dp,

@@ -1,16 +1,15 @@
 [versions]
 # Kotlin
-kotlin-version = "1.9.10"
+kotlin-version = "1.9.22"
 kotlin-dokka = "1.8.10"
 kotlin-coroutines = "1.7.2"
-kotlin-compilerExtensionVersion = "1.5.3"
 kotlin-android-application = "8.0.1"
 kotlin-serialization-json = "1.5.1"
 
 # Androidx
 androidx-lifecycle = "2.6.1"
 androidx-lifecycle-ext = "2.2.0"
-androidx-compose-bom = "2023.10.00"
+androidx-compose-bom = "2024.02.02"
 androidx-fragment = "1.6.1"
 androidx-core = "1.10.1"
 androidx-appcompat = "1.6.1"
@@ -56,7 +55,7 @@ klibs-kstorage = "1.0.0"
 klibs-kdi = "1.1.0"
 
 # Compose
-kotlin-compose = "1.5.3"
+kotlin-compose = "1.6.0"
 
 # Moko
 moko-mvvm = "0.16.1"
@@ -92,9 +91,9 @@ dokka = "1.8.10"
 klibs-mikro-core = { module = "ru.astrainteractive.klibs:mikro-core", version.ref = "klibs-mikro" }
 klibs-mikro-platform = { module = "ru.astrainteractive.klibs:mikro-platform", version.ref = "klibs-mikro" }
 klibs-mikro-extensions = { module = "ru.astrainteractive.klibs:mikro-extensions", version.ref = "klibs-mikro" }
-
 klibs-kstorage = { module = "ru.astrainteractive.klibs:kstorage", version.ref = "klibs-kstorage" }
 klibs-kdi = { module = "ru.astrainteractive.klibs:kdi", version.ref = "klibs-kdi" }
+klibs-paging = { module = "ru.astrainteractive.klibs:paging", version.strictly = "2.1.0" }
 # dokka
 dokka-android = { module = "org.jetbrains.dokka:android-documentation-plugin", version.ref = "dokka" }
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
@@ -132,6 +131,7 @@ decompose-android = { module = "com.arkivanov.decompose:extensions-android", ver
 essenty = { module = "com.arkivanov.essenty:lifecycle", version.ref = "essenty" }
 # Kotlin
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-version" }
+kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.strictly = "0.4.0" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-javafx = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-javafx", version.ref = "kotlin-coroutines" }
@@ -209,6 +209,9 @@ moko-resources-compose = { module = "dev.icerock.moko:resources-compose", versio
 
 # Other
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+
+# Compose ext
+composeext-shimmer = { module = "com.valentinilk.shimmer:compose-shimmer", version.strictly = "1.2.0" }
 
 # Okio
 okio = { module = "com.squareup.okio:okio", version.strictly = "3.3.0" }

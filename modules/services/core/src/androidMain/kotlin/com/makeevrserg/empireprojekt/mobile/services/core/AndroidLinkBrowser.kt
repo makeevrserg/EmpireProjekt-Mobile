@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 
-class AndroidLinkBrowser(
+internal class AndroidLinkBrowser(
     private val context: Context
 ) : LinkBrowser {
     override fun openInBrowser(url: String) {

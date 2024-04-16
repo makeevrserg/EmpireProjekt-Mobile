@@ -1,6 +1,6 @@
 @file:Suppress("UnusedPrivateMember")
 
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
 
 plugins {
     id("org.jetbrains.compose")
@@ -8,6 +8,7 @@ plugins {
     kotlin("multiplatform")
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
+    id("ru.astrainteractive.gradleplugin.android.compose")
 }
 kotlin {
     android()
@@ -22,6 +23,8 @@ kotlin {
                 // Decompose
                 implementation(libs.decompose.core)
                 implementation(libs.decompose.compose.jetbrains)
+                // Compose extensions
+                implementation(libs.composeext.shimmer)
                 // Moko
                 implementation(libs.moko.resources.core)
                 implementation(libs.moko.resources.compose)
@@ -33,23 +36,20 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
                 // Local
-                implementation(project(":modules:services:resources"))
-                implementation(project(":modules:services:core"))
+                implementation(projects.modules.services.coreResources)
+                implementation(projects.modules.services.core)
             }
         }
+
         val androidMain by getting {
             dependencies {
                 implementation(libs.google.accompanist.flowlayout)
+                // Image loading
+                implementation("io.coil-kt:coil-compose:2.4.0")
             }
         }
     }
 }
 android {
-    namespace = "${projectInfo.group}.core.ui"
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.compilerExtensionVersion.get()
-    }
-    buildFeatures {
-        compose = true
-    }
+    namespace = "${requireProjectInfo.group}.core.ui"
 }

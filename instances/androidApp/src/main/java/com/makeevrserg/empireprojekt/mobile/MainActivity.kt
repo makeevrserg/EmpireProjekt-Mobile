@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.arkivanov.decompose.defaultComponentContext
 import com.makeevrserg.empireprojekt.mobile.application.App.Companion.asEmpireApp
+import com.makeevrserg.empireprojekt.mobile.core.resources.R
 import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
+import com.makeevrserg.empireprojekt.mobile.features.theme.ApplicationTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationContent
-import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.RootBottomSheetContent
-import com.makeevrserg.empireprojekt.mobile.resources.R
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
 
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
         val rootComponent = DefaultRootComponent(componentContext, rootModule)
         val rootBottomSheetComponent = rootComponent.rootBottomSheetComponent
         setContent {
-            ApplicationTheme(rootModule.componentsModule.themeSwitcherComponent.value) {
+            ApplicationTheme(rootModule.themeSwitcherModule.themeSwitcherComponent) {
                 RootBottomSheetContent(rootBottomSheetComponent) {
                     ApplicationContent(
                         rootComponent = rootComponent,
