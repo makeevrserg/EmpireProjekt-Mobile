@@ -21,7 +21,7 @@ class DefaultRootComponent(
 
     override val childStack: Value<ChildStack<*, RootComponent.Child>> = childStack(
         source = navigation,
-        initialConfiguration = Configuration.Main,
+        initialStack = { listOf(Configuration.Main, Configuration.Ping) },
         handleBackButton = true,
         childFactory = { config, childContext ->
             when (config) {
