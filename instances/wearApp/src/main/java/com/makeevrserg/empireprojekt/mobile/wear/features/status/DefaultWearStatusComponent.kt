@@ -2,8 +2,8 @@ package com.makeevrserg.empireprojekt.mobile.wear.features.status
 
 import com.makeevrserg.empireprojekt.mobile.features.status.url.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.model.StatusModel
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.consumer.WearMessageConsumer
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.message.DecodedWearMessage
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.receiver.WearMessageReceiver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -14,11 +14,11 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class DefaultWearStatusComponent(
-    wearMessageReceiver: WearMessageReceiver,
+    wearMessageConsumer: WearMessageConsumer,
     coroutineScope: CoroutineScope
 ) : WearStatusComponent {
     override val mergedState: StateFlow<WearStatusComponent.Model> =
-        wearMessageReceiver.messagesFlow
+        wearMessageConsumer.messagesFlow
             .filterIsInstance<DecodedWearMessage<List<StatusModel>>>()
             .map { it.value }
             .map { statusModels ->

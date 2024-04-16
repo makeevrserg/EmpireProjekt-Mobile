@@ -24,10 +24,10 @@ class DataLayerListenerService : WearableListenerService() {
     }
 
     private suspend fun receiveStatusModelMessage(messageEvent: MessageEvent) {
-        val wearMessageReceiver = wearRootModule.wearMessengerModule.wearMessageReceiver
+        val wearMessageReceiver = wearRootModule.wearMessengerModule.wearMessageConsumer
         when (messageEvent.path) {
             ByteWearMessage.PATH -> wearMessageReceiver.consume(
-                message = ByteWearMessage(),
+                message = ByteWearMessage.Message,
                 byteArray = messageEvent.data
             )
 

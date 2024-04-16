@@ -44,13 +44,12 @@ class WearRootModuleImpl : WearRootModule {
         WearMessengerModule.Default(
             context = platformConfiguration.value.applicationContext,
             coroutineScope = CoroutineFeature.Default(),
-            json = jsonConfiguration.value
         )
     }
 
     override val wearStatusComponent: Single<WearStatusComponent> = Single {
         DefaultWearStatusComponent(
-            wearMessageReceiver = wearMessengerModule.wearMessageReceiver,
+            wearMessageConsumer = wearMessengerModule.wearMessageConsumer,
             coroutineScope = mainScope
         )
     }

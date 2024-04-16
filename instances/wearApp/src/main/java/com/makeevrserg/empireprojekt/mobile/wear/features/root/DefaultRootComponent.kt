@@ -33,7 +33,7 @@ class DefaultRootComponent(
                     pingComponent = DefaultPingComponent(
                         componentContext = childContext,
                         wearMessageProducer = wearRootModule.wearMessengerModule.wearMessageProducer,
-                        wearMessageReceiver = wearRootModule.wearMessengerModule.wearMessageReceiver,
+                        wearMessageConsumer = wearRootModule.wearMessengerModule.wearMessageConsumer,
                     )
                 )
 

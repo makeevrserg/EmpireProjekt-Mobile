@@ -3,24 +3,19 @@ package com.makeevrserg.empireprojekt.mobile.wear.messenger.di
 import android.content.Context
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.data.WearDataLayerRegistry
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.message.StatusModelMessage
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.consumer.WearMessageConsumer
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.consumer.WearMessageConsumerImpl
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.producer.WearMessageProducer
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.producer.WearMessageProducerImpl
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.receiver.WearMessageReceiver
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.receiver.WearMessageReceiverImpl
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.serialization.json.Json
 
 interface WearMessengerModule {
     val wearMessageProducer: WearMessageProducer
-    val wearMessageReceiver: WearMessageReceiver
-
-    val statusModelMessage: StatusModelMessage
+    val wearMessageConsumer: WearMessageConsumer
 
     class Default(
         context: Context,
         coroutineScope: CoroutineScope,
-        json: Json
     ) : WearMessengerModule {
         @OptIn(ExperimentalHorologistApi::class)
         private val wearDataLayerRegistry by lazy {
@@ -44,14 +39,11 @@ interface WearMessengerModule {
         }
 
         @OptIn(ExperimentalHorologistApi::class)
-        override val wearMessageReceiver: WearMessageReceiver by lazy {
-            WearMessageReceiverImpl(
+        override val wearMessageConsumer: WearMessageConsumer by lazy {
+            WearMessageConsumerImpl(
                 wearDataLayerRegistry = wearDataLayerRegistry,
                 messageClient = messageClient
             )
         }
-        override val statusModelMessage: StatusModelMessage = StatusModelMessage(
-            json = json
-        )
     }
 }

@@ -31,7 +31,6 @@ class App : Application() {
         WearMessengerModule.Default(
             context = rootModule.servicesModule.platformConfiguration.value.applicationContext,
             coroutineScope = rootModule.servicesModule.mainScope.value,
-            json = rootModule.servicesModule.jsonConfiguration.value
         )
     }
     private val wearDataLayerRegistry by lazy {
@@ -63,12 +62,10 @@ class App : Application() {
 
     private fun initPingWork() {
         GlobalScope.launch {
-            val message = ByteWearMessage()
             while (isActive) {
                 delay(1000L)
-                println("SENDING PING: $message")
                 wearMessengerModule.wearMessageProducer.produce(
-                    message = message,
+                    message = ByteWearMessage.Message,
                     value = 0.toByte()
                 )
             }

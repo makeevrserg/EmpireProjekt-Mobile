@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.wear.messenger.api.receiver
+package com.makeevrserg.empireprojekt.mobile.wear.messenger.api.consumer
 
 import android.util.Log
 import com.google.android.gms.wearable.MessageClient
@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.receiveAsFlow
 
 @OptIn(ExperimentalHorologistApi::class)
 @Suppress("UnusedPrivateMember")
-class WearMessageReceiverImpl(
+class WearMessageConsumerImpl(
     private val wearDataLayerRegistry: WearDataLayerRegistry,
     private val messageClient: MessageClient,
-) : WearMessageReceiver {
+) : WearMessageConsumer {
     private val messageChannel = Channel<DecodedWearMessage<*>>()
     override val messagesFlow: Flow<DecodedWearMessage<*>> = messageChannel.receiveAsFlow()
 
