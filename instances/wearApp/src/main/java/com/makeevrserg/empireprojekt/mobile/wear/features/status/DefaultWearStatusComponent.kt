@@ -1,9 +1,9 @@
 package com.makeevrserg.empireprojekt.mobile.wear.features.status
 
 import com.makeevrserg.empireprojekt.mobile.features.status.url.presentation.UrlStatusComponent
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.app.model.StatusModel
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.consumer.WearMessageConsumer
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.message.DecodedWearMessage
+import com.makeevrserg.empireprojekt.mobile.wear.messenger.common.model.StatusModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

@@ -30,6 +30,7 @@ include(":modules:services:core-ui")
 include(":modules:services:core")
 include(":modules:services:wear-messenger:api")
 include(":modules:services:wear-messenger:ping-wear")
+include(":modules:services:wear-messenger:common")
 include(":modules:services:build-konfig")
 include(":modules:services:api-empireapi")
 // Feature
