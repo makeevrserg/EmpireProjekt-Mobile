@@ -13,8 +13,6 @@ import androidx.wear.compose.foundation.lazy.AutoCenteringParams
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.Vignette
-import androidx.wear.compose.material.VignettePosition
 import com.makeevrserg.empireprojekt.mobile.wear.features.ping.presentation.PingComponent
 
 @Composable
@@ -23,9 +21,6 @@ fun PingScreen(pingComponent: PingComponent) {
 
     Scaffold(
         modifier = Modifier.background(MaterialTheme.colors.primaryVariant),
-        vignette = {
-            Vignette(vignettePosition = VignettePosition.TopAndBottom)
-        },
     ) {
         ScalingLazyColumn(
             modifier = Modifier.fillMaxSize(),

@@ -12,7 +12,8 @@ plugins {
 }
 
 kotlin {
-    android()
+    androidTarget()
+    applyDefaultHierarchyTemplate()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -26,7 +27,7 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 // Decompose
                 implementation(libs.decompose.core)
-                implementation(libs.decompose.compose.jetbrains)
+                implementation(libs.decompose.compose)
                 // Local
                 implementation(projects.modules.services.coreResources)
                 implementation(projects.modules.services.buildKonfig)

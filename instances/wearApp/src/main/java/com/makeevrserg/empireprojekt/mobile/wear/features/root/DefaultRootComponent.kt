@@ -7,10 +7,10 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
-import com.arkivanov.essenty.parcelable.Parcelable
-import com.arkivanov.essenty.parcelable.Parcelize
 import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
 import com.makeevrserg.empireprojekt.mobile.wear.features.ping.presentation.DefaultPingComponent
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
@@ -21,7 +21,8 @@ class DefaultRootComponent(
 
     override val childStack: Value<ChildStack<*, RootComponent.Child>> = childStack(
         source = navigation,
-        initialStack = { listOf(Configuration.Main, Configuration.Ping) },
+        initialConfiguration = Configuration.Main,
+        serializer = wearRootModule.coreModule.jsonConfiguration.serializersModule.serializer(),
         handleBackButton = true,
         childFactory = { config, childContext ->
             when (config) {
@@ -56,14 +57,15 @@ class DefaultRootComponent(
         navigation.pop()
     }
 
-    sealed interface Configuration : Parcelable {
-        @Parcelize
+    @Serializable
+    sealed interface Configuration {
+        @Serializable
         data object Main : Configuration
 
-        @Parcelize
+        @Serializable
         data object Statuses : Configuration
 
-        @Parcelize
+        @Serializable
         data object Ping : Configuration
     }
 }

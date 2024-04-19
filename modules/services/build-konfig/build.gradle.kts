@@ -24,7 +24,11 @@ buildConfig {
     buildConfigField("String", "PROD_URL", "\"https://empireapi.astrainteractive.ru\"")
 }
 kotlin {
-    android()
+    androidTarget()
+    iosArm64()
+    iosX64()
+    iosSimulatorArm64()
+    applyDefaultHierarchyTemplate()
 }
 
 android {

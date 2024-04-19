@@ -1,60 +1,65 @@
 [versions]
 # Kotlin
-kotlin-version = "1.9.22"
-kotlin-coroutines = "1.7.2"
-kotlin-android-application = "8.0.1"
-kotlin-serialization-json = "1.5.1"
+kotlin-version = "1.9.23"
+kotlin-coroutines = "1.8.0"
+kotlin-android-application = "8.0.2"
+kotlin-serialization-json = "1.6.3"
 
 # Androidx
-androidx-compose-bom = "2024.04.00"
-androidx-room = "2.5.2"
-androidx-activity-compose = "1.8.2"
+androidx-compose-bom = "2024.04.01"
+androidx-activity-compose = "1.9.0"
+android-work = "2.8.0"
 leakcanary = "2.9.1"
-horologist-datalayer = "0.5.3"
+horologist = "0.5.3"
+compose-wear = "1.3.1"
 
 # Google
-google-coroutinesPlayServices = "1.7.2"
-google-auth = "20.6.0"
-google-crashlytics = "2.9.8"
-google-services = "4.3.15"
+google-coroutinesPlayServices = "1.8.0"
+google-auth = "21.1.0"
+google-crashlytics = "2.9.9"
+google-services = "4.4.1"
 google-accompanist = "0.31.0-alpha"
-google-firebase-bom = "32.2.2"
-
-# Yandex
-yandex-ads = "5.7.0"
+google-firebase-bom = "32.8.1"
 
 # Testw
 tests-assertk = "0.25"
 tests-turbine = "1.0.0"
 
 # Other
-ktor = "2.3.2-eap-692"
-coil = "2.2.2"
+ktor = "2.3.10"
 
 # klibs
-klibs-mikro = "1.5.0"
-klibs-kstorage = "1.0.0"
-klibs-kdi = "1.1.0"
+klibs-mikro = "1.6.0-beta"
+klibs-kstorage = "1.3.0"
+klibs-kdi = "1.3.2"
+klibs-gradleplugin = "1.0.0-alpha01"
 
 # Compose
-kotlin-compose = "1.6.0"
+kotlin-compose = "1.6.2"
 
 # Moko
-moko-mvvm = "0.16.1"
 moko-resources = "0.23.0"
-moko-network = "0.21.0"
 
 # Decompose
-decompose = "2.2.2"
-essenty = "1.1.0"
+decompose = "3.0.0-beta01" # https://github.com/arkivanov/Decompose/releases
+essenty = "2.0.0-beta02"
 
 # MVIKotlin
-mvikotlin = "3.2.1"
+mvikotlin = "4.0.0-beta01"
 
 # Settings
-mppsettings = "1.0.0"
+mppsettings = "1.1.1"
+
+# wear
+wear-glance-tiles = "1.0.0-alpha05"
+wear-tiles = "1.2.0"
 
 [libraries]
+# wear
+wear-glance-tiles = { module = "androidx.glance:glance-wear-tiles", version.ref = "wear-glance-tiles" }
+wear-tiles = { module = "androidx.wear.tiles:tiles", version.ref = "wear-tiles" }
+wear-tiles-material = { module = "androidx.wear.tiles:tiles-material", version.ref = "wear-tiles" }
+wear-complications-datasource-ktx = { module = "androidx.wear.watchface:watchface-complications-data-source-ktx", version.strictly = "1.2.1" }
 # klibs
 klibs-mikro-core = { module = "ru.astrainteractive.klibs:mikro-core", version.ref = "klibs-mikro" }
 klibs-mikro-platform = { module = "ru.astrainteractive.klibs:mikro-platform", version.ref = "klibs-mikro" }
@@ -73,12 +78,12 @@ mvikotlin-coroutines = { module = "com.arkivanov.mvikotlin:mvikotlin-extensions-
 
 # Decompose
 decompose-core = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
-decompose-compose-jetpack = { module = "com.arkivanov.decompose:extensions-compose-jetpack", version.ref = "decompose" }
-decompose-compose-jetbrains = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decompose" }
-decompose-android = { module = "com.arkivanov.decompose:extensions-android", version.ref = "decompose" }
+decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
+
 essenty = { module = "com.arkivanov.essenty:lifecycle", version.ref = "essenty" }
+
 # Kotlin
-kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.strictly = "0.4.0" }
+kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.strictly = "0.5.0" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
@@ -88,20 +93,26 @@ leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.re
 
 # Androidx
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
-androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
-
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "android-work" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "android-work" }
+androidx-compose-wear-material = { module = "androidx.wear.compose:compose-material", version.ref = "compose-wear" }
+androidx-compose-wear-foundation = { module = "androidx.wear.compose:compose-foundation", version.ref = "compose-wear" }
 # Google
 google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "google-firebase-bom" }
 google-firebase-crsahlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 google-firebase-crsahlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-crashlytics" }
 google-gms-services-gradle = { module = "com.google.gms:google-services", version.ref = "google-services" }
+google-gms-services-wearable = { module = "com.google.android.gms:play-services-wearable", version.strictly = "18.1.0" }
 google-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "google-auth" }
 google-accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "google-accompanist" }
 google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "google-accompanist" }
-google-horologist-datalayer = { module = "com.google.android.horologist:horologist-datalayer", version.ref = "horologist-datalayer" }
-google-horologist-datalayer-watch = { module = "com.google.android.horologist:horologist-datalayer-watch", version.ref = "horologist-datalayer" }
-google-horologist-datalayer-phone = { module = "com.google.android.horologist:horologist-datalayer-phone", version.ref = "horologist-datalayer" }
+google-horologist-datalayer = { module = "com.google.android.horologist:horologist-datalayer", version.ref = "horologist" }
+google-horologist-datalayer-watch = { module = "com.google.android.horologist:horologist-datalayer-watch", version.ref = "horologist" }
+google-horologist-datalayer-phone = { module = "com.google.android.horologist:horologist-datalayer-phone", version.ref = "horologist" }
+google-horologist-compose-tools = { module = "com.google.android.horologist:horologist-compose-tools", version.ref = "horologist" }
+google-horologist-tiles = { module = "com.google.android.horologist:horologist-tiles", version.ref = "horologist" }
+
 # Tests
 tests-assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "tests-assertk" }
 tests-turbine = { module = "app.cash.turbine:turbine", version.ref = "tests-turbine" }
@@ -116,9 +127,6 @@ ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", 
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 
 # Moko`
-moko-network-generator = { module = "dev.icerock.moko:network-generator", version.ref = "moko-network" }
-moko-mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko-mvvm" }
-moko-mvvm-flow = { module = "dev.icerock.moko:mvvm-flow", version.ref = "moko-mvvm" }
 moko-resources-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
 moko-resources-core = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
 moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
@@ -127,6 +135,7 @@ moko-resources-compose = { module = "dev.icerock.moko:resources-compose", versio
 composeext-shimmer = { module = "com.valentinilk.shimmer:compose-shimmer", version.strictly = "1.2.0" }
 
 [plugins]
+
 # Kotlin
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
@@ -139,3 +148,22 @@ android-application = { id = "com.android.library", version.ref = "kotlin-androi
 
 # Gradle
 gradle-buildconfig = { id = "com.github.gmazzo.buildconfig", version.strictly = "3.1.0" }
+
+# moko
+moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
+
+# klibs - core
+klibs-gradle-detekt = { id = "ru.astrainteractive.gradleplugin.detekt", version.ref = "klibs-gradleplugin" }
+klibs-gradle-detekt-compose = { id = "ru.astrainteractive.gradleplugin.detekt.compose", version.ref = "klibs-gradleplugin" }
+klibs-gradle-dokka-root = { id = "ru.astrainteractive.gradleplugin.dokka.root", version.ref = "klibs-gradleplugin" }
+klibs-gradle-dokka-module = { id = "ru.astrainteractive.gradleplugin.dokka.module", version.ref = "klibs-gradleplugin" }
+klibs-gradle-java-core = { id = "ru.astrainteractive.gradleplugin.java.core", version.ref = "klibs-gradleplugin" }
+klibs-gradle-stub-javadoc = { id = "ru.astrainteractive.gradleplugin.stub.javadoc", version.ref = "klibs-gradleplugin" }
+klibs-gradle-publication = { id = "ru.astrainteractive.gradleplugin.publication", version.ref = "klibs-gradleplugin" }
+klibs-gradle-rootinfo = { id = "ru.astrainteractive.gradleplugin.root.info", version.ref = "klibs-gradleplugin" }
+# klibs - android
+klibs-gradle-android-core = { id = "ru.astrainteractive.gradleplugin.android.core", version.ref = "klibs-gradleplugin" }
+klibs-gradle-android-compose = { id = "ru.astrainteractive.gradleplugin.android.compose", version.ref = "klibs-gradleplugin" }
+klibs-gradle-android-apk-sign = { id = "ru.astrainteractive.gradleplugin.android.apk.sign", version.ref = "klibs-gradleplugin" }
+klibs-gradle-android-apk-name = { id = "ru.astrainteractive.gradleplugin.android.apk.name", version.ref = "klibs-gradleplugin" }
+klibs-gradle-android-publication = { id = "ru.astrainteractive.gradleplugin.android.publication", version.ref = "klibs-gradleplugin" }

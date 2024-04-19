@@ -19,8 +19,6 @@ import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material.PositionIndicator
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.Vignette
-import androidx.wear.compose.material.VignettePosition
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.IconTextChip
 
@@ -30,9 +28,6 @@ fun StatusesScreen(wearStatusComponent: WearStatusComponent) {
     val listState = rememberScalingLazyListState()
     Scaffold(
         modifier = Modifier.background(MaterialTheme.colors.primaryVariant),
-        vignette = {
-            Vignette(vignettePosition = VignettePosition.TopAndBottom)
-        },
         positionIndicator = {
             PositionIndicator(
                 scalingLazyListState = listState

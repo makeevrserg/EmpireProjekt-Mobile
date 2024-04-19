@@ -16,6 +16,7 @@ import com.makeevrserg.empireprojekt.mobile.features.root.pager.PagerComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.di.factory.RootScreenComponentChildFactory
 import com.makeevrserg.empireprojekt.mobile.features.splash.presentation.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
+import kotlinx.serialization.serializer
 
 class DefaultRootScreenComponent(
     componentContext: ComponentContext,
@@ -28,6 +29,7 @@ class DefaultRootScreenComponent(
         source = navigation,
         initialConfiguration = RootRouter.Configuration.Splash,
         handleBackButton = true,
+        serializer = rootModule.coreModule.jsonConfiguration.serializersModule.serializer(),
         childFactory = { config, context ->
             RootScreenComponentChildFactory(
                 config = config,

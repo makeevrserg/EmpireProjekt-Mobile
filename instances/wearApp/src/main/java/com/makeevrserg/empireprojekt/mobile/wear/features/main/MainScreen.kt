@@ -12,8 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.wear.compose.material.Scaffold
-import androidx.wear.compose.material.Vignette
-import androidx.wear.compose.material.VignettePosition
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.theme.presentation.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.NavChip
@@ -27,9 +25,6 @@ fun MainScreen(
 ) {
     Scaffold(
         modifier = Modifier.background(MaterialTheme.colors.primaryVariant),
-        vignette = {
-            Vignette(vignettePosition = VignettePosition.TopAndBottom)
-        },
         positionIndicator = {
         }
     ) {

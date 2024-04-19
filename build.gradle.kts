@@ -2,10 +2,6 @@ buildscript {
     dependencies {
         classpath(libs.google.firebase.crsahlytics.gradle)
         classpath(libs.google.gms.services.gradle)
-        classpath(libs.moko.resources.generator)
-        classpath(libs.moko.network.generator)
-        classpath("ru.astrainteractive.gradleplugin:convention:1.0.0-alpha01")
-        classpath("ru.astrainteractive.gradleplugin:android:1.0.0-alpha01")
     }
 }
 
@@ -17,6 +13,22 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.gradle.buildconfig) apply false
+    alias(libs.plugins.moko.resources) apply false
+    // klibs - core
+    alias(libs.plugins.klibs.gradle.detekt) apply false
+    alias(libs.plugins.klibs.gradle.detekt.compose) apply false
+    alias(libs.plugins.klibs.gradle.dokka.root) apply false
+    alias(libs.plugins.klibs.gradle.dokka.module) apply false
+    alias(libs.plugins.klibs.gradle.java.core) apply false
+    alias(libs.plugins.klibs.gradle.stub.javadoc) apply false
+    alias(libs.plugins.klibs.gradle.publication) apply false
+    alias(libs.plugins.klibs.gradle.rootinfo) apply false
+    // klibs - android
+    alias(libs.plugins.klibs.gradle.android.core) apply false
+    alias(libs.plugins.klibs.gradle.android.compose) apply false
+    alias(libs.plugins.klibs.gradle.android.apk.sign) apply false
+    alias(libs.plugins.klibs.gradle.android.apk.name) apply false
+    alias(libs.plugins.klibs.gradle.android.publication) apply false
 }
 
 apply(plugin = "ru.astrainteractive.gradleplugin.detekt")

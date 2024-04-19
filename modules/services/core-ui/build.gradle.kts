@@ -11,7 +11,8 @@ plugins {
     id("ru.astrainteractive.gradleplugin.android.compose")
 }
 kotlin {
-    android()
+    androidTarget()
+    applyDefaultHierarchyTemplate()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -22,7 +23,7 @@ kotlin {
                 implementation(libs.klibs.kdi)
                 // Decompose
                 implementation(libs.decompose.core)
-                implementation(libs.decompose.compose.jetbrains)
+                implementation(libs.decompose.compose)
                 // Compose extensions
                 implementation(libs.composeext.shimmer)
                 // Moko

@@ -17,7 +17,6 @@ plugins {
 android {
     namespace = "${requireProjectInfo.group}"
     compileSdk = baseGradleProperty("android.sdk.compile").requireInt
-    apply(plugin = "kotlin-parcelize")
 
     defaultConfig {
         applicationId = "${requireProjectInfo.group}"
@@ -91,14 +90,16 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation(libs.androidx.compose.wear.material)
+    implementation(libs.androidx.compose.wear.foundation)
 
-    implementation("androidx.glance:glance-wear-tiles:1.0.0-alpha05")
+    implementation(libs.wear.glance.tiles)
 
-    implementation("androidx.wear.tiles:tiles:1.2.0")
-    implementation("androidx.wear.tiles:tiles-material:1.2.0")
-    implementation("com.google.android.horologist:horologist-compose-tools:0.5.3")
-    implementation("com.google.android.horologist:horologist-tiles:0.5.3")
-    implementation("androidx.wear.watchface:watchface-complications-data-source-ktx:1.1.1")
+    implementation(libs.wear.tiles)
+    implementation(libs.wear.tiles.material)
+    implementation(libs.google.horologist.compose.tools)
+    implementation(libs.google.horologist.tiles)
+    implementation(libs.wear.complications.datasource.ktx)
     implementation(libs.google.horologist.datalayer.watch)
     implementation(libs.google.horologist.datalayer.phone)
     // klibs
@@ -112,9 +113,8 @@ dependencies {
     implementation(libs.moko.resources.core)
     // Decompose
     implementation(libs.decompose.core)
-    implementation(libs.decompose.compose.jetpack)
-    implementation(libs.decompose.android)
-    implementation("com.google.android.gms:play-services-wearable:18.0.0")
+    implementation(libs.decompose.compose)
+    implementation(libs.google.gms.services.wearable)
     // Local
     implementation(projects.modules.features.root.impl)
     implementation(projects.modules.features.theme.api)
