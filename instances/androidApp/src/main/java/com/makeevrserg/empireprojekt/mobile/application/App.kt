@@ -2,9 +2,7 @@ package com.makeevrserg.empireprojekt.mobile.application
 
 import android.app.Application
 import android.content.Context
-import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
-import androidx.work.WorkManager
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.data.WearDataLayerRegistry
 import com.google.firebase.ktx.Firebase
@@ -20,7 +18,6 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import ru.astrainteractive.klibs.mikro.platform.DefaultAndroidPlatformConfiguration
 import java.util.concurrent.TimeUnit
-import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalHorologistApi::class)
 class App : Application() {
@@ -74,23 +71,11 @@ class App : Application() {
     }
 
     private fun scheduleWork() {
-        val statusWork = PeriodicWorkRequest.Builder(
+        PeriodicWorkRequest.Builder(
             CheckStatusWork::class.java,
             15,
             TimeUnit.MINUTES
         ).build()
-        val instanceWorkManager = WorkManager.getInstance(applicationContext)
-
-        rootModule.coreModule.mainScope.launch {
-            while (isActive) {
-                instanceWorkManager.enqueueUniquePeriodicWork(
-                    CheckStatusWork::class.java.simpleName,
-                    ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE,
-                    statusWork
-                )
-                delay(30.seconds)
-            }
-        }
     }
 
     companion object {
