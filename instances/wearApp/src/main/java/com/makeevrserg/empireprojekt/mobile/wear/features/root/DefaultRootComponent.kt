@@ -8,7 +8,6 @@ import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
 import com.makeevrserg.empireprojekt.mobile.wear.di.WearRootModule
-import com.makeevrserg.empireprojekt.mobile.wear.features.ping.presentation.DefaultPingComponent
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
 
@@ -31,11 +30,7 @@ class DefaultRootComponent(
                 )
 
                 Configuration.Ping -> RootComponent.Child.Ping(
-                    pingComponent = DefaultPingComponent(
-                        componentContext = childContext,
-                        wearMessageProducer = wearRootModule.wearMessengerModule.wearMessageProducer,
-                        wearMessageConsumer = wearRootModule.wearMessengerModule.wearMessageConsumer,
-                    )
+                    pingComponent = wearRootModule.pingModule.createPingComponent(childContext)
                 )
 
                 Configuration.Statuses -> RootComponent.Child.Statuses(

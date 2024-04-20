@@ -92,6 +92,7 @@ kotlin-coroutines-playServices = { module = "org.jetbrains.kotlinx:kotlinx-corou
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 
 # Androidx
+androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.strictly = "2.7.0" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
 androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "android-work" }

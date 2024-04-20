@@ -9,12 +9,11 @@ import com.makeevrserg.empireprojekt.mobile.features.status.url.presentation.Url
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.common.message.StatusModelMessage
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.common.model.StatusModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
+import kotlin.time.Duration.Companion.seconds
 
 class CheckStatusWork(
     context: Context,
@@ -30,28 +29,26 @@ class CheckStatusWork(
         rootModule.statusModule.rootStatusComponent
     }
 
-    override suspend fun doWork(): Result {
+    override suspend fun doWork(): Result = coroutineScope {
         Log.d(TAG, "doWork: ")
-        sendStatus()
-        return Result.success()
+        launch { sendStatus() }
+        Result.success()
     }
 
     private suspend fun sendStatus() = coroutineScope {
         val messages = rootStatusComponent.statusComponents.map {
-            async {
-                withContext(Dispatchers.Main) { it.checkStatus() }
-                val model = it.model.value
-                StatusModel(
-                    title = model.title.toString(applicationContext),
-                    isLoading = model.isLoading,
-                    status = when (model.status) {
-                        UrlStatusComponent.LoadingStatus.LOADING -> StatusModel.LoadingStatus.LOADING
-                        UrlStatusComponent.LoadingStatus.SUCCESS -> StatusModel.LoadingStatus.SUCCESS
-                        UrlStatusComponent.LoadingStatus.ERROR -> StatusModel.LoadingStatus.ERROR
-                    }
-                )
-            }
-        }.awaitAll()
+            launch(Dispatchers.Main) { it.checkStatus() }
+            val model = it.model.value
+            StatusModel(
+                title = model.title.toString(applicationContext),
+                isLoading = model.isLoading,
+                status = when (model.status) {
+                    UrlStatusComponent.LoadingStatus.LOADING -> StatusModel.LoadingStatus.LOADING
+                    UrlStatusComponent.LoadingStatus.SUCCESS -> StatusModel.LoadingStatus.SUCCESS
+                    UrlStatusComponent.LoadingStatus.ERROR -> StatusModel.LoadingStatus.ERROR
+                }
+            )
+        }
         wearMessengerModule.wearMessageProducer.produce(
             message = StatusModelMessage.Message,
             value = messages
@@ -60,5 +57,6 @@ class CheckStatusWork(
 
     companion object {
         private const val TAG = "CheckStatusWork"
+        val DELAY = 10.seconds
     }
 }

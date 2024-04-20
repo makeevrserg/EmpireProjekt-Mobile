@@ -2,22 +2,14 @@ package com.makeevrserg.empireprojekt.mobile.application
 
 import android.app.Application
 import android.content.Context
-import androidx.work.PeriodicWorkRequest
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.data.WearDataLayerRegistry
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.di.WearMessengerModule
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.ping.util.PingWearMessage
-import com.makeevrserg.empireprojekt.mobile.work.CheckStatusWork
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
 import ru.astrainteractive.klibs.mikro.platform.DefaultAndroidPlatformConfiguration
-import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalHorologistApi::class)
 class App : Application() {
@@ -53,29 +45,6 @@ class App : Application() {
                 applicationContext
             )
         }
-        initPingWork()
-        scheduleWork()
-    }
-
-    private fun initPingWork() {
-        GlobalScope.launch {
-            while (isActive) {
-                delay(PingWearMessage.DELAY)
-                println("SENDING PING")
-                wearMessengerModule.wearMessageProducer.produce(
-                    message = PingWearMessage.Message,
-                    value = 0.toByte()
-                )
-            }
-        }
-    }
-
-    private fun scheduleWork() {
-        PeriodicWorkRequest.Builder(
-            CheckStatusWork::class.java,
-            15,
-            TimeUnit.MINUTES
-        ).build()
     }
 
     companion object {

@@ -142,6 +142,7 @@ dependencies {
     // work
     implementation(libs.androidx.work.runtime)
     implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.lifecycle.service)
     // Local
     implementation(projects.modules.features.root.impl)
     implementation(projects.modules.features.root.ui)

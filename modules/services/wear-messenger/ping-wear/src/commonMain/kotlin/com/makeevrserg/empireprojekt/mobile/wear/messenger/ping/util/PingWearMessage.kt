@@ -9,12 +9,12 @@ object PingWearMessage {
     /**
      * Delay between each ping
      */
-    const val DELAY = 1_000L
+    const val DELAY = 5_000L
 
     /**
      * Debounce after which device is not connected
      */
-    const val DEBOUNCE = 10_000L
+    const val DEBOUNCE = 20_000L
 
     object Message : WearMessage<Byte> by InlineWearMessage(
         path = PATH,

@@ -7,6 +7,7 @@ interface RootRouter {
     fun replaceCurrent(configuration: Configuration)
     fun replaceAll(configuration: Configuration)
 
+    @Serializable
     sealed interface Configuration {
         @Serializable
         data object Splash : Configuration

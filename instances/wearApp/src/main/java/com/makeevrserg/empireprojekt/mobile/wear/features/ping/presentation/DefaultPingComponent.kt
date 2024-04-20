@@ -1,13 +1,8 @@
 package com.makeevrserg.empireprojekt.mobile.wear.features.ping.presentation
 
 import com.arkivanov.decompose.ComponentContext
-import com.arkivanov.essenty.instancekeeper.getOrCreate
-import com.makeevrserg.empireprojekt.mobile.wear.features.ping.presentation.InstanceKeeperExt.wrapInstanceKeeper
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.consumer.WearMessageConsumer
-import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.producer.WearMessageProducer
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.ping.model.PingState
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.ping.presentation.PingFeature
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.StateFlow
 import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
 import java.time.Instant
@@ -17,17 +12,8 @@ import java.util.TimeZone
 
 class DefaultPingComponent(
     componentContext: ComponentContext,
-    private val wearMessageConsumer: WearMessageConsumer,
-    private val wearMessageProducer: WearMessageProducer
+    pingFeature: PingFeature,
 ) : ComponentContext by componentContext, PingComponent {
-    private val pingFeatureInstance = instanceKeeper.getOrCreate {
-        PingFeature(
-            wearMessageConsumer = wearMessageConsumer,
-            wearMessageProducer = wearMessageProducer
-        ).wrapInstanceKeeper { cancel() }
-    }
-    private val pingFeature: PingFeature
-        get() = pingFeatureInstance.instance
 
     private fun getTimeStamp(millis: Long): String {
         val instant = Instant.ofEpochMilli(millis)
