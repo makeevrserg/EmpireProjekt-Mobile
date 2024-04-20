@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.wear.features.main.components
+package com.makeevrserg.empireprojekt.mobile.wear.features.main.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size

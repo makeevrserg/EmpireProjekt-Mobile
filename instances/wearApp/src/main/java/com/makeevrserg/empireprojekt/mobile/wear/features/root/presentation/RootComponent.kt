@@ -1,10 +1,10 @@
-package com.makeevrserg.empireprojekt.mobile.wear.features.root
+package com.makeevrserg.empireprojekt.mobile.wear.features.root.presentation
 
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
 import com.makeevrserg.empireprojekt.mobile.features.theme.presentation.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.ping.presentation.PingComponent
-import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
+import com.makeevrserg.empireprojekt.mobile.wear.features.status.presentation.WearStatusComponent
 
 interface RootComponent {
     val childStack: Value<ChildStack<*, Child>>

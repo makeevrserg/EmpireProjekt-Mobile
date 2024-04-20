@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.wear.features.main
+package com.makeevrserg.empireprojekt.mobile.wear.features.main.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,10 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.wear.compose.material.Scaffold
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.features.theme.presentation.ThemeSwitcherComponent
-import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.NavChip
-import com.makeevrserg.empireprojekt.mobile.wear.features.main.components.ThemeChip
+import com.makeevrserg.empireprojekt.mobile.wear.features.main.ui.components.NavChip
+import com.makeevrserg.empireprojekt.mobile.wear.features.main.ui.components.ThemeChip
 
 @Composable
 fun MainScreen(
@@ -39,12 +41,12 @@ fun MainScreen(
             ThemeChip(themeSwitcherComponent = themeSwitcherComponent)
             Spacer(modifier = Modifier.height(AppTheme.dimens.S))
             NavChip(
-                text = "Statuses",
+                text = MR.strings.wear_statuses.asComposableString(),
                 onClick = onOpenStatusesClicked
             )
             Spacer(modifier = Modifier.height(AppTheme.dimens.S))
             NavChip(
-                text = "Ping",
+                text = MR.strings.wear_ping.asComposableString(),
                 onClick = onOpenPingClicked
             )
         }

@@ -1,14 +1,14 @@
-package com.makeevrserg.empireprojekt.mobile.wear.features.status.components
+package com.makeevrserg.empireprojekt.mobile.wear.features.main.ui.components
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.WifiTethering
-import androidx.compose.material.icons.filled.WifiTetheringError
-import androidx.compose.material.icons.filled.WifiTetheringOff
+import androidx.compose.material.icons.filled.Bedtime
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -17,35 +17,36 @@ import androidx.compose.ui.Modifier
 import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.Text
-import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.status.url.presentation.UrlStatusComponent
+import com.makeevrserg.empireprojekt.mobile.core.resources.MR
+import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
+import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
+import com.makeevrserg.empireprojekt.mobile.features.theme.presentation.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.AstraChip
 
 @Composable
-internal fun StatusWidget(component: UrlStatusComponent) {
-    val model by component.model.collectAsState()
-    val icon = when (model.status) {
-        UrlStatusComponent.LoadingStatus.LOADING -> Icons.Filled.WifiTetheringError
-        UrlStatusComponent.LoadingStatus.SUCCESS -> Icons.Filled.WifiTethering
-        UrlStatusComponent.LoadingStatus.ERROR -> Icons.Filled.WifiTetheringOff
+fun ThemeChip(themeSwitcherComponent: ThemeSwitcherComponent) {
+    val theme by themeSwitcherComponent.theme.collectAsState()
+    val icon = when (theme) {
+        Theme.DARK -> Icons.Filled.Bedtime
+        Theme.LIGHT -> Icons.Filled.WbSunny
     }
     val color by animateColorAsState(
-        targetValue = when (model.status) {
-            UrlStatusComponent.LoadingStatus.LOADING -> AppTheme.customColors.astraOrange
-            UrlStatusComponent.LoadingStatus.SUCCESS -> AppTheme.customColors.colorPositive
-            UrlStatusComponent.LoadingStatus.ERROR -> AppTheme.customColors.colorNegative
+        targetValue = when (theme) {
+            Theme.DARK -> MaterialTheme.colors.onPrimary
+            Theme.LIGHT -> MaterialTheme.colors.onPrimary
         },
         label = "LABEL"
     )
     AstraChip(
+        modifier = Modifier.fillMaxWidth(),
         label = {
             Text(
-                text = "EmpireProjekt.ru",
+                text = MR.strings.wear_switch_theme.asComposableString(),
                 style = MaterialTheme.typography.caption,
                 color = MaterialTheme.colors.onPrimary
             )
         },
-        onClick = component::checkStatus,
+        onClick = themeSwitcherComponent::next,
         icon = {
             Crossfade(targetState = icon, label = "LABEL") {
                 Icon(

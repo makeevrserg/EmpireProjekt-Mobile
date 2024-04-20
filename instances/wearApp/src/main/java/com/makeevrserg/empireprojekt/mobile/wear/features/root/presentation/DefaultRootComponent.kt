@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.wear.features.root
+package com.makeevrserg.empireprojekt.mobile.wear.features.root.presentation
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack

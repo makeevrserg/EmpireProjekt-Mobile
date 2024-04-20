@@ -51,4 +51,9 @@
     <string name="towns.town_card.entrance">Вход:</string>
     <string name="towns.town_card.entrance.public">Открыт</string>
     <string name="towns.town_card.entrance.private">Закрыт</string>
+
+    <!--    Wear    -->
+    <string name="wear.switch_theme">Switch theme</string>
+    <string name="wear.statuses">Statuses</string>
+    <string name="wear.ping">Ping</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.wear.features.status
+package com.makeevrserg.empireprojekt.mobile.wear.features.status.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +21,7 @@ import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Text
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
 import com.makeevrserg.empireprojekt.mobile.wear.features.components.IconTextChip
+import com.makeevrserg.empireprojekt.mobile.wear.features.status.presentation.WearStatusComponent
 
 @Composable
 fun StatusesScreen(wearStatusComponent: WearStatusComponent) {

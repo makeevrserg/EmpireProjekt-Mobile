@@ -3,8 +3,8 @@ package com.makeevrserg.empireprojekt.mobile.wear.di
 import com.makeevrserg.empireprojekt.mobile.features.theme.di.ThemeSwitcherModule
 import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
 import com.makeevrserg.empireprojekt.mobile.wear.features.ping.di.PingModule
-import com.makeevrserg.empireprojekt.mobile.wear.features.status.DefaultWearStatusComponent
-import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
+import com.makeevrserg.empireprojekt.mobile.wear.features.status.presentation.DefaultWearStatusComponent
+import com.makeevrserg.empireprojekt.mobile.wear.features.status.presentation.WearStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.di.WearMessengerModule
 import ru.astrainteractive.klibs.kdi.Module
 import ru.astrainteractive.klibs.kdi.Single

@@ -1,4 +1,4 @@
-package com.makeevrserg.empireprojekt.mobile.wear.features.status
+package com.makeevrserg.empireprojekt.mobile.wear.features.status.presentation
 
 import com.makeevrserg.empireprojekt.mobile.features.status.url.presentation.UrlStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.api.consumer.WearMessageConsumer
