@@ -3,6 +3,7 @@ import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.secretP
 import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
 import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.requireInt
 import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.stringOrEmpty
+import ru.astrainteractive.gradleplugin.util.Base64Util
 
 plugins {
     kotlin("plugin.serialization")
@@ -27,27 +28,39 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        setProperty(
+            "archivesBaseName",
+            "${requireProjectInfo.name}-wearos-${requireProjectInfo.versionString}"
+        )
     }
+
     signingConfigs {
-        val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").stringOrEmpty }.getOrNull() ?: ""
-        val secretKeyPassword =
-            runCatching { secretProperty("KEY_PASSWORD").stringOrEmpty }.getOrNull() ?: ""
-        val secretStorePassword =
-            runCatching { secretProperty("STORE_PASSWORD").stringOrEmpty }.getOrNull() ?: ""
+        val keyStoreFile = file("keystore.jks")
+        val secretKeyAlias = secretProperty("KEY_ALIAS").stringOrEmpty
+        val secretKeyPassword = secretProperty("KEY_PASSWORD").stringOrEmpty
+        val secretStorePassword = secretProperty("STORE_PASSWORD").stringOrEmpty
+        if (!keyStoreFile.exists()) {
+            logger.warn("Keystore file not exists - creating")
+            val base64String = secretProperty("KEYSTORE_BASE64").stringOrEmpty
+            if (base64String.isNotBlank()) Base64Util.fromBase64(base64String, keyStoreFile)
+        }
+        if (!keyStoreFile.exists()) {
+            logger.error("Keystore file could not be created")
+        }
         getByName("debug") {
-            if (file("../androidApp/keystore.jks").exists()) {
+            if (keyStoreFile.exists()) {
                 keyAlias = secretKeyAlias
                 keyPassword = secretKeyPassword
                 storePassword = secretStorePassword
-                storeFile = file("../androidApp/keystore.jks")
+                storeFile = keyStoreFile
             }
         }
         create("release") {
-            if (file("../androidApp/keystore.jks").exists()) {
+            if (keyStoreFile.exists()) {
                 keyAlias = secretKeyAlias
                 keyPassword = secretKeyPassword
                 storePassword = secretStorePassword
-                storeFile = file("../androidApp/keystore.jks")
+                storeFile = keyStoreFile
             }
         }
     }

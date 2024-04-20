@@ -33,7 +33,7 @@ jobs:
           java-version: 17
       - name: Give gradle permission
         run: chmod +x gradlew
-      - name: Build with Gradle
+      - name: Build with Gradle android
         uses: gradle/gradle-build-action@v2
         env:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
@@ -43,6 +43,16 @@ jobs:
           GSERVICES_BASE64: ${{ secrets.GSERVICES_BASE64 }}
         with:
           arguments: :instances:androidApp:assembleRelease --stacktrace
+      - name: Build with Gradle wear
+        uses: gradle/gradle-build-action@v2
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          GSERVICES_BASE64: ${{ secrets.GSERVICES_BASE64 }}
+        with:
+          arguments: :instances:wearApp:assembleRelease --stacktrace
       - name: Create release
         id: create_internal_release
         uses: softprops/action-gh-release@v1
@@ -51,6 +61,7 @@ jobs:
         with:
           files: |
             ./instances/androidApp/build/outputs/apk/release/${{ steps.properties.outputs.makeevrserg-project-name }}-${{ steps.properties.outputs.makeevrserg-project-version-string }}-release.apk
+            ./instances/wearApp/build/outputs/apk/release/${{ steps.properties.outputs.makeevrserg-project-name }}-wearos-${{ steps.properties.outputs.makeevrserg-project-version-string }}-release.apk
           tag_name: ${{ steps.properties.outputs.makeevrserg-project-version-string }}
           name: ${{ steps.properties.outputs.makeevrserg-project-name }} - ${{ steps.properties.outputs.makeevrserg-project-version-string }}
           draft: false

@@ -31,6 +31,7 @@ keys.properties
 instances/iosApp/Pods
 instances/iosApp/Podfile.lock
 instances/wearApp/build
+instances/wearApp/keystore.jks
 instances/androidApp/build
 instances/androidApp/keystore.jks
 instances/androidApp/google-services.json
