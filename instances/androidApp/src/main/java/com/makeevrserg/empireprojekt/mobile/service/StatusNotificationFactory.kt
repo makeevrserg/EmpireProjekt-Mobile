@@ -48,7 +48,12 @@ class StatusNotificationFactory(private val applicationContext: Context) {
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
             .setSmallIcon(R.drawable.ic_splash)
             .setColor(Color.TRANSPARENT)
-            .setLargeIcon(BitmapFactory.decodeResource(applicationContext.resources,R.drawable.ic_splash))
+            .setLargeIcon(
+                BitmapFactory.decodeResource(
+                    applicationContext.resources,
+                    R.drawable.ic_splash
+                )
+            )
             .setContentIntent(intentOpen)
             .setDeleteIntent(intentStop)
             .addAction(R.drawable.ic_splash, "Stop", intentStop)
