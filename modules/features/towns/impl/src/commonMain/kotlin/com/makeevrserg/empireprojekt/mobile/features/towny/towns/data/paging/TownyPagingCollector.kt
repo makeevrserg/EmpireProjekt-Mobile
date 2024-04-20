@@ -10,16 +10,21 @@ internal class TownyPagingCollector<T>(
     private val initialPage: Int = 0,
     private val pageSize: Int = 10,
     private val pager: PagedListDataSource<T, TownyPageContext>,
-    private val initialFilter: TownsFilterModel
+    private val initialFilterFactory: () -> TownsFilterModel
 ) : PagingCollector<T, TownyPageContext> by DefaultPagingCollector(
-    initialPagingState = PagingState(
-        pageContext = TownyPageContext(page = initialPage, filter = initialFilter),
-        pageSizeAtLeast = pageSize,
-        isLastPage = false,
-        isLoading = false,
-        isFailure = false,
-        items = emptyList()
-    ),
+    initialPagingStateFactory = {
+        PagingState(
+            pageContext = TownyPageContext(
+                page = initialPage,
+                filter = initialFilterFactory.invoke()
+            ),
+            pageSizeAtLeast = pageSize,
+            isLastPage = false,
+            isLoading = false,
+            isFailure = false,
+            items = emptyList()
+        )
+    },
     pager = pager,
     pageContextFactory = TownyPageContext.Factory
 )

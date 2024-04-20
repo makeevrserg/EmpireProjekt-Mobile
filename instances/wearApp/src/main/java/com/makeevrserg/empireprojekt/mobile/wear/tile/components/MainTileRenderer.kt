@@ -20,7 +20,7 @@ import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.render.SingleTileLayoutRenderer
 import com.makeevrserg.empireprojekt.mobile.core.resources.R
 import com.makeevrserg.empireprojekt.mobile.wear.MainActivity
-import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
+import com.makeevrserg.empireprojekt.mobile.wear.features.status.presentation.WearStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.tile.asColorProp
 
 @OptIn(ExperimentalHorologistApi::class)

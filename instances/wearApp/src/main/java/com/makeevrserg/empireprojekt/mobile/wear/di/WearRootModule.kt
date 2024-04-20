@@ -2,8 +2,9 @@ package com.makeevrserg.empireprojekt.mobile.wear.di
 
 import com.makeevrserg.empireprojekt.mobile.features.theme.di.ThemeSwitcherModule
 import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
-import com.makeevrserg.empireprojekt.mobile.wear.features.status.DefaultWearStatusComponent
-import com.makeevrserg.empireprojekt.mobile.wear.features.status.WearStatusComponent
+import com.makeevrserg.empireprojekt.mobile.wear.features.ping.di.PingModule
+import com.makeevrserg.empireprojekt.mobile.wear.features.status.presentation.DefaultWearStatusComponent
+import com.makeevrserg.empireprojekt.mobile.wear.features.status.presentation.WearStatusComponent
 import com.makeevrserg.empireprojekt.mobile.wear.messenger.di.WearMessengerModule
 import ru.astrainteractive.klibs.kdi.Module
 import ru.astrainteractive.klibs.kdi.Single
@@ -14,6 +15,7 @@ interface WearRootModule : Module {
     val themeSwitcherModule: ThemeSwitcherModule
     val wearStatusComponent: Single<WearStatusComponent>
     val wearMessengerModule: WearMessengerModule
+    val pingModule: PingModule
 
     class Default : WearRootModule {
         override val coreModule: CoreModule by lazy {
@@ -27,14 +29,19 @@ interface WearRootModule : Module {
             WearMessengerModule.Default(
                 context = coreModule.platformConfiguration.value.applicationContext,
                 coroutineScope = coreModule.mainScope,
-                json = coreModule.jsonConfiguration
             )
         }
 
         override val wearStatusComponent: Single<WearStatusComponent> = Single {
             DefaultWearStatusComponent(
-                wearMessageReceiver = wearMessengerModule.wearMessageReceiver,
+                wearMessageConsumer = wearMessengerModule.wearMessageConsumer,
                 coroutineScope = coreModule.mainScope
+            )
+        }
+
+        override val pingModule: PingModule by lazy {
+            PingModule.Default(
+                wearMessengerModule = wearMessengerModule
             )
         }
     }

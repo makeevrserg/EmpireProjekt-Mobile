@@ -4,17 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
-import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
+import com.arkivanov.decompose.defaultComponentContext
 import com.makeevrserg.empireprojekt.mobile.core.resources.R
 import com.makeevrserg.empireprojekt.mobile.features.theme.ApplicationTheme
 import com.makeevrserg.empireprojekt.mobile.wear.application.App.Companion.asEmpireApp
-import com.makeevrserg.empireprojekt.mobile.wear.features.root.NavHostRootComponent
-import com.makeevrserg.empireprojekt.mobile.wear.features.root.RootScreen
+import com.makeevrserg.empireprojekt.mobile.wear.features.root.presentation.DefaultRootComponent
+import com.makeevrserg.empireprojekt.mobile.wear.features.root.ui.RootScreen
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
 
 class MainActivity : ComponentActivity() {
-    private val rootModule by Provider {
+    private val wearRootModule by Provider {
         application.asEmpireApp().wearRootModule
     }
 
@@ -22,14 +22,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setTheme(R.style.AppTheme)
+        val rootComponent = DefaultRootComponent(
+            componentContext = defaultComponentContext(),
+            wearRootModule = wearRootModule
+        )
         setContent {
-            val navController = rememberSwipeDismissableNavController()
-            val navHostRootComponent = NavHostRootComponent(navController)
-            ApplicationTheme(rootModule.themeSwitcherModule.themeSwitcherComponent) {
-                RootScreen(
-                    rootComponent = navHostRootComponent,
-                    wearRootModule = rootModule
-                )
+            ApplicationTheme(wearRootModule.themeSwitcherModule.themeSwitcherComponent) {
+                RootScreen(rootComponent = rootComponent)
             }
         }
     }

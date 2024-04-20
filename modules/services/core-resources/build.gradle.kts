@@ -11,9 +11,11 @@ plugins {
 }
 
 kotlin {
-    android()
-    ios()
+    androidTarget()
+    iosArm64()
+    iosX64()
     iosSimulatorArm64()
+    applyDefaultHierarchyTemplate()
     sourceSets {
         val commonMain by getting {
             dependencies {

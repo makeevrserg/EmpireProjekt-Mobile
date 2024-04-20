@@ -10,7 +10,8 @@ plugins {
 }
 
 kotlin {
-    android()
+    androidTarget()
+    applyDefaultHierarchyTemplate()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -21,9 +22,6 @@ kotlin {
                 implementation(libs.klibs.mikro.platform)
                 implementation(libs.klibs.kstorage)
                 implementation(libs.klibs.kdi)
-                // Moko
-                implementation(libs.moko.mvvm.core)
-                implementation(libs.moko.mvvm.flow)
                 // Decompose
                 implementation(libs.decompose.core)
                 // Local

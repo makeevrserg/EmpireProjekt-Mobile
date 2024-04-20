@@ -13,24 +13,6 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
         <service
-            android:name=".wear.complication.MainComplicationService"
-            android:exported="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="MainComplicationService"
-            android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER"
-            android:roundIcon="@mipmap/ic_launcher">
-            <intent-filter>
-                <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.support.wearable.complications.SUPPORTED_TYPES"
-                android:value="SHORT_TEXT" />
-            <meta-data
-                android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
-                android:value="0" />
-        </service>
-        <service
             android:name=".wear.tile.StatusesTileService"
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
@@ -45,18 +27,6 @@
             <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
                 android:resource="@mipmap/ic_launcher" />
-        </service>
-
-        <service
-            android:name=".wear.service.DataLayerListenerService"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
-                <data
-                    android:host="*"
-                    android:pathPrefix="/statuses"
-                    android:scheme="wear" />
-            </intent-filter>
         </service>
         <service
             android:name=".wear.tile.ComposeTileService"

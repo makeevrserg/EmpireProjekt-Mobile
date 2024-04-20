@@ -3,13 +3,6 @@ package com.makeevrserg.empireprojekt.mobile.features.rating.user.presentation
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.instancekeeper.getOrCreate
 import com.makeevrserg.empireprojekt.mobile.features.rating.user.data.RatingUserRepository
-import com.makeevrserg.empireprojekt.mobile.features.rating.user.presentation.RatingUserComponent.Model
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import ru.astrainteractive.empireapi.models.rating.UserRatingsRequest
-import ru.astrainteractive.klibs.mikro.extensions.arkivanov.CoroutineFeature
 
 internal class DefaultRatingUserComponent(
     componentContext: ComponentContext,
@@ -18,44 +11,21 @@ internal class DefaultRatingUserComponent(
     private val ratingUserRepository: RatingUserRepository
 ) : RatingUserComponent,
     ComponentContext by componentContext {
-    private val coroutineFeature = instanceKeeper.getOrCreate {
-        CoroutineFeature.Main()
-    }
-    override val model = MutableStateFlow(
-        Model(
-            request = UserRatingsRequest(id = userId),
-            reviewedUserName = userName
+    private val ratingUserFeature = instanceKeeper.getOrCreate {
+        RatingUserFeature(
+            userId = userId,
+            userName = userName,
+            ratingUserRepository = ratingUserRepository
         )
-    )
-
-    private fun collectPagingState() = coroutineFeature.launch {
-        ratingUserRepository.state.collectLatest {
-            model.update { model ->
-                model.copy(
-                    isLastPage = it.isLastPage,
-                    isLoading = it.isLoading,
-                    isFailure = it.isFailure,
-                    items = it.items
-                )
-            }
-        }
     }
+
+    override val model = ratingUserFeature.model
 
     override fun reset() {
-        coroutineFeature.launch {
-            ratingUserRepository.reset()
-            ratingUserRepository.loadNextPage()
-        }
+        ratingUserFeature.reset()
     }
 
     override fun loadNextPage() {
-        coroutineFeature.launch {
-            ratingUserRepository.loadNextPage()
-        }
-    }
-
-    init {
-        ratingUserRepository.updateRequest(model.value.request)
-        collectPagingState()
+        ratingUserFeature.loadNextPage()
     }
 }

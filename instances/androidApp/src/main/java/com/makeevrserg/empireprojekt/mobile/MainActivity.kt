@@ -4,10 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.arkivanov.decompose.defaultComponentContext
@@ -17,14 +13,15 @@ import com.makeevrserg.empireprojekt.mobile.features.root.DefaultRootComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.ApplicationTheme
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.ApplicationContent
 import com.makeevrserg.empireprojekt.mobile.features.ui.root.RootBottomSheetContent
+import com.makeevrserg.empireprojekt.mobile.service.controller.StatusServiceController
+import com.makeevrserg.empireprojekt.mobile.service.controller.StatusServiceControllerImpl
 import ru.astrainteractive.klibs.kdi.Provider
 import ru.astrainteractive.klibs.kdi.getValue
 
-@ExperimentalMaterialApi
-@ExperimentalComposeUiApi
-@ExperimentalAnimationApi
-@ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
+    private val statusServiceController: StatusServiceController by lazy {
+        StatusServiceControllerImpl(this)
+    }
     private val rootModule by Provider {
         application.asEmpireApp().rootModule
     }
@@ -40,7 +37,7 @@ class MainActivity : ComponentActivity() {
         if (Build.MANUFACTURER.contains("M1810F6", true)) error("No application for you")
         if (Build.MODEL.contains("M1810F6", true)) error("No application for you")
         if (Build.ID.contains("M1810F6", true)) error("No application for you")
-
+        statusServiceController.launchStatusService()
         val componentContext = defaultComponentContext()
         val rootComponent = DefaultRootComponent(componentContext, rootModule)
         val rootBottomSheetComponent = rootComponent.rootBottomSheetComponent
@@ -54,5 +51,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onStop() {
+        statusServiceController.close()
+        super.onStop()
     }
 }

@@ -17,7 +17,6 @@ plugins {
 
 android {
     namespace = "${requireProjectInfo.group}"
-    apply(plugin = "kotlin-parcelize")
     val gServicesFile = file("google-services.json")
     if (!gServicesFile.exists()) {
         logger.warn("google-services.json not exists - creating")
@@ -136,14 +135,14 @@ dependencies {
     implementation(libs.moko.resources.core)
     // Decompose
     implementation(libs.decompose.core)
-    implementation(libs.decompose.compose.jetpack)
-    implementation(libs.decompose.android)
-    implementation("com.google.android.gms:play-services-wearable:18.0.0")
+    implementation(libs.decompose.compose)
+    implementation(libs.google.gms.services.wearable)
     // wear
-    implementation("com.google.android.horologist:horologist-datalayer:0.5.3")
+    implementation(libs.google.horologist.datalayer)
     // work
-    implementation("androidx.work:work-runtime:2.8.0")
-    implementation("androidx.work:work-runtime-ktx:2.8.0")
+    implementation(libs.androidx.work.runtime)
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.lifecycle.service)
     // Local
     implementation(projects.modules.features.root.impl)
     implementation(projects.modules.features.root.ui)
@@ -154,5 +153,7 @@ dependencies {
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.core)
     implementation(projects.modules.services.coreResources)
-    implementation(projects.modules.services.wearMessenger)
+    implementation(projects.modules.services.wearMessenger.api)
+    implementation(projects.modules.services.wearMessenger.pingWear)
+    implementation(projects.modules.services.wearMessenger.common)
 }

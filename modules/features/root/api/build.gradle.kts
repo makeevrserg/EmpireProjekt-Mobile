@@ -11,7 +11,8 @@ plugins {
 }
 
 kotlin {
-    android()
+    androidTarget()
+    applyDefaultHierarchyTemplate()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -22,6 +23,5 @@ kotlin {
     }
 }
 android {
-    apply(plugin = "kotlin-parcelize")
     namespace = "${requireProjectInfo.group}.features.root.api"
 }

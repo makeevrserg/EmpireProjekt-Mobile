@@ -12,18 +12,19 @@ import kotlinx.coroutines.launch
 internal class UrlStatusExecutor(
     private val urlStatusRepository: UrlStatusRepository
 ) : CoroutineExecutor<Intent, Action, State, Message, Label>() {
-    override fun executeIntent(intent: Intent, getState: () -> State) {
+
+    override fun executeIntent(intent: Intent) {
         when (intent) {
             is Intent.CheckOnce -> scope.launch {
-                checkOnce(intent.force, getState.invoke())
+                checkOnce(intent.force, state())
             }
         }
     }
 
-    override fun executeAction(action: Action, getState: () -> State) {
+    override fun executeAction(action: Action) {
         when (action) {
             is Action.CheckOnce -> scope.launch {
-                checkOnce(action.force, getState.invoke())
+                checkOnce(action.force, state())
             }
         }
     }

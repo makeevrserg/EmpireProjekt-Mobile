@@ -3,12 +3,14 @@ import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.secretP
 import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
 import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.requireInt
 import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.stringOrEmpty
+import ru.astrainteractive.gradleplugin.util.Base64Util
 
 plugins {
     kotlin("plugin.serialization")
     id("com.android.application")
     id("kotlin-android")
     id("ru.astrainteractive.gradleplugin.java.core")
+    id("ru.astrainteractive.gradleplugin.android.core")
     id("ru.astrainteractive.gradleplugin.android.compose")
     id("ru.astrainteractive.gradleplugin.android.apk.name")
 }
@@ -26,27 +28,39 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        setProperty(
+            "archivesBaseName",
+            "${requireProjectInfo.name}-wearos-${requireProjectInfo.versionString}"
+        )
     }
+
     signingConfigs {
-        val secretKeyAlias = runCatching { secretProperty("KEY_ALIAS").stringOrEmpty }.getOrNull() ?: ""
-        val secretKeyPassword =
-            runCatching { secretProperty("KEY_PASSWORD").stringOrEmpty }.getOrNull() ?: ""
-        val secretStorePassword =
-            runCatching { secretProperty("STORE_PASSWORD").stringOrEmpty }.getOrNull() ?: ""
+        val keyStoreFile = file("keystore.jks")
+        val secretKeyAlias = secretProperty("KEY_ALIAS").stringOrEmpty
+        val secretKeyPassword = secretProperty("KEY_PASSWORD").stringOrEmpty
+        val secretStorePassword = secretProperty("STORE_PASSWORD").stringOrEmpty
+        if (!keyStoreFile.exists()) {
+            logger.warn("Keystore file not exists - creating")
+            val base64String = secretProperty("KEYSTORE_BASE64").stringOrEmpty
+            if (base64String.isNotBlank()) Base64Util.fromBase64(base64String, keyStoreFile)
+        }
+        if (!keyStoreFile.exists()) {
+            logger.error("Keystore file could not be created")
+        }
         getByName("debug") {
-            if (file("../androidApp/keystore.jks").exists()) {
+            if (keyStoreFile.exists()) {
                 keyAlias = secretKeyAlias
                 keyPassword = secretKeyPassword
                 storePassword = secretStorePassword
-                storeFile = file("../androidApp/keystore.jks")
+                storeFile = keyStoreFile
             }
         }
         create("release") {
-            if (file("../androidApp/keystore.jks").exists()) {
+            if (keyStoreFile.exists()) {
                 keyAlias = secretKeyAlias
                 keyPassword = secretKeyPassword
                 storePassword = secretStorePassword
-                storeFile = file("../androidApp/keystore.jks")
+                storeFile = keyStoreFile
             }
         }
     }
@@ -89,17 +103,18 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.wear.compose:compose-navigation:1.2.0")
+    implementation(libs.androidx.compose.wear.material)
+    implementation(libs.androidx.compose.wear.foundation)
 
-    implementation("androidx.glance:glance-wear-tiles:1.0.0-alpha05")
+    implementation(libs.wear.glance.tiles)
 
-    implementation("androidx.wear.tiles:tiles:1.2.0")
-    implementation("androidx.wear.tiles:tiles-material:1.2.0")
-    implementation("com.google.android.horologist:horologist-compose-tools:0.5.3")
-    implementation("com.google.android.horologist:horologist-tiles:0.5.3")
-    implementation("androidx.wear.watchface:watchface-complications-data-source-ktx:1.1.1")
-    implementation("com.google.android.horologist:horologist-datalayer-watch:0.5.3")
-    implementation("com.google.android.horologist:horologist-datalayer-phone:0.5.3")
+    implementation(libs.wear.tiles)
+    implementation(libs.wear.tiles.material)
+    implementation(libs.google.horologist.compose.tools)
+    implementation(libs.google.horologist.tiles)
+    implementation(libs.wear.complications.datasource.ktx)
+    implementation(libs.google.horologist.datalayer.watch)
+    implementation(libs.google.horologist.datalayer.phone)
     // klibs
     implementation(libs.klibs.mikro.core)
     implementation(libs.klibs.mikro.platform)
@@ -111,9 +126,8 @@ dependencies {
     implementation(libs.moko.resources.core)
     // Decompose
     implementation(libs.decompose.core)
-    implementation(libs.decompose.compose.jetpack)
-    implementation(libs.decompose.android)
-    implementation("com.google.android.gms:play-services-wearable:18.0.0")
+    implementation(libs.decompose.compose)
+    implementation(libs.google.gms.services.wearable)
     // Local
     implementation(projects.modules.features.root.impl)
     implementation(projects.modules.features.theme.api)
@@ -122,6 +136,8 @@ dependencies {
     implementation(projects.modules.features.status.impl)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.coreResources)
-    implementation(projects.modules.services.wearMessenger)
+    implementation(projects.modules.services.wearMessenger.api)
+    implementation(projects.modules.services.wearMessenger.pingWear)
+    implementation(projects.modules.services.wearMessenger.common)
     implementation(projects.modules.services.core)
 }

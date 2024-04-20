@@ -1,21 +1,21 @@
 package com.makeevrserg.empireprojekt.mobile.features.root.screen
 
-import com.arkivanov.essenty.parcelable.Parcelable
-import com.arkivanov.essenty.parcelable.Parcelize
+import kotlinx.serialization.Serializable
 
 interface RootRouter {
     fun push(configuration: Configuration)
     fun replaceCurrent(configuration: Configuration)
     fun replaceAll(configuration: Configuration)
 
-    sealed interface Configuration : Parcelable {
-        @Parcelize
+    @Serializable
+    sealed interface Configuration {
+        @Serializable
         data object Splash : Configuration
 
-        @Parcelize
+        @Serializable
         data object Pager : Configuration
 
-        @Parcelize
+        @Serializable
         class RatingUser(val userId: Long, val userName: String) : Configuration
     }
 }

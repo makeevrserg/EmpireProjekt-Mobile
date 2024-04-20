@@ -11,10 +11,13 @@ plugins {
 }
 
 kotlin {
-    android()
+    androidTarget()
+    applyDefaultHierarchyTemplate()
     sourceSets {
         val commonMain by getting {
             dependencies {
+                // kotlin
+                implementation(libs.kotlin.serialization.json)
                 // klibs
                 implementation(libs.klibs.mikro.core)
                 implementation(libs.klibs.mikro.platform)
@@ -24,8 +27,6 @@ kotlin {
                 implementation(libs.decompose.core)
                 implementation(libs.essenty)
                 // Moko
-                implementation(libs.moko.mvvm.core)
-                implementation(libs.moko.mvvm.flow)
                 implementation(libs.moko.resources.core)
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
@@ -46,14 +47,12 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.androidx.room.ktx)
                 implementation(libs.ktor.client.cio)
             }
         }
     }
 }
 android {
-    apply(plugin = "kotlin-parcelize")
     namespace = "${requireProjectInfo.group}.shared"
     sourceSets {
         getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
