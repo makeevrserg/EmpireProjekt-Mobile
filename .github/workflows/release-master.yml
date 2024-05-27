@@ -5,10 +5,10 @@ on:
       - master
 jobs:
   gradle_validation:
-    uses: ./.github/workflows/gradle-wrapper-validation.yml
+    uses: ./.github/workflows/call-gradle-wrapper-validation.yml
   create_artifact:
     needs: [ gradle_validation ]
-    uses: ./.github/workflows/create-artifacts.yml
+    uses: ./.github/workflows/call-create-artifacts.yml
     secrets:
       ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
       KEY_ALIAS: ${{ secrets.KEY_ALIAS }}

@@ -1,0 +1,24 @@
+name: "detekt-validation"
+on:
+  workflow_call:
+jobs:
+  build:
+    name: Build project with gradle
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [ ":androidApp:assembleDebug", ":androidApp:assembleRelease", ":wearApp:assembleDebug", ":wearApp:assembleRelease" ]
+    steps:
+      - name: Checkout Git repo
+        uses: actions/checkout@v4
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: 11
+      - name: Give gradle permission
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v3
+        with:
+          arguments: ${{ matrix.target }} --stacktrace
