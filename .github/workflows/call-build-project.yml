@@ -7,7 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [ ":androidApp:assembleDebug", ":androidApp:assembleRelease", ":wearApp:assembleDebug", ":wearApp:assembleRelease" ]
+        target:
+          - ":instances:androidApp:assembleDebug"
+          - ":instances:androidApp:assembleRelease"
+          - ":instances:wearApp:assembleDebug"
+          - ":instances:wearApp:assembleRelease"
     steps:
       - name: Checkout Git repo
         uses: actions/checkout@v4
