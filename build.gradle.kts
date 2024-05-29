@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.compose) apply false
+    alias(libs.plugins.kotlin.compose.gradle) apply false
     alias(libs.plugins.gradle.buildconfig) apply false
     alias(libs.plugins.moko.resources) apply false
     // klibs - core

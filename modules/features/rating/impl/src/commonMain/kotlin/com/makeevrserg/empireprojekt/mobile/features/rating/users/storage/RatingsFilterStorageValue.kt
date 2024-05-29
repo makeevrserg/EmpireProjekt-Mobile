@@ -20,8 +20,8 @@ internal class RatingsFilterStorageValue(
     key: String,
     default: RatingsFilterModel = RatingsFilterModel()
 ) : MutableStorageValue<RatingsFilterModel> by MutableStorageValue(
-    default = default,
-    loadSettingsValue = {
+    factory = { default },
+    loader = {
         val keys = Keys(key)
         RatingsFilterModel(
             query = settings.getString(keys.queryKey, default.query),
@@ -42,7 +42,7 @@ internal class RatingsFilterStorageValue(
             ),
         )
     },
-    saveSettingsValue = {
+    saver = {
         val keys = Keys(key)
         settings.putString(keys.queryKey, it.query)
         settings.putEnumByOrdinal(keys.nameSortKey, it.nameSort)

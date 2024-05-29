@@ -8,7 +8,7 @@ plugins {
     kotlin("multiplatform")
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
-    id("ru.astrainteractive.gradleplugin.android.compose")
+    alias(libs.plugins.kotlin.compose.gradle)
 }
 kotlin {
     androidTarget()
@@ -46,7 +46,7 @@ kotlin {
             dependencies {
                 implementation(libs.google.accompanist.flowlayout)
                 // Image loading
-                implementation("io.coil-kt:coil-compose:2.4.0")
+                implementation("io.coil-kt:coil-compose:2.6.0")
             }
         }
     }
