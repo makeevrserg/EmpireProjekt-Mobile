@@ -33,3 +33,10 @@ jobs:
     name: Build project
     needs: [ gradle_validation, detekt_validation, tests_validation ]
     uses: ./.github/workflows/call-build-project.yml
+    secrets:
+      ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+      KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      GSERVICES_BASE64: ${{ secrets.GSERVICES_BASE64 }}

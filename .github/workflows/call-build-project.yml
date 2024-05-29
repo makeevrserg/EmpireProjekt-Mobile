@@ -1,10 +1,29 @@
 name: "detekt-validation"
 on:
   workflow_call:
+    secrets:
+      ACTIONS_TOKEN:
+        required: true
+      KEY_ALIAS:
+        required: true
+      KEY_PASSWORD:
+        required: true
+      STORE_PASSWORD:
+        required: true
+      KEYSTORE_BASE64:
+        required: true
+      GSERVICES_BASE64:
+        required: true
 jobs:
   build:
     name: Build project with gradle
     runs-on: ubuntu-latest
+    env:
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+      KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      GSERVICES_BASE64: ${{ secrets.GSERVICES_BASE64 }}
     strategy:
       matrix:
         target:
