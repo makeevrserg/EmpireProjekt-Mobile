@@ -25,8 +25,8 @@ internal class TownsFilterStorageValue(
     key: String,
     default: TownsFilterModel = TownsFilterModel()
 ) : MutableStorageValue<TownsFilterModel> by MutableStorageValue(
-    default = default,
-    loadSettingsValue = {
+    factory = { default },
+    loader = {
         val keys = Keys(key)
         TownsFilterModel(
             query = settings.getString(keys.queryKey, default.query),
@@ -63,7 +63,7 @@ internal class TownsFilterStorageValue(
             ),
         )
     },
-    saveSettingsValue = {
+    saver = {
         val keys = Keys(key)
         settings.putString(keys.queryKey, it.query)
         settings.putEnumByOrdinal(keys.publicTypeKey, it.publicType)

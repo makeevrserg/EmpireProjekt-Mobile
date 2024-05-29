@@ -142,6 +142,7 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-version" }
 kotlin-compose = { id = "org.jetbrains.compose", version.ref = "kotlin-compose" }
+kotlin-compose-gradle = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin-version" }
 
 # Android
 android-library = { id = "com.android.application", version.ref = "kotlin-android-application" }

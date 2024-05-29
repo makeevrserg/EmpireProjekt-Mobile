@@ -21,6 +21,7 @@ local.properties
 androidApp/build
 androidApp/libs
 .idea
+.kotlin
 androidApp/private_key.pepk
 androidApp/google-services.json
 androidApp/keystore.jks

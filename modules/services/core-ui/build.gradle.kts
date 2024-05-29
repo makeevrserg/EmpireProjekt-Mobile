@@ -8,7 +8,7 @@ plugins {
     kotlin("multiplatform")
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
-    id("ru.astrainteractive.gradleplugin.android.compose")
+    alias(libs.plugins.kotlin.compose.gradle)
 }
 kotlin {
     androidTarget()
