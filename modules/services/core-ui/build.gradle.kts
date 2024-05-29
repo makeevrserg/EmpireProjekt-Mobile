@@ -46,7 +46,7 @@ kotlin {
             dependencies {
                 implementation(libs.google.accompanist.flowlayout)
                 // Image loading
-                implementation("io.coil-kt:coil-compose:2.4.0")
+                implementation("io.coil-kt:coil-compose:2.6.0")
             }
         }
     }

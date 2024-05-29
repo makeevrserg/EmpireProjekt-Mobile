@@ -39,7 +39,7 @@ multiplatformResources {
 android {
     namespace = "${requireProjectInfo.group}.core.resources"
     dependencies {
-        implementation("com.google.android.material:material:1.9.0")
+        implementation("com.google.android.material:material:1.12.0")
     }
     sourceSets {
         getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
