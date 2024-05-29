@@ -1,0 +1,47 @@
+name: "detekt-validation"
+on:
+  workflow_call:
+    secrets:
+      ACTIONS_TOKEN:
+        required: true
+      KEY_ALIAS:
+        required: true
+      KEY_PASSWORD:
+        required: true
+      STORE_PASSWORD:
+        required: true
+      KEYSTORE_BASE64:
+        required: true
+      GSERVICES_BASE64:
+        required: true
+jobs:
+  build:
+    name: Build project with gradle
+    runs-on: ubuntu-latest
+    env:
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+      KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      GSERVICES_BASE64: ${{ secrets.GSERVICES_BASE64 }}
+    strategy:
+      matrix:
+        target:
+          - ":instances:androidApp:assembleDebug"
+          - ":instances:androidApp:assembleRelease"
+          - ":instances:wearApp:assembleDebug"
+          - ":instances:wearApp:assembleRelease"
+    steps:
+      - name: Checkout Git repo
+        uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: 17
+      - name: Give gradle permission
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v3
+        with:
+          arguments: ${{ matrix.target }} --stacktrace
