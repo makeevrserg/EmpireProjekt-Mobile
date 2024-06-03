@@ -10,7 +10,7 @@ androidx-compose-bom = "2024.05.00"
 androidx-activity-compose = "1.9.0"
 android-work = "2.9.0"
 leakcanary = "2.14"
-horologist = "0.6.13"
+horologist = "0.6.12"
 compose-wear = "1.3.1"
 
 # Google
@@ -66,7 +66,7 @@ klibs-mikro-platform = { module = "ru.astrainteractive.klibs:mikro-platform", ve
 klibs-mikro-extensions = { module = "ru.astrainteractive.klibs:mikro-extensions", version.ref = "klibs-mikro" }
 klibs-kstorage = { module = "ru.astrainteractive.klibs:kstorage", version.ref = "klibs-kstorage" }
 klibs-kdi = { module = "ru.astrainteractive.klibs:kdi", version.ref = "klibs-kdi" }
-klibs-paging = { module = "ru.astrainteractive.klibs:paging", version.strictly = "2.1.0" }
+klibs-paging = { module = "ru.astrainteractive.klibs:paging", version.strictly = "2.2.1" }
 
 # Settings
 mppsettings = { module = "com.russhwolf:multiplatform-settings", version.ref = "mppsettings" }
@@ -83,7 +83,7 @@ decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", ver
 essenty = { module = "com.arkivanov.essenty:lifecycle", version.ref = "essenty" }
 
 # Kotlin
-kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.strictly = "0.5.0" }
+kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.strictly = "0.6.0" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
@@ -92,7 +92,7 @@ kotlin-coroutines-playServices = { module = "org.jetbrains.kotlinx:kotlinx-corou
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 
 # Androidx
-androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.strictly = "2.7.0" }
+androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.strictly = "2.8.1" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
 androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "android-work" }
@@ -104,7 +104,7 @@ google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref
 google-firebase-crsahlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 google-firebase-crsahlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-crashlytics" }
 google-gms-services-gradle = { module = "com.google.gms:google-services", version.ref = "google-services" }
-google-gms-services-wearable = { module = "com.google.android.gms:play-services-wearable", version.strictly = "18.1.0" }
+google-gms-services-wearable = { module = "com.google.android.gms:play-services-wearable", version.strictly = "18.2.0" }
 google-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "google-auth" }
 google-accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "google-accompanist" }
 google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "google-accompanist" }
@@ -149,7 +149,7 @@ android-library = { id = "com.android.application", version.ref = "kotlin-androi
 android-application = { id = "com.android.library", version.ref = "kotlin-android-application" }
 
 # Gradle
-gradle-buildconfig = { id = "com.github.gmazzo.buildconfig", version.strictly = "3.1.0" }
+gradle-buildconfig = { id = "com.github.gmazzo.buildconfig", version.strictly = "5.3.5" }
 
 # moko
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
