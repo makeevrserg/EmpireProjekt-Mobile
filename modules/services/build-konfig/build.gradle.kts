@@ -15,19 +15,22 @@ plugins {
 buildConfig {
     className("BuildKonfig") // forces the class name. Defaults to 'BuildConfig'
     packageName("${requireProjectInfo.group}.buildkonfig") // forces the package. Defaults to '${project.group}'
+    useKotlinOutput { internalVisibility = false }
     buildConfigField(
-        "String",
-        "VERSION_CODE",
-        "\"${baseGradleProperty("project.version.code").requireInt}\""
+        name = "VERSION_CODE",
+        value = "${baseGradleProperty("project.version.code").requireInt}"
     )
-    buildConfigField("String", "VERSION_NAME", "\"${requireProjectInfo.versionString}\"")
-    buildConfigField("String", "PROD_URL", "\"https://empireapi.astrainteractive.ru\"")
+    buildConfigField(
+        name = "VERSION_NAME",
+        value = "${requireProjectInfo.versionString}"
+    )
+    buildConfigField(
+        name = "PROD_URL",
+        value = "https://empireapi.astrainteractive.ru"
+    )
 }
 kotlin {
     androidTarget()
-    iosArm64()
-    iosX64()
-    iosSimulatorArm64()
     applyDefaultHierarchyTemplate()
 }
 

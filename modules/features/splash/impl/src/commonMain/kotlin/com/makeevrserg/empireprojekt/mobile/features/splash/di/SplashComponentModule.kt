@@ -5,9 +5,8 @@ import com.makeevrserg.empireprojekt.mobile.features.splash.data.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.splash.presentation.DefaultSplashComponent
 import com.makeevrserg.empireprojekt.mobile.features.splash.presentation.SplashComponent
 import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
-import ru.astrainteractive.klibs.kdi.Module
 
-interface SplashComponentModule : Module {
+interface SplashComponentModule {
     fun createSplashComponent(componentContext: ComponentContext): SplashComponent
 
     class Default(

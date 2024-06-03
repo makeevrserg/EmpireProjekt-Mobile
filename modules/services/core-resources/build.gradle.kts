@@ -12,9 +12,6 @@ plugins {
 
 kotlin {
     androidTarget()
-    iosArm64()
-    iosX64()
-    iosSimulatorArm64()
     applyDefaultHierarchyTemplate()
     sourceSets {
         val commonMain by getting {
@@ -22,20 +19,13 @@ kotlin {
                 implementation(libs.moko.resources.core)
             }
         }
-        val iosX64Main by getting {
-            resources.srcDirs("build/generated/moko/iosX64Main/src")
-        }
-        val iosArm64Main by getting {
-            resources.srcDirs("build/generated/moko/iosArm64Main/src")
-        }
-        val iosSimulatorArm64Main by getting {
-            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
-        }
     }
 }
+
 multiplatformResources {
     multiplatformResourcesPackage = "${requireProjectInfo.group}.core.resources"
 }
+
 android {
     namespace = "${requireProjectInfo.group}.core.resources"
     dependencies {

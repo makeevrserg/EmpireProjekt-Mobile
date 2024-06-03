@@ -4,9 +4,8 @@ import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.makeevrserg.empireprojekt.mobile.features.status.root.presentation.DefaultRootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.status.root.presentation.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
-import ru.astrainteractive.klibs.kdi.Module
 
-interface StatusModule : Module {
+interface StatusModule {
 
     val rootStatusComponent: RootStatusComponent
 
