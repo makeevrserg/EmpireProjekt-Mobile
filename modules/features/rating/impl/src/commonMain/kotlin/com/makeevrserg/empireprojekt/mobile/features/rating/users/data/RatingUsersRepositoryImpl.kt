@@ -27,7 +27,7 @@ internal class RatingUsersRepositoryImpl(
                 body = pagingState.pageContext.filter
             ).data
         },
-        initialFilterFactory = { townsFilterStorageValue.value }
+        initialFilterFactory = { townsFilterStorageValue.cachedValue }
     )
 
     override suspend fun updateFilter(buildFilter: (RatingsFilterModel) -> RatingsFilterModel) {
