@@ -43,12 +43,11 @@ class MainActivity : ComponentActivity() {
         val rootBottomSheetComponent = rootComponent.rootBottomSheetComponent
         setContent {
             ApplicationTheme(rootModule.themeSwitcherModule.themeSwitcherComponent) {
-                RootBottomSheetContent(rootBottomSheetComponent) {
-                    ApplicationContent(
-                        rootComponent = rootComponent,
-                        modifier = Modifier
-                    )
-                }
+                RootBottomSheetContent(rootBottomSheetComponent)
+                ApplicationContent(
+                    rootComponent = rootComponent,
+                    modifier = Modifier
+                )
             }
         }
     }

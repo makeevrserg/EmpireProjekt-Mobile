@@ -20,7 +20,7 @@ class DefaultRootBottomSheetComponent(
     override val childSlot: Value<ChildSlot<Configuration, RootBottomSheetComponent.Child>> = childSlot(
         source = slotNavigation,
         handleBackButton = true,
-        serializer = coreModule.jsonConfiguration.serializersModule.serializer(),
+        serializer = Configuration.serializer(),
         childFactory = { configuration, childContext ->
             when (configuration) {
                 Configuration.Info -> {
@@ -30,31 +30,15 @@ class DefaultRootBottomSheetComponent(
         }
     )
 
-    private fun activateConfiguration(
-        configuration: Configuration,
-        isSameConfiguration: (configuration: Configuration?) -> Boolean
-    ) {
-        val currentChild = childSlot.value.child
-        when {
-            isSameConfiguration.invoke(currentChild?.configuration) -> dismiss()
-            currentChild == null -> slotNavigation.activate(configuration)
-            else -> dismiss()
-        }
-    }
-
     override fun dismiss() {
         slotNavigation.dismiss()
     }
 
     override fun showInfoSheet() {
-        activateConfiguration(
-            configuration = Configuration.Info,
-            isSameConfiguration = { configuration ->
-                configuration is Configuration.Info
-            }
-        )
+        slotNavigation.activate(Configuration.Info)
     }
 
+    @Serializable
     sealed interface Configuration {
         @Serializable
         data object Info : Configuration
