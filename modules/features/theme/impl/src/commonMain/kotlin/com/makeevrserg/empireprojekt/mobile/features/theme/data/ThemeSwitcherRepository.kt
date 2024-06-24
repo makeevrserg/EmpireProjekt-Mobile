@@ -1,9 +1,9 @@
 package com.makeevrserg.empireprojekt.mobile.features.theme.data
 
 import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
-import ru.astrainteractive.klibs.kstorage.api.StateFlowMutableKrate
+import ru.astrainteractive.klibs.kstorage.api.StateFlowKrate
 
 internal interface ThemeSwitcherRepository {
 
-    val themeFlowStorageValue: StateFlowMutableKrate<Theme>
+    val themeFlowStorageValue: StateFlowKrate.Mutable<Theme>
 }
