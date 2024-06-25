@@ -69,5 +69,5 @@ dependencies {
     implementation(libs.klibs.kstorage)
     implementation(libs.google.auth)
     implementation(libs.kotlin.coroutines.playServices)
-    implementation("io.ktor:ktor-client-logging-jvm:2.3.11")
+    implementation("io.ktor:ktor-client-logging-jvm:2.3.12")
 }
