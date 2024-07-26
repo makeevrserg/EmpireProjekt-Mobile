@@ -4,6 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
 import com.makeevrserg.empireprojekt.mobile.features.root.pager.DefaultPagerComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.pager.PagerComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.pager.data.LastBottomItemRepositoryImpl
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootRouter
 
 interface PagerModule {
@@ -19,7 +20,8 @@ interface PagerModule {
         ): PagerComponent = DefaultPagerComponent(
             componentContext = componentContext,
             rootModule = rootModule,
-            onRootNavigation = onRootNavigation
+            onRootNavigation = onRootNavigation,
+            lastBottomItemRepository = LastBottomItemRepositoryImpl(rootModule.coreModule.settings)
         )
     }
 }

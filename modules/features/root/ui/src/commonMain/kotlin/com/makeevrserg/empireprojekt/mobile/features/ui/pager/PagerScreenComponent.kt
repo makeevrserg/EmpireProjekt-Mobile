@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.pager.PagerComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
@@ -25,13 +25,13 @@ fun PagerScreenComponent(
     rootBottomSheetComponent: RootBottomSheetComponent,
     modifier: Modifier = Modifier
 ) {
-    val selectedChild by pagerComponent.selectedChild.subscribeAsState()
-    val selectedIndex by pagerComponent.selectedIndex.subscribeAsState()
+    val selectedChild by pagerComponent.selectedChild.collectAsState()
+    val selectedBottomBarItem by pagerComponent.selectedBottomBarItem.collectAsState()
     Scaffold(
         modifier = Modifier.navigationBarsPadding(),
         bottomBar = {
             PagerBottomBar(
-                selectedIndex = selectedIndex,
+                selectedIndex = selectedBottomBarItem.ordinal,
                 onClicked = pagerComponent::select
             )
         }

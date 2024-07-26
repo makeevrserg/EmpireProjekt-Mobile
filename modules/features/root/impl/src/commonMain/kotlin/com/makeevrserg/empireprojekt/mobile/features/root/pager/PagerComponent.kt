@@ -1,27 +1,27 @@
 package com.makeevrserg.empireprojekt.mobile.features.root.pager
 
-import com.arkivanov.decompose.value.Value
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.presentation.RatingUsersComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.pager.model.PagerBottomBarItem
 import com.makeevrserg.empireprojekt.mobile.features.status.root.presentation.RootStatusComponent
 import com.makeevrserg.empireprojekt.mobile.features.theme.presentation.ThemeSwitcherComponent
 import com.makeevrserg.empireprojekt.mobile.features.towny.towns.presentation.TownsComponent
+import kotlinx.coroutines.flow.StateFlow
 
 interface PagerComponent {
-    val selectedIndex: Value<Int>
-    val selectedChild: Value<Child>
+    val selectedBottomBarItem: StateFlow<PagerBottomBarItem>
+    val selectedChild: StateFlow<Child>
 
-//    fun selectStatus()
+    fun select(item: PagerBottomBarItem)
 
-//    fun selectRatings()
+    fun selectStatus()
 
-//    fun selectTowns()
+    fun selectRatings()
 
-//    fun selectMap()
+    fun selectTowns()
 
-    fun select(index: Int)
+    fun selectMap()
 
     sealed interface Child {
-
         class Status(
             val rootStatusComponent: RootStatusComponent,
             val themeSwitcherComponent: ThemeSwitcherComponent

@@ -2,16 +2,18 @@ package com.makeevrserg.empireprojekt.mobile.features.root.pager
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.childContext
-import com.arkivanov.decompose.value.MutableValue
-import com.arkivanov.decompose.value.Value
-import com.arkivanov.decompose.value.operator.map
 import com.makeevrserg.empireprojekt.mobile.features.root.di.RootModule
+import com.makeevrserg.empireprojekt.mobile.features.root.pager.data.LastBottomItemRepository
+import com.makeevrserg.empireprojekt.mobile.features.root.pager.model.PagerBottomBarItem
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootRouter
+import kotlinx.coroutines.flow.StateFlow
+import ru.astrainteractive.klibs.mikro.core.util.mapStateFlow
 
 internal class DefaultPagerComponent(
     componentContext: ComponentContext,
     rootModule: RootModule,
-    onRootNavigation: (RootRouter.Configuration) -> Unit
+    onRootNavigation: (RootRouter.Configuration) -> Unit,
+    private val lastBottomItemRepository: LastBottomItemRepository
 ) : PagerComponent, ComponentContext by componentContext {
     private val ratingUsersChild by lazy {
         PagerComponent.Child.RatingUsers(
@@ -44,19 +46,35 @@ internal class DefaultPagerComponent(
         PagerComponent.Child.Map
     }
 
-    override val selectedIndex: MutableValue<Int> = MutableValue(1)
+    override val selectedBottomBarItem: StateFlow<PagerBottomBarItem>
+        get() = lastBottomItemRepository.lastBottomItemIndex.cachedStateFlow
 
-    override val selectedChild: Value<PagerComponent.Child> = selectedIndex.map {
+    override val selectedChild = selectedBottomBarItem.mapStateFlow {
         when (it) {
-            0 -> townsChild
-            1 -> statusChild
-            2 -> ratingUsersChild
-            3 -> mapChild
-            else -> error("Index out of bounds")
+            PagerBottomBarItem.Towns -> townsChild
+            PagerBottomBarItem.Status -> statusChild
+            PagerBottomBarItem.Ratings -> ratingUsersChild
+            PagerBottomBarItem.Map -> mapChild
         }
     }
 
-    override fun select(index: Int) {
-        selectedIndex.value = index
+    override fun select(item: PagerBottomBarItem) {
+        lastBottomItemRepository.lastBottomItemIndex.save(item)
+    }
+
+    override fun selectMap() {
+        select(PagerBottomBarItem.Map)
+    }
+
+    override fun selectRatings() {
+        select(PagerBottomBarItem.Ratings)
+    }
+
+    override fun selectStatus() {
+        select(PagerBottomBarItem.Status)
+    }
+
+    override fun selectTowns() {
+        select(PagerBottomBarItem.Towns)
     }
 }
