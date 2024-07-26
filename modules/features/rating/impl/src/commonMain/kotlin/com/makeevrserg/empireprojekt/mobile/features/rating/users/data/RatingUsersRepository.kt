@@ -1,10 +1,9 @@
 package com.makeevrserg.empireprojekt.mobile.features.rating.users.data
 
-import com.makeevrserg.empireprojekt.mobile.features.rating.users.data.paging.RatingsPagingCollector
 import ru.astrainteractive.empireapi.models.rating.RatingUserModel
 import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
+import ru.astrainteractive.empireapi.models.response.GenericPagedModel
 
 internal interface RatingUsersRepository {
-    val pagingCollector: RatingsPagingCollector<RatingUserModel>
-    suspend fun updateFilter(buildFilter: (RatingsFilterModel) -> RatingsFilterModel)
+    suspend fun fetchUsers(page: Int, filterModel: RatingsFilterModel): Result<GenericPagedModel<RatingUserModel>>
 }

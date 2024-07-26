@@ -30,6 +30,8 @@ kotlin {
                 implementation(libs.moko.resources.core)
                 // Coroutines
                 implementation(libs.kotlin.coroutines.core)
+                // settings
+                implementation(libs.mppsettings)
                 // MVIKotlin
                 implementation(libs.mvikotlin)
                 // Local

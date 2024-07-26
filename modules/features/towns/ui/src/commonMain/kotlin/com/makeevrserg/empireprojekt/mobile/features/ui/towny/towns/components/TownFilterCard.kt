@@ -10,6 +10,8 @@ import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.EnumOption
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.FilterCard
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.TextOption
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.TitleOption
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.ComposeTheme
 import com.makeevrserg.empireprojekt.mobile.features.towny.towns.util.LocalSortOrderExt.toStringDesc
@@ -30,6 +32,8 @@ internal fun TownFilterCard(
     onSortByResidentsClicked: () -> Unit,
 ) {
     FilterCard {
+        TitleOption(text = MR.strings.shared_filter.asComposableString())
+        TextOption(text = MR.strings.shared_warn_multiple_filter.asComposableString())
         EnumOption(
             text = MR.strings.towns_towns_filter_public.asComposableString(),
             selected = townsFilter.publicType,

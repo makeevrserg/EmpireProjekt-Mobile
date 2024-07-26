@@ -26,6 +26,6 @@ interface RatingUsersComponent {
         val filter: RatingsFilterModel = RatingsFilterModel(),
         val isLoading: Boolean = false,
         val isFailure: Boolean = false,
-        val isLastPage: Boolean = false
+        val isLastPage: Boolean = false,
     )
 }

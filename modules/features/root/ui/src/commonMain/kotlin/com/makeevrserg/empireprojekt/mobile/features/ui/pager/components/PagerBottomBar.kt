@@ -14,10 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
-import com.makeevrserg.empireprojekt.mobile.features.ui.pager.components.model.PagerBottomBarItem
+import com.makeevrserg.empireprojekt.mobile.features.root.pager.model.PagerBottomBarItem
+import com.makeevrserg.empireprojekt.mobile.features.ui.pager.components.PagerBottomBarItemIcon.icon
 
 @Composable
-internal fun PagerBottomBar(selectedIndex: Int, onClicked: (Int) -> Unit, modifier: Modifier = Modifier) {
+internal fun PagerBottomBar(
+    selectedIndex: Int,
+    onClicked: (PagerBottomBarItem) -> Unit,
+    modifier: Modifier = Modifier
+) {
     val items = remember {
         listOf(
             PagerBottomBarItem.Towns,
@@ -36,7 +41,7 @@ internal fun PagerBottomBar(selectedIndex: Int, onClicked: (Int) -> Unit, modifi
             BottomNavigationItem(
                 selected = isSelected,
                 onClick = {
-                    onClicked.invoke(index)
+                    onClicked.invoke(item)
                 },
                 icon = {
                     val tint by animateColorAsState(

@@ -6,6 +6,9 @@ import com.makeevrserg.empireprojekt.mobile.features.rating.users.data.RatingUse
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.data.RatingUsersRepositoryImpl
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.presentation.DefaultRatingUsersComponent
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.presentation.RatingUsersComponent
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.presentation.feature.FilterFeature
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.presentation.feature.RatingUsersFeature
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.storage.RatingsFilterStorageValue
 import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
 
 interface RatingUsersModule {
@@ -16,13 +19,12 @@ interface RatingUsersModule {
 
     class Default(
         apiEmpireApiModule: ApiEmpireApiModule,
-        coreModule: CoreModule
+        private val coreModule: CoreModule
     ) : RatingUsersModule {
         private val ratingUsersRepository: RatingUsersRepository by lazy {
             RatingUsersRepositoryImpl(
                 ratingApi = apiEmpireApiModule.ratingApi,
                 dispatchers = coreModule.dispatchers,
-                settings = coreModule.settings
             )
         }
 
@@ -36,7 +38,20 @@ interface RatingUsersModule {
             return DefaultRatingUsersComponent(
                 componentContext = componentContext,
                 onShowUserRatingsClicked = onShowUserRatingsClicked,
-                dependencies = dependencies
+                createRatingUsersFeature = { filterProvider ->
+                    RatingUsersFeature(
+                        dependencies = dependencies,
+                        filterProvider = filterProvider
+                    )
+                },
+                createFilterFeature = {
+                    FilterFeature(
+                        ratingsFilterStorageValue = RatingsFilterStorageValue(
+                            settings = coreModule.settings,
+                            key = "ratings_filter_storage_key"
+                        )
+                    )
+                }
             )
         }
     }
