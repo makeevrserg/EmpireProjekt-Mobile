@@ -6,6 +6,8 @@
         AstraLearner, Astra
         Interactive and Empire SMP servers
     </string>
+    <string name="shared.filter">Фильтр</string>
+    <string name="shared.warn_multiple_filter">Это множестванная фильтрация! Список будет отсортирован по всем выбранным полям!</string>
     <!--    Status      -->
     <string name="statuses.ratings">Рейтинги</string>
     <string name="statuses.towns">Города</string>

@@ -10,6 +10,8 @@ import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.EnumOption
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.FilterCard
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.TextOption
+import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.TitleOption
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.ComposeTheme
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.util.LocalSortOrderExt.toStringDesc
@@ -24,6 +26,8 @@ internal fun RatingsFilterCard(
     onRatingSortClicked: () -> Unit,
 ) {
     FilterCard {
+        TitleOption(text = MR.strings.shared_filter.asComposableString())
+        TextOption(text = MR.strings.shared_warn_multiple_filter.asComposableString())
         EnumOption(
             text = MR.strings.rating_ratings_filter_name.asComposableString(),
             selected = filter.nameSort,
