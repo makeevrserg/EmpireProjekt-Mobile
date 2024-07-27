@@ -62,3 +62,5 @@ modules/features/theme/impl/build
 modules/features/theme/ui/build
 modules/features/towns/impl/build
 modules/features/towns/ui/build
+modules/features/tabs/impl/build
+modules/features/tabs/ui/build

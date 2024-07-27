@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetRouter
 import com.makeevrserg.empireprojekt.mobile.features.root.pager.PagerComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootRouter
 import com.makeevrserg.empireprojekt.mobile.features.ui.map.AndroidMapView
 import com.makeevrserg.empireprojekt.mobile.features.ui.pager.components.PagerBottomBar
 import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.RatingUsersScreenComponent
@@ -21,8 +21,8 @@ import com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.TownsScreenC
 @Composable
 fun PagerScreenComponent(
     pagerComponent: PagerComponent,
-    rootScreenComponent: RootScreenComponent,
-    rootBottomSheetComponent: RootBottomSheetComponent,
+    rootScreenComponent: RootRouter,
+    rootBottomSheetComponent: RootBottomSheetRouter,
     modifier: Modifier = Modifier
 ) {
     val selectedChild by pagerComponent.selectedChild.collectAsState()

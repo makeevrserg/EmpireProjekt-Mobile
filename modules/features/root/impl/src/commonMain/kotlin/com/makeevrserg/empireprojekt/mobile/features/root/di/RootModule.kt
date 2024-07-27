@@ -19,7 +19,7 @@ interface RootModule {
     val ratingUserModule: RatingUserModule
     val ratingUsersModule: RatingUsersModule
     val townsModule: TownsModule
-    val pagerModule: PagerModule
+    val pagerModule: com.makeevrserg.empireprojekt.mobile.features.root.pager.di.PagerModule
     val apiEmpireApiModule: ApiEmpireApiModule
 
     class Default : RootModule {
@@ -70,8 +70,14 @@ interface RootModule {
             )
         }
 
-        override val pagerModule: PagerModule by lazy {
-            PagerModule.Default(this)
+        override val pagerModule: com.makeevrserg.empireprojekt.mobile.features.root.pager.di.PagerModule by lazy {
+            com.makeevrserg.empireprojekt.mobile.features.root.pager.di.PagerModule.Default(
+                ratingUsersModule = ratingUsersModule,
+                themeSwitcherModule = themeSwitcherModule,
+                statusModule = statusModule,
+                townsModule = townsModule,
+                coreModule = coreModule
+            )
         }
     }
 }

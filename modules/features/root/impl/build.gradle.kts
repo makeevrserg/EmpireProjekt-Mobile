@@ -45,6 +45,7 @@ kotlin {
                 implementation(projects.modules.features.theme.impl)
                 implementation(projects.modules.features.status.impl)
                 implementation(projects.modules.features.towns.impl)
+                implementation(projects.modules.features.tabs.impl)
             }
         }
         val androidMain by getting {
