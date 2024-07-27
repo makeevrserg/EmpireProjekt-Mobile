@@ -10,9 +10,13 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.makeevrserg.empireprojekt.mobile.features.root.RootComponent
 import com.makeevrserg.empireprojekt.mobile.features.root.screen.DefaultRootScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.ui.map.AndroidMapView
 import com.makeevrserg.empireprojekt.mobile.features.ui.pager.PagerScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.rating.user.RatingUserScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.RatingUsersScreenComponent
 import com.makeevrserg.empireprojekt.mobile.features.ui.splash.SplashScreenComponent
+import com.makeevrserg.empireprojekt.mobile.features.ui.status.StatusScreen
+import com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.TownsScreenComponent
 
 @Composable
 fun ApplicationContent(
@@ -39,8 +43,28 @@ fun ApplicationContent(
 
             is DefaultRootScreenComponent.Configuration.Pager -> PagerScreenComponent(
                 pagerComponent = screen.pagerComponent,
-                rootBottomSheetComponent = rootComponent.rootBottomSheetComponent,
-                rootScreenComponent = rootComponent.rootScreenComponent
+                ratingUsersScreen = { modifier, child ->
+                    RatingUsersScreenComponent(
+                        ratingUsersComponent = child.ratingUsersComponent,
+                        popComponent = rootComponent.rootScreenComponent
+                    )
+                },
+                townsScreen = { modifier, child ->
+                    TownsScreenComponent(
+                        popComponent = rootComponent.rootScreenComponent,
+                        townsComponent = child.townsComponent
+                    )
+                },
+                statusScreen = { modifier, child ->
+                    StatusScreen(
+                        themeSwitcherComponent = child.themeSwitcherComponent,
+                        rootStatusComponent = child.rootStatusComponent,
+                        rootBottomSheetRouter = rootComponent.rootBottomSheetComponent
+                    )
+                },
+                mapScreen = { modifier, child ->
+                    AndroidMapView()
+                }
             )
         }
     }

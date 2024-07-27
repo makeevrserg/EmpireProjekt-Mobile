@@ -9,21 +9,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.makeevrserg.empireprojekt.mobile.features.root.modal.RootBottomSheetRouter
+import com.makeevrserg.empireprojekt.mobile.core.ui.DecomposeScreen
 import com.makeevrserg.empireprojekt.mobile.features.root.pager.PagerComponent
-import com.makeevrserg.empireprojekt.mobile.features.root.screen.RootRouter
-import com.makeevrserg.empireprojekt.mobile.features.ui.map.AndroidMapView
 import com.makeevrserg.empireprojekt.mobile.features.ui.pager.components.PagerBottomBar
-import com.makeevrserg.empireprojekt.mobile.features.ui.rating.users.RatingUsersScreenComponent
-import com.makeevrserg.empireprojekt.mobile.features.ui.status.StatusScreen
-import com.makeevrserg.empireprojekt.mobile.features.ui.towny.towns.TownsScreenComponent
 
 @Composable
 fun PagerScreenComponent(
     pagerComponent: PagerComponent,
-    rootScreenComponent: RootRouter,
-    rootBottomSheetComponent: RootBottomSheetRouter,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    ratingUsersScreen: DecomposeScreen<PagerComponent.Child.RatingUsers>,
+    statusScreen: DecomposeScreen<PagerComponent.Child.Status>,
+    townsScreen: DecomposeScreen<PagerComponent.Child.Towns>,
+    mapScreen: DecomposeScreen<PagerComponent.Child.Map>
 ) {
     val selectedChild by pagerComponent.selectedChild.collectAsState()
     val selectedBottomBarItem by pagerComponent.selectedBottomBarItem.collectAsState()
@@ -44,23 +41,25 @@ fun PagerScreenComponent(
             label = "Crossfade instance composable"
         ) { instance ->
             when (instance) {
-                is PagerComponent.Child.RatingUsers -> RatingUsersScreenComponent(
-                    ratingUsersComponent = instance.ratingUsersComponent,
-                    popComponent = rootScreenComponent
+                is PagerComponent.Child.RatingUsers -> ratingUsersScreen.Render(
+                    child = instance,
+                    modifier = Modifier
                 )
 
-                is PagerComponent.Child.Status -> StatusScreen(
-                    themeSwitcherComponent = instance.themeSwitcherComponent,
-                    rootStatusComponent = instance.rootStatusComponent,
-                    rootBottomSheetRouter = rootBottomSheetComponent
+                is PagerComponent.Child.Status -> statusScreen.Render(
+                    child = instance,
+                    modifier = Modifier
                 )
 
-                is PagerComponent.Child.Towns -> TownsScreenComponent(
-                    popComponent = rootScreenComponent,
-                    townsComponent = instance.townsComponent
+                is PagerComponent.Child.Towns -> townsScreen.Render(
+                    child = instance,
+                    modifier = Modifier
                 )
 
-                PagerComponent.Child.Map -> AndroidMapView()
+                is PagerComponent.Child.Map -> mapScreen.Render(
+                    child = instance,
+                    modifier = Modifier
+                )
             }
         }
     }

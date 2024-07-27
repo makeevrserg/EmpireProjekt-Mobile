@@ -40,10 +40,13 @@ kotlin {
                 implementation(projects.modules.services.apiEmpireapi)
                 implementation(projects.modules.features.root.api)
                 implementation(projects.modules.features.splash.impl)
+                implementation(projects.modules.features.rating.api)
                 implementation(projects.modules.features.rating.impl)
                 implementation(projects.modules.features.theme.api)
                 implementation(projects.modules.features.theme.impl)
+                implementation(projects.modules.features.status.api)
                 implementation(projects.modules.features.status.impl)
+                implementation(projects.modules.features.towns.api)
                 implementation(projects.modules.features.towns.impl)
                 implementation(projects.modules.features.tabs.impl)
             }

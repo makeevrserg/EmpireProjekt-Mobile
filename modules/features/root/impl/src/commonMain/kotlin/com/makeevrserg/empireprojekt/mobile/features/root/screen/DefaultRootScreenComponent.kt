@@ -74,7 +74,7 @@ class DefaultRootScreenComponent(
         ) : Configuration
 
         class Pager(
-            val pagerComponent: com.makeevrserg.empireprojekt.mobile.features.root.pager.PagerComponent
+            val pagerComponent: PagerComponent
         ) : Configuration
     }
 }

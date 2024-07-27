@@ -2,12 +2,16 @@ package com.makeevrserg.empireprojekt.mobile.features.root.di
 
 import com.makeevrserg.empireprojekt.mobile.api.empireapi.di.ApiEmpireApiModule
 import com.makeevrserg.empireprojekt.mobile.features.rating.user.di.RatingUserModule
+import com.makeevrserg.empireprojekt.mobile.features.rating.user.di.RatingUserModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersModule
-import com.makeevrserg.empireprojekt.mobile.features.root.pager.di.PagerModule
+import com.makeevrserg.empireprojekt.mobile.features.rating.users.di.RatingUsersModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.splash.di.SplashComponentModule
 import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModule
+import com.makeevrserg.empireprojekt.mobile.features.status.di.StatusModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.theme.di.ThemeSwitcherModule
+import com.makeevrserg.empireprojekt.mobile.features.theme.di.ThemeSwitcherModuleImpl
 import com.makeevrserg.empireprojekt.mobile.features.towny.towns.di.TownsModule
+import com.makeevrserg.empireprojekt.mobile.features.towny.towns.di.TownsModuleImpl
 import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
 
 interface RootModule {
@@ -34,11 +38,11 @@ interface RootModule {
             )
         }
         override val themeSwitcherModule: ThemeSwitcherModule by lazy {
-            ThemeSwitcherModule.Default(coreModule = coreModule)
+            ThemeSwitcherModuleImpl(coreModule = coreModule)
         }
 
         override val statusModule: StatusModule by lazy {
-            StatusModule.Default(
+            StatusModuleImpl(
                 coreModule = coreModule
             )
         }
@@ -50,20 +54,20 @@ interface RootModule {
         }
 
         override val townsModule: TownsModule by lazy {
-            TownsModule.Default(
+            TownsModuleImpl(
                 apiEmpireApiModule = apiEmpireApiModule,
                 coreModule = coreModule
             )
         }
 
         override val ratingUserModule: RatingUserModule
-            get() = RatingUserModule.Default(
+            get() = RatingUserModuleImpl(
                 apiEmpireApiModule = apiEmpireApiModule,
                 coreModule = coreModule
             )
 
         override val ratingUsersModule: RatingUsersModule by lazy {
-            RatingUsersModule.Default(
+            RatingUsersModuleImpl(
                 apiEmpireApiModule = apiEmpireApiModule,
                 coreModule = coreModule
 

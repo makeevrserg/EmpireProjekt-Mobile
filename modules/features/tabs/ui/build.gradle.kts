@@ -31,18 +31,13 @@ kotlin {
                 implementation(projects.modules.services.coreResources)
                 implementation(projects.modules.services.coreUi)
                 implementation(projects.modules.services.core)
-                implementation(projects.modules.features.splash.impl)
+                // Features
                 implementation(projects.modules.features.root.api)
-                implementation(projects.modules.features.tabs.impl)
-                implementation(projects.modules.features.map.ui)
-                implementation(projects.modules.features.towns.impl)
-                implementation(projects.modules.features.towns.ui)
-                implementation(projects.modules.features.rating.impl)
-                implementation(projects.modules.features.rating.ui)
-                implementation(projects.modules.features.status.impl)
-                implementation(projects.modules.features.status.ui)
+                implementation(projects.modules.features.towns.api)
+                implementation(projects.modules.features.rating.api)
+                implementation(projects.modules.features.status.api)
                 implementation(projects.modules.features.theme.api)
-                implementation(projects.modules.features.theme.impl)
+                implementation(projects.modules.features.tabs.impl)
             }
         }
     }

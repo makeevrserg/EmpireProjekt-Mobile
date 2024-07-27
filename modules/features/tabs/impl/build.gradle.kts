@@ -29,11 +29,10 @@ kotlin {
                 // Local
                 implementation(projects.modules.services.core)
                 implementation(projects.modules.features.root.api)
-                implementation(projects.modules.features.towns.impl)
-                implementation(projects.modules.features.rating.impl)
-                implementation(projects.modules.features.status.impl)
+                implementation(projects.modules.features.towns.api)
+                implementation(projects.modules.features.rating.api)
+                implementation(projects.modules.features.status.api)
                 implementation(projects.modules.features.theme.api)
-                implementation(projects.modules.features.theme.impl)
             }
         }
     }
