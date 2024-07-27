@@ -48,6 +48,7 @@ modules/services/wear-messenger/common/build
 # Features ----------------------------------
 modules/features/info/ui/build
 modules/features/map/ui/build
+modules/features/rating/api/build
 modules/features/rating/impl/build
 modules/features/rating/ui/build
 modules/features/root/api/build
@@ -55,11 +56,13 @@ modules/features/root/impl/build
 modules/features/root/ui/build
 modules/features/splash/impl/build
 modules/features/splash/ui/build
+modules/features/status/api/build
 modules/features/status/impl/build
 modules/features/status/ui/build
 modules/features/theme/api/build
 modules/features/theme/impl/build
 modules/features/theme/ui/build
+modules/features/towns/api/build
 modules/features/towns/impl/build
 modules/features/towns/ui/build
 modules/features/tabs/impl/build
