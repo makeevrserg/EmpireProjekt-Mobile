@@ -1,8 +1,9 @@
 package com.makeevrserg.empireprojekt.mobile.features.root.screen
 
+import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 import kotlinx.serialization.Serializable
 
-interface RootRouter {
+interface RootRouter : PopComponent {
     fun push(configuration: Configuration)
     fun replaceCurrent(configuration: Configuration)
     fun replaceAll(configuration: Configuration)

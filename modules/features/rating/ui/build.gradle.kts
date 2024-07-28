@@ -37,6 +37,7 @@ kotlin {
                 implementation(projects.modules.features.rating.impl)
                 implementation(projects.modules.services.apiEmpireapi)
                 implementation(projects.modules.services.core)
+                implementation(projects.modules.features.rating.api)
             }
         }
     }

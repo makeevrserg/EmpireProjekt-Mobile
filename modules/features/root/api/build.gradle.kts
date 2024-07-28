@@ -18,6 +18,8 @@ kotlin {
             dependencies {
                 // Decompose
                 implementation(libs.decompose.core)
+                // Local
+                implementation(projects.modules.services.core)
             }
         }
     }

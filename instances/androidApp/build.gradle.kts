@@ -148,6 +148,7 @@ dependencies {
     implementation(projects.modules.features.theme.api)
     implementation(projects.modules.features.theme.impl)
     implementation(projects.modules.features.theme.ui)
+    implementation(projects.modules.features.status.api)
     implementation(projects.modules.features.status.impl)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.core)

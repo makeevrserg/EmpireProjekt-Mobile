@@ -129,10 +129,12 @@ dependencies {
     implementation(libs.decompose.compose)
     implementation(libs.google.gms.services.wearable)
     // Local
+    implementation(projects.modules.features.root.api)
     implementation(projects.modules.features.root.impl)
     implementation(projects.modules.features.theme.api)
     implementation(projects.modules.features.theme.impl)
     implementation(projects.modules.features.theme.ui)
+    implementation(projects.modules.features.status.api)
     implementation(projects.modules.features.status.impl)
     implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.coreResources)

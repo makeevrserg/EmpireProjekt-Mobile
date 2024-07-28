@@ -1,5 +1,6 @@
 @file:Suppress("UnusedPrivateMember")
 
+import com.android.build.gradle.internal.ide.kmp.KotlinAndroidSourceSetMarker.Companion.android
 import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
 
 plugins {
@@ -41,6 +42,7 @@ kotlin {
                 implementation(projects.modules.services.coreResources)
                 implementation(projects.modules.services.core)
                 implementation(projects.modules.services.apiEmpireapi)
+                implementation(projects.modules.features.rating.api)
             }
         }
     }

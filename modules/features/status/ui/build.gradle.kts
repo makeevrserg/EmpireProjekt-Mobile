@@ -31,6 +31,7 @@ kotlin {
                 implementation(projects.modules.services.coreResources)
                 implementation(projects.modules.services.coreUi)
                 implementation(projects.modules.services.buildKonfig)
+                implementation(projects.modules.features.status.api)
                 implementation(projects.modules.features.status.impl)
                 implementation(projects.modules.features.root.api)
                 implementation(projects.modules.features.theme.api)

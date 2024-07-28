@@ -1,6 +1,7 @@
 package com.makeevrserg.empireprojekt.mobile.wear.di
 
 import com.makeevrserg.empireprojekt.mobile.features.theme.di.ThemeSwitcherModule
+import com.makeevrserg.empireprojekt.mobile.features.theme.di.ThemeSwitcherModuleImpl
 import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
 import com.makeevrserg.empireprojekt.mobile.wear.features.ping.di.PingModule
 import com.makeevrserg.empireprojekt.mobile.wear.features.status.presentation.DefaultWearStatusComponent
@@ -21,7 +22,7 @@ interface WearRootModule {
             CoreModule.Default()
         }
         override val themeSwitcherModule: ThemeSwitcherModule by lazy {
-            ThemeSwitcherModule.Default(coreModule = coreModule)
+            ThemeSwitcherModuleImpl(coreModule = coreModule)
         }
 
         override val wearMessengerModule: WearMessengerModule by Single {
