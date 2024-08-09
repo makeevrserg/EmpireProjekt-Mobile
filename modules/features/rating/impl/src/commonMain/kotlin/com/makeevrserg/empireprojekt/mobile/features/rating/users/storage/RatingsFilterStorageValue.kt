@@ -5,7 +5,7 @@ import com.makeevrserg.empireprojekt.mobile.services.core.settings.SettingsExt.p
 import com.russhwolf.settings.Settings
 import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
 import ru.astrainteractive.empireapi.models.towny.LocalSortOrder
-import ru.astrainteractive.klibs.kstorage.api.StateFlowKrate
+import ru.astrainteractive.klibs.kstorage.api.flow.StateFlowMutableKrate
 import ru.astrainteractive.klibs.kstorage.api.impl.DefaultStateFlowMutableKrate
 
 private class Keys(key: String) {
@@ -19,7 +19,7 @@ internal class RatingsFilterStorageValue(
     settings: Settings,
     key: String,
     default: RatingsFilterModel = RatingsFilterModel()
-) : StateFlowKrate.Mutable<RatingsFilterModel> by DefaultStateFlowMutableKrate(
+) : StateFlowMutableKrate<RatingsFilterModel> by DefaultStateFlowMutableKrate(
     factory = { default },
     loader = {
         val keys = Keys(key)

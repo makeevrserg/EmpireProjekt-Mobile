@@ -4,11 +4,11 @@ import com.makeevrserg.empireprojekt.mobile.features.root.pager.model.PagerBotto
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.get
 import com.russhwolf.settings.set
-import ru.astrainteractive.klibs.kstorage.api.StateFlowKrate
+import ru.astrainteractive.klibs.kstorage.api.flow.StateFlowMutableKrate
 import ru.astrainteractive.klibs.kstorage.api.impl.DefaultStateFlowMutableKrate
 
 interface LastBottomItemRepository {
-    val lastBottomItemIndex: StateFlowKrate.Mutable<PagerBottomBarItem>
+    val lastBottomItemIndex: StateFlowMutableKrate<PagerBottomBarItem>
 }
 
 class LastBottomItemRepositoryImpl(private val settings: Settings) : LastBottomItemRepository {
