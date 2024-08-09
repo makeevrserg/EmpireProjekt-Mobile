@@ -6,7 +6,7 @@ import com.russhwolf.settings.Settings
 import ru.astrainteractive.empireapi.models.towny.LocalSortOrder
 import ru.astrainteractive.empireapi.models.towny.TownPublicType
 import ru.astrainteractive.empireapi.models.towny.TownsFilterModel
-import ru.astrainteractive.klibs.kstorage.api.Krate
+import ru.astrainteractive.klibs.kstorage.api.MutableKrate
 import ru.astrainteractive.klibs.kstorage.api.impl.DefaultStateFlowMutableKrate
 
 private class Keys(key: String) {
@@ -24,7 +24,7 @@ internal class TownsFilterStorageValue(
     settings: Settings,
     key: String,
     default: TownsFilterModel = TownsFilterModel()
-) : Krate.Mutable<TownsFilterModel> by DefaultStateFlowMutableKrate(
+) : MutableKrate<TownsFilterModel> by DefaultStateFlowMutableKrate(
     factory = { default },
     loader = {
         val keys = Keys(key)
@@ -40,7 +40,11 @@ internal class TownsFilterStorageValue(
                 keys.nameSortKey,
                 LocalSortOrder.NONE
             ),
-            tagSort = settings.getEnumByOrdinalOrDefault(LocalSortOrder.entries, keys.tagSortKey, LocalSortOrder.NONE),
+            tagSort = settings.getEnumByOrdinalOrDefault(
+                LocalSortOrder.entries,
+                keys.tagSortKey,
+                LocalSortOrder.NONE
+            ),
             founderSort = settings.getEnumByOrdinalOrDefault(
                 LocalSortOrder.entries,
                 keys.founderSortKey,

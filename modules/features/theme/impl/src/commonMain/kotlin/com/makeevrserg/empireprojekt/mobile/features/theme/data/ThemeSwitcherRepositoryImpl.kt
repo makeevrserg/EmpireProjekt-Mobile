@@ -3,7 +3,7 @@ package com.makeevrserg.empireprojekt.mobile.features.theme.data
 import com.makeevrserg.empireprojekt.mobile.features.theme.data.model.Theme
 import com.russhwolf.settings.Settings
 import ru.astrainteractive.klibs.kstorage.api.impl.DefaultStateFlowMutableKrate
-import ru.astrainteractive.klibs.kstorage.api.provider.ValueFactory
+import ru.astrainteractive.klibs.kstorage.api.value.ValueFactory
 
 internal class ThemeSwitcherRepositoryImpl(
     private val settings: Settings
