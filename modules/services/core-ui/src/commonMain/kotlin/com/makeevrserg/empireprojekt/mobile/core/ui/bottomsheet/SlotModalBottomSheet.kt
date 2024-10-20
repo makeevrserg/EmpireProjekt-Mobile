@@ -44,7 +44,7 @@ fun <T : Any, K : Any> SlotModalBottomSheet(
         ModalBottomSheet(
             onDismissRequest = { onDismiss.invoke() },
             sheetState = sheetState,
-            windowInsets = WindowInsets.zero,
+            contentWindowInsets = { WindowInsets.zero },
             content = {
                 content.invoke(this, child)
             }
