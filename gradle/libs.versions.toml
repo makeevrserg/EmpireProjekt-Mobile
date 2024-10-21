@@ -2,12 +2,12 @@
 # Kotlin
 kotlin-version = "2.0.21"
 kotlin-coroutines = "1.9.0"
-kotlin-android-application = "8.7.0"
+kotlin-android-application = "8.7.1"
 kotlin-serialization-json = "1.7.3"
 
 # Androidx
-androidx-compose-bom = "2024.09.03"
-androidx-activity-compose = "1.9.2"
+androidx-compose-bom = "2024.10.00"
+androidx-activity-compose = "1.9.3"
 android-work = "2.9.1"
 leakcanary = "2.14"
 horologist = "0.6.12"
@@ -23,7 +23,7 @@ google-firebase-bom = "33.4.0"
 
 # Testw
 tests-assertk = "0.28.1"
-tests-turbine = "1.1.0"
+tests-turbine = "1.2.0"
 
 # Other
 ktor = "3.0.0"
@@ -35,7 +35,7 @@ klibs-kdi = "1.4.8"
 klibs-gradleplugin = "1.4.0"
 
 # Compose
-kotlin-compose = "1.7.0+build1877-release-1.7"
+kotlin-compose = "1.7.0+"
 
 # Moko
 moko-resources = "0.23.0"
@@ -52,7 +52,7 @@ mppsettings = "1.2.0"
 
 # wear
 wear-glance-tiles = "1.0.0-alpha05"
-wear-tiles = "1.4.0"
+wear-tiles = "1.4.1"
 
 [libraries]
 # wear
