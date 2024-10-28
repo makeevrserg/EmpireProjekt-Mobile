@@ -10,7 +10,7 @@ androidx-compose-bom = "2024.10.00"
 androidx-activity-compose = "1.9.3"
 android-work = "2.9.1"
 leakcanary = "2.14"
-horologist = "0.6.12"
+horologist = "0.6.20"
 compose-wear = "1.4.0"
 
 # Google
@@ -19,7 +19,7 @@ google-auth = "21.2.0"
 google-crashlytics = "3.0.2"
 google-services = "4.4.2"
 google-accompanist = "0.36.1-SNAPSHOT"
-google-firebase-bom = "33.4.0"
+google-firebase-bom = "33.5.1"
 
 # Testw
 tests-assertk = "0.28.1"
@@ -41,8 +41,8 @@ kotlin-compose = "1.7.0+"
 moko-resources = "0.23.0"
 
 # Decompose
-decompose = "3.1.0" # https://github.com/arkivanov/Decompose/releases
-essenty = "2.1.0"
+decompose = "3.2.0" # https://github.com/arkivanov/Decompose/releases
+essenty = "2.2.0"
 
 # MVIKotlin
 mvikotlin = "4.2.0"
