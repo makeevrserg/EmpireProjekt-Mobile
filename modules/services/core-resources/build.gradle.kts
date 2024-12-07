@@ -23,7 +23,7 @@ kotlin {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "${requireProjectInfo.group}.core.resources"
+    resourcesPackage.set("${requireProjectInfo.group}.core.resources")
 }
 
 android {
