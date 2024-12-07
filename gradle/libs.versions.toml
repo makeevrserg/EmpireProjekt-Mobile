@@ -2,7 +2,7 @@
 # Kotlin
 kotlin-version = "2.1.0"
 kotlin-coroutines = "1.9.0"
-kotlin-android-application = "8.7.2"
+kotlin-android-application = "8.7.3"
 kotlin-serialization-json = "1.7.3"
 
 # Androidx
@@ -10,7 +10,7 @@ androidx-compose-bom = "2024.11.00"
 androidx-activity-compose = "1.9.3"
 android-work = "2.10.0"
 leakcanary = "2.14"
-horologist = "0.6.20"
+horologist = "0.6.12"
 compose-wear = "1.4.0"
 
 # Google
@@ -19,7 +19,7 @@ google-auth = "21.2.0"
 google-crashlytics = "3.0.2"
 google-services = "4.4.2"
 google-accompanist = "0.36.1-SNAPSHOT"
-google-firebase-bom = "33.6.0"
+google-firebase-bom = "33.7.0"
 
 # Testw
 tests-assertk = "0.28.1"
@@ -33,12 +33,13 @@ klibs-mikro = "1.8.8"
 klibs-kstorage = "3.2.0"
 klibs-kdi = "1.4.8"
 klibs-gradleplugin = "1.4.0"
+klibs-paging = "2.2.4"
 
 # Compose
-kotlin-compose = "1.8.0+"
+kotlin-compose = "1.7.1"
 
 # Moko
-moko-resources = "0.23.0"
+moko-resources = "0.24.3"
 
 # Decompose
 decompose = "3.2.2" # https://github.com/arkivanov/Decompose/releases
@@ -53,20 +54,21 @@ mppsettings = "1.3.0"
 # wear
 wear-glance-tiles = "1.0.0-alpha05"
 wear-tiles = "1.4.1"
+wear-complications = "1.2.1"
 
 [libraries]
 # wear
 wear-glance-tiles = { module = "androidx.glance:glance-wear-tiles", version.ref = "wear-glance-tiles" }
 wear-tiles = { module = "androidx.wear.tiles:tiles", version.ref = "wear-tiles" }
 wear-tiles-material = { module = "androidx.wear.tiles:tiles-material", version.ref = "wear-tiles" }
-wear-complications-datasource-ktx = { module = "androidx.wear.watchface:watchface-complications-data-source-ktx", version.strictly = "1.2.1" }
+wear-complications-datasource-ktx = { module = "androidx.wear.watchface:watchface-complications-data-source-ktx", version.ref = "wear-complications" }
 # klibs
 klibs-mikro-core = { module = "ru.astrainteractive.klibs:mikro-core", version.ref = "klibs-mikro" }
 klibs-mikro-platform = { module = "ru.astrainteractive.klibs:mikro-platform", version.ref = "klibs-mikro" }
 klibs-mikro-extensions = { module = "ru.astrainteractive.klibs:mikro-extensions", version.ref = "klibs-mikro" }
 klibs-kstorage = { module = "ru.astrainteractive.klibs:kstorage", version.ref = "klibs-kstorage" }
 klibs-kdi = { module = "ru.astrainteractive.klibs:kdi", version.ref = "klibs-kdi" }
-klibs-paging = { module = "ru.astrainteractive.klibs:paging", version.strictly = "2.2.1" }
+klibs-paging = { module = "ru.astrainteractive.klibs:paging", version.ref = "klibs-paging" }
 
 # Settings
 mppsettings = { module = "com.russhwolf:multiplatform-settings", version.ref = "mppsettings" }
@@ -92,7 +94,7 @@ kotlin-coroutines-playServices = { module = "org.jetbrains.kotlinx:kotlinx-corou
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 
 # Androidx
-androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.strictly = "2.8.1" }
+androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.strictly = "2.8.7" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
 androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "android-work" }
@@ -104,7 +106,7 @@ google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref
 google-firebase-crsahlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 google-firebase-crsahlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-crashlytics" }
 google-gms-services-gradle = { module = "com.google.gms:google-services", version.ref = "google-services" }
-google-gms-services-wearable = { module = "com.google.android.gms:play-services-wearable", version.strictly = "18.2.0" }
+google-gms-services-wearable = { module = "com.google.android.gms:play-services-wearable", version.strictly = "19.0.0" }
 google-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "google-auth" }
 google-accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "google-accompanist" }
 google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "google-accompanist" }
@@ -149,7 +151,7 @@ android-library = { id = "com.android.application", version.ref = "kotlin-androi
 android-application = { id = "com.android.library", version.ref = "kotlin-android-application" }
 
 # Gradle
-gradle-buildconfig = { id = "com.github.gmazzo.buildconfig", version.strictly = "5.3.5" }
+gradle-buildconfig = { id = "com.github.gmazzo.buildconfig", version.strictly = "5.5.1" }
 
 # moko
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
