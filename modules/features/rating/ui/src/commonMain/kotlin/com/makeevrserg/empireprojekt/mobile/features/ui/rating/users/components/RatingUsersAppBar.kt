@@ -14,12 +14,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.topbar.AstraCenterAlignedTopAppBar
 import com.makeevrserg.empireprojekt.mobile.core.ui.searchbar.SearchAppBar
 import com.makeevrserg.empireprojekt.mobile.core.ui.searchbar.SearchBarState
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.presentation.RatingUsersComponent
+import com.makeevrserg.empireprojekt.mobile.rating.RR
 import com.makeevrserg.empireprojekt.mobile.services.core.PopComponent
 
 @Composable
@@ -44,7 +44,7 @@ fun RatingUsersAppBar(
             )
         } else {
             AstraCenterAlignedTopAppBar(
-                title = MR.strings.rating_user_ratings.asComposableString(),
+                title = RR.strings.rating_user_ratings.asComposableString(),
                 popComponent = popComponent,
                 actions = {
                     IconButton(

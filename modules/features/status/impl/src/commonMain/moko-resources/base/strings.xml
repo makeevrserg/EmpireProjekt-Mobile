@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Status      -->
+    <string name="statuses.ratings">Рейтинги</string>
+    <string name="statuses.towns">Города</string>
+    <string name="status.title">Empire Network Status</string>
+    <string name="status.subtitle">This cards shows current status of empire network including
+        AstraLearner, Astra
+        Interactive and Empire SMP servers
+    </string>
+</resources>

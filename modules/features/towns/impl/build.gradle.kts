@@ -8,6 +8,7 @@ plugins {
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
     alias(libs.plugins.kotlin.serialization)
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -48,4 +49,9 @@ kotlin {
 }
 android {
     namespace = "${requireProjectInfo.group}.feature.towns"
+}
+
+multiplatformResources {
+    resourcesPackage.set("${requireProjectInfo.group}.feature.towns")
+    resourcesClassName.set("TR")
 }

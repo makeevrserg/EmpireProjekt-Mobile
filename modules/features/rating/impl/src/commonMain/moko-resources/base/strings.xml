@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Rating      -->
+    <string name="rating.user_ratings">Рейтинги</string>
+    <string name="rating.rating">Рейтинг:</string>
+    <string name="rating.last_updated">Обновлен:</string>
+    <string name="rating.votes_count">Голосов:</string>
+    <string name="rating.player_message">Написал:</string>
+    <string name="rating.ratings_filter.name">Имя</string>
+    <string name="rating.ratings_filter.last_update">Последние</string>
+    <string name="rating.ratings_filter.rating">Рейтинг</string>
+
+    <string name="rating.local_sort.asc">Возр.</string>
+    <string name="rating.local_sort.desc">Убыв.</string>
+    <string name="rating.town_sort_by.none">Не важно</string>
+</resources>

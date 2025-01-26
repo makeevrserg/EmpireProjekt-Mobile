@@ -13,6 +13,7 @@ plugins {
     id("ru.astrainteractive.gradleplugin.android.core")
     alias(libs.plugins.kotlin.compose.gradle)
     id("ru.astrainteractive.gradleplugin.android.apk.name")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 android {
@@ -142,4 +143,9 @@ dependencies {
     implementation(projects.modules.services.wearMessenger.pingWear)
     implementation(projects.modules.services.wearMessenger.common)
     implementation(projects.modules.services.core.nucleus)
+}
+
+multiplatformResources {
+    resourcesPackage.set("${requireProjectInfo.group}.wearapp")
+    resourcesClassName.set("WR")
 }
