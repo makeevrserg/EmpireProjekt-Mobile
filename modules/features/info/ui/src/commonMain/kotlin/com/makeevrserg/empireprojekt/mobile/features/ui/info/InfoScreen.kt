@@ -12,11 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.makeevrserg.empireprojekt.mobile.buildkonfig.BuildKonfig
-import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.RowSettingTextInfo
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.navBarsPadding
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
+import com.makeevrserg.empireprojekt.mobile.features.info.ui.IR
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.components.LinkWidget
 import com.makeevrserg.empireprojekt.mobile.features.ui.info.data.InfoScreenLinks
 import com.makeevrserg.empireprojekt.mobile.services.core.LinkBrowser
@@ -32,7 +32,7 @@ fun InfoScreen(
     ) {
         item {
             Text(
-                text = MR.strings.info_more_links.asComposableString(),
+                text = IR.strings.info_more_links.asComposableString(),
                 style = MaterialTheme.typography.h5,
                 color = MaterialTheme.colors.onPrimary,
             )

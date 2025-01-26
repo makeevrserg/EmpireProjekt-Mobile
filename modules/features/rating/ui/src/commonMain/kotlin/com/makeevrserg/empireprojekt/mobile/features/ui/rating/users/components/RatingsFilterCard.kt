@@ -15,6 +15,7 @@ import com.makeevrserg.empireprojekt.mobile.core.ui.components.filtercard.TitleO
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.ComposeTheme
 import com.makeevrserg.empireprojekt.mobile.features.rating.users.util.LocalSortOrderExt.toStringDesc
+import com.makeevrserg.empireprojekt.mobile.rating.RR
 import ru.astrainteractive.empireapi.models.rating.RatingsFilterModel
 import ru.astrainteractive.empireapi.models.towny.LocalSortOrder
 
@@ -29,19 +30,19 @@ internal fun RatingsFilterCard(
         TitleOption(text = MR.strings.shared_filter.asComposableString())
         TextOption(text = MR.strings.shared_warn_multiple_filter.asComposableString())
         EnumOption(
-            text = MR.strings.rating_ratings_filter_name.asComposableString(),
+            text = RR.strings.rating_ratings_filter_name.asComposableString(),
             selected = filter.nameSort,
             toString = { it.toStringDesc().asComposableString() },
             onClicked = onNameSortClicked
         )
         EnumOption(
-            text = MR.strings.rating_ratings_filter_last_update.asComposableString(),
+            text = RR.strings.rating_ratings_filter_last_update.asComposableString(),
             selected = filter.lastUpdatedSort,
             toString = { it.toStringDesc().asComposableString() },
             onClicked = onLastUpdateSortClicked
         )
         EnumOption(
-            text = MR.strings.rating_ratings_filter_rating.asComposableString(),
+            text = RR.strings.rating_ratings_filter_rating.asComposableString(),
             selected = filter.ratingSort,
             toString = { it.toStringDesc().asComposableString() },
             onClicked = onRatingSortClicked

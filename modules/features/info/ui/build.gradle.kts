@@ -9,6 +9,7 @@ plugins {
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
     alias(libs.plugins.kotlin.compose.gradle)
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -39,4 +40,9 @@ kotlin {
 
 android {
     namespace = "${requireProjectInfo.group}.features.info.ui"
+}
+
+multiplatformResources {
+    resourcesPackage.set("${requireProjectInfo.group}.features.info.ui")
+    resourcesClassName.set("IR")
 }

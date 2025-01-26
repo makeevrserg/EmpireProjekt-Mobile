@@ -25,12 +25,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.makeevrserg.empireprojekt.mobile.core.resources.MR
 import com.makeevrserg.empireprojekt.mobile.core.ui.asComposableString
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.PlayerHeadBox
 import com.makeevrserg.empireprojekt.mobile.core.ui.components.RowText
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AdaptThemeFade
 import com.makeevrserg.empireprojekt.mobile.core.ui.theme.AppTheme
+import com.makeevrserg.empireprojekt.mobile.rating.RR
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import ru.astrainteractive.klibs.mikro.extensions.JvmTimeFormatter
@@ -103,7 +103,7 @@ internal fun RatingUserWidget(
             )
             Spacer(Modifier.height(AppTheme.dimens.XS))
             RowText(
-                title = MR.strings.rating_last_updated.asComposableString(),
+                title = RR.strings.rating_last_updated.asComposableString(),
                 desc = remember {
                     timeFormatter.format(
                         instant = Instant.fromEpochMilliseconds(time),
@@ -113,7 +113,7 @@ internal fun RatingUserWidget(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = AppTheme.dimens.S)
             )
             Text(
-                text = MR.strings.rating_player_message.asComposableString(),
+                text = RR.strings.rating_player_message.asComposableString(),
                 style = MaterialTheme.typography.subtitle2,
                 color = MaterialTheme.colors.onSecondary,
                 textAlign = TextAlign.Start,
