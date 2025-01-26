@@ -37,8 +37,8 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
                 // Local
-                implementation(projects.modules.services.coreResources)
-                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.core.resources)
+                implementation(projects.modules.services.core.nucleus)
             }
         }
 

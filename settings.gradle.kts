@@ -25,9 +25,9 @@ rootProject.name = "EmpireProjekt-Mobile"
 include(":instances:androidApp")
 include(":instances:wearApp")
 // Services
-include(":modules:services:core-resources")
-include(":modules:services:core-ui")
-include(":modules:services:core")
+include(":modules:services:core:resources")
+include(":modules:services:core:ui")
+include(":modules:services:core:nucleus")
 include(":modules:services:wear-messenger:api")
 include(":modules:services:wear-messenger:ping-wear")
 include(":modules:services:wear-messenger:common")

@@ -34,7 +34,7 @@ kotlin {
                 // Ktor
                 implementation(libs.ktor.client.core)
                 // Local
-                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.core.nucleus)
                 implementation(projects.modules.features.status.api)
             }
         }

@@ -19,7 +19,7 @@ kotlin {
                 // Decompose
                 implementation(libs.decompose.core)
                 // Local
-                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.core.nucleus)
             }
         }
     }
