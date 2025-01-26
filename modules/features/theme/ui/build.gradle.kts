@@ -22,7 +22,7 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.runtime)
                 // Local
-                implementation(projects.modules.services.coreUi)
+                implementation(projects.modules.services.core.ui)
                 implementation(projects.modules.features.theme.api)
                 implementation(projects.modules.features.theme.impl)
             }

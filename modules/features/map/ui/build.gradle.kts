@@ -22,8 +22,8 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.runtime)
                 // Local
-                implementation(projects.modules.services.core)
-                implementation(projects.modules.services.coreUi)
+                implementation(projects.modules.services.core.nucleus)
+                implementation(projects.modules.services.core.ui)
             }
         }
     }

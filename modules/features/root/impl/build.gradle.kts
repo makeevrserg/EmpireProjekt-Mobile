@@ -35,8 +35,8 @@ kotlin {
                 // MVIKotlin
                 implementation(libs.mvikotlin)
                 // Local
-                implementation(projects.modules.services.coreResources)
-                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.core.resources)
+                implementation(projects.modules.services.core.nucleus)
                 implementation(projects.modules.services.apiEmpireapi)
                 implementation(projects.modules.features.root.api)
                 implementation(projects.modules.features.splash.impl)

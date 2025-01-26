@@ -9,7 +9,6 @@ import com.arkivanov.decompose.router.slot.dismiss
 import com.arkivanov.decompose.value.Value
 import com.makeevrserg.empireprojekt.mobile.services.core.di.CoreModule
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.serializer
 
 class DefaultRootBottomSheetComponent(
     componentContext: ComponentContext,

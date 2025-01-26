@@ -28,7 +28,7 @@ kotlin {
                 implementation(libs.kotlin.coroutines.core)
                 // Local
                 implementation(projects.modules.features.theme.api)
-                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.core.nucleus)
             }
         }
     }

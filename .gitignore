@@ -40,8 +40,9 @@ instances/androidApp/google-services.json
 modules/services/api-empireapi/build
 modules/services/build-konfig/build
 modules/services/core/build
-modules/services/core-resources/build
-modules/services/core-ui/build
+modules/services/core/resources/build
+modules/services/core/ui/build
+modules/services/core/nucleus/build
 modules/services/wear-messenger/api/build
 modules/services/wear-messenger/ping-wear/build
 modules/services/wear-messenger/common/build

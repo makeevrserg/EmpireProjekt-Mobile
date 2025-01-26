@@ -38,8 +38,8 @@ kotlin {
                 implementation(libs.mvikotlin.main)
                 implementation(libs.mvikotlin.coroutines)
                 // Local
-                implementation(projects.modules.services.coreResources)
-                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.core.resources)
+                implementation(projects.modules.services.core.nucleus)
                 implementation(projects.modules.services.apiEmpireapi)
                 implementation(projects.modules.features.towns.api)
             }

@@ -24,7 +24,7 @@ kotlin {
                 implementation(libs.kotlin.coroutines.core)
                 // Local
                 implementation(projects.modules.services.buildKonfig)
-                implementation(projects.modules.services.core)
+                implementation(projects.modules.services.core.nucleus)
             }
         }
     }
