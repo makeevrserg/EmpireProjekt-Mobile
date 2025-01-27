@@ -10,7 +10,7 @@ androidx-compose-bom = "2025.01.00"
 androidx-activity-compose = "1.10.0"
 android-work = "2.10.0"
 leakcanary = "2.14"
-horologist = "0.6.22"
+horologist = "0.6.12"
 compose-wear = "1.4.0"
 
 # Google
@@ -32,7 +32,7 @@ ktor = "3.0.3"
 klibs-mikro = "1.8.14"
 klibs-kstorage = "3.2.4"
 klibs-kdi = "1.4.8"
-klibs-gradleplugin = "1.4.0"
+klibs-gradleplugin = "1.5.1"
 klibs-paging = "2.3.4"
 
 # Compose
