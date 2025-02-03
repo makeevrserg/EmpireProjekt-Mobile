@@ -1,16 +1,16 @@
 [versions]
 # Kotlin
-kotlin-version = "2.1.0"
+kotlin-version = "2.1.10"
 kotlin-coroutines = "1.10.1"
 kotlin-android-application = "8.8.0"
 kotlin-serialization-json = "1.8.0"
 
 # Androidx
-androidx-compose-bom = "2025.01.00"
+androidx-compose-bom = "2025.01.01"
 androidx-activity-compose = "1.10.0"
 android-work = "2.10.0"
 leakcanary = "2.14"
-horologist = "0.6.12"
+horologist = "0.6.22"
 compose-wear = "1.4.0"
 
 # Google
@@ -36,7 +36,7 @@ klibs-gradleplugin = "1.5.1"
 klibs-paging = "2.3.4"
 
 # Compose
-kotlin-compose = "1.7.3" # https://github.com/JetBrains/compose-multiplatform
+kotlin-compose = "1.8.0+dev2036" # https://github.com/JetBrains/compose-multiplatform
 
 # Moko
 moko-resources = "0.24.3"
