@@ -70,7 +70,6 @@ dependencies {
     implementation(platform(libs.google.firebase.bom))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-common-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-messaging-ktx")
     implementation(libs.klibs.kstorage)
     implementation(libs.google.auth)
