@@ -2,16 +2,16 @@
 # Kotlin
 kotlin-version = "2.1.10"
 kotlin-coroutines = "1.10.1"
-kotlin-android-application = "8.8.0"
+kotlin-android-application = "8.8.1"
 kotlin-serialization-json = "1.8.0"
 
 # Androidx
-androidx-compose-bom = "2025.01.01"
+androidx-compose-bom = "2025.02.00"
 androidx-activity-compose = "1.10.0"
 android-work = "2.10.0"
 leakcanary = "2.14"
 horologist = "0.6.22"
-compose-wear = "1.4.0"
+compose-wear = "1.4.1"
 
 # Google
 google-coroutinesPlayServices = "1.10.1"
@@ -26,7 +26,7 @@ tests-assertk = "0.28.1"
 tests-turbine = "1.2.0"
 
 # Other
-ktor = "3.0.3"
+ktor = "3.1.0"
 
 # klibs
 klibs-mikro = "1.8.15"
