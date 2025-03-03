@@ -2,12 +2,12 @@
 # Kotlin
 kotlin-version = "2.1.10"
 kotlin-coroutines = "1.10.1"
-kotlin-android-application = "8.8.1"
+kotlin-android-application = "8.8.2"
 kotlin-serialization-json = "1.8.0"
 
 # Androidx
 androidx-compose-bom = "2025.02.00"
-androidx-activity-compose = "1.10.0"
+androidx-activity-compose = "1.10.1"
 android-work = "2.10.0"
 leakcanary = "2.14"
 horologist = "0.6.22"
@@ -19,14 +19,14 @@ google-auth = "21.3.0"
 google-crashlytics = "3.0.3"
 google-services = "4.4.2"
 google-accompanist = "0.36.1-SNAPSHOT"
-google-firebase-bom = "33.9.0"
+google-firebase-bom = "33.10.0"
 
 # Testw
 tests-assertk = "0.28.1"
 tests-turbine = "1.2.0"
 
 # Other
-ktor = "3.1.0"
+ktor = "3.1.1"
 
 # klibs
 klibs-mikro = "1.8.15"
@@ -42,8 +42,8 @@ kotlin-compose = "1.8.0+dev2049" # https://github.com/JetBrains/compose-multipla
 moko-resources = "0.24.3"
 
 # Decompose
-decompose = "3.2.2" # https://github.com/arkivanov/Decompose/releases
-essenty = "2.4.0"
+decompose = "3.3.0" # https://github.com/arkivanov/Decompose/releases
+essenty = "2.5.0"
 
 # MVIKotlin
 mvikotlin = "4.3.0"
